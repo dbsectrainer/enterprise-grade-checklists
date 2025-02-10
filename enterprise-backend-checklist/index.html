@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Backend Checklist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a href="../index.html" class="return-dashboard">
+        <span>↩</span> Return to Dashboard
+    </a>
+    <div class="container">
+        <h1>Enterprise Backend Checklist</h1>
+        <p class="intro">A comprehensive checklist for building and maintaining modern enterprise-grade backend systems, with focus on security, scalability, reliability, performance, API design, and infrastructure management. This enhanced checklist covers traditional backend concerns while embracing cloud-native architectures and emerging technologies.</p>
+        
+        <div class="header-controls">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-required"></div>
+                    <span>Required</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-suggested"></div>
+                    <span>Suggested</span>
+                </div>
+            </div>
+            <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
+                <span>Reset Checklist</span>
+            </button>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <h2>Security & Authentication</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Authentication System</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Implement robust authentication using JWT, OAuth 2.0, or OpenID Connect with proper token management and refresh mechanisms.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Authorization Framework</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Implement role-based access control (RBAC) or attribute-based access control (ABAC) with fine-grained permissions.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Encryption</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement encryption at rest and in transit using industry-standard algorithms and proper key management.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Headers</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Configure security headers including CORS, CSP, HSTS, and XSS protection.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Input Validation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement comprehensive input validation and sanitization to prevent injection attacks.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">MFA Implementation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Support multi-factor authentication options including TOTP and hardware keys.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement intrusion detection and prevention systems with real-time alerts.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Audit Logging</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain detailed audit logs for security-relevant events and access patterns.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>API Design</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">RESTful Standards</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Follow REST principles including proper HTTP methods, status codes, and resource naming.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Documentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain comprehensive API documentation using OpenAPI/Swagger specifications.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Versioning</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement proper API versioning strategy to manage changes and maintain backward compatibility.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Rate Limiting</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement rate limiting and throttling to protect APIs from abuse and overuse.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">GraphQL Support</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Consider implementing GraphQL for flexible data querying and reduced over-fetching.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Gateway</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Use API gateway for centralized request handling, authentication, and monitoring.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Analytics</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Track API usage patterns, performance metrics, and error rates.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Database Management</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Model Design</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Design efficient and scalable data models with proper indexing and relationships.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Database Security</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement secure database access, encryption, and proper credential management.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Backup Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated backup procedures with regular testing of restore processes.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Migration Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain database migration scripts and version control for schema changes.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Database Replication</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Set up read replicas and failover mechanisms for high availability.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Query Optimization</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement query optimization and monitoring for performance improvement.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Archival</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data archival and cleanup processes for efficient storage management.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Performance & Scalability</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Caching Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement multi-level caching using Redis/Memcached for improved performance.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Load Balancing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Set up load balancing for traffic distribution and high availability.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Horizontal Scaling</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Design systems for horizontal scalability with stateless services.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Performance Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement comprehensive performance monitoring and alerting.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">CDN Integration</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Use CDN for static content delivery and edge caching.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Auto-Scaling</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement auto-scaling based on load metrics and traffic patterns.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Performance Testing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Regular load testing and performance optimization cycles.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Microservices Architecture</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Service Discovery</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement service discovery and registration mechanisms.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Circuit Breaking</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement circuit breakers for fault tolerance and graceful degradation.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Gateway</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Set up API gateway for routing and cross-cutting concerns.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Service Communication</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define clear service communication patterns and protocols.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Service Mesh</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Consider implementing service mesh for advanced networking features.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Event Sourcing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Consider event sourcing for complex business domains.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">CQRS Pattern</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement CQRS for complex query and command scenarios.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>DevOps & CI/CD</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Automated Testing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement comprehensive unit, integration, and end-to-end tests.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">CI/CD Pipeline</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Set up automated build, test, and deployment pipelines.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Infrastructure as Code</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Manage infrastructure using tools like Terraform or CloudFormation.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Monitoring & Logging</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement comprehensive monitoring, logging, and alerting solutions.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Blue-Green Deployment</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement blue-green deployment strategy for zero-downtime updates.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Chaos Engineering</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement chaos engineering practices to test system resilience.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Container Orchestration</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Use Kubernetes or similar tools for container orchestration.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Compliance & Governance</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Privacy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Ensure compliance with GDPR, CCPA, and other privacy regulations.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Audit Logging</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain comprehensive audit logs for system activities.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Access Controls</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement proper access controls and permission management.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Retention</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data retention and deletion policies.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Compliance Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated compliance monitoring and reporting.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Policy Automation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Automate policy enforcement and compliance checks.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Third-Party Audits</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Regular third-party security and compliance audits.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Documentation</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Documentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain comprehensive API documentation with examples.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Architecture Docs</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Document system architecture, components, and interactions.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Setup Guide</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Provide clear setup and deployment documentation.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Runbooks</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain operational runbooks for common scenarios.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Decision Records</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain architectural decision records (ADRs).</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Change Log</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain detailed changelog for system changes.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Knowledge Base</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain internal knowledge base for team reference.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontname="Arial", fontsize=12];
+    edge [fontname="Arial", fontsize=10];
+
+    /* States */
+    Start [label="Start", shape=circle];
+    Dashboard [label="Main Dashboard", style=filled, fillcolor=lightblue];
+    SelectChecklist [label="Select Domain\nChecklist"];
+    ViewItems [label="View Checklist\nItems"];
+    ToggleItem [label="Toggle Item\nCompletion"];
+    ViewDetails [label="View Item\nDetails"];
+    UpdateProgress [label="Update Progress"];
+    SaveState [label="Save State"];
+    Return [label="Return to\nDashboard"];
+
+    /* Decision Nodes */
+    ItemComplete [label="Item\nComplete?", shape=diamond];
+    ViewMore [label="View\nDetails?", shape=diamond];
+    Continue [label="Continue\nChecklist?", shape=diamond];
+
+    /* Flow */
+    Start -> Dashboard;
+    Dashboard -> SelectChecklist;
+    SelectChecklist -> ViewItems;
+    ViewItems -> ViewMore;
+    ViewMore -> ViewDetails [label="Yes"];
+    ViewMore -> ToggleItem [label="No"];
+    ViewDetails -> ToggleItem;
+    ToggleItem -> ItemComplete;
+    ItemComplete -> UpdateProgress [label="Yes"];
+    ItemComplete -> ViewItems [label="No"];
+    UpdateProgress -> SaveState;
+    SaveState -> Continue;
+    Continue -> ViewItems [label="Yes"];
+    Continue -> Return [label="No"];
+    Return -> Dashboard;
+}

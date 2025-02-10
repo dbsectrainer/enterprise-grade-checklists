@@ -1,0 +1,66 @@
+digraph G {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=rounded, fontname="Arial", fontsize=12];
+    edge [fontname="Arial", fontsize=10];
+
+    /* Component Clusters */
+    subgraph cluster_presentation {
+        label="Presentation Layer";
+        style=filled;
+        color=lightblue;
+        
+        Dashboard [label="Dashboard\nComponent"];
+        Navigation [label="Navigation\nComponent"];
+        ChecklistView [label="Checklist View\nComponent"];
+        ProgressBar [label="Progress Bar\nComponent"];
+        SearchFilter [label="Search & Filter\nComponent"];
+    }
+
+    subgraph cluster_domain {
+        label="Domain Layer";
+        style=filled;
+        color=lightgreen;
+        
+        ChecklistManager [label="Checklist\nManager"];
+        ProgressTracker [label="Progress\nTracker"];
+        StateManager [label="State\nManager"];
+        EventBus [label="Event\nBus"];
+    }
+
+    subgraph cluster_data {
+        label="Data Layer";
+        style=filled;
+        color=lightyellow;
+        
+        LocalStorageService [label="LocalStorage\nService"];
+        DataValidator [label="Data\nValidator"];
+        CacheManager [label="Cache\nManager"];
+    }
+
+    /* Dependencies */
+    Dashboard -> {Navigation ChecklistView ProgressBar SearchFilter} [label="contains"];
+    Dashboard -> ChecklistManager [label="uses"];
+    ChecklistView -> ProgressTracker [label="updates"];
+    
+    ChecklistManager -> StateManager [label="manages state"];
+    ProgressTracker -> StateManager [label="updates state"];
+    
+    StateManager -> EventBus [label="publishes events"];
+    EventBus -> {Dashboard ChecklistView ProgressBar} [label="notifies"];
+    
+    StateManager -> LocalStorageService [label="persists data"];
+    LocalStorageService -> DataValidator [label="validates"];
+    LocalStorageService -> CacheManager [label="caches"];
+    
+    /* Cross-Layer Dependencies */
+    edge [style=dashed];
+    Dashboard -> EventBus [label="subscribes"];
+    ChecklistView -> LocalStorageService [label="reads/writes"];
+    ProgressBar -> ProgressTracker [label="monitors"];
+    
+    /* Bidirectional Relationships */
+    edge [dir=both];
+    StateManager -> ChecklistManager [label="syncs"];
+    CacheManager -> DataValidator [label="validates cache"];
+}

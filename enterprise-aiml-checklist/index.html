@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise AI/ML Checklist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a href="../index.html" class="return-dashboard">
+        <span>↩</span> Return to Dashboard
+    </a>
+    <div class="container">
+        <h1>Enterprise AI/ML Checklist</h1>
+        <p class="intro">A comprehensive checklist for developing and deploying enterprise-grade AI/ML solutions, focusing on data management, model development, MLOps, monitoring, and ethical considerations. This checklist covers essential machine learning practices while embracing modern AI/ML architectures and methodologies.</p>
+        
+        <div class="header-controls">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-required"></div>
+                    <span>Required</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-suggested"></div>
+                    <span>Suggested</span>
+                </div>
+            </div>
+            <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
+                <span>Reset Checklist</span>
+            </button>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <h2>Data Management</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Data Pipeline</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Implement robust data ingestion and preprocessing pipelines.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Data Quality</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Implement data quality checks and validation procedures.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Versioning</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data versioning and lineage tracking.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Privacy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Ensure data privacy and compliance with regulations.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Catalog</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data catalog and discovery tools.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Augmentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data augmentation strategies where applicable.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Model Development</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Architecture</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define and document model architecture and design decisions.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Training Pipeline</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement reproducible model training pipeline.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Validation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement comprehensive model validation procedures.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Versioning</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement model versioning and artifact management.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">AutoML</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement AutoML capabilities for model optimization.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Transfer Learning</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Leverage transfer learning where applicable.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>MLOps</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">CI/CD Pipeline</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement ML-specific CI/CD pipeline.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Registry</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement model registry and deployment tracking.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Serving</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement scalable model serving infrastructure.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Monitoring Setup</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement model monitoring and alerting.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Feature Store</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement feature store for feature management.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">A/B Testing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement A/B testing framework for models.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Model Monitoring</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Performance Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Monitor model performance and accuracy metrics.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Drift Detection</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data and concept drift detection.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Resource Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Monitor computational resource usage and costs.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Alert System</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement alerting system for model issues.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Automated Retraining</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated model retraining triggers.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Performance Dashboard</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Create comprehensive model performance dashboards.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Ethics & Fairness</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Bias Detection</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement bias detection and mitigation strategies.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Fairness Metrics</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define and monitor fairness metrics.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Explainability</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement model explainability techniques.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Ethics Guidelines</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish AI ethics guidelines and review process.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Ethics Board</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish AI ethics review board.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Impact Assessment</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Conduct regular AI impact assessments.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Documentation</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Cards</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Create comprehensive model cards for all models.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Documentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Document data sources, schemas, and transformations.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Pipeline Documentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Document ML pipelines and deployment processes.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Documentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Create comprehensive API documentation for model endpoints.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Decision Records</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Maintain ML architecture decision records.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Experiment Tracking</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Document and track ML experiments and results.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Security & Compliance</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Model Security</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement model security measures and access controls.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Security</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Ensure data security throughout ML pipeline.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Compliance Checks</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement ML-specific compliance checks and audits.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Privacy Protection</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement privacy-preserving ML techniques.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Attack Prevention</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement adversarial attack prevention measures.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Testing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Conduct regular ML security testing and audits.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

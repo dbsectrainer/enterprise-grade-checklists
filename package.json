@@ -1,0 +1,40 @@
+{
+  "name": "enterprise-grade-checklists",
+  "version": "1.0.0",
+  "description": "A comprehensive collection of enterprise-grade checklists for various development aspects",
+  "main": "index.html",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
+    "serve": "http-server . -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/enterprise-grade-checklists.git"
+  },
+  "keywords": [
+    "enterprise",
+    "checklist",
+    "best-practices",
+    "development",
+    "devops",
+    "security",
+    "frontend",
+    "backend",
+    "cloud",
+    "mobile"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.20.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "http-server": "^14.1.1",
+    "prettier": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

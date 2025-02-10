@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Security Checklist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a href="../index.html" class="return-dashboard">
+        <span>↩</span> Return to Dashboard
+    </a>
+    <div class="container">
+        <h1>Enterprise Security Checklist</h1>
+        <p class="intro">A comprehensive checklist for implementing and maintaining enterprise-grade security practices, focusing on identity management, network security, data protection, incident response, and compliance. This checklist covers essential security controls while addressing emerging threats and regulatory requirements.</p>
+        
+        <div class="header-controls">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-required"></div>
+                    <span>Required</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-suggested"></div>
+                    <span>Suggested</span>
+                </div>
+            </div>
+            <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
+                <span>Reset Checklist</span>
+            </button>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <h2>Identity & Access Management</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Multi-Factor Authentication</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Implement MFA across all systems and applications with support for multiple authentication methods.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Role-Based Access Control</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Implement RBAC with principle of least privilege and regular access reviews.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Single Sign-On</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement SSO using industry standards like SAML or OpenID Connect.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Password Policy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Enforce strong password policies with regular rotation and complexity requirements.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Biometric Authentication</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Support biometric authentication methods where appropriate.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Privileged Access Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement PAM solution for privileged account management and monitoring.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Network Security</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Firewall Configuration</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement and maintain proper firewall rules with regular reviews.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Network Segmentation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement proper network segmentation with security zones and VLANs.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">VPN Access</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Secure remote access through VPN with proper encryption and authentication.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Intrusion Detection</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Deploy IDS/IPS systems with proper monitoring and alerting.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Zero Trust Architecture</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement zero trust principles across network infrastructure.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Network Access Control</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement NAC for device authentication and policy enforcement.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Data Protection</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Encryption</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement encryption at rest and in transit for sensitive data.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Classification</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data classification and handling procedures.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Backup Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement secure backup solutions with encryption and access controls.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">DLP Implementation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Deploy Data Loss Prevention solutions for sensitive data protection.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Digital Rights Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement DRM for sensitive document protection.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Database Activity Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Monitor and audit database access and changes.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Endpoint Security</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Antivirus Protection</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Deploy enterprise antivirus with centralized management.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Patch Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated patch management for OS and applications.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Device Encryption</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Enable full-disk encryption on all endpoints.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Mobile Device Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement MDM solution for mobile device security.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Application Control</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement application whitelisting and control.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">EDR Solution</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Deploy Endpoint Detection and Response solution.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Security Monitoring</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">SIEM Implementation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Deploy Security Information and Event Management system.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Log Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement centralized log collection and analysis.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Alerts</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Configure security alerts with proper escalation procedures.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Vulnerability Scanning</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Regular vulnerability scanning and assessment.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Analytics</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement advanced security analytics and threat hunting.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Threat Intelligence</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Subscribe to and integrate threat intelligence feeds.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Incident Response</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">IR Plan</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Develop and maintain incident response plan and procedures.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">IR Team</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish and train incident response team.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Communication Plan</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define incident communication procedures and contacts.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Forensics Capability</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish digital forensics capabilities and procedures.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Tabletop Exercises</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Regular incident response simulation exercises.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Automated Response</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated incident response capabilities.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Compliance & Governance</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Policies</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Develop and maintain comprehensive security policies.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Compliance Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Regular compliance assessments and monitoring.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Audit Program</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish internal and external security audit program.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Risk Assessment</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Regular security risk assessments and management.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">GRC Platform</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement GRC platform for compliance management.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Security Metrics</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Develop and track security performance metrics.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

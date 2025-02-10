@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Data Management Checklist</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a href="../index.html" class="return-dashboard">
+        <span>↩</span> Return to Dashboard
+    </a>
+    <div class="container">
+        <h1>Enterprise Data Management Checklist</h1>
+        <p class="intro">A comprehensive checklist for implementing and maintaining enterprise-grade data management practices, focusing on data governance, quality, master data management, integration, privacy, and analytics. This checklist covers essential data management principles while embracing modern data architectures and practices.</p>
+        
+        <div class="header-controls">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color legend-required"></div>
+                    <span>Required</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-suggested"></div>
+                    <span>Suggested</span>
+                </div>
+            </div>
+            <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
+                <span>Reset Checklist</span>
+            </button>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <h2>Data Governance</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Governance Framework</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Establish comprehensive data governance framework and policies.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="checklist-item">
+                                <label class="item-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span class="item-text">Data Ownership</span>
+                                </label>
+                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                                <div class="details">Define data ownership and stewardship roles and responsibilities.</div>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Standards</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data standards and metadata management practices.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Policy Enforcement</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data governance policy enforcement and monitoring.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Governance Tools</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data governance and catalog tools.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Council</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data governance council and regular reviews.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Data Quality</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Quality Framework</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data quality framework and metrics.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Validation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data validation rules and checks.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Quality Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data quality monitoring and reporting.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Cleansing</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data cleansing and enrichment processes.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Quality Automation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated data quality improvement processes.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Quality Scoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data quality scoring and assessment framework.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Master Data Management</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">MDM Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define master data management strategy and architecture.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Models</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish master data models and hierarchies.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Matching</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement entity matching and resolution processes.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Change Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish master data change management processes.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">MDM Tools</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement master data management tools and platforms.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Hierarchy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement hierarchical data management and versioning.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Data Integration</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Integration Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define data integration strategy and architecture.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">ETL Processes</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement ETL/ELT processes and monitoring.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Pipeline</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data pipeline architecture and monitoring.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Error Handling</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement error handling and recovery procedures.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Real-time Integration</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement real-time data integration capabilities.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">API Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement API-based data integration management.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Data Privacy & Security</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Privacy Framework</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data privacy framework and policies.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Protection</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data protection and encryption measures.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Access Controls</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data access controls and monitoring.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Compliance</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Ensure compliance with privacy regulations (GDPR, CCPA, etc.).</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Privacy by Design</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement privacy by design principles in data architecture.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Masking</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data masking and anonymization capabilities.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Data Analytics</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Analytics Strategy</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Define data analytics strategy and capabilities.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Warehouse</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data warehouse/lake architecture.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">BI Platform</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement business intelligence and reporting platform.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Data Models</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish analytical data models and metrics.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Advanced Analytics</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement advanced analytics and ML capabilities.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Self-Service Analytics</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement self-service analytics capabilities.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Data Operations</h2>
+                <div class="checklist-group">
+                    <h3>Required</h3>
+                    <ul class="checklist required">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">DataOps Framework</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish DataOps practices and automation.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Monitoring</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data operations monitoring and alerting.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">SLA Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Establish data SLAs and performance metrics.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Incident Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data incident management procedures.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="checklist-group">
+                    <h3>Suggested</h3>
+                    <ul class="checklist suggested">
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Automation</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement automated data operations and orchestration.</div>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-item">
+                                <input type="checkbox" class="checkbox">
+                                <span class="item-text">Cost Management</span>
+                                <button class="expand-btn">ⓘ</button>
+                                <div class="details">Implement data cost monitoring and optimization.</div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

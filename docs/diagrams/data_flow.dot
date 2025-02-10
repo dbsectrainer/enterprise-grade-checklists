@@ -1,0 +1,53 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial", fontsize=12];
+    edge [fontname="Arial", fontsize=10];
+
+    /* External Entities */
+    User [shape=circle, label="User"];
+    Browser [shape=box, label="Web Browser"];
+
+    /* Processes */
+    subgraph cluster_0 {
+        label="Enterprise Checklist Dashboard";
+        style=filled;
+        color=lightgrey;
+        
+        /* UI Layer */
+        UI [label="User Interface\nLayer", style=filled, fillcolor=lightblue];
+        
+        /* Business Logic Layer */
+        StateManagement [label="State Management\nLayer", style=filled, fillcolor=lightgreen];
+        ProgressCalculator [label="Progress\nCalculator", style=filled, fillcolor=lightgreen];
+        
+        /* Data Layer */
+        LocalStorage [label="Local Storage\nLayer", style=filled, fillcolor=lightyellow];
+        
+        /* Event Handlers */
+        EventSystem [label="Event System", style=filled, fillcolor=lightpink];
+    }
+
+    /* Data Stores */
+    ChecklistData [shape=cylinder, label="Checklist\nData"];
+    UserProgress [shape=cylinder, label="Progress\nData"];
+    
+    /* Data Flow */
+    User -> Browser [label="Interactions"];
+    Browser -> UI [label="User Actions"];
+    UI -> EventSystem [label="Events"];
+    
+    EventSystem -> StateManagement [label="State\nUpdates"];
+    StateManagement -> ProgressCalculator [label="Progress\nData"];
+    ProgressCalculator -> UI [label="Progress\nUpdates"];
+    
+    StateManagement -> LocalStorage [label="Save\nState"];
+    LocalStorage -> ChecklistData [label="Store\nData"];
+    LocalStorage -> UserProgress [label="Store\nProgress"];
+    
+    ChecklistData -> StateManagement [label="Load\nData"];
+    UserProgress -> StateManagement [label="Load\nProgress"];
+    
+    /* Feedback Loop */
+    UI -> Browser [label="UI\nUpdates"];
+    Browser -> User [label="Visual\nFeedback"];
+}

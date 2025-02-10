@@ -1,0 +1,54 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontname="Arial", fontsize=12];
+    edge [fontname="Arial", fontsize=10];
+
+    /* Main Components */
+    Dashboard [label="Enterprise Dashboard\nInterface", style=filled, fillcolor=lightblue];
+    
+    /* Checklist Modules */
+    subgraph cluster_0 {
+        label="Domain Checklists";
+        style=filled;
+        color=lightgrey;
+        Frontend [label="Frontend\nChecklist"];
+        Backend [label="Backend\nChecklist"];
+        Cloud [label="Cloud\nChecklist"];
+        Data [label="Data\nChecklist"];
+        DevOps [label="DevOps\nChecklist"];
+        Mobile [label="Mobile\nChecklist"];
+        Security [label="Security\nChecklist"];
+        AIML [label="AI/ML\nChecklist"];
+    }
+
+    /* Core Services */
+    subgraph cluster_1 {
+        label="Core Services";
+        style=filled;
+        color=lightgreen;
+        StateManager [label="State\nManager"];
+        Storage [label="Local\nStorage"];
+        Progress [label="Progress\nTracker"];
+    }
+
+    /* User Interface Components */
+    subgraph cluster_2 {
+        label="UI Components";
+        style=filled;
+        color=lightyellow;
+        Navigation [label="Navigation\nSystem"];
+        Search [label="Search\nFunction"];
+        Filters [label="Category\nFilters"];
+    }
+
+    /* Connections */
+    Dashboard -> {Frontend Backend Cloud Data DevOps Mobile Security AIML} [label="manages"];
+    Dashboard -> Navigation [label="uses"];
+    Dashboard -> Search [label="implements"];
+    Dashboard -> Filters [label="includes"];
+    
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> StateManager [label="state updates"];
+    StateManager -> Storage [label="persists"];
+    StateManager -> Progress [label="tracks"];
+    Progress -> Dashboard [label="updates"];
+}
