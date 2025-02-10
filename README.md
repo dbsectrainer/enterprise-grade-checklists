@@ -2,6 +2,8 @@
 
 A comprehensive dashboard that combines and tracks progress across eight enterprise-grade checklists covering various domains of software development and operations.
 
+**Live Demo**: [https://dbsectrainer.github.io/enterprise-grade-checklists/](https://dbsectrainer.github.io/enterprise-grade-checklists/)
+
 ## Overview
 
 The Enterprise Checklist Dashboard provides a unified interface to manage and monitor progress across multiple specialized checklists:
@@ -29,11 +31,15 @@ The Enterprise Checklist Dashboard provides a unified interface to manage and mo
 
 ## Getting Started
 
-1. Clone the repository
-2. Open `index.html` in your web browser
-3. Navigate through different checklists using the dashboard cards
-4. Track your progress as you complete items in each checklist
-5. Use the Return to Dashboard button to navigate back to the main view
+You can either:
+
+- Visit the [live demo](https://dbsectrainer.github.io/enterprise-grade-checklists/) to start using the dashboard immediately, or
+- Set up locally:
+  1. Clone the repository
+  2. Open `index.html` in your web browser
+  3. Navigate through different checklists using the dashboard cards
+  4. Track your progress as you complete items in each checklist
+  5. Use the Return to Dashboard button to navigate back to the main view
 
 ## Case Study & Architecture
 
