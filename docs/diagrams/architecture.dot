@@ -11,14 +11,14 @@ digraph G {
         label="Domain Checklists";
         style=filled;
         color=lightgrey;
-        Frontend [label="Frontend\nChecklist"];
-        Backend [label="Backend\nChecklist"];
-        Cloud [label="Cloud\nChecklist"];
-        Data [label="Data\nChecklist"];
-        DevOps [label="DevOps\nChecklist"];
-        Mobile [label="Mobile\nChecklist"];
-        Security [label="Security\nChecklist"];
-        AIML [label="AI/ML\nChecklist"];
+        Frontend [label="Frontend Checklist\n(with Validation)"];
+        Backend [label="Backend Checklist\n(with Performance)"];
+        Cloud [label="Cloud Checklist\n(with Optimization)"];
+        Data [label="Data Checklist\n(with Quality)"];
+        DevOps [label="DevOps Checklist\n(with Compliance)"];
+        Mobile [label="Mobile Checklist\n(with Platforms)"];
+        Security [label="Security Checklist\n(with Response)"];
+        AIML [label="AI/ML Checklist\n(with Governance)"];
     }
 
     /* Core Services */
@@ -29,16 +29,29 @@ digraph G {
         StateManager [label="State\nManager"];
         Storage [label="Local\nStorage"];
         Progress [label="Progress\nTracker"];
+        Validator [label="Automated\nValidator"];
+        Monitor [label="Performance\nMonitor"];
     }
 
-    /* User Interface Components */
+    /* Documentation & Guides */
     subgraph cluster_2 {
-        label="UI Components";
+        label="Documentation";
         style=filled;
         color=lightyellow;
+        Guides [label="Best Practice\nGuides"];
+        Compliance [label="Compliance\nMappings"];
+        Ethics [label="Ethics\nFramework"];
+    }
+
+    /* UI Components */
+    subgraph cluster_3 {
+        label="UI Components";
+        style=filled;
+        color=lightpink;
         Navigation [label="Navigation\nSystem"];
         Search [label="Search\nFunction"];
         Filters [label="Category\nFilters"];
+        Reports [label="Validation\nReports"];
     }
 
     /* Connections */
@@ -46,9 +59,18 @@ digraph G {
     Dashboard -> Navigation [label="uses"];
     Dashboard -> Search [label="implements"];
     Dashboard -> Filters [label="includes"];
+    Dashboard -> Reports [label="displays"];
     
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> StateManager [label="state updates"];
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Validator [label="validates"];
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Monitor [label="monitors"];
+    
     StateManager -> Storage [label="persists"];
     StateManager -> Progress [label="tracks"];
     Progress -> Dashboard [label="updates"];
+    
+    Validator -> Reports [label="generates"];
+    Monitor -> Reports [label="updates"];
+    
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> {Guides Compliance Ethics} [label="references"];
 }

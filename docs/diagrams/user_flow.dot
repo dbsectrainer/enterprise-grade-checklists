@@ -3,36 +3,124 @@ digraph G {
     node [shape=box, style=rounded, fontname="Arial", fontsize=12];
     edge [fontname="Arial", fontsize=10];
 
-    /* States */
-    Start [label="Start", shape=circle];
-    Dashboard [label="Main Dashboard", style=filled, fillcolor=lightblue];
-    SelectChecklist [label="Select Domain\nChecklist"];
-    ViewItems [label="View Checklist\nItems"];
-    ToggleItem [label="Toggle Item\nCompletion"];
-    ViewDetails [label="View Item\nDetails"];
-    UpdateProgress [label="Update Progress"];
-    SaveState [label="Save State"];
-    Return [label="Return to\nDashboard"];
+    /* Entry Points */
+    Start [shape=circle, label="Start"];
+    
+    /* Main Dashboard */
+    subgraph cluster_0 {
+        label="Dashboard";
+        style=filled;
+        color=lightblue;
+        
+        Dashboard [label="Main\nDashboard"];
+        Search [label="Search\nFunction"];
+        GlobalProgress [label="Global\nProgress"];
+    }
 
-    /* Decision Nodes */
-    ItemComplete [label="Item\nComplete?", shape=diamond];
-    ViewMore [label="View\nDetails?", shape=diamond];
-    Continue [label="Continue\nChecklist?", shape=diamond];
+    /* Checklist Selection */
+    subgraph cluster_1 {
+        label="Checklist Selection";
+        style=filled;
+        color=lightgreen;
+        
+        Frontend [label="Frontend\nChecklist"];
+        Backend [label="Backend\nChecklist"];
+        Cloud [label="Cloud\nChecklist"];
+        Data [label="Data\nChecklist"];
+        DevOps [label="DevOps\nChecklist"];
+        Mobile [label="Mobile\nChecklist"];
+        Security [label="Security\nChecklist"];
+        AIML [label="AI/ML\nChecklist"];
+    }
 
-    /* Flow */
+    /* Checklist Interaction */
+    subgraph cluster_2 {
+        label="Checklist Interaction";
+        style=filled;
+        color=lightyellow;
+        
+        ViewItems [label="View\nItems"];
+        CheckItems [label="Complete\nItems"];
+        ViewGuides [label="View Best\nPractices"];
+        ViewExamples [label="View Code\nExamples"];
+    }
+
+    /* Validation & Reports */
+    subgraph cluster_3 {
+        label="Validation & Reports";
+        style=filled;
+        color=lightpink;
+        
+        RunValidation [label="Run\nValidation"];
+        ViewReport [label="View\nReport"];
+        CheckCompliance [label="Check\nCompliance"];
+        ViewMetrics [label="View\nMetrics"];
+    }
+
+    /* Documentation Access */
+    subgraph cluster_4 {
+        label="Documentation";
+        style=filled;
+        color=lightcyan;
+        
+        ReadGuides [label="Read\nGuides"];
+        ViewTemplates [label="View\nTemplates"];
+        CheckExamples [label="Check\nExamples"];
+    }
+
+    /* User Flow */
     Start -> Dashboard;
-    Dashboard -> SelectChecklist;
-    SelectChecklist -> ViewItems;
-    ViewItems -> ViewMore;
-    ViewMore -> ViewDetails [label="Yes"];
-    ViewMore -> ToggleItem [label="No"];
-    ViewDetails -> ToggleItem;
-    ToggleItem -> ItemComplete;
-    ItemComplete -> UpdateProgress [label="Yes"];
-    ItemComplete -> ViewItems [label="No"];
-    UpdateProgress -> SaveState;
-    SaveState -> Continue;
-    Continue -> ViewItems [label="Yes"];
-    Continue -> Return [label="No"];
-    Return -> Dashboard;
+    Dashboard -> Search;
+    Dashboard -> GlobalProgress;
+    
+    Dashboard -> {Frontend Backend Cloud Data DevOps Mobile Security AIML};
+    
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> ViewItems;
+    ViewItems -> CheckItems;
+    ViewItems -> ViewGuides;
+    ViewItems -> ViewExamples;
+    
+    CheckItems -> RunValidation;
+    RunValidation -> ViewReport;
+    ViewReport -> CheckCompliance;
+    CheckCompliance -> ViewMetrics;
+    
+    ViewGuides -> ReadGuides;
+    ViewExamples -> {ViewTemplates CheckExamples};
+    
+    /* Return Flows */
+    {ViewReport CheckCompliance ViewMetrics} -> Dashboard [label="return"];
+    {ReadGuides ViewTemplates CheckExamples} -> ViewItems [label="return"];
+    
+    /* Alternative Flows */
+    Search -> ViewItems [label="direct access"];
+    GlobalProgress -> {Frontend Backend Cloud Data DevOps Mobile Security AIML} [label="drill down"];
+    
+    /* Validation Flows */
+    subgraph cluster_5 {
+        label="Validation Flows";
+        style=filled;
+        color=lightgrey;
+        
+        ValidateFrontend [label="Validate\nFrontend"];
+        ValidateBackend [label="Validate\nBackend"];
+        ValidateAIML [label="Validate\nAI/ML"];
+    }
+    
+    RunValidation -> {ValidateFrontend ValidateBackend ValidateAIML} [label="specific validation"];
+    {ValidateFrontend ValidateBackend ValidateAIML} -> ViewReport;
+    
+    /* Compliance Flows */
+    subgraph cluster_6 {
+        label="Compliance Flows";
+        style=filled;
+        color=lightsalmon;
+        
+        SecurityCheck [label="Security\nCheck"];
+        ComplianceCheck [label="Compliance\nCheck"];
+        EthicsCheck [label="Ethics\nCheck"];
+    }
+    
+    CheckCompliance -> {SecurityCheck ComplianceCheck EthicsCheck} [label="specific checks"];
+    {SecurityCheck ComplianceCheck EthicsCheck} -> ViewMetrics;
 }

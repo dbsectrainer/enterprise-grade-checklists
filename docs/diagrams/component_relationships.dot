@@ -1,66 +1,99 @@
 digraph G {
-    rankdir=TB;
-    compound=true;
+    rankdir=LR;
     node [shape=box, style=rounded, fontname="Arial", fontsize=12];
     edge [fontname="Arial", fontsize=10];
 
-    /* Component Clusters */
-    subgraph cluster_presentation {
-        label="Presentation Layer";
+    /* Core Components */
+    subgraph cluster_0 {
+        label="Core System";
         style=filled;
         color=lightblue;
         
-        Dashboard [label="Dashboard\nComponent"];
-        Navigation [label="Navigation\nComponent"];
-        ChecklistView [label="Checklist View\nComponent"];
-        ProgressBar [label="Progress Bar\nComponent"];
-        SearchFilter [label="Search & Filter\nComponent"];
+        Dashboard [label="Dashboard"];
+        StateManager [label="State Manager"];
+        EventSystem [label="Event System"];
     }
 
-    subgraph cluster_domain {
-        label="Domain Layer";
+    /* Validation System */
+    subgraph cluster_1 {
+        label="Validation System";
         style=filled;
         color=lightgreen;
         
-        ChecklistManager [label="Checklist\nManager"];
-        ProgressTracker [label="Progress\nTracker"];
-        StateManager [label="State\nManager"];
-        EventBus [label="Event\nBus"];
+        Validator [label="Validator Engine"];
+        Rules [label="Validation Rules"];
+        Reporter [label="Report Generator"];
     }
 
-    subgraph cluster_data {
-        label="Data Layer";
+    /* Documentation System */
+    subgraph cluster_2 {
+        label="Documentation";
         style=filled;
         color=lightyellow;
         
-        LocalStorageService [label="LocalStorage\nService"];
-        DataValidator [label="Data\nValidator"];
-        CacheManager [label="Cache\nManager"];
+        Guides [label="Best Practices"];
+        Templates [label="Templates"];
+        Examples [label="Code Examples"];
     }
 
-    /* Dependencies */
-    Dashboard -> {Navigation ChecklistView ProgressBar SearchFilter} [label="contains"];
-    Dashboard -> ChecklistManager [label="uses"];
-    ChecklistView -> ProgressTracker [label="updates"];
+    /* Monitoring System */
+    subgraph cluster_3 {
+        label="Monitoring";
+        style=filled;
+        color=lightpink;
+        
+        Monitor [label="Performance Monitor"];
+        Metrics [label="Metrics Collector"];
+        Alerts [label="Alert System"];
+    }
+
+    /* Checklist Components */
+    subgraph cluster_4 {
+        label="Checklist Components";
+        style=filled;
+        color=lightgrey;
+        
+        Frontend [label="Frontend\nValidator"];
+        Backend [label="Backend\nValidator"];
+        Cloud [label="Cloud\nValidator"];
+        Data [label="Data\nValidator"];
+        DevOps [label="DevOps\nValidator"];
+        Mobile [label="Mobile\nValidator"];
+        Security [label="Security\nValidator"];
+        AIML [label="AI/ML\nValidator"];
+    }
+
+    /* Governance System */
+    subgraph cluster_5 {
+        label="Governance";
+        style=filled;
+        color=lightcyan;
+        
+        Compliance [label="Compliance\nMapper"];
+        Ethics [label="Ethics\nFramework"];
+        Auditor [label="Audit\nSystem"];
+    }
+
+    /* Relationships */
+    Dashboard -> StateManager [label="updates"];
+    Dashboard -> EventSystem [label="emits events"];
     
-    ChecklistManager -> StateManager [label="manages state"];
-    ProgressTracker -> StateManager [label="updates state"];
+    StateManager -> {Frontend Backend Cloud Data DevOps Mobile Security AIML} [label="manages state"];
     
-    StateManager -> EventBus [label="publishes events"];
-    EventBus -> {Dashboard ChecklistView ProgressBar} [label="notifies"];
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Validator [label="validates"];
+    Validator -> Rules [label="uses"];
+    Validator -> Reporter [label="generates"];
+    Reporter -> Dashboard [label="displays"];
     
-    StateManager -> LocalStorageService [label="persists data"];
-    LocalStorageService -> DataValidator [label="validates"];
-    LocalStorageService -> CacheManager [label="caches"];
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Monitor [label="monitors"];
+    Monitor -> Metrics [label="collects"];
+    Metrics -> Alerts [label="triggers"];
+    Alerts -> Dashboard [label="notifies"];
     
-    /* Cross-Layer Dependencies */
-    edge [style=dashed];
-    Dashboard -> EventBus [label="subscribes"];
-    ChecklistView -> LocalStorageService [label="reads/writes"];
-    ProgressBar -> ProgressTracker [label="monitors"];
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> {Guides Templates Examples} [label="references"];
     
-    /* Bidirectional Relationships */
-    edge [dir=both];
-    StateManager -> ChecklistManager [label="syncs"];
-    CacheManager -> DataValidator [label="validates cache"];
+    {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Compliance [label="checks"];
+    Compliance -> Auditor [label="reports"];
+    Ethics -> {AIML Security} [label="governs"];
+    Auditor -> Dashboard [label="reports"];
 }

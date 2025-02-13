@@ -3,51 +3,110 @@ digraph G {
     node [shape=box, style=rounded, fontname="Arial", fontsize=12];
     edge [fontname="Arial", fontsize=10];
 
-    /* External Entities */
+    /* User Interaction */
     User [shape=circle, label="User"];
-    Browser [shape=box, label="Web Browser"];
-
-    /* Processes */
+    
+    /* UI Layer */
     subgraph cluster_0 {
-        label="Enterprise Checklist Dashboard";
+        label="UI Layer";
+        style=filled;
+        color=lightblue;
+        
+        Interface [label="Dashboard\nInterface"];
+        Forms [label="Checklist\nForms"];
+        Reports [label="Validation\nReports"];
+    }
+
+    /* Business Logic Layer */
+    subgraph cluster_1 {
+        label="Business Logic";
+        style=filled;
+        color=lightgreen;
+        
+        Validator [label="Validation\nEngine"];
+        StateManager [label="State\nManager"];
+        EventHandler [label="Event\nHandler"];
+        Monitor [label="Performance\nMonitor"];
+    }
+
+    /* Data Layer */
+    subgraph cluster_2 {
+        label="Data Layer";
+        style=filled;
+        color=lightyellow;
+        
+        LocalStorage [label="Local\nStorage"];
+        ValidationRules [label="Validation\nRules"];
+        Metrics [label="Performance\nMetrics"];
+        ComplianceData [label="Compliance\nData"];
+    }
+
+    /* Documentation Layer */
+    subgraph cluster_3 {
+        label="Documentation";
+        style=filled;
+        color=lightpink;
+        
+        Guides [label="Best Practice\nGuides"];
+        Templates [label="Code\nTemplates"];
+        Examples [label="Implementation\nExamples"];
+    }
+
+    /* Data Flow */
+    User -> Interface [label="interacts"];
+    Interface -> Forms [label="displays"];
+    Forms -> EventHandler [label="submits data"];
+    
+    EventHandler -> StateManager [label="updates state"];
+    StateManager -> LocalStorage [label="persists"];
+    LocalStorage -> StateManager [label="retrieves"];
+    
+    EventHandler -> Validator [label="triggers validation"];
+    Validator -> ValidationRules [label="checks against"];
+    Validator -> Reports [label="generates"];
+    Reports -> Interface [label="displays"];
+    
+    EventHandler -> Monitor [label="triggers monitoring"];
+    Monitor -> Metrics [label="collects"];
+    Metrics -> Reports [label="includes in"];
+    
+    Forms -> ComplianceData [label="checks compliance"];
+    ComplianceData -> Reports [label="includes in"];
+    
+    Interface -> {Guides Templates Examples} [label="references"];
+    {Guides Templates Examples} -> Reports [label="enriches"];
+    
+    /* Feedback Loops */
+    Reports -> User [label="provides feedback"];
+    Interface -> User [label="shows progress"];
+    
+    /* Validation Flow */
+    subgraph cluster_4 {
+        label="Validation Flow";
+        style=filled;
+        color=lightcyan;
+        
+        FrontendValidation [label="Frontend\nValidation"];
+        BackendValidation [label="Backend\nValidation"];
+        SecurityValidation [label="Security\nValidation"];
+        AIMLValidation [label="AI/ML\nValidation"];
+    }
+    
+    Validator -> {FrontendValidation BackendValidation SecurityValidation AIMLValidation} [label="executes"];
+    {FrontendValidation BackendValidation SecurityValidation AIMLValidation} -> Reports [label="reports"];
+    
+    /* Monitoring Flow */
+    subgraph cluster_5 {
+        label="Monitoring Flow";
         style=filled;
         color=lightgrey;
         
-        /* UI Layer */
-        UI [label="User Interface\nLayer", style=filled, fillcolor=lightblue];
-        
-        /* Business Logic Layer */
-        StateManagement [label="State Management\nLayer", style=filled, fillcolor=lightgreen];
-        ProgressCalculator [label="Progress\nCalculator", style=filled, fillcolor=lightgreen];
-        
-        /* Data Layer */
-        LocalStorage [label="Local Storage\nLayer", style=filled, fillcolor=lightyellow];
-        
-        /* Event Handlers */
-        EventSystem [label="Event System", style=filled, fillcolor=lightpink];
+        PerformanceMetrics [label="Performance\nMetrics"];
+        ComplianceMetrics [label="Compliance\nMetrics"];
+        SecurityMetrics [label="Security\nMetrics"];
+        AIMLMetrics [label="AI/ML\nMetrics"];
     }
-
-    /* Data Stores */
-    ChecklistData [shape=cylinder, label="Checklist\nData"];
-    UserProgress [shape=cylinder, label="Progress\nData"];
     
-    /* Data Flow */
-    User -> Browser [label="Interactions"];
-    Browser -> UI [label="User Actions"];
-    UI -> EventSystem [label="Events"];
-    
-    EventSystem -> StateManagement [label="State\nUpdates"];
-    StateManagement -> ProgressCalculator [label="Progress\nData"];
-    ProgressCalculator -> UI [label="Progress\nUpdates"];
-    
-    StateManagement -> LocalStorage [label="Save\nState"];
-    LocalStorage -> ChecklistData [label="Store\nData"];
-    LocalStorage -> UserProgress [label="Store\nProgress"];
-    
-    ChecklistData -> StateManagement [label="Load\nData"];
-    UserProgress -> StateManagement [label="Load\nProgress"];
-    
-    /* Feedback Loop */
-    UI -> Browser [label="UI\nUpdates"];
-    Browser -> User [label="Visual\nFeedback"];
+    Monitor -> {PerformanceMetrics ComplianceMetrics SecurityMetrics AIMLMetrics} [label="tracks"];
+    {PerformanceMetrics ComplianceMetrics SecurityMetrics AIMLMetrics} -> Metrics [label="stores"];
 }
