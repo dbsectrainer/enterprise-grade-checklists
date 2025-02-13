@@ -20,8 +20,11 @@ The Enterprise Checklist Dashboard provides a unified interface to manage and mo
 ## Features
 
 - **Unified Dashboard**: Central view of all checklists with progress tracking
-- **Global Progress**: Overall completion status across all checklists
-- **Search Functionality**: Quick access to specific checklists and topics
+- **Automated Validation**: Built-in validators for each checklist domain
+- **Compliance Mapping**: Integrated compliance tracking for standards (HIPAA, SOC2, etc.)
+- **Performance Monitoring**: Real-time performance metrics and optimization guides
+- **Technical Demonstrations**: Practical examples and implementation guides
+- **Documentation & Guides**: Comprehensive guides and best practices
 - **Progress Persistence**: Automatic saving of progress using localStorage
 - **Responsive Design**: Mobile-friendly interface that works on all devices
 - **Real-time Updates**: Instant progress updates across all views
@@ -41,16 +44,24 @@ You can either:
   4. Track your progress as you complete items in each checklist
   5. Use the Return to Dashboard button to navigate back to the main view
 
-## Case Study & Architecture
+## Documentation
 
-A comprehensive case study of this project is available in [docs/CASE_STUDY.md](docs/CASE_STUDY.md), which covers:
+### Roadmap
+Our development roadmap is available in [docs/ROADMAP.md](docs/ROADMAP.md), outlining:
+- Phased enhancement approach
+- New checklist development plans
+- Implementation timelines
+- Success metrics
+
+### Case Study
+A comprehensive case study is available in [docs/CASE_STUDY.md](docs/CASE_STUDY.md), which covers:
 - Problem statement and solution overview
 - Implementation details and technical architecture
 - Results and benefits
 - Key features deep dive
 - Lessons learned and future enhancements
 
-### Architecture Diagrams
+### Architecture
 
 The project's architecture is documented through a series of visual diagrams in the `docs/diagrams` directory:
 
@@ -88,8 +99,10 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 ├── styles.css          # Dashboard styling
 ├── script.js          # Dashboard functionality
 ├── docs/              # Additional documentation
+│   ├── ROADMAP.md     # Development roadmap
 │   ├── CONTRIBUTING.md
-│   └── CHANGELOG.md
+│   ├── CHANGELOG.md
+│   └── diagrams/      # Architecture diagrams
 ├── enterprise-frontend-checklist/    # Frontend development checklist
 │   ├── index.html
 │   ├── styles.css
@@ -133,6 +146,9 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 - Vanilla JavaScript (ES6+)
 - LocalStorage for data persistence and state management
 - Event-driven architecture for real-time updates
+- Automated validation scripts for each domain
+- Mermaid.js for architecture diagrams
+- Performance monitoring and metrics collection
 
 ### Browser Support
 
@@ -143,13 +159,14 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 
 ### Key Features Implementation
 
-1. **Progress Tracking**
+1. **Progress & Validation**
    - Individual progress bars for each checklist
-   - Global progress calculation
+   - Automated validation scripts
+   - Compliance checking
+   - Performance monitoring
    - Real-time updates using localStorage events
    - Independent state management for each checklist
    - Timestamp tracking for last updates
-   - Automatic state persistence
 
 2. **Navigation System**
    - Return to Dashboard button on all checklists
