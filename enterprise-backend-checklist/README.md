@@ -171,14 +171,14 @@ graph LR
 ### 1. API Testing
 
 ```typescript
-describe('UserAPI', () => {
-  it('creates a user successfully', async () => {
+describe("UserAPI", () => {
+  it("creates a user successfully", async () => {
     const user = {
-      name: 'John Doe',
-      email: 'john@example.com',
+      name: "John Doe",
+      email: "john@example.com",
     };
 
-    const response = await request(app).post('/api/users').send(user);
+    const response = await request(app).post("/api/users").send(user);
 
     expect(response.status).toBe(201);
     expect(response.body.name).toBe(user.name);
@@ -189,19 +189,19 @@ describe('UserAPI', () => {
 ### 2. Load Testing
 
 ```typescript
-import { check } from 'k6';
-import http from 'k6/http';
+import { check } from "k6";
+import http from "k6/http";
 
 export const options = {
   vus: 100,
-  duration: '30s',
+  duration: "30s",
 };
 
 export default function () {
-  const response = http.get('http://api.example.com/users');
+  const response = http.get("http://api.example.com/users");
   check(response, {
-    'status is 200': (r) => r.status === 200,
-    'response time < 200ms': (r) => r.timings.duration < 200,
+    "status is 200": (r) => r.status === 200,
+    "response time < 200ms": (r) => r.timings.duration < 200,
   });
 }
 ```
@@ -211,7 +211,7 @@ export default function () {
 ### 1. REST API
 
 ```typescript
-@Controller('users')
+@Controller("users")
 export class UserController {
   constructor(private userService: UserService) {}
 
@@ -226,9 +226,9 @@ export class UserController {
     return this.userService.create(user);
   }
 
-  @Put(':id')
+  @Put(":id")
   @UseGuards(AuthGuard)
-  async update(@Param('id') id: string, @Body() user: UpdateUserDto): Promise<User> {
+  async update(@Param("id") id: string, @Body() user: UpdateUserDto): Promise<User> {
     return this.userService.update(id, user);
   }
 }
@@ -260,7 +260,7 @@ class UserResolver {
 
   @Mutation(() => User)
   @UseGuards(AuthGuard)
-  async createUser(@Args('input') input: CreateUserInput): Promise<User> {
+  async createUser(@Args("input") input: CreateUserInput): Promise<User> {
     return this.userService.create(input);
   }
 }
@@ -308,7 +308,7 @@ class CacheManager {
   }
 
   async set<T>(key: string, value: T, ttl: number = 3600): Promise<void> {
-    await this.redis.set(key, JSON.stringify(value), 'EX', ttl);
+    await this.redis.set(key, JSON.stringify(value), "EX", ttl);
   }
 
   async invalidate(pattern: string): Promise<void> {
@@ -351,7 +351,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     return {
       status: 500,
-      message: 'Internal server error',
+      message: "Internal server error",
     };
   }
 }
@@ -373,7 +373,7 @@ export class DomainError extends Error {
 
 export class ValidationError extends DomainError {
   constructor(details: Record<string, string[]>) {
-    super('Validation failed', 'VALIDATION_ERROR', details);
+    super("Validation failed", "VALIDATION_ERROR", details);
   }
 }
 ```
@@ -401,11 +401,11 @@ class MetricsCollector {
 ```typescript
 class Logger {
   info(message: string, context?: Record<string, any>) {
-    this.log('info', message, context);
+    this.log("info", message, context);
   }
 
   error(error: Error, context?: Record<string, any>) {
-    this.log('error', error.message, {
+    this.log("error", error.message, {
       ...context,
       stack: error.stack,
       name: error.name,

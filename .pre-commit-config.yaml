@@ -10,4 +10,4 @@ repos:
     rev: 3.2.5
     hooks:
       - id: prettier
-        additional_dependencies: ['prettier@3.2.5']
+        additional_dependencies: ["prettier@3.2.5"]

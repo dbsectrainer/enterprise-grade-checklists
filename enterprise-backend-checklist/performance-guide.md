@@ -81,7 +81,7 @@ class WorkerPool {
 
   constructor(size: number) {
     for (let i = 0; i < size; i++) {
-      this.workers.push(new Worker('./worker.js'));
+      this.workers.push(new Worker("./worker.js"));
     }
   }
 
@@ -207,7 +207,7 @@ class CacheManager {
 
   async set<T>(key: string, value: T, ttl: number = 3600): Promise<void> {
     // Update Redis
-    await this.redis.set(key, JSON.stringify(value), 'EX', ttl);
+    await this.redis.set(key, JSON.stringify(value), "EX", ttl);
 
     // Update local cache
     this.localCache.set(key, {

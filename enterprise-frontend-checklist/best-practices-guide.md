@@ -100,7 +100,7 @@ const Counter: React.FC = () => {
 ```typescript
 // ✅ Good Practice - Redux Slice
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
@@ -345,7 +345,7 @@ const UserContent: React.FC<{ html: string }> = ({ html }) => (
 // ✅ Good Practice
 const api = axios.create({
   headers: {
-    'X-CSRF-Token': getCsrfToken(),
+    "X-CSRF-Token": getCsrfToken(),
   },
 });
 ```
@@ -358,20 +358,20 @@ const api = axios.create({
 // ✅ Good Practice
 const reportWebVitals = (metric: WebVitalsMetric) => {
   switch (metric.name) {
-    case 'FCP':
-      logMetric('First Contentful Paint', metric.value);
+    case "FCP":
+      logMetric("First Contentful Paint", metric.value);
       break;
-    case 'LCP':
-      logMetric('Largest Contentful Paint', metric.value);
+    case "LCP":
+      logMetric("Largest Contentful Paint", metric.value);
       break;
-    case 'CLS':
-      logMetric('Cumulative Layout Shift', metric.value);
+    case "CLS":
+      logMetric("Cumulative Layout Shift", metric.value);
       break;
-    case 'FID':
-      logMetric('First Input Delay', metric.value);
+    case "FID":
+      logMetric("First Input Delay", metric.value);
       break;
-    case 'TTFB':
-      logMetric('Time to First Byte', metric.value);
+    case "TTFB":
+      logMetric("Time to First Byte", metric.value);
       break;
   }
 };

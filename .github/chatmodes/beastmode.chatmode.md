@@ -1,5 +1,5 @@
 ---
-description: 'GPT 4.1 as a top-notch coding agent.'
+description: "GPT 4.1 as a top-notch coding agent."
 model: GPT-4.1
 ---
 

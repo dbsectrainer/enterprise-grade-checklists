@@ -176,8 +176,8 @@ graph LR
 ### 1. Platform-Specific Tests
 
 ```typescript
-describe('PlatformFeatures', () => {
-  it('handles camera permissions correctly', async () => {
+describe("PlatformFeatures", () => {
+  it("handles camera permissions correctly", async () => {
     const { result } = renderHook(() => useCameraPermission());
 
     await act(async () => {
@@ -192,8 +192,8 @@ describe('PlatformFeatures', () => {
 ### 2. Performance Testing
 
 ```typescript
-describe('Performance', () => {
-  it('loads within performance budget', async () => {
+describe("Performance", () => {
+  it("loads within performance budget", async () => {
     const metrics = await measureAppStartup();
 
     expect(metrics.timeToInteractive).toBeLessThan(2000);
@@ -269,7 +269,7 @@ const useDeviceState = () => {
 
 ```typescript
 const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState,
   reducers: {
     setOnline: (state, action: PayloadAction<boolean>) => {
@@ -309,7 +309,7 @@ const configurePushNotifications = async () => {
 
 ```typescript
 const configureDeepLinking = () => {
-  linking.addEventListener('url', ({ url }) => {
+  linking.addEventListener("url", ({ url }) => {
     const route = parseDeepLink(url);
     if (route) {
       navigation.navigate(route.screen, route.params);
@@ -345,14 +345,14 @@ const SecureStore = {
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
   timeout: 30000,
 });
 
 api.interceptors.request.use(async (config) => {
-  const token = await SecureStore.get('auth_token');
+  const token = await SecureStore.get("auth_token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -366,11 +366,11 @@ api.interceptors.request.use(async (config) => {
 
 ```typescript
 const trackPerformanceMetrics = () => {
-  Performance.mark('app_start');
+  Performance.mark("app_start");
 
-  const unsubscribe = AppState.addEventListener('change', (nextState) => {
-    if (nextState === 'active') {
-      Performance.measure('app_resume', 'app_start');
+  const unsubscribe = AppState.addEventListener("change", (nextState) => {
+    if (nextState === "active") {
+      Performance.measure("app_resume", "app_start");
     }
   });
 
@@ -389,7 +389,7 @@ const configureErrorTracking = () => {
       console.error(error);
     } else {
       // Show user-friendly error screen
-      navigation.navigate('ErrorScreen', {
+      navigation.navigate("ErrorScreen", {
         error: error.message,
       });
     }

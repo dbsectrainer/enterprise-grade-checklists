@@ -194,9 +194,9 @@ describe('UserComponent', () => {
 ### 2. Performance Testing
 
 ```typescript
-describe('Performance', () => {
-  it('should load within performance budget', async () => {
-    const metrics = await measurePerformance('/dashboard');
+describe("Performance", () => {
+  it("should load within performance budget", async () => {
+    const metrics = await measurePerformance("/dashboard");
 
     expect(metrics.fcp).toBeLessThan(1000);
     expect(metrics.lcp).toBeLessThan(2500);

@@ -280,8 +280,8 @@ const PlatformFeatures: PlatformFeatures = NativeModules.PlatformFeatures;
 
 // Event subscription
 const eventEmitter = new NativeEventEmitter(CustomModule);
-const subscription = eventEmitter.addListener('onCustomEvent', (event) => {
-  console.log('Event received:', event);
+const subscription = eventEmitter.addListener("onCustomEvent", (event) => {
+  console.log("Event received:", event);
 });
 
 // Cleanup
@@ -372,14 +372,14 @@ class CustomModuleTest {
 ### 2. Integration Testing
 
 ```typescript
-describe('CustomModule Integration', () => {
-  it('handles native method calls correctly', async () => {
+describe("CustomModule Integration", () => {
+  it("handles native method calls correctly", async () => {
     const result = await CustomModule.methodWithPromise();
     expect(result).toBeDefined();
   });
 
-  it('handles native events correctly', (done) => {
-    const subscription = eventEmitter.addListener('onCustomEvent', (event) => {
+  it("handles native events correctly", (done) => {
+    const subscription = eventEmitter.addListener("onCustomEvent", (event) => {
       expect(event).toBeDefined();
       subscription.remove();
       done();
