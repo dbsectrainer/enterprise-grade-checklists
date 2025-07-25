@@ -5,12 +5,12 @@
  * Validates frontend application for performance, accessibility, and best practices
  */
 
-const fs = require('fs');
-const { execSync } = require('child_process');
-const path = require('path');
-const lighthouse = require('lighthouse');
-const puppeteer = require('puppeteer');
-const axe = require('axe-core');
+const fs = require("fs");
+const { execSync } = require("child_process");
+const path = require("path");
+const lighthouse = require("lighthouse");
+const puppeteer = require("puppeteer");
+const axe = require("axe-core");
 
 class FrontendValidator {
   constructor() {
@@ -23,7 +23,7 @@ class FrontendValidator {
   }
 
   async validatePerformance() {
-    console.log('Checking Performance Metrics...');
+    console.log("Checking Performance Metrics...");
     try {
       // Run Lighthouse performance audit
       const performanceMetrics = await this.runLighthouseAudit();
@@ -35,7 +35,7 @@ class FrontendValidator {
       // Check image optimization
       await this.checkImageOptimization();
     } catch (error) {
-      this.results.failed.push('Performance validation failed: ' + error.message);
+      this.results.failed.push("Performance validation failed: " + error.message);
     }
   }
 
@@ -45,23 +45,23 @@ class FrontendValidator {
       const page = await browser.newPage();
 
       const results = await lighthouse(page, {
-        onlyCategories: ['performance'],
+        onlyCategories: ["performance"],
       });
 
       await browser.close();
       return results;
     } catch (error) {
-      this.results.failed.push('Lighthouse audit failed: ' + error.message);
+      this.results.failed.push("Lighthouse audit failed: " + error.message);
     }
   }
 
   async validatePerformanceMetrics(metrics) {
     const thresholds = {
-      'first-contentful-paint': 1000,
-      'largest-contentful-paint': 2500,
-      'time-to-interactive': 3500,
-      'cumulative-layout-shift': 0.1,
-      'total-blocking-time': 300,
+      "first-contentful-paint": 1000,
+      "largest-contentful-paint": 2500,
+      "time-to-interactive": 3500,
+      "cumulative-layout-shift": 0.1,
+      "total-blocking-time": 300,
     };
 
     for (const [metric, threshold] of Object.entries(thresholds)) {
@@ -75,7 +75,7 @@ class FrontendValidator {
 
   async checkBundleSize() {
     try {
-      const stats = JSON.parse(fs.readFileSync('dist/stats.json', 'utf8'));
+      const stats = JSON.parse(fs.readFileSync("dist/stats.json", "utf8"));
       const maxBundleSize = 244 * 1024; // 244KB threshold
 
       for (const asset of stats.assets) {
@@ -90,12 +90,12 @@ class FrontendValidator {
         }
       }
     } catch (error) {
-      this.results.warnings.push('Bundle size check failed: ' + error.message);
+      this.results.warnings.push("Bundle size check failed: " + error.message);
     }
   }
 
   async validateAccessibility() {
-    console.log('Checking Accessibility...');
+    console.log("Checking Accessibility...");
     try {
       // Run axe accessibility audit
       const accessibilityResults = await this.runAxeAudit();
@@ -107,7 +107,7 @@ class FrontendValidator {
       // Check ARIA attributes
       await this.checkARIAAttributes();
     } catch (error) {
-      this.results.failed.push('Accessibility validation failed: ' + error.message);
+      this.results.failed.push("Accessibility validation failed: " + error.message);
     }
   }
 
@@ -116,19 +116,19 @@ class FrontendValidator {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
 
-      await page.setContent(fs.readFileSync('dist/index.html', 'utf8'));
+      await page.setContent(fs.readFileSync("dist/index.html", "utf8"));
       const results = await axe.run(page);
 
       await browser.close();
       return results;
     } catch (error) {
-      this.results.failed.push('Axe audit failed: ' + error.message);
+      this.results.failed.push("Axe audit failed: " + error.message);
     }
   }
 
   async validateAccessibilityResults(results) {
     if (results.violations.length === 0) {
-      this.results.passed.push('No accessibility violations found');
+      this.results.passed.push("No accessibility violations found");
     } else {
       results.violations.forEach((violation) => {
         this.results.failed.push(
@@ -139,7 +139,7 @@ class FrontendValidator {
   }
 
   async validateBestPractices() {
-    console.log('Checking Best Practices...');
+    console.log("Checking Best Practices...");
     try {
       // Check code style
       await this.checkCodeStyle();
@@ -150,22 +150,22 @@ class FrontendValidator {
       // Check testing coverage
       await this.checkTestCoverage();
     } catch (error) {
-      this.results.failed.push('Best practices validation failed: ' + error.message);
+      this.results.failed.push("Best practices validation failed: " + error.message);
     }
   }
 
   async checkCodeStyle() {
     try {
-      execSync('npm run lint');
-      this.results.passed.push('Code style validation passed');
+      execSync("npm run lint");
+      this.results.passed.push("Code style validation passed");
     } catch (error) {
-      this.results.failed.push('Code style validation failed: ' + error.message);
+      this.results.failed.push("Code style validation failed: " + error.message);
     }
   }
 
   async checkTestCoverage() {
     try {
-      const coverage = JSON.parse(fs.readFileSync('coverage/coverage-summary.json', 'utf8'));
+      const coverage = JSON.parse(fs.readFileSync("coverage/coverage-summary.json", "utf8"));
       const threshold = 80;
 
       if (coverage.total.lines.pct >= threshold) {
@@ -174,12 +174,12 @@ class FrontendValidator {
         this.results.failed.push(`Test coverage below threshold: ${coverage.total.lines.pct}%`);
       }
     } catch (error) {
-      this.results.warnings.push('Test coverage check failed: ' + error.message);
+      this.results.warnings.push("Test coverage check failed: " + error.message);
     }
   }
 
   async validateSecurity() {
-    console.log('Checking Security Controls...');
+    console.log("Checking Security Controls...");
     try {
       // Check dependencies
       await this.checkDependencies();
@@ -190,34 +190,34 @@ class FrontendValidator {
       // Check XSS protection
       await this.checkXSSProtection();
     } catch (error) {
-      this.results.failed.push('Security validation failed: ' + error.message);
+      this.results.failed.push("Security validation failed: " + error.message);
     }
   }
 
   async checkDependencies() {
     try {
-      execSync('npm audit');
-      this.results.passed.push('Dependency security check passed');
+      execSync("npm audit");
+      this.results.passed.push("Dependency security check passed");
     } catch (error) {
-      this.results.failed.push('Dependency security check failed: ' + error.message);
+      this.results.failed.push("Dependency security check failed: " + error.message);
     }
   }
 
   async checkContentSecurityPolicy() {
     try {
-      const html = fs.readFileSync('dist/index.html', 'utf8');
-      if (html.includes('content-security-policy')) {
-        this.results.passed.push('CSP header found');
+      const html = fs.readFileSync("dist/index.html", "utf8");
+      if (html.includes("content-security-policy")) {
+        this.results.passed.push("CSP header found");
       } else {
-        this.results.warnings.push('No CSP header found');
+        this.results.warnings.push("No CSP header found");
       }
     } catch (error) {
-      this.results.warnings.push('CSP check failed: ' + error.message);
+      this.results.warnings.push("CSP check failed: " + error.message);
     }
   }
 
   async validateBuildOutput() {
-    console.log('Checking Build Output...');
+    console.log("Checking Build Output...");
     try {
       // Check build artifacts
       await this.checkBuildArtifacts();
@@ -228,12 +228,12 @@ class FrontendValidator {
       // Check asset optimization
       await this.checkAssetOptimization();
     } catch (error) {
-      this.results.failed.push('Build output validation failed: ' + error.message);
+      this.results.failed.push("Build output validation failed: " + error.message);
     }
   }
 
   async checkBuildArtifacts() {
-    const requiredFiles = ['dist/index.html', 'dist/main.js', 'dist/styles.css'];
+    const requiredFiles = ["dist/index.html", "dist/main.js", "dist/styles.css"];
 
     for (const file of requiredFiles) {
       if (fs.existsSync(file)) {
@@ -245,7 +245,7 @@ class FrontendValidator {
   }
 
   async runAllChecks() {
-    console.log('Starting Frontend Validation...\n');
+    console.log("Starting Frontend Validation...\n");
 
     await this.validatePerformance();
     await this.validateAccessibility();
@@ -257,20 +257,20 @@ class FrontendValidator {
   }
 
   printResults() {
-    console.log('\nFrontend Validation Results:');
-    console.log('===========================\n');
+    console.log("\nFrontend Validation Results:");
+    console.log("===========================\n");
 
-    console.log('Passed Checks:');
-    this.results.passed.forEach((item) => console.log('✅ ' + item));
+    console.log("Passed Checks:");
+    this.results.passed.forEach((item) => console.log("✅ " + item));
 
-    console.log('\nFailed Checks:');
-    this.results.failed.forEach((item) => console.log('❌ ' + item));
+    console.log("\nFailed Checks:");
+    this.results.failed.forEach((item) => console.log("❌ " + item));
 
-    console.log('\nWarnings:');
-    this.results.warnings.forEach((item) => console.log('⚠️  ' + item));
+    console.log("\nWarnings:");
+    this.results.warnings.forEach((item) => console.log("⚠️  " + item));
 
-    console.log('\nNot Checked:');
-    this.results.notChecked.forEach((item) => console.log('❓ ' + item));
+    console.log("\nNot Checked:");
+    this.results.notChecked.forEach((item) => console.log("❓ " + item));
   }
 }
 
@@ -278,7 +278,7 @@ class FrontendValidator {
 if (require.main === module) {
   const validator = new FrontendValidator();
   validator.runAllChecks().catch((error) => {
-    console.error('Validation failed:', error);
+    console.error("Validation failed:", error);
     process.exit(1);
   });
 }
