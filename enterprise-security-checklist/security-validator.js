@@ -5,10 +5,10 @@
  * Automates validation of security controls and configurations
  */
 
-const fs = require('fs');
-const https = require('https');
-const { execSync } = require('child_process');
-const crypto = require('crypto');
+const fs = require("fs");
+const https = require("https");
+const { execSync } = require("child_process");
+const crypto = require("crypto");
 
 class SecurityValidator {
     constructor() {
@@ -21,30 +21,30 @@ class SecurityValidator {
     }
 
     async validateMFA() {
-        console.log('Checking MFA Configuration...');
+        console.log("Checking MFA Configuration...");
         try {
             // Example: Check if MFA is enabled in common identity providers
-            const providers = ['okta', 'auth0', 'azure-ad'];
+            const providers = ["okta", "auth0", "azure-ad"];
             for (const provider of providers) {
                 this.results.warnings.push(`Manual verification required: Check MFA settings in ${provider}`);
             }
         } catch (error) {
-            this.results.failed.push('MFA validation failed: ' + error.message);
+            this.results.failed.push("MFA validation failed: " + error.message);
         }
     }
 
     validateFirewallRules() {
-        console.log('Validating Firewall Rules...');
+        console.log("Validating Firewall Rules...");
         try {
             // Example: Check basic firewall configurations
             const defaultPolicies = this.checkDefaultDenyPolicies();
             if (defaultPolicies) {
-                this.results.passed.push('Default deny policies are in place');
+                this.results.passed.push("Default deny policies are in place");
             } else {
-                this.results.failed.push('Default deny policies not properly configured');
+                this.results.failed.push("Default deny policies not properly configured");
             }
         } catch (error) {
-            this.results.failed.push('Firewall validation failed: ' + error.message);
+            this.results.failed.push("Firewall validation failed: " + error.message);
         }
     }
 
@@ -54,20 +54,20 @@ class SecurityValidator {
     }
 
     validateEncryption() {
-        console.log('Checking Encryption Standards...');
+        console.log("Checking Encryption Standards...");
         try {
             // Check TLS version
             const tlsVersion = this.checkTLSVersion();
             if (tlsVersion >= 1.2) {
                 this.results.passed.push(`TLS ${tlsVersion} in use`);
             } else {
-                this.results.failed.push('TLS version below 1.2');
+                this.results.failed.push("TLS version below 1.2");
             }
 
             // Check encryption algorithms
             this.validateEncryptionAlgorithms();
         } catch (error) {
-            this.results.failed.push('Encryption validation failed: ' + error.message);
+            this.results.failed.push("Encryption validation failed: " + error.message);
         }
     }
 
@@ -78,7 +78,7 @@ class SecurityValidator {
 
     validateEncryptionAlgorithms() {
         const algorithms = crypto.getCiphers();
-        const insecureAlgorithms = ['des', 'rc4', 'md5'];
+        const insecureAlgorithms = ["des", "rc4", "md5"];
         
         for (const insecure of insecureAlgorithms) {
             if (algorithms.some(alg => alg.toLowerCase().includes(insecure))) {
@@ -88,7 +88,7 @@ class SecurityValidator {
     }
 
     validateAccessControl() {
-        console.log('Validating Access Controls...');
+        console.log("Validating Access Controls...");
         try {
             // Example: Check file permissions
             this.checkFilePermissions();
@@ -96,22 +96,22 @@ class SecurityValidator {
             // Example: Check user privileges
             this.checkUserPrivileges();
         } catch (error) {
-            this.results.failed.push('Access control validation failed: ' + error.message);
+            this.results.failed.push("Access control validation failed: " + error.message);
         }
     }
 
     checkFilePermissions() {
         // Implement actual file permission checks
-        this.results.warnings.push('Manual verification required: Check file permissions');
+        this.results.warnings.push("Manual verification required: Check file permissions");
     }
 
     checkUserPrivileges() {
         // Implement actual privilege checks
-        this.results.warnings.push('Manual verification required: Review user privileges');
+        this.results.warnings.push("Manual verification required: Review user privileges");
     }
 
     validateNetworkSegmentation() {
-        console.log('Checking Network Segmentation...');
+        console.log("Checking Network Segmentation...");
         try {
             // Example: Check VLAN configuration
             this.checkVLANConfig();
@@ -119,22 +119,22 @@ class SecurityValidator {
             // Example: Check network isolation
             this.checkNetworkIsolation();
         } catch (error) {
-            this.results.failed.push('Network segmentation validation failed: ' + error.message);
+            this.results.failed.push("Network segmentation validation failed: " + error.message);
         }
     }
 
     checkVLANConfig() {
         // Implement actual VLAN configuration checks
-        this.results.warnings.push('Manual verification required: Review VLAN configuration');
+        this.results.warnings.push("Manual verification required: Review VLAN configuration");
     }
 
     checkNetworkIsolation() {
         // Implement actual network isolation checks
-        this.results.warnings.push('Manual verification required: Verify network isolation');
+        this.results.warnings.push("Manual verification required: Verify network isolation");
     }
 
     async runAllChecks() {
-        console.log('Starting Security Validation Checks...\n');
+        console.log("Starting Security Validation Checks...\n");
         
         await this.validateMFA();
         this.validateFirewallRules();
@@ -146,20 +146,20 @@ class SecurityValidator {
     }
 
     printResults() {
-        console.log('\nSecurity Validation Results:');
-        console.log('===========================\n');
+        console.log("\nSecurity Validation Results:");
+        console.log("===========================\n");
 
-        console.log('Passed Checks:');
-        this.results.passed.forEach(item => console.log('✅ ' + item));
+        console.log("Passed Checks:");
+        this.results.passed.forEach(item => console.log("✅ " + item));
 
-        console.log('\nFailed Checks:');
-        this.results.failed.forEach(item => console.log('❌ ' + item));
+        console.log("\nFailed Checks:");
+        this.results.failed.forEach(item => console.log("❌ " + item));
 
-        console.log('\nWarnings:');
-        this.results.warnings.forEach(item => console.log('⚠️  ' + item));
+        console.log("\nWarnings:");
+        this.results.warnings.forEach(item => console.log("⚠️  " + item));
 
-        console.log('\nNot Checked:');
-        this.results.notChecked.forEach(item => console.log('❓ ' + item));
+        console.log("\nNot Checked:");
+        this.results.notChecked.forEach(item => console.log("❓ " + item));
     }
 }
 
@@ -167,7 +167,7 @@ class SecurityValidator {
 if (require.main === module) {
     const validator = new SecurityValidator();
     validator.runAllChecks().catch(error => {
-        console.error('Validation failed:', error);
+        console.error("Validation failed:", error);
         process.exit(1);
     });
 }
