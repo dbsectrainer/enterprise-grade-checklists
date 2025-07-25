@@ -16,17 +16,20 @@ To generate PNG images from these DOT files, you'll need Graphviz installed on y
 ### Installation
 
 #### macOS
+
 ```bash
 brew install graphviz
 ```
 
 #### Linux
+
 ```bash
 sudo apt-get install graphviz  # Debian/Ubuntu
 sudo yum install graphviz      # RHEL/CentOS
 ```
 
 #### Windows
+
 Download and install from [Graphviz Downloads](https://graphviz.org/download/)
 
 ### Generate Images
@@ -44,28 +47,36 @@ dot -Tpng component_relationships.dot -o component_relationships.png
 ## Diagram Details
 
 ### System Architecture (`architecture.dot`)
+
 Shows the high-level system components and their relationships:
+
 - Main dashboard interface
 - Domain-specific checklists
 - Core services
 - UI components
 
 ### User Flow (`user_flow.dot`)
+
 Maps the complete user journey through the application:
+
 - Navigation paths
 - Decision points
 - State transitions
 - User interactions
 
 ### Data Flow (`data_flow.dot`)
+
 Illustrates how data moves through the system:
+
 - Data persistence
 - State management
 - Event system
 - User interface updates
 
 ### Component Relationships (`component_relationships.dot`)
+
 Details the relationships and dependencies between system components:
+
 - Layer organization
 - Component dependencies
 - Cross-cutting concerns
@@ -91,6 +102,7 @@ When making changes to the system architecture:
 ## Integration with Documentation
 
 These diagrams are referenced in:
+
 - `docs/CASE_STUDY.md` - For technical architecture explanation
 - Project README - For high-level system overview
 - Development documentation - For implementation details

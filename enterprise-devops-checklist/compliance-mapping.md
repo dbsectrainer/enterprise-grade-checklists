@@ -8,19 +8,20 @@ This mapping helps organizations understand how implementing DevOps practices he
 
 ## Compliance Frameworks Coverage
 
-| Framework | Coverage | Last Updated |
-|-----------|----------|--------------|
-| ISO/IEC 27001 | 85% | 2024-02-13 |
-| NIST 800-53 | 90% | 2024-02-13 |
-| SOC 2 | 88% | 2024-02-13 |
-| ITIL 4 | 95% | 2024-02-13 |
-| COBIT 2019 | 87% | 2024-02-13 |
+| Framework     | Coverage | Last Updated |
+| ------------- | -------- | ------------ |
+| ISO/IEC 27001 | 85%      | 2024-02-13   |
+| NIST 800-53   | 90%      | 2024-02-13   |
+| SOC 2         | 88%      | 2024-02-13   |
+| ITIL 4        | 95%      | 2024-02-13   |
+| COBIT 2019    | 87%      | 2024-02-13   |
 
 ## Detailed Mapping
 
 ### Continuous Integration/Continuous Delivery (CI/CD)
 
 #### Source Control Management
+
 - **ISO 27001**: A.12.1.2 - Change management
 - **NIST 800-53**: CM-3 - Configuration change control
 - **SOC 2**: CC8.1 - Change management policies and procedures
@@ -28,6 +29,7 @@ This mapping helps organizations understand how implementing DevOps practices he
 - **COBIT 2019**: BAI06 - Managed IT changes
 
 #### Automated Testing
+
 - **ISO 27001**: A.14.2.8 - System security testing
 - **NIST 800-53**: SA-11 - Developer testing
 - **SOC 2**: CC7.1 - Quality assurance procedures
@@ -37,6 +39,7 @@ This mapping helps organizations understand how implementing DevOps practices he
 ### Infrastructure as Code
 
 #### Configuration Management
+
 - **ISO 27001**: A.12.1.2 - Change management
 - **NIST 800-53**: CM-2 - Baseline configuration
 - **SOC 2**: CC7.2 - Infrastructure change management
@@ -44,6 +47,7 @@ This mapping helps organizations understand how implementing DevOps practices he
 - **COBIT 2019**: BAI10 - Managed configuration
 
 #### Security Controls
+
 - **ISO 27001**: A.13.1.1 - Network controls
 - **NIST 800-53**: SC-7 - Boundary protection
 - **SOC 2**: CC6.1 - Secure infrastructure
@@ -53,6 +57,7 @@ This mapping helps organizations understand how implementing DevOps practices he
 ### Monitoring and Observability
 
 #### System Monitoring
+
 - **ISO 27001**: A.12.4.1 - Event logging
 - **NIST 800-53**: AU-2 - Audit events
 - **SOC 2**: CC7.2 - System monitoring
@@ -60,6 +65,7 @@ This mapping helps organizations understand how implementing DevOps practices he
 - **COBIT 2019**: DSS01 - Managed operations
 
 #### Performance Monitoring
+
 - **ISO 27001**: A.12.1.3 - Capacity management
 - **NIST 800-53**: CP-2 - Contingency plan
 - **SOC 2**: CC7.1 - System operations
@@ -71,6 +77,7 @@ This mapping helps organizations understand how implementing DevOps practices he
 ### Documentation Requirements
 
 Each DevOps practice should include:
+
 1. Process documentation
 2. Implementation evidence
 3. Testing procedures
@@ -80,6 +87,7 @@ Each DevOps practice should include:
 ### Audit Preparation
 
 For each framework:
+
 1. Maintain current mapping documentation
 2. Keep evidence organized by control
 3. Regular control testing
@@ -89,18 +97,20 @@ For each framework:
 ## Compliance Validation Tools
 
 ### 1. Automated Compliance Checks
+
 ```mermaid
 graph TD
     A[Source Code] --> B[Static Analysis]
     B --> C[Policy Validation]
     C --> D[Compliance Reports]
-    
+
     E[Infrastructure Code] --> F[Security Scanning]
     F --> G[Compliance Checks]
     G --> D
 ```
 
 ### 2. Continuous Compliance Monitoring
+
 ```mermaid
 graph LR
     A[Monitoring Tools] --> B[Log Collection]
@@ -112,26 +122,28 @@ graph LR
 ## Gap Analysis Template
 
 ```markdown
-| Practice | Framework Requirement | Current Status | Gap | Remediation Plan |
-|----------|---------------------|----------------|-----|------------------|
-| CI/CD    | ISO 27001 A.12.1.2 | Partial        | Missing change approval | Q2 2024 Implementation |
+| Practice | Framework Requirement | Current Status | Gap                     | Remediation Plan       |
+| -------- | --------------------- | -------------- | ----------------------- | ---------------------- |
+| CI/CD    | ISO 27001 A.12.1.2    | Partial        | Missing change approval | Q2 2024 Implementation |
 ```
 
 ## Best Practices Alignment
 
 ### 1. DevSecOps Integration
+
 ```mermaid
 flowchart TD
     A[Security Requirements] --> B[Development]
     B --> C[Testing]
     C --> D[Deployment]
-    
+
     E[Security Scanning] --> B
     E --> C
     E --> D
 ```
 
 ### 2. Change Management
+
 ```mermaid
 graph LR
     A[Change Request] --> B[Impact Analysis]
@@ -144,6 +156,7 @@ graph LR
 ## Compliance Metrics
 
 ### 1. Key Performance Indicators
+
 - Change success rate
 - Deployment frequency
 - Mean time to recover
@@ -151,6 +164,7 @@ graph LR
 - Audit findings resolution time
 
 ### 2. Compliance Reporting
+
 - Automated compliance reports
 - Control effectiveness metrics
 - Risk assessment results
@@ -168,6 +182,7 @@ graph LR
 ## Continuous Improvement
 
 ### 1. Regular Reviews
+
 - Monthly control assessments
 - Quarterly framework updates
 - Annual comprehensive review
@@ -175,6 +190,7 @@ graph LR
 - Stakeholder feedback integration
 
 ### 2. Training Requirements
+
 - DevSecOps principles
 - Compliance awareness
 - Tool-specific training
@@ -183,10 +199,10 @@ graph LR
 
 ## Appendix: Common Controls Matrix
 
-| Control Category | ISO 27001 | NIST 800-53 | SOC 2 | ITIL 4 | COBIT 2019 |
-|-----------------|-----------|-------------|--------|---------|-------------|
-| Change Management | A.12.1.2 | CM-3 | CC8.1 | Change Enablement | BAI06 |
-| Security Testing | A.14.2.8 | SA-11 | CC7.1 | Service Validation | BAI07 |
-| Monitoring | A.12.4.1 | AU-2 | CC7.2 | Service Monitoring | DSS01 |
-| Access Control | A.9.2.3 | AC-2 | CC6.1 | Access Management | DSS05 |
-| Incident Management | A.16.1.1 | IR-4 | CC7.3 | Service Desk | DSS02 |
+| Control Category    | ISO 27001 | NIST 800-53 | SOC 2 | ITIL 4             | COBIT 2019 |
+| ------------------- | --------- | ----------- | ----- | ------------------ | ---------- |
+| Change Management   | A.12.1.2  | CM-3        | CC8.1 | Change Enablement  | BAI06      |
+| Security Testing    | A.14.2.8  | SA-11       | CC7.1 | Service Validation | BAI07      |
+| Monitoring          | A.12.4.1  | AU-2        | CC7.2 | Service Monitoring | DSS01      |
+| Access Control      | A.9.2.3   | AC-2        | CC6.1 | Access Management  | DSS05      |
+| Incident Management | A.16.1.1  | IR-4        | CC7.3 | Service Desk       | DSS02      |

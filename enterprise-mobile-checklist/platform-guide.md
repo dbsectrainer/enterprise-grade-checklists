@@ -5,20 +5,21 @@ A comprehensive guide for implementing native modules and platform-specific feat
 ## Native Module Architecture
 
 ### Module Structure
+
 ```mermaid
 graph TD
     A[Native Module] --> B[iOS Implementation]
     A --> C[Android Implementation]
     A --> D[JS Interface]
-    
+
     B --> B1[Swift/Obj-C]
     B --> B2[iOS APIs]
     B --> B3[Bridge]
-    
+
     C --> C1[Kotlin/Java]
     C --> C2[Android APIs]
     C --> C3[Bridge]
-    
+
     D --> D1[TypeScript Definitions]
     D --> D2[Event Handling]
     D --> D3[Error Handling]
@@ -27,6 +28,7 @@ graph TD
 ## iOS Implementation
 
 ### 1. Swift Module Template
+
 ```swift
 @objc(RNCustomModule)
 class RNCustomModule: NSObject {
@@ -35,7 +37,7 @@ class RNCustomModule: NSObject {
     static func requiresMainQueueSetup() -> Bool {
         return false
     }
-    
+
     // MARK: - Module Methods
     @objc
     func methodWithPromise(_ resolve: @escaping RCTPromiseResolveBlock,
@@ -48,13 +50,13 @@ class RNCustomModule: NSObject {
             reject("ERROR_CODE", error.localizedDescription, error)
         }
     }
-    
+
     @objc
     func methodWithCallback(_ callback: @escaping RCTResponseSenderBlock) {
         // Implementation
         callback([NSNull(), "result"])
     }
-    
+
     // MARK: - Event Emitting
     private func sendEvent(_ name: String, body: Any?) {
         self.bridge?.eventDispatcher()?.sendEvent(
@@ -74,6 +76,7 @@ class RNCustomModuleManager: RCTEventEmitter {
 ```
 
 ### 2. iOS Bridge Configuration
+
 ```objc
 // RNCustomModule.m
 #import <React/RCTBridgeModule.h>
@@ -91,6 +94,7 @@ RCT_EXTERN_METHOD(methodWithCallback:(RCTResponseSenderBlock)callback)
 ```
 
 ### 3. iOS Platform Features
+
 ```swift
 // MARK: - Biometrics
 class BiometricAuth {
@@ -98,13 +102,13 @@ class BiometricAuth {
         return Promise { resolve, reject in
             let context = LAContext()
             var error: NSError?
-            
+
             guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                           error: &error) else {
                 reject(error ?? NSError())
                 return
             }
-            
+
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                  localizedReason: "Authentication required") { success, error in
                 if let error = error {
@@ -137,12 +141,13 @@ class PushNotificationManager {
 ## Android Implementation
 
 ### 1. Kotlin Module Template
+
 ```kotlin
-class CustomModule(reactContext: ReactApplicationContext) : 
+class CustomModule(reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext) {
-    
+
     override fun getName() = "CustomModule"
-    
+
     // Promise-based method
     @ReactMethod
     fun methodWithPromise(promise: Promise) {
@@ -153,7 +158,7 @@ class CustomModule(reactContext: ReactApplicationContext) :
             promise.reject("ERROR_CODE", e)
         }
     }
-    
+
     // Callback-based method
     @ReactMethod
     fun methodWithCallback(callback: Callback) {
@@ -164,7 +169,7 @@ class CustomModule(reactContext: ReactApplicationContext) :
             callback.invoke(e.message)
         }
     }
-    
+
     // Event emission
     private fun sendEvent(eventName: String, params: WritableMap?) {
         reactApplicationContext
@@ -178,7 +183,7 @@ class CustomPackage : ReactPackage {
     override fun createNativeModules(
         reactContext: ReactApplicationContext
     ): List<NativeModule> = listOf(CustomModule(reactContext))
-    
+
     override fun createViewManagers(
         reactContext: ReactApplicationContext
     ): List<ViewManager<*, *>> = emptyList()
@@ -186,6 +191,7 @@ class CustomPackage : ReactPackage {
 ```
 
 ### 2. Android Platform Features
+
 ```kotlin
 // Biometric Authentication
 class BiometricAuth(private val activity: FragmentActivity) {
@@ -199,7 +205,7 @@ class BiometricAuth(private val activity: FragmentActivity) {
                     ) {
                         resolve(true)
                     }
-                    
+
                     override fun onAuthenticationError(
                         errorCode: Int,
                         errString: CharSequence
@@ -208,12 +214,12 @@ class BiometricAuth(private val activity: FragmentActivity) {
                     }
                 }
             )
-            
+
             val promptInfo = BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Authentication Required")
                 .setNegativeButtonText("Cancel")
                 .build()
-                
+
             biometricPrompt.authenticate(promptInfo)
         }
     }
@@ -230,11 +236,11 @@ class NotificationManager(private val context: Context) {
             ).apply {
                 description = "Default notification channel"
             }
-            
+
             val notificationManager = context.getSystemService(
                 Context.NOTIFICATION_SERVICE
             ) as NotificationManager
-            
+
             notificationManager.createNotificationChannel(channel)
         }
     }
@@ -244,27 +250,29 @@ class NotificationManager(private val context: Context) {
 ## JavaScript Interface
 
 ### 1. TypeScript Definitions
+
 ```typescript
 interface CustomModule {
-    // Promise-based methods
-    methodWithPromise(): Promise<string>;
-    
-    // Callback-based methods
-    methodWithCallback(callback: (error: Error | null, result?: string) => void): void;
-    
-    // Event listeners
-    addListener(eventName: string, listener: (event: any) => void): void;
-    removeListeners(count: number): void;
+  // Promise-based methods
+  methodWithPromise(): Promise<string>;
+
+  // Callback-based methods
+  methodWithCallback(callback: (error: Error | null, result?: string) => void): void;
+
+  // Event listeners
+  addListener(eventName: string, listener: (event: any) => void): void;
+  removeListeners(count: number): void;
 }
 
 // Platform-specific types
 interface PlatformFeatures {
-    biometricAuth(): Promise<boolean>;
-    requestNotificationPermission(): Promise<boolean>;
+  biometricAuth(): Promise<boolean>;
+  requestNotificationPermission(): Promise<boolean>;
 }
 ```
 
 ### 2. Module Usage
+
 ```typescript
 // Module initialization
 const CustomModule: CustomModule = NativeModules.CustomModule;
@@ -272,33 +280,32 @@ const PlatformFeatures: PlatformFeatures = NativeModules.PlatformFeatures;
 
 // Event subscription
 const eventEmitter = new NativeEventEmitter(CustomModule);
-const subscription = eventEmitter.addListener(
-    'onCustomEvent',
-    (event) => {
-        console.log('Event received:', event);
-    }
-);
+const subscription = eventEmitter.addListener('onCustomEvent', (event) => {
+  console.log('Event received:', event);
+});
 
 // Cleanup
 useEffect(() => {
-    return () => subscription.remove();
+  return () => subscription.remove();
 }, []);
 ```
 
 ## Performance Considerations
 
 ### 1. Bridge Optimization
+
 ```mermaid
 graph LR
     A[JS Thread] --> B{Bridge}
     B --> C[Native Thread]
-    
+
     D[Batch Calls] --> B
     E[Data Serialization] --> B
     F[Thread Management] --> B
 ```
 
 ### 2. Memory Management
+
 ```typescript
 // iOS Memory Management
 class MemoryManagement {
@@ -306,7 +313,7 @@ class MemoryManagement {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     // Handle memory warnings
     @objc func handleMemoryWarning() {
         // Cleanup resources
@@ -319,7 +326,7 @@ class MemoryManagement {
         super.onLowMemory()
         // Cleanup resources
     }
-    
+
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         // Handle different memory trim levels
@@ -330,18 +337,19 @@ class MemoryManagement {
 ## Testing Strategies
 
 ### 1. Native Module Testing
+
 ```typescript
 // iOS Unit Tests
 class CustomModuleTests: XCTestCase {
     func testMethodWithPromise() {
         let expectation = self.expectation(description: "Promise resolved")
         let module = CustomModule()
-        
+
         module.methodWithPromise { result in
             XCTAssertNotNil(result)
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 5)
     }
 }
@@ -353,35 +361,33 @@ class CustomModuleTest {
     fun testMethodWithPromise() {
         val module = CustomModule(mockContext)
         val promise = mock<Promise>()
-        
+
         module.methodWithPromise(promise)
-        
+
         verify(promise).resolve(any())
     }
 }
 ```
 
 ### 2. Integration Testing
+
 ```typescript
 describe('CustomModule Integration', () => {
-    it('handles native method calls correctly', async () => {
-        const result = await CustomModule.methodWithPromise();
-        expect(result).toBeDefined();
+  it('handles native method calls correctly', async () => {
+    const result = await CustomModule.methodWithPromise();
+    expect(result).toBeDefined();
+  });
+
+  it('handles native events correctly', (done) => {
+    const subscription = eventEmitter.addListener('onCustomEvent', (event) => {
+      expect(event).toBeDefined();
+      subscription.remove();
+      done();
     });
-    
-    it('handles native events correctly', (done) => {
-        const subscription = eventEmitter.addListener(
-            'onCustomEvent',
-            (event) => {
-                expect(event).toBeDefined();
-                subscription.remove();
-                done();
-            }
-        );
-        
-        // Trigger native event
-        CustomModule.triggerEvent();
-    });
+
+    // Trigger native event
+    CustomModule.triggerEvent();
+  });
 });
 ```
 

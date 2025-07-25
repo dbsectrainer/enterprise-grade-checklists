@@ -10,15 +10,15 @@ flowchart TD
     B -->|High| C[Emergency Response]
     B -->|Medium| D[Standard Response]
     B -->|Low| E[Routine Response]
-    
+
     C --> F[Crisis Team Assembly]
     D --> G[IR Team Assembly]
     E --> H[Service Desk]
-    
+
     F --> I[Containment]
     G --> I
     H --> I
-    
+
     I --> J[Investigation]
     J --> K[Remediation]
     K --> L[Recovery]
@@ -28,6 +28,7 @@ flowchart TD
 ## 1. Incident Detection & Triage
 
 ### Detection Sources
+
 - SIEM Alerts
 - EDR/XDR Alerts
 - User Reports
@@ -36,33 +37,34 @@ flowchart TD
 
 ### Initial Assessment Matrix
 
-| Severity | Impact | Response Time | Escalation |
-|----------|--------|---------------|------------|
-| Critical | Business-stopping | Immediate | Executive Team |
-| High | Major function impact | < 1 hour | IR Team Lead |
-| Medium | Limited impact | < 4 hours | IR Team |
-| Low | Minimal impact | < 24 hours | Service Desk |
+| Severity | Impact                | Response Time | Escalation     |
+| -------- | --------------------- | ------------- | -------------- |
+| Critical | Business-stopping     | Immediate     | Executive Team |
+| High     | Major function impact | < 1 hour      | IR Team Lead   |
+| Medium   | Limited impact        | < 4 hours     | IR Team        |
+| Low      | Minimal impact        | < 24 hours    | Service Desk   |
 
 ## 2. Incident Response Procedures
 
 ### 2.1 Critical Incident Response
+
 ```mermaid
 sequenceDiagram
     participant IR Team
     participant Crisis Team
     participant Executives
     participant Legal
-    
+
     IR Team->>Crisis Team: Initial Alert
     Crisis Team->>Executives: Situation Brief
     Crisis Team->>Legal: Legal Assessment
-    
+
     par Actions
         Crisis Team->>IR Team: Containment Directives
         Legal->>Crisis Team: Legal Guidelines
         Executives->>Crisis Team: Business Decisions
     end
-    
+
     IR Team->>Crisis Team: Status Updates
     Crisis Team->>Executives: Progress Reports
 ```
@@ -70,6 +72,7 @@ sequenceDiagram
 ### 2.2 Containment Procedures
 
 #### Immediate Actions
+
 1. Isolate affected systems
 2. Block malicious IPs/domains
 3. Disable compromised accounts
@@ -77,6 +80,7 @@ sequenceDiagram
 5. Document all actions
 
 #### Network Containment
+
 ```mermaid
 graph TD
     A[Identify Scope] --> B[Network Isolation]
@@ -91,6 +95,7 @@ graph TD
 ### 3.1 Evidence Collection
 
 #### Digital Forensics Checklist
+
 - [ ] Memory dumps
 - [ ] System logs
 - [ ] Network traffic captures
@@ -98,6 +103,7 @@ graph TD
 - [ ] Application logs
 
 ### 3.2 Analysis Procedure
+
 ```mermaid
 graph LR
     A[Collect Evidence] --> B[Initial Analysis]
@@ -110,6 +116,7 @@ graph LR
 ## 4. Remediation Steps
 
 ### 4.1 System Recovery
+
 1. Patch vulnerabilities
 2. Update security controls
 3. Restore from clean backups
@@ -117,6 +124,7 @@ graph LR
 5. Implement additional monitoring
 
 ### 4.2 Access Control Review
+
 ```mermaid
 flowchart TD
     A[Review Access Logs] --> B{Unauthorized Access?}
@@ -130,6 +138,7 @@ flowchart TD
 ## 5. Post-Incident Activities
 
 ### 5.1 Lessons Learned
+
 - Root cause analysis
 - Control effectiveness review
 - Procedure updates
@@ -139,6 +148,7 @@ flowchart TD
 ### 5.2 Reporting Requirements
 
 #### Internal Reporting
+
 - Executive summary
 - Technical details
 - Impact assessment
@@ -146,6 +156,7 @@ flowchart TD
 - Recommendations
 
 #### External Reporting
+
 - Regulatory notifications
 - Customer communications
 - Law enforcement reports
@@ -154,12 +165,14 @@ flowchart TD
 ## 6. Training and Exercises
 
 ### 6.1 Training Schedule
+
 - Quarterly tabletop exercises
 - Annual full-scale simulation
 - Monthly team training
 - New employee orientation
 
 ### 6.2 Exercise Scenarios
+
 ```mermaid
 mindmap
     root((IR Exercises))
@@ -184,6 +197,7 @@ mindmap
 ## 7. Communication Templates
 
 ### 7.1 Internal Communications
+
 ```markdown
 SECURITY INCIDENT NOTIFICATION
 Severity: [Level]
@@ -195,6 +209,7 @@ Point of Contact: [Name/Contact]
 ```
 
 ### 7.2 External Communications
+
 ```markdown
 INCIDENT DISCLOSURE
 Date: [Date]
@@ -208,6 +223,7 @@ Contact: [Information]
 ## 8. Recovery Procedures
 
 ### 8.1 System Restoration
+
 ```mermaid
 graph TD
     A[Validate Backups] --> B[Clean Environment]
@@ -218,6 +234,7 @@ graph TD
 ```
 
 ### 8.2 Business Continuity
+
 - Service prioritization
 - Resource allocation
 - Communication plans

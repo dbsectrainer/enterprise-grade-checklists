@@ -1,475 +1,515 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enterprise Cloud Architecture Checklist</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-</head>
-<body>
-    <a href="../index.html" class="return-dashboard">
-        <span>↩</span> Return to Dashboard
-    </a>
+  </head>
+  <body>
+    <a href="../index.html" class="return-dashboard"> <span>↩</span> Return to Dashboard </a>
     <div class="container">
-        <h1>Enterprise Cloud Architecture Checklist</h1>
-        <p class="intro">A comprehensive checklist for designing and implementing enterprise-grade cloud architecture, focusing on multi-cloud strategy, high availability, scalability, cost optimization, and cloud-native best practices. This checklist covers essential cloud architecture principles while embracing modern cloud services and patterns.</p>
-        
-        <div class="header-controls">
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="legend-color legend-required"></div>
-                    <span>Required</span>
+      <h1>Enterprise Cloud Architecture Checklist</h1>
+      <p class="intro">
+        A comprehensive checklist for designing and implementing enterprise-grade cloud
+        architecture, focusing on multi-cloud strategy, high availability, scalability, cost
+        optimization, and cloud-native best practices. This checklist covers essential cloud
+        architecture principles while embracing modern cloud services and patterns.
+      </p>
+
+      <div class="header-controls">
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color legend-required"></div>
+            <span>Required</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color legend-suggested"></div>
+            <span>Suggested</span>
+          </div>
+        </div>
+        <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
+          <span>Reset Checklist</span>
+        </button>
+      </div>
+
+      <div class="grid">
+        <div class="section">
+          <h2>Cloud Strategy</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Multi-Cloud Strategy</span>
+                  </label>
+                  <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                  <div class="details">
+                    Define multi-cloud strategy including provider selection and workload
+                    distribution.
+                  </div>
                 </div>
-                <div class="legend-item">
-                    <div class="legend-color legend-suggested"></div>
-                    <span>Suggested</span>
+              </li>
+              <li>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Cloud Governance Model</span>
+                  </label>
+                  <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                  <div class="details">
+                    Establish cloud governance framework including policies and standards.
+                  </div>
                 </div>
-            </div>
-            <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
-                <span>Reset Checklist</span>
-            </button>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Service Selection</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Define criteria for cloud service selection and evaluation.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Migration Strategy</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Develop comprehensive cloud migration strategy and roadmap.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Cloud Center of Excellence</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Establish Cloud Center of Excellence (CCoE) team and practices.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Cloud Maturity Model</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement cloud maturity assessment and improvement framework.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="grid">
-            <div class="section">
-                <h2>Cloud Strategy</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <div class="checklist-item">
-                                <label class="item-label">
-                                    <input type="checkbox" class="checkbox">
-                                    <span class="item-text">Multi-Cloud Strategy</span>
-                                </label>
-                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
-                                <div class="details">Define multi-cloud strategy including provider selection and workload distribution.</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checklist-item">
-                                <label class="item-label">
-                                    <input type="checkbox" class="checkbox">
-                                    <span class="item-text">Cloud Governance Model</span>
-                                </label>
-                                <button class="expand-btn" aria-label="Show details">ⓘ</button>
-                                <div class="details">Establish cloud governance framework including policies and standards.</div>
-                            </div>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Service Selection</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Define criteria for cloud service selection and evaluation.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Migration Strategy</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Develop comprehensive cloud migration strategy and roadmap.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Cloud Center of Excellence</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Establish Cloud Center of Excellence (CCoE) team and practices.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Cloud Maturity Model</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud maturity assessment and improvement framework.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Infrastructure Design</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Network Architecture</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Design cloud network architecture with proper segmentation and connectivity.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Identity Architecture</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud identity and access management architecture.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Security Architecture</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Design comprehensive cloud security architecture and controls.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Storage Strategy</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Define cloud storage strategy including data lifecycle management.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Edge Computing</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Integrate edge computing capabilities into cloud architecture.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">IoT Integration</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Design architecture for IoT device integration and management.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>High Availability</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Multi-Region Design</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement multi-region architecture for high availability.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Load Balancing</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Design global and regional load balancing strategies.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Auto Scaling</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement auto-scaling for applications and services.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Failover Strategy</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Define and implement failover procedures and testing.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Chaos Engineering</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement chaos engineering practices for resilience testing.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">SLA Monitoring</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement comprehensive SLA monitoring and reporting.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Cost Optimization</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Cost Monitoring</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud cost monitoring and reporting tools.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Resource Optimization</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement resource optimization strategies and automation.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Reserved Capacity</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Plan and implement reserved capacity purchases.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Budget Controls</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud budget controls and alerts.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">FinOps Practices</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement FinOps practices and tooling.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Cost Attribution</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement detailed cost attribution and chargeback.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Security & Compliance</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Cloud Security Controls</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement comprehensive cloud security controls and monitoring.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Data Protection</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement data protection and encryption strategies.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Compliance Framework</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud compliance framework and controls.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Access Management</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud IAM policies and procedures.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Security Automation</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement automated security controls and remediation.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Threat Detection</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud-native threat detection and response.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Operations & Management</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Monitoring Strategy</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement comprehensive cloud monitoring strategy.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Automation Framework</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud automation and orchestration framework.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Backup Strategy</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud backup and recovery procedures.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Change Management</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud change management processes.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">AIOps Integration</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement AIOps for cloud operations.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Service Catalog</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud service catalog and self-service portal.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Performance & Optimization</h2>
-                <div class="checklist-group">
-                    <h3>Required</h3>
-                    <ul class="checklist required">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Performance Monitoring</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud performance monitoring and optimization.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Capacity Planning</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement capacity planning and forecasting.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Resource Optimization</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement resource optimization and right-sizing.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Caching Strategy</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud caching and content delivery strategy.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="checklist-group">
-                    <h3>Suggested</h3>
-                    <ul class="checklist suggested">
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Performance Testing</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement cloud performance testing framework.</div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checklist-item">
-                                <input type="checkbox" class="checkbox">
-                                <span class="item-text">Optimization Automation</span>
-                                <button class="expand-btn">ⓘ</button>
-                                <div class="details">Implement automated performance optimization.</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="section">
+          <h2>Infrastructure Design</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Network Architecture</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Design cloud network architecture with proper segmentation and connectivity.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Identity Architecture</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement cloud identity and access management architecture.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Architecture</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Design comprehensive cloud security architecture and controls.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Storage Strategy</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Define cloud storage strategy including data lifecycle management.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Edge Computing</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Integrate edge computing capabilities into cloud architecture.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">IoT Integration</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Design architecture for IoT device integration and management.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <div class="section">
+          <h2>High Availability</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Multi-Region Design</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement multi-region architecture for high availability.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Load Balancing</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Design global and regional load balancing strategies.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Auto Scaling</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement auto-scaling for applications and services.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Failover Strategy</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Define and implement failover procedures and testing.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Chaos Engineering</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement chaos engineering practices for resilience testing.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">SLA Monitoring</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement comprehensive SLA monitoring and reporting.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Cost Optimization</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Cost Monitoring</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud cost monitoring and reporting tools.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Resource Optimization</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement resource optimization strategies and automation.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Reserved Capacity</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Plan and implement reserved capacity purchases.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Budget Controls</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud budget controls and alerts.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">FinOps Practices</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement FinOps practices and tooling.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Cost Attribution</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement detailed cost attribution and chargeback.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Security & Compliance</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Cloud Security Controls</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement comprehensive cloud security controls and monitoring.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Data Protection</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement data protection and encryption strategies.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Compliance Framework</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud compliance framework and controls.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Access Management</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud IAM policies and procedures.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Automation</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement automated security controls and remediation.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Threat Detection</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud-native threat detection and response.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Operations & Management</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Monitoring Strategy</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement comprehensive cloud monitoring strategy.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Automation Framework</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud automation and orchestration framework.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Backup Strategy</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud backup and recovery procedures.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Change Management</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud change management processes.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">AIOps Integration</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement AIOps for cloud operations.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Service Catalog</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement cloud service catalog and self-service portal.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Performance & Optimization</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Performance Monitoring</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement cloud performance monitoring and optimization.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Capacity Planning</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement capacity planning and forecasting.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Resource Optimization</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement resource optimization and right-sizing.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Caching Strategy</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud caching and content delivery strategy.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Performance Testing</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement cloud performance testing framework.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Optimization Automation</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">Implement automated performance optimization.</div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

@@ -47,14 +47,18 @@ You can either:
 ## Documentation
 
 ### Roadmap
+
 Our development roadmap is available in [docs/ROADMAP.md](docs/ROADMAP.md), outlining:
+
 - Phased enhancement approach
 - New checklist development plans
 - Implementation timelines
 - Success metrics
 
 ### Case Study
+
 A comprehensive case study is available in [docs/CASE_STUDY.md](docs/CASE_STUDY.md), which covers:
+
 - Problem statement and solution overview
 - Implementation details and technical architecture
 - Results and benefits
@@ -66,18 +70,21 @@ A comprehensive case study is available in [docs/CASE_STUDY.md](docs/CASE_STUDY.
 The project's architecture is documented through a series of visual diagrams in the `docs/diagrams` directory:
 
 1. **System Architecture** (`architecture.png`)
+
    - High-level system components
    - Relationships between modules
    - Core services and interactions
    - UI component hierarchy
 
 2. **User Flow** (`user_flow.png`)
+
    - Complete user journey mapping
    - Decision points and interactions
    - Navigation patterns
    - State transitions
 
 3. **Data Flow** (`data_flow.png`)
+
    - System data movement
    - Layer interactions
    - Event system
@@ -160,6 +167,7 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 ### Key Features Implementation
 
 1. **Progress & Validation**
+
    - Individual progress bars for each checklist
    - Automated validation scripts
    - Compliance checking
@@ -169,12 +177,14 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
    - Timestamp tracking for last updates
 
 2. **Navigation System**
+
    - Return to Dashboard button on all checklists
    - Consistent navigation experience
    - Seamless integration between dashboard and checklists
    - Mobile-friendly navigation controls
 
 3. **Search Functionality**
+
    - Real-time filtering of checklist cards
    - Searches through titles and descriptions
    - Session storage for search term persistence
@@ -188,6 +198,7 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 ### State Management
 
 Each checklist maintains its own independent state using dedicated localStorage keys:
+
 - Separate storage keys for each checklist's progress
 - Timestamp tracking for last updates
 - Event-driven updates for real-time dashboard synchronization

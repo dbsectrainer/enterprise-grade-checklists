@@ -1,20 +1,20 @@
 // ESLint configuration for ESLint v9+
 export default [
   {
-    files: ["**/*.js"],
+    files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2021,
-      sourceType: "module",
+      sourceType: 'module',
       globals: {
-        window: "readonly",
-        document: "readonly",
-        localStorage: "readonly"
-      }
+        window: 'readonly',
+        document: 'readonly',
+        localStorage: 'readonly',
+      },
     },
     rules: {
-      semi: ["error", "always"],
-      quotes: ["error", "double"],
-      "no-unused-vars": ["warn"]
-    }
-  }
+      semi: ['error', 'always'],
+      quotes: ['error', 'double'],
+      'no-unused-vars': ['warn'],
+    },
+  },
 ];

@@ -5,13 +5,14 @@ A comprehensive guide for implementing enterprise-grade frontend components and 
 ## Component Architecture
 
 ### Component Design Patterns
+
 ```mermaid
 graph TD
     A[Component Patterns] --> B[Presentational]
     A --> C[Container]
     A --> D[HOC]
     A --> E[Custom Hooks]
-    
+
     B --> F[Pure UI]
     C --> G[Logic/State]
     D --> H[Cross-cutting]
@@ -19,6 +20,7 @@ graph TD
 ```
 
 ### 1. Presentational Components
+
 ```typescript
 // ✅ Good Practice
 const UserCard: React.FC<UserCardProps> = ({ user, onAction }) => (
@@ -34,16 +36,17 @@ const UserCard: React.FC<UserCardProps> = ({ user, onAction }) => (
 // ❌ Bad Practice
 const UserCard: React.FC = () => {
   const [user, setUser] = useState<User>();
-  
+
   useEffect(() => {
     fetchUser().then(setUser);
   }, []);
-  
+
   return (/* ... */);
 };
 ```
 
 ### 2. Container Components
+
 ```typescript
 // ✅ Good Practice
 const UserCardContainer: React.FC = () => {
@@ -63,13 +66,13 @@ const UserCard: React.FC = () => {
   const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error>();
-  
+
   // Complex data fetching and state management
   useEffect(() => {/* ... */}, []);
-  
+
   // Complex event handlers
   const handleAction = () => {/* ... */};
-  
+
   return (/* ... */);
 };
 ```
@@ -77,12 +80,13 @@ const UserCard: React.FC = () => {
 ## State Management
 
 ### 1. Local State
+
 ```typescript
 // ✅ Good Practice
 const Counter: React.FC = () => {
   const [count, setCount] = useState(0);
   const increment = useCallback(() => setCount(c => c + 1), []);
-  
+
   return (
     <button onClick={increment}>
       Count: {count}
@@ -92,6 +96,7 @@ const Counter: React.FC = () => {
 ```
 
 ### 2. Global State
+
 ```typescript
 // ✅ Good Practice - Redux Slice
 const userSlice = createSlice({
@@ -103,19 +108,22 @@ const userSlice = createSlice({
     },
     clearUser: (state) => {
       state.data = null;
-    }
-  }
+    },
+  },
 });
 
 // ✅ Good Practice - Custom Hook
 const useUser = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  
-  const updateUser = useCallback((userData: User) => {
-    dispatch(setUser(userData));
-  }, [dispatch]);
-  
+
+  const updateUser = useCallback(
+    (userData: User) => {
+      dispatch(setUser(userData));
+    },
+    [dispatch]
+  );
+
   return { user, updateUser };
 };
 ```
@@ -123,6 +131,7 @@ const useUser = () => {
 ## Performance Optimization
 
 ### 1. Memoization
+
 ```typescript
 // ✅ Good Practice
 const ExpensiveComponent = React.memo(({ data }) => (
@@ -144,6 +153,7 @@ const UserActions: React.FC<UserActionsProps> = ({ userId }) => {
 ```
 
 ### 2. Code Splitting
+
 ```typescript
 // ✅ Good Practice
 const DashboardPage = React.lazy(() => import('./pages/Dashboard'));
@@ -158,6 +168,7 @@ const App: React.FC = () => (
 ## Error Handling
 
 ### 1. Error Boundaries
+
 ```typescript
 // ✅ Good Practice
 class ErrorBoundary extends React.Component<Props, State> {
@@ -182,9 +193,10 @@ class ErrorBoundary extends React.Component<Props, State> {
 ```
 
 ### 2. API Error Handling
+
 ```typescript
 // ✅ Good Practice
-const useApiCall = <T,>(apiFunc: () => Promise<T>) => {
+const useApiCall = <T>(apiFunc: () => Promise<T>) => {
   const [state, setState] = useState<{
     data: T | null;
     loading: boolean;
@@ -192,12 +204,12 @@ const useApiCall = <T,>(apiFunc: () => Promise<T>) => {
   }>({
     data: null,
     loading: false,
-    error: null
+    error: null,
   });
 
   const execute = useCallback(async () => {
     try {
-      setState(s => ({ ...s, loading: true }));
+      setState((s) => ({ ...s, loading: true }));
       const data = await apiFunc();
       setState({ data, loading: false, error: null });
     } catch (error) {
@@ -212,6 +224,7 @@ const useApiCall = <T,>(apiFunc: () => Promise<T>) => {
 ## Testing Strategies
 
 ### 1. Component Testing
+
 ```typescript
 // ✅ Good Practice
 describe('UserCard', () => {
@@ -223,7 +236,7 @@ describe('UserCard', () => {
     };
 
     const { getByText } = render(<UserCard user={user} />);
-    
+
     expect(getByText(user.name)).toBeInTheDocument();
     expect(getByText(user.email)).toBeInTheDocument();
   });
@@ -243,6 +256,7 @@ describe('UserCard', () => {
 ```
 
 ### 2. Integration Testing
+
 ```typescript
 // ✅ Good Practice
 describe('UserDashboard', () => {
@@ -251,7 +265,7 @@ describe('UserDashboard', () => {
     mockApi.getUser.mockResolvedValue(mockUser);
 
     const { getByText, findByText } = render(<UserDashboard />);
-    
+
     expect(getByText('Loading...')).toBeInTheDocument();
     expect(await findByText(mockUser.name)).toBeInTheDocument();
   });
@@ -261,6 +275,7 @@ describe('UserDashboard', () => {
 ## Accessibility
 
 ### 1. Semantic HTML
+
 ```typescript
 // ✅ Good Practice
 const Article: React.FC = () => (
@@ -283,6 +298,7 @@ const Article: React.FC = () => (
 ```
 
 ### 2. ARIA Attributes
+
 ```typescript
 // ✅ Good Practice
 const Dialog: React.FC = ({ title, isOpen, onClose, children }) => (
@@ -309,6 +325,7 @@ const Dialog: React.FC = ({ title, isOpen, onClose, children }) => (
 ## Security Best Practices
 
 ### 1. XSS Prevention
+
 ```typescript
 // ✅ Good Practice
 const UserContent: React.FC<{ html: string }> = ({ html }) => {
@@ -323,18 +340,20 @@ const UserContent: React.FC<{ html: string }> = ({ html }) => (
 ```
 
 ### 2. CSRF Protection
+
 ```typescript
 // ✅ Good Practice
 const api = axios.create({
   headers: {
     'X-CSRF-Token': getCsrfToken(),
-  }
+  },
 });
 ```
 
 ## Performance Monitoring
 
 ### 1. Web Vitals
+
 ```typescript
 // ✅ Good Practice
 const reportWebVitals = (metric: WebVitalsMetric) => {
@@ -359,6 +378,7 @@ const reportWebVitals = (metric: WebVitalsMetric) => {
 ```
 
 ### 2. Performance Profiling
+
 ```typescript
 // ✅ Good Practice
 const withPerformanceTracking = <P extends object>(

@@ -11,6 +11,7 @@ This checklist is designed to help organizations implement robust security pract
 Each section of this checklist addresses specific security concerns:
 
 ### Identity & Access Management
+
 ```mermaid
 graph TD
     A[Identity & Access Management] --> B[MFA]
@@ -24,9 +25,11 @@ graph TD
 ```
 
 #### Real-World Example
+
 In 2019, a major healthcare provider prevented a data breach when their MFA system blocked unauthorized access attempts from a compromised admin account. The attack would have exposed 3.5M patient records.
 
 ### Network Security
+
 ```mermaid
 graph TD
     A[Network Security] --> B[Firewall]
@@ -40,11 +43,13 @@ graph TD
 ```
 
 #### Case Study: Network Segmentation Success
+
 A retail company implemented network segmentation, which contained a POS malware infection to non-critical systems, preventing access to customer payment data and avoiding a potential multi-million dollar breach.
 
 ## Implementation Guide
 
 ### Zero Trust Architecture Implementation
+
 ```mermaid
 graph LR
     A[Identity Verification] --> B[Device Trust]
@@ -55,11 +60,13 @@ graph LR
 ```
 
 1. Identity Verification
+
    - Implement strong authentication
    - Verify user identity continuously
    - Use context-aware access policies
 
 2. Device Trust
+
    - Enforce device health checks
    - Require device certificates
    - Monitor device compliance
@@ -72,6 +79,7 @@ graph LR
 ### Automation Scripts
 
 #### 1. Firewall Rule Validation
+
 ```bash
 #!/bin/bash
 # Validates firewall rules against security baseline
@@ -89,6 +97,7 @@ check_default_deny() {
 ```
 
 #### 2. Security Compliance Check
+
 ```python
 def check_compliance(framework):
     """
@@ -105,16 +114,17 @@ def check_compliance(framework):
 
 ## Compliance Mapping
 
-| Checklist Item | HIPAA | SOC2 | PCI DSS | ISO 27001 |
-|---------------|-------|------|----------|-----------|
-| MFA | §164.312(d) | CC6.1 | 8.3 | A.9.4.2 |
-| Encryption | §164.312(a)(2)(iv) | CC6.7 | 3.4 | A.10.1.1 |
-| Access Control | §164.312(a)(1) | CC6.3 | 7.1 | A.9.1.1 |
-| Audit Logging | §164.312(b) | CC7.2 | 10.1 | A.12.4.1 |
+| Checklist Item | HIPAA              | SOC2  | PCI DSS | ISO 27001 |
+| -------------- | ------------------ | ----- | ------- | --------- |
+| MFA            | §164.312(d)        | CC6.1 | 8.3     | A.9.4.2   |
+| Encryption     | §164.312(a)(2)(iv) | CC6.7 | 3.4     | A.10.1.1  |
+| Access Control | §164.312(a)(1)     | CC6.3 | 7.1     | A.9.1.1   |
+| Audit Logging  | §164.312(b)        | CC7.2 | 10.1    | A.12.4.1  |
 
 ## Incident Response Playbook
 
 ### 1. Detection & Analysis
+
 ```mermaid
 sequenceDiagram
     participant Detection
@@ -128,6 +138,7 @@ sequenceDiagram
 ```
 
 1. Initial Detection
+
    - System alerts
    - User reports
    - Automated monitoring
@@ -138,11 +149,13 @@ sequenceDiagram
    - Scope determination
 
 ### 2. Containment & Eradication
+
 - Immediate containment actions
 - Evidence preservation
 - Threat elimination
 
 ### 3. Recovery & Lessons Learned
+
 - System restoration
 - Verification steps
 - Documentation
@@ -151,11 +164,13 @@ sequenceDiagram
 ## Disaster Recovery Procedures
 
 ### Testing Schedule
+
 - Quarterly tabletop exercises
 - Semi-annual technical recovery tests
 - Annual full-scale DR simulation
 
 ### Recovery Time Objectives (RTO)
+
 - Critical systems: 4 hours
 - Important systems: 8 hours
 - Non-critical systems: 24 hours
@@ -163,11 +178,13 @@ sequenceDiagram
 ## Best Practices
 
 1. Regular Updates
+
    - Review checklist quarterly
    - Update based on new threats
    - Incorporate lessons learned
 
 2. Documentation
+
    - Maintain detailed logs
    - Document exceptions
    - Keep configuration records
