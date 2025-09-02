@@ -194,6 +194,62 @@ sequenceDiagram
    - Quarterly technical training
    - Incident response drills
 
+## Additional Critical Security Domains
+
+### Secure Software Development Lifecycle (SSDLC) & DevSecOps
+
+- Integrate security into all phases of development (requirements, design, implementation, testing, deployment, maintenance)
+- Automate security testing in CI/CD pipelines (SAST, DAST, dependency scanning)
+- Enforce code review for security issues
+- Use secure coding standards (OWASP, SEI CERT)
+- Track and remediate vulnerabilities in dependencies
+
+### Secrets Management
+
+- Store secrets in dedicated vaults (e.g., HashiCorp Vault, AWS Secrets Manager)
+- Never hardcode secrets in code or config files
+- Rotate secrets regularly
+- Audit access to secrets
+
+### Threat Modeling & Risk Assessment
+
+- Perform regular threat modeling for new features and major changes
+- Document attack surfaces and trust boundaries
+- Assess and prioritize risks
+- Mitigate identified threats before release
+
+### Vendor & Third-Party Risk Management
+
+- Assess security posture of vendors and third-party services
+- Require security/compliance attestations (SOC2, ISO 27001)
+- Monitor supply chain risks
+- Review contracts for security requirements
+
+### Privacy Engineering
+
+- Apply data minimization and privacy by design principles
+- Map personal data flows and implement controls
+- Support data subject rights (access, deletion, correction)
+- Document privacy impact assessments
+
+### Security Governance & Awareness
+
+- Define security policies and roles
+- Conduct regular security awareness training
+- Track policy exceptions and remediation
+- Establish a security steering committee
+
+## Checklist Mapping (Expanded)
+
+| Checklist Item         | HIPAA              | SOC2  | PCI DSS | ISO 27001 |
+|-----------------------|--------------------|-------|---------|-----------|
+| SSDLC/DevSecOps       | §164.308(a)(8)     | CC8.1 | 6.3     | A.14.2.1  |
+| Secrets Management    | §164.312(a)(2)(iv) | CC6.6 | 3.5     | A.10.1.2  |
+| Threat Modeling       | §164.308(a)(1)(ii) | CC1.2 | 12.2    | A.6.1.2   |
+| Vendor Risk           | §164.308(b)(1)     | CC1.3 | 12.8    | A.15.1.1  |
+| Privacy Engineering   | §164.502(b)        | CC1.1 | 3.2     | A.18.1.4  |
+| Governance/Training   | §164.308(a)(5)     | CC2.2 | 12.6    | A.7.2.2   |
+
 ## Resources
 
 - [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)

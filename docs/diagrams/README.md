@@ -50,20 +50,19 @@ dot -Tpng component_relationships.dot -o component_relationships.png
 
 Shows the high-level system components and their relationships:
 
-- Main dashboard interface
-- Domain-specific checklists
-- Core services
-- UI components
-
 ### User Flow (`user_flow.dot`)
 
 Maps the complete user journey through the application:
 
 - Navigation paths
-- Decision points
-- State transitions
-- User interactions
 
+### Threat Modeling (`threat_model.dot`)
+- Visualizes attack surfaces, trust boundaries, and mitigations for key system components.
+- Use this diagram to identify and address potential threats early in the design process.
+
+### Security Architecture (`security_architecture.dot`)
+- Shows security controls, network zones, and data protection mechanisms.
+- Helps communicate the overall security posture and defense-in-depth strategy.
 ### Data Flow (`data_flow.dot`)
 
 Illustrates how data moves through the system:

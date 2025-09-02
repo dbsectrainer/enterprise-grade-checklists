@@ -179,10 +179,15 @@ graph TD
 
 ### 3. Data Security
 
-- Access controls
-- Encryption
-- Audit logging
-- Incident response
+
+## Security Controls
+
+- Classify and protect sensitive data
+- Enforce access controls and audit logging
+- Encrypt data at rest and in transit
+- Implement data retention and disposal policies
+- Monitor for unauthorized data access
+- Conduct regular data privacy impact assessments
 
 ### 4. Data Operations
 

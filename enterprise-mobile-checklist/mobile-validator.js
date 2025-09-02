@@ -19,6 +19,103 @@ class MobileValidator {
       notChecked: [],
     };
   }
+  
+    async validateGovernanceAndTraining() {
+      console.log("Checking Governance, Training, and Security Awareness...");
+      // Governance documentation
+      const governanceDocs = [
+        "docs/governance/security-policy.md",
+        "docs/governance/roles-responsibilities.md",
+        "docs/governance/code-of-conduct.md"
+      ];
+      for (const doc of governanceDocs) {
+        if (fs.existsSync(doc)) {
+          this.results.passed.push(`Governance doc exists: ${doc}`);
+        } else {
+          this.results.warnings.push(`Missing governance doc: ${doc}`);
+        }
+      }
+  
+      // Training records
+      const trainingFiles = [
+        "docs/training/security-awareness.md",
+        "docs/training/mobile-training.md"
+      ];
+      for (const file of trainingFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Training record exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing training record: ${file}`);
+        }
+      }
+  
+      // Security awareness materials
+      const awarenessFiles = [
+        "docs/security/security-awareness.md",
+        "docs/security/incident-response-guide.md"
+      ];
+      for (const file of awarenessFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Security awareness material exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing security awareness material: ${file}`);
+        }
+      }
+    }
+
+    async scanForSecrets() {
+      console.log("Scanning for secrets in mobile source/config files...");
+      const secretPatterns = [
+        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
+      ];
+      const files = this.getMobileFiles();
+      for (const file of files) {
+        const content = fs.readFileSync(file, "utf8");
+        for (const pattern of secretPatterns) {
+          if (pattern.test(content)) {
+            this.results.failed.push(`Potential secret found in ${file}`);
+          }
+        }
+      }
+    }
+
+    getMobileFiles() {
+      // Recursively get all .js, .ts, .env, .xml files in ios/, android/, and config/
+      const walk = (dir) => {
+        let results = [];
+        if (!fs.existsSync(dir)) return results;
+        const list = fs.readdirSync(dir);
+        for (const file of list) {
+          const fullPath = path.join(dir, file);
+          const stat = fs.statSync(fullPath);
+          if (stat && stat.isDirectory()) {
+            results = results.concat(walk(fullPath));
+          } else if (/(\.js|\.ts|\.env|\.xml)$/.test(file)) {
+            results.push(fullPath);
+          }
+        }
+        return results;
+      };
+      return walk("ios").concat(walk("android")).concat(walk("config"));
+    }
+
+    async checkVulnerableDependencies() {
+      console.log("Checking for vulnerable dependencies...");
+      try {
+        const output = execSync("npm audit --json").toString();
+        const audit = JSON.parse(output);
+        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
+          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
+        } else {
+          this.results.passed.push("No vulnerable dependencies detected");
+        }
+      } catch (error) {
+        this.results.warnings.push("Dependency audit failed: " + error.message);
+      }
+    }
 
   async validateIOS() {
     console.log("Checking iOS Configuration...");
@@ -29,6 +126,10 @@ class MobileValidator {
       await this.checkIOSCapabilities();
       // Check code signing
       await this.checkCodeSigning();
+  // Scan for secrets
+  await this.scanForSecrets();
+  // Check for vulnerable dependencies
+  await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("iOS validation failed: " + error.message);
     }
@@ -182,8 +283,103 @@ class MobileValidator {
       await this.checkRootDetection();
       // Check data encryption
       await this.checkDataEncryption();
+      // Check mobile-specific security
+      await this.validateMobileSecurityTesting();
+      await this.validateRASP();
+      await this.validateMobileThreatDetection();
+      await this.validateAppShielding();
     } catch (error) {
       this.results.failed.push("Security validation failed: " + error.message);
+    }
+  }
+
+  async validateMobileSecurityTesting() {
+    console.log("Checking Mobile App Security Testing (MAST)...");
+    try {
+      // Check for mobile security testing configurations
+      const securityConfigs = [
+        ".github/workflows/mobile-security.yml",
+        "security/mobile-security.json",
+        "config/mobile-testing.yml"
+      ];
+      for (const config of securityConfigs) {
+        if (fs.existsSync(config)) {
+          this.results.passed.push(`Mobile security testing config found: ${config}`);
+        } else {
+          this.results.warnings.push(`Missing mobile security testing config: ${config}`);
+        }
+      }
+    } catch (error) {
+      this.results.failed.push("MAST validation failed: " + error.message);
+    }
+  }
+
+  async validateRASP() {
+    console.log("Checking Runtime Application Self-Protection (RASP)...");
+    try {
+      // Check for RASP implementation
+      const raspFiles = [
+        "ios/YourApp/RASP.swift",
+        "android/app/src/main/java/com/yourapp/RASP.java",
+        "src/security/rasp.js"
+      ];
+      let raspFound = false;
+      for (const file of raspFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`RASP implementation found: ${file}`);
+          raspFound = true;
+        }
+      }
+      if (!raspFound) {
+        this.results.warnings.push("No RASP implementation found");
+      }
+    } catch (error) {
+      this.results.failed.push("RASP validation failed: " + error.message);
+    }
+  }
+
+  async validateMobileThreatDetection() {
+    console.log("Checking Mobile Threat Detection...");
+    try {
+      // Check for root/jailbreak detection
+      const threatDetectionFiles = [
+        "ios/YourApp/JailbreakDetection.swift",
+        "android/app/src/main/java/com/yourapp/RootDetection.java"
+      ];
+      for (const file of threatDetectionFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Threat detection found: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing threat detection: ${file}`);
+        }
+      }
+    } catch (error) {
+      this.results.failed.push("Mobile threat detection validation failed: " + error.message);
+    }
+  }
+
+  async validateAppShielding() {
+    console.log("Checking App Shielding & Obfuscation...");
+    try {
+      // Check for obfuscation in build configs
+      const buildGradle = fs.existsSync("android/app/build.gradle") 
+        ? fs.readFileSync("android/app/build.gradle", "utf8") 
+        : "";
+      
+      if (buildGradle.includes("minifyEnabled true") || buildGradle.includes("proguardFiles")) {
+        this.results.passed.push("Android obfuscation configured");
+      } else {
+        this.results.warnings.push("No Android obfuscation found");
+      }
+
+      // Check iOS obfuscation
+      if (fs.existsSync("ios/obfuscation-config.yml")) {
+        this.results.passed.push("iOS obfuscation config found");
+      } else {
+        this.results.warnings.push("No iOS obfuscation config found");
+      }
+    } catch (error) {
+      this.results.failed.push("App shielding validation failed: " + error.message);
     }
   }
 
@@ -271,6 +467,7 @@ class MobileValidator {
     await this.validatePerformance();
     await this.validateSecurity();
     await this.validateAccessibility();
+  await this.validateGovernanceAndTraining();
 
     this.printResults();
   }

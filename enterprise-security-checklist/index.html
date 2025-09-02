@@ -168,20 +168,30 @@
               <li>
                 <label class="checklist-item">
                   <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Zero Trust Architecture</span>
+                  <span class="item-text">Zero Trust Network Architecture</span>
                   <button class="expand-btn">ⓘ</button>
                   <div class="details">
-                    Implement zero trust principles across network infrastructure.
+                    Implement comprehensive zero trust architecture with microsegmentation, device verification, and continuous authentication.
                   </div>
                 </label>
               </li>
               <li>
                 <label class="checklist-item">
                   <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Network Access Control</span>
+                  <span class="item-text">Device Trust & Verification</span>
                   <button class="expand-btn">ⓘ</button>
                   <div class="details">
-                    Implement NAC for device authentication and policy enforcement.
+                    Implement device trust verification, compliance checking, and continuous device monitoring.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Microsegmentation</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement network microsegmentation with granular access controls and traffic inspection.
                   </div>
                 </label>
               </li>
@@ -458,6 +468,450 @@
         </div>
 
         <div class="section">
+          <h2>Application Security</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Static Application Security Testing (SAST)</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement SAST tools in CI/CD pipelines to detect vulnerabilities in source code.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Dynamic Application Security Testing (DAST)</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Deploy DAST tools to test running applications for vulnerabilities.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Secure Coding Standards</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Establish and enforce secure coding standards and guidelines.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">API Security Testing</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement automated API security testing and validation.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Interactive Application Security Testing (IAST)</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement IAST for real-time vulnerability detection during testing.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Software Composition Analysis (SCA)</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement SCA to identify vulnerabilities in third-party components.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Supply Chain Security</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Software Bill of Materials (SBOM)</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Generate and maintain SBOM for all applications and dependencies.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Dependency Vulnerability Scanning</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement automated scanning of dependencies for known vulnerabilities.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Container Image Security</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Scan container images for vulnerabilities and enforce security policies.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Vendor Risk Assessment</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Conduct security assessments of third-party vendors and suppliers.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Code Signing</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement code signing for software integrity verification.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Artifact Repository Security</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Secure artifact repositories with access controls and scanning.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Secrets Management</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Centralized Secrets Vault</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement dedicated secrets vault (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault).
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Secret Rotation</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement automated secret rotation with proper lifecycle management.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">No Hardcoded Secrets</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Eliminate hardcoded secrets from code, configuration files, and containers.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Secret Access Auditing</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Audit and monitor all access to secrets and sensitive credentials.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Dynamic Secrets</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement dynamic secrets generation for temporary access credentials.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Secrets Encryption in Transit</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Ensure all secret retrieval operations use encrypted channels.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Threat Modeling & Risk Management</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Regular Threat Modeling</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Perform threat modeling for new features, major changes, and system updates.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Attack Surface Documentation</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Document and maintain attack surfaces and trust boundaries.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Risk Assessment & Prioritization</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Assess and prioritize security risks with defined mitigation strategies.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Vendor Risk Management</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Assess security posture of vendors and require security attestations.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Automated Threat Intelligence</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Integrate automated threat intelligence feeds for proactive risk assessment.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Supply Chain Risk Monitoring</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Continuously monitor supply chain risks and dependencies.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Secure Development Lifecycle (SSDLC)</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Requirements Integration</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Integrate security requirements in all development phases.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Code Reviews</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Enforce mandatory security-focused code reviews for all changes.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Vulnerability Remediation Tracking</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Track and remediate vulnerabilities in dependencies and code.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Training & Awareness</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Provide regular security awareness and secure coding training.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Design Reviews</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Conduct security design reviews for major architectural changes.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Champions Program</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Establish security champions program across development teams.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Security Automation & Orchestration</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Orchestration Platform</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement SOAR platform for automated security operations.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Automated Threat Response</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Configure automated responses for common security threats.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Tool Integration</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Integrate security tools through APIs and automation platforms.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Security Metrics Dashboard</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement security KPIs and metrics dashboard for visibility.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">AI-Powered Security Analytics</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement AI/ML for advanced threat detection and analysis.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Continuous Compliance Monitoring</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Automate compliance monitoring and reporting processes.
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
           <h2>Compliance & Governance</h2>
           <div class="checklist-group">
             <h3>Required</h3>
@@ -468,6 +922,36 @@
                   <span class="item-text">Security Policies</span>
                   <button class="expand-btn">ⓘ</button>
                   <div class="details">Develop and maintain comprehensive security policies.</div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Privacy by Design</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement privacy-by-design principles in all systems and processes.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Data Subject Rights Management</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement processes for data subject access, rectification, and deletion requests.
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Cross-Border Data Transfer Controls</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    Implement controls for international data transfers and adequacy decisions.
+                  </div>
                 </label>
               </li>
               <li>

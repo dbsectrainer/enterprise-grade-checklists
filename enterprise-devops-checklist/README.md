@@ -237,17 +237,17 @@ graph TD
 
 ### 1. Security Scanning
 
-- SAST (Static Analysis)
-- DAST (Dynamic Analysis)
-- Container scanning
-- Dependency scanning
 
 ### 2. Compliance Automation
 
-- Policy as code
-- Compliance scanning
-- Audit logging
-- Access reviews
+
+### Actionable Security Controls
+
+- Integrate security testing into CI/CD pipelines (SAST, DAST)
+- Scan dependencies for vulnerabilities
+- Use secrets management in build and deploy processes
+- Enforce branch protection and code review for security
+- Monitor pipeline logs for suspicious activity
 
 ## Resources
 

@@ -22,6 +22,102 @@ class FrontendValidator {
     };
   }
 
+    async validateGovernanceAndTraining() {
+      console.log("Checking Governance, Training, and Security Awareness...");
+      // Governance documentation
+      const governanceDocs = [
+        "docs/governance/security-policy.md",
+        "docs/governance/roles-responsibilities.md",
+        "docs/governance/code-of-conduct.md"
+      ];
+      for (const doc of governanceDocs) {
+        if (fs.existsSync(doc)) {
+          this.results.passed.push(`Governance doc exists: ${doc}`);
+        } else {
+          this.results.warnings.push(`Missing governance doc: ${doc}`);
+        }
+      }
+
+      // Training records
+      const trainingFiles = [
+        "docs/training/security-awareness.md",
+        "docs/training/frontend-training.md"
+      ];
+      for (const file of trainingFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Training record exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing training record: ${file}`);
+        }
+      }
+
+      // Security awareness materials
+      const awarenessFiles = [
+        "docs/security/security-awareness.md",
+        "docs/security/incident-response-guide.md"
+      ];
+      for (const file of awarenessFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Security awareness material exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing security awareness material: ${file}`);
+        }
+      }
+    }
+
+    async scanForSecrets() {
+      console.log("Scanning for secrets in source files...");
+      const secretPatterns = [
+        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
+      ];
+      const files = this.getSourceFiles();
+      for (const file of files) {
+        const content = fs.readFileSync(file, "utf8");
+        for (const pattern of secretPatterns) {
+          if (pattern.test(content)) {
+            this.results.failed.push(`Potential secret found in ${file}`);
+          }
+        }
+      }
+    }
+
+    getSourceFiles() {
+      // Recursively get all .js, .ts, .env files in src/
+      const walk = (dir) => {
+        let results = [];
+        const list = fs.readdirSync(dir);
+        for (const file of list) {
+          const fullPath = path.join(dir, file);
+          const stat = fs.statSync(fullPath);
+          if (stat && stat.isDirectory()) {
+            results = results.concat(walk(fullPath));
+          } else if (/(\.js|\.ts|\.env)$/.test(file)) {
+            results.push(fullPath);
+          }
+        }
+        return results;
+      };
+      return walk("src");
+    }
+
+    async checkVulnerableDependencies() {
+      console.log("Checking for vulnerable dependencies...");
+      try {
+        const output = execSync("npm audit --json").toString();
+        const audit = JSON.parse(output);
+        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
+          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
+        } else {
+          this.results.passed.push("No vulnerable dependencies detected");
+        }
+      } catch (error) {
+        this.results.warnings.push("Dependency audit failed: " + error.message);
+      }
+    }
+
   async validatePerformance() {
     console.log("Checking Performance Metrics...");
     try {
@@ -34,6 +130,10 @@ class FrontendValidator {
 
       // Check image optimization
       await this.checkImageOptimization();
+  // Scan for secrets
+  await this.scanForSecrets();
+  // Check for vulnerable dependencies
+  await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("Performance validation failed: " + error.message);
     }
@@ -252,8 +352,77 @@ class FrontendValidator {
     await this.validateBestPractices();
     await this.validateSecurity();
     await this.validateBuildOutput();
+    await this.validateFrontendSecurity();
+    await this.validateGovernanceAndTraining();
 
     this.printResults();
+  }
+
+  async validateFrontendSecurity() {
+    console.log("Checking Frontend Security Controls...");
+    try {
+      await this.validateCSP();
+      await this.validateInputValidation();
+      await this.validateDependencyScanning();
+      await this.validateClickjackingProtection();
+    } catch (error) {
+      this.results.failed.push("Frontend security validation failed: " + error.message);
+    }
+  }
+
+  async validateCSP() {
+    console.log("Checking Content Security Policy...");
+    const securityConfigs = [
+      "public/index.html",
+      "src/security/csp.js",
+      "config/security-headers.json"
+    ];
+    for (const config of securityConfigs) {
+      if (fs.existsSync(config)) {
+        const content = fs.readFileSync(config, "utf8");
+        if (content.includes("Content-Security-Policy") || content.includes("csp")) {
+          this.results.passed.push(`CSP configuration found in: ${config}`);
+        }
+      }
+    }
+  }
+
+  async validateInputValidation() {
+    console.log("Checking Input Validation & Output Encoding...");
+    const validationFiles = [
+      "src/utils/validation.js",
+      "src/security/sanitizer.js",
+      "src/utils/encoder.js"
+    ];
+    for (const file of validationFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Input validation found: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing input validation: ${file}`);
+      }
+    }
+  }
+
+  async validateDependencyScanning() {
+    console.log("Checking Dependency Vulnerability Scanning...");
+    const securityConfigs = [
+      ".github/workflows/security.yml",
+      "package.json",
+      ".snyk"
+    ];
+    for (const config of securityConfigs) {
+      if (fs.existsSync(config)) {
+        this.results.passed.push(`Security scanning config found: ${config}`);
+      } else {
+        this.results.warnings.push(`Missing security scanning config: ${config}`);
+      }
+    }
+  }
+
+  async validateClickjackingProtection() {
+    console.log("Checking Clickjacking Protection...");
+    // Check for X-Frame-Options or CSP frame-ancestors
+    this.results.warnings.push("Manual verification required: Check X-Frame-Options headers");
   }
 
   printResults() {

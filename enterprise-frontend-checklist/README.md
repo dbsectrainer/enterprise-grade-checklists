@@ -166,10 +166,16 @@ graph LR
 
 ### 4. Security
 
-- Input validation
-- XSS prevention
-- CSRF protection
-- Content Security Policy
+
+## Security Controls
+
+- Input validation and output encoding for all user data
+- Use Content Security Policy (CSP) to mitigate XSS
+- Implement secure authentication flows (OAuth, SSO)
+- Avoid exposing sensitive data in the frontend
+- Use HTTPS for all communications
+- Regularly update dependencies and scan for vulnerabilities
+- Protect against clickjacking (X-Frame-Options)
 
 ## Automation Examples
 

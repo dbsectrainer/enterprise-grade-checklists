@@ -161,10 +161,31 @@ graph LR
 
 ### 4. Ethics & Fairness
 
-- Bias detection
-- Fairness metrics
-- Transparency
-- Accountability
+
+## Security Controls
+
+- Protect training and inference data privacy
+- Monitor for adversarial attacks and model drift
+- Control access to models and datasets
+- Document model decisions for explainability
+- Scan dependencies and environments for vulnerabilities
+- Implement data and model versioning with access controls
+
+- Implement adversarial robustness testing for models
+- Monitor for model extraction and evasion attacks
+- Use differential privacy and federated learning for sensitive data
+- Integrate AI/ML security testing in CI/CD pipelines
+- Conduct regular penetration testing of AI/ML endpoints
+- Implement security test cases for model APIs and data pipelines
+
+#### Compliance Evidence Collection
+- Store model audit logs and compliance reports securely
+- Automate evidence collection for AI/ML regulatory compliance (GDPR, HIPAA, etc.)
+- Document remediation actions and incident response steps
+
+#### Incident Response Testing
+- Schedule regular incident response simulations for AI/ML model breaches
+- Review and update AI/ML incident playbooks based on test outcomes
 
 ## Automation Examples
 

@@ -274,11 +274,15 @@ function exportToCSV() {
 
 // Update last updated timestamp
 function updateLastUpdated(checklist) {
-  const timestamp = localStorage.getItem(`${checklist}LastUpdated`) || new Date().toISOString();
+  const timestamp = localStorage.getItem(`${checklist}LastUpdated`);
   const card = document.querySelector(`[data-checklist="${checklist}"]`);
   if (card) {
     const timeElement = card.querySelector(".update-time");
-    timeElement.textContent = new Date(timestamp).toLocaleString();
+    if (timestamp) {
+      timeElement.textContent = new Date(timestamp).toLocaleString();
+    } else {
+      timeElement.textContent = "Never";
+    }
   }
 }
 

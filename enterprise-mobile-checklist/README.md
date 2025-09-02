@@ -159,16 +159,33 @@ graph LR
 
 ### 3. Security
 
-- Data encryption
-- Secure storage
-- Network security
-- Authentication
+
+## Security Controls
+
+- Use secure storage for sensitive data (Keychain, Keystore)
+- Enforce runtime permissions and least privilege
+- Validate all inputs and outputs
+- Protect against reverse engineering and tampering
+- Use HTTPS for all network communications
+- Regularly update dependencies and scan for vulnerabilities
+
+- Implement runtime application self-protection (RASP) for mobile apps
+- Use mobile app shielding and obfuscation tools
+- Monitor for mobile-specific threats (e.g., root/jailbreak detection)
+- Integrate mobile app security testing (MAST) in CI/CD pipelines
+- Conduct regular penetration testing of mobile apps
+- Implement security test cases for mobile features and APIs
+
+#### Compliance Evidence Collection
+- Store mobile app audit logs and compliance reports securely
+- Automate evidence collection for app store and regulatory compliance
+- Document remediation actions and incident response steps
+
+#### Incident Response Testing
+- Schedule regular incident response simulations for mobile app breaches
+- Review and update mobile incident playbooks based on test outcomes
 
 ### 4. Testing
-
-- Platform testing
-- Device testing
-- Network conditions
 - Background states
 
 ## Automation Examples

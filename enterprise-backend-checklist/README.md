@@ -140,30 +140,24 @@ graph LR
 
 ### 1. Code Organization
 
-- Clean architecture
-- Domain-driven design
-- SOLID principles
-- Design patterns
 
 ### 2. Performance
 
-- Caching strategies
-- Query optimization
-- Connection pooling
-- Async operations
 
 ### 3. Security
 
-- Input validation
-- Authentication
-- Authorization
-- Data encryption
+
+## Security Controls
+
+- Enforce authentication and authorization for all endpoints
+- Validate and sanitize all inputs
+- Use secure password storage (bcrypt, Argon2)
+- Implement rate limiting and logging
+- Encrypt sensitive data at rest and in transit
+- Regularly patch and update dependencies
+- Use secrets management for credentials
 
 ### 4. Monitoring
-
-- Metrics collection
-- Error tracking
-- Performance monitoring
 - Health checks
 
 ## Automation Examples

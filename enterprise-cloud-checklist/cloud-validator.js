@@ -19,6 +19,103 @@ class CloudValidator {
     };
   }
 
+    async validateGovernanceAndTraining() {
+      console.log("Checking Governance, Training, and Security Awareness...");
+      // Governance documentation
+      const governanceDocs = [
+        "docs/governance/security-policy.md",
+        "docs/governance/roles-responsibilities.md",
+        "docs/governance/code-of-conduct.md"
+      ];
+      for (const doc of governanceDocs) {
+        if (fs.existsSync(doc)) {
+          this.results.passed.push(`Governance doc exists: ${doc}`);
+        } else {
+          this.results.warnings.push(`Missing governance doc: ${doc}`);
+        }
+      }
+
+      // Training records
+      const trainingFiles = [
+        "docs/training/security-awareness.md",
+        "docs/training/cloud-training.md"
+      ];
+      for (const file of trainingFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Training record exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing training record: ${file}`);
+        }
+      }
+
+      // Security awareness materials
+      const awarenessFiles = [
+        "docs/security/security-awareness.md",
+        "docs/security/incident-response-guide.md"
+      ];
+      for (const file of awarenessFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Security awareness material exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing security awareness material: ${file}`);
+        }
+      }
+    }
+
+    async scanForSecrets() {
+      console.log("Scanning for secrets in infrastructure files...");
+      const secretPatterns = [
+        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
+      ];
+      const files = this.getInfraFiles();
+      for (const file of files) {
+        const content = fs.readFileSync(file, "utf8");
+        for (const pattern of secretPatterns) {
+          if (pattern.test(content)) {
+            this.results.failed.push(`Potential secret found in ${file}`);
+          }
+        }
+      }
+    }
+
+    getInfraFiles() {
+      // Recursively get all .tf, .yml, .yaml, .env files in infra/
+      const walk = (dir) => {
+        let results = [];
+        if (!fs.existsSync(dir)) return results;
+        const list = fs.readdirSync(dir);
+        for (const file of list) {
+          const fullPath = path.join(dir, file);
+          const stat = fs.statSync(fullPath);
+          if (stat && stat.isDirectory()) {
+            results = results.concat(walk(fullPath));
+          } else if (/(\.tf|\.yml|\.yaml|\.env)$/.test(file)) {
+            results.push(fullPath);
+          }
+        }
+        return results;
+      };
+      return walk("infra");
+    }
+
+    async checkVulnerableDependencies() {
+      console.log("Checking for vulnerable dependencies...");
+      try {
+        const output = execSync("npm audit --json").toString();
+        const audit = JSON.parse(output);
+        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
+          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
+        } else {
+          this.results.passed.push("No vulnerable dependencies detected");
+        }
+      } catch (error) {
+        this.results.warnings.push("Dependency audit failed: " + error.message);
+      }
+    }
+
   async validateAWS() {
     console.log("Checking AWS Configuration...");
     try {
@@ -27,6 +124,10 @@ class CloudValidator {
       if (awsConfig) {
         await this.validateAWSResources();
       }
+  // Scan for secrets
+  await this.scanForSecrets();
+  // Check for vulnerable dependencies
+  await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("AWS validation failed: " + error.message);
     }
@@ -246,8 +347,69 @@ class CloudValidator {
     await this.validateMultiCloud();
     await this.validateCostOptimization();
     await this.validateCompliance();
+    await this.validateCloudSecurity();
+    await this.validateGovernanceAndTraining();
 
     this.printResults();
+  }
+
+  async validateCloudSecurity() {
+    console.log("Checking Cloud Security Controls...");
+    try {
+      await this.validateCWPP();
+      await this.validateCSPM();
+      await this.validateCloudCompliance();
+    } catch (error) {
+      this.results.failed.push("Cloud security validation failed: " + error.message);
+    }
+  }
+
+  async validateCWPP() {
+    console.log("Checking Cloud Workload Protection Platform (CWPP)...");
+    const cwppConfigs = [
+      "config/cwpp-config.yml",
+      "security/workload-protection.json",
+      ".github/workflows/cwpp-scan.yml"
+    ];
+    for (const config of cwppConfigs) {
+      if (fs.existsSync(config)) {
+        this.results.passed.push(`CWPP configuration found: ${config}`);
+      } else {
+        this.results.warnings.push(`Missing CWPP configuration: ${config}`);
+      }
+    }
+  }
+
+  async validateCSPM() {
+    console.log("Checking Cloud Security Posture Management (CSPM)...");
+    const cspmConfigs = [
+      "config/cspm-config.yml",
+      "security/posture-monitoring.json",
+      "terraform/security-monitoring.tf"
+    ];
+    for (const config of cspmConfigs) {
+      if (fs.existsSync(config)) {
+        this.results.passed.push(`CSPM configuration found: ${config}`);
+      } else {
+        this.results.warnings.push(`Missing CSPM configuration: ${config}`);
+      }
+    }
+  }
+
+  async validateCloudCompliance() {
+    console.log("Checking Automated Security Compliance Checks...");
+    const complianceConfigs = [
+      ".github/workflows/compliance-check.yml",
+      "config/compliance-rules.json",
+      "security/compliance-automation.yml"
+    ];
+    for (const config of complianceConfigs) {
+      if (fs.existsSync(config)) {
+        this.results.passed.push(`Compliance automation found: ${config}`);
+      } else {
+        this.results.warnings.push(`Missing compliance automation: ${config}`);
+      }
+    }
   }
 
   printResults() {

@@ -155,6 +155,31 @@ flowchart LR
 - Data encryption
 - Security monitoring
 
+#### Actionable Security Controls
+
+- Enforce least privilege IAM policies
+- Enable encryption for all storage and data transfers
+- Use security groups and network ACLs
+- Monitor cloud resources for misconfigurations
+- Implement automated compliance checks
+- Rotate cloud access keys and secrets regularly
+
+- Deploy cloud workload protection platforms (CWPP) for runtime threat detection
+- Automate incident response using cloud-native tools (e.g., AWS Lambda, Azure Automation)
+- Enable cloud-native logging and monitoring (CloudTrail, Azure Monitor, GCP Operations)
+- Regularly review and update cloud security posture management (CSPM)
+- Conduct regular penetration testing of cloud workloads
+- Implement security test cases for cloud infrastructure changes
+
+#### Compliance Evidence Collection
+- Store audit logs and compliance reports in secure, immutable storage
+- Automate evidence collection for compliance frameworks (HIPAA, SOC2, PCI DSS, ISO 27001)
+- Document remediation actions and incident response steps
+
+#### Incident Response Testing
+- Schedule regular incident response simulations for cloud breaches
+- Review and update incident playbooks based on test outcomes
+
 ### 4. Cost Optimization
 
 - Resource right-sizing

@@ -20,6 +20,102 @@ class BackendValidator {
       notChecked: [],
     };
   }
+  
+    async validateGovernanceAndTraining() {
+      console.log("Checking Governance, Training, and Security Awareness...");
+      // Governance documentation
+      const governanceDocs = [
+        "docs/governance/security-policy.md",
+        "docs/governance/roles-responsibilities.md",
+        "docs/governance/code-of-conduct.md"
+      ];
+      for (const doc of governanceDocs) {
+        if (fs.existsSync(doc)) {
+          this.results.passed.push(`Governance doc exists: ${doc}`);
+        } else {
+          this.results.warnings.push(`Missing governance doc: ${doc}`);
+        }
+      }
+  
+      // Training records
+      const trainingFiles = [
+        "docs/training/security-awareness.md",
+        "docs/training/backend-training.md"
+      ];
+      for (const file of trainingFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Training record exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing training record: ${file}`);
+        }
+      }
+  
+      // Security awareness materials
+      const awarenessFiles = [
+        "docs/security/security-awareness.md",
+        "docs/security/incident-response-guide.md"
+      ];
+      for (const file of awarenessFiles) {
+        if (fs.existsSync(file)) {
+          this.results.passed.push(`Security awareness material exists: ${file}`);
+        } else {
+          this.results.warnings.push(`Missing security awareness material: ${file}`);
+        }
+      }
+    }
+
+    async scanForSecrets() {
+      console.log("Scanning for secrets in source files...");
+      const secretPatterns = [
+        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
+      ];
+      const files = this.getSourceFiles();
+      for (const file of files) {
+        const content = fs.readFileSync(file, "utf8");
+        for (const pattern of secretPatterns) {
+          if (pattern.test(content)) {
+            this.results.failed.push(`Potential secret found in ${file}`);
+          }
+        }
+      }
+    }
+
+    getSourceFiles() {
+      // Recursively get all .js, .ts, .env files in src/
+      const walk = (dir) => {
+        let results = [];
+        const list = fs.readdirSync(dir);
+        for (const file of list) {
+          const fullPath = path.join(dir, file);
+          const stat = fs.statSync(fullPath);
+          if (stat && stat.isDirectory()) {
+            results = results.concat(walk(fullPath));
+          } else if (/(\.js|\.ts|\.env)$/.test(file)) {
+            results.push(fullPath);
+          }
+        }
+        return results;
+      };
+      return walk("src");
+    }
+
+    async checkVulnerableDependencies() {
+      console.log("Checking for vulnerable dependencies...");
+      try {
+        const output = execSync("npm audit --json").toString();
+        const audit = JSON.parse(output);
+        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
+          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
+        } else {
+          this.results.passed.push("No vulnerable dependencies detected");
+        }
+      } catch (error) {
+        this.results.warnings.push("Dependency audit failed: " + error.message);
+      }
+    }
 
   async validateAPI() {
     console.log("Checking API Design...");
@@ -30,6 +126,10 @@ class BackendValidator {
       await this.checkAPIEndpoints();
       // Check rate limiting
       await this.checkRateLimiting();
+  // Scan for secrets
+  await this.scanForSecrets();
+  // Check for vulnerable dependencies
+  await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("API validation failed: " + error.message);
     }
@@ -256,8 +356,68 @@ class BackendValidator {
     await this.validateSecurity();
     await this.validatePerformance();
     await this.validateErrorHandling();
+      await this.validateBackendSecurity();
+    await this.validateGovernanceAndTraining();
 
     this.printResults();
+  }
+
+  async validateBackendSecurity() {
+    console.log("Checking Backend Security Controls...");
+    try {
+      await this.validateSecretsManagement();
+      await this.validateSecurityHeaders();
+      await this.validateAuditLogging();
+    } catch (error) {
+      this.results.failed.push("Backend security validation failed: " + error.message);
+    }
+  }
+
+  async validateSecretsManagement() {
+    console.log("Checking Secrets Management Integration...");
+    const secretsFiles = [
+      "config/secrets.yml",
+      "src/config/vault.js",
+      ".env.example"
+    ];
+    for (const file of secretsFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Secrets management config found: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing secrets management config: ${file}`);
+      }
+    }
+  }
+
+  async validateSecurityHeaders() {
+    console.log("Checking Security Headers Implementation...");
+    const securityFiles = [
+      "src/middleware/security.js",
+      "config/security-headers.json"
+    ];
+    for (const file of securityFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Security headers implementation found: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing security headers implementation: ${file}`);
+      }
+    }
+  }
+
+  async validateAuditLogging() {
+    console.log("Checking Comprehensive Audit Logging...");
+    const auditFiles = [
+      "src/middleware/audit.js",
+      "config/logging.yml",
+      "src/utils/security-logger.js"
+    ];
+    for (const file of auditFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Audit logging implementation found: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing audit logging implementation: ${file}`);
+      }
+    }
   }
 
   printResults() {

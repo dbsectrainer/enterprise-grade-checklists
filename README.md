@@ -148,14 +148,15 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 
 ### Technologies Used
 
-- HTML5
-- CSS3 (with CSS Variables for theming)
-- Vanilla JavaScript (ES6+)
-- LocalStorage for data persistence and state management
-- Event-driven architecture for real-time updates
-- Automated validation scripts for each domain
-- Mermaid.js for architecture diagrams
-- Performance monitoring and metrics collection
+
+#### Recommended Automated Security Tools
+
+- **Dependency Scanning:** Use tools like Snyk, Dependabot, or npm audit to detect vulnerable dependencies in all codebases.
+- **Secrets Detection:** Integrate tools such as GitGuardian or truffleHog to scan for secrets in code and configuration files.
+- **Static Analysis (SAST):** Use ESLint security plugins, Bandit (Python), or SonarQube for static code analysis.
+- **Dynamic Analysis (DAST):** Employ OWASP ZAP or Burp Suite for runtime vulnerability scanning.
+- **Container Security:** Use tools like Docker Bench Security or Aqua Trivy to scan container images.
+- **CI/CD Integration:** Automate all security scans in CI/CD pipelines for early detection and remediation.
 
 ### Browser Support
 
