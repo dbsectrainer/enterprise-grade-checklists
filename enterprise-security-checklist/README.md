@@ -241,14 +241,14 @@ sequenceDiagram
 
 ## Checklist Mapping (Expanded)
 
-| Checklist Item         | HIPAA              | SOC2  | PCI DSS | ISO 27001 |
-|-----------------------|--------------------|-------|---------|-----------|
-| SSDLC/DevSecOps       | §164.308(a)(8)     | CC8.1 | 6.3     | A.14.2.1  |
-| Secrets Management    | §164.312(a)(2)(iv) | CC6.6 | 3.5     | A.10.1.2  |
-| Threat Modeling       | §164.308(a)(1)(ii) | CC1.2 | 12.2    | A.6.1.2   |
-| Vendor Risk           | §164.308(b)(1)     | CC1.3 | 12.8    | A.15.1.1  |
-| Privacy Engineering   | §164.502(b)        | CC1.1 | 3.2     | A.18.1.4  |
-| Governance/Training   | §164.308(a)(5)     | CC2.2 | 12.6    | A.7.2.2   |
+| Checklist Item      | HIPAA              | SOC2  | PCI DSS | ISO 27001 |
+| ------------------- | ------------------ | ----- | ------- | --------- |
+| SSDLC/DevSecOps     | §164.308(a)(8)     | CC8.1 | 6.3     | A.14.2.1  |
+| Secrets Management  | §164.312(a)(2)(iv) | CC6.6 | 3.5     | A.10.1.2  |
+| Threat Modeling     | §164.308(a)(1)(ii) | CC1.2 | 12.2    | A.6.1.2   |
+| Vendor Risk         | §164.308(b)(1)     | CC1.3 | 12.8    | A.15.1.1  |
+| Privacy Engineering | §164.502(b)        | CC1.1 | 3.2     | A.18.1.4  |
+| Governance/Training | §164.308(a)(5)     | CC2.2 | 12.6    | A.7.2.2   |
 
 ## Resources
 

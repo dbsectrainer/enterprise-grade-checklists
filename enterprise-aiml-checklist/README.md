@@ -161,7 +161,6 @@ graph LR
 
 ### 4. Ethics & Fairness
 
-
 ## Security Controls
 
 - Protect training and inference data privacy
@@ -179,11 +178,13 @@ graph LR
 - Implement security test cases for model APIs and data pipelines
 
 #### Compliance Evidence Collection
+
 - Store model audit logs and compliance reports securely
 - Automate evidence collection for AI/ML regulatory compliance (GDPR, HIPAA, etc.)
 - Document remediation actions and incident response steps
 
 #### Incident Response Testing
+
 - Schedule regular incident response simulations for AI/ML model breaches
 - Review and update AI/ML incident playbooks based on test outcomes
 

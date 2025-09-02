@@ -148,7 +148,6 @@ See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on gener
 
 ### Technologies Used
 
-
 #### Recommended Automated Security Tools
 
 - **Dependency Scanning:** Use tools like Snyk, Dependabot, or npm audit to detect vulnerable dependencies in all codebases.

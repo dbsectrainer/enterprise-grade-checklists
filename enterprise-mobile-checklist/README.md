@@ -159,7 +159,6 @@ graph LR
 
 ### 3. Security
 
-
 ## Security Controls
 
 - Use secure storage for sensitive data (Keychain, Keystore)
@@ -177,15 +176,18 @@ graph LR
 - Implement security test cases for mobile features and APIs
 
 #### Compliance Evidence Collection
+
 - Store mobile app audit logs and compliance reports securely
 - Automate evidence collection for app store and regulatory compliance
 - Document remediation actions and incident response steps
 
 #### Incident Response Testing
+
 - Schedule regular incident response simulations for mobile app breaches
 - Review and update mobile incident playbooks based on test outcomes
 
 ### 4. Testing
+
 - Background states
 
 ## Automation Examples

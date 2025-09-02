@@ -172,11 +172,13 @@ flowchart LR
 - Implement security test cases for cloud infrastructure changes
 
 #### Compliance Evidence Collection
+
 - Store audit logs and compliance reports in secure, immutable storage
 - Automate evidence collection for compliance frameworks (HIPAA, SOC2, PCI DSS, ISO 27001)
 - Document remediation actions and incident response steps
 
 #### Incident Response Testing
+
 - Schedule regular incident response simulations for cloud breaches
 - Review and update incident playbooks based on test outcomes
 

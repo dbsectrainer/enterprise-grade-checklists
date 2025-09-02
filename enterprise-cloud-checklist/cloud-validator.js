@@ -7,7 +7,6 @@
 
 const fs = require("fs");
 const { execSync } = require("child_process");
-const yaml = require("js-yaml");
 
 class CloudValidator {
   constructor() {
@@ -19,102 +18,108 @@ class CloudValidator {
     };
   }
 
-    async validateGovernanceAndTraining() {
-      console.log("Checking Governance, Training, and Security Awareness...");
-      // Governance documentation
-      const governanceDocs = [
-        "docs/governance/security-policy.md",
-        "docs/governance/roles-responsibilities.md",
-        "docs/governance/code-of-conduct.md"
-      ];
-      for (const doc of governanceDocs) {
-        if (fs.existsSync(doc)) {
-          this.results.passed.push(`Governance doc exists: ${doc}`);
-        } else {
-          this.results.warnings.push(`Missing governance doc: ${doc}`);
-        }
-      }
-
-      // Training records
-      const trainingFiles = [
-        "docs/training/security-awareness.md",
-        "docs/training/cloud-training.md"
-      ];
-      for (const file of trainingFiles) {
-        if (fs.existsSync(file)) {
-          this.results.passed.push(`Training record exists: ${file}`);
-        } else {
-          this.results.warnings.push(`Missing training record: ${file}`);
-        }
-      }
-
-      // Security awareness materials
-      const awarenessFiles = [
-        "docs/security/security-awareness.md",
-        "docs/security/incident-response-guide.md"
-      ];
-      for (const file of awarenessFiles) {
-        if (fs.existsSync(file)) {
-          this.results.passed.push(`Security awareness material exists: ${file}`);
-        } else {
-          this.results.warnings.push(`Missing security awareness material: ${file}`);
-        }
+  async validateGovernanceAndTraining() {
+    console.log("Checking Governance, Training, and Security Awareness...");
+    // Governance documentation
+    const governanceDocs = [
+      "docs/governance/security-policy.md",
+      "docs/governance/roles-responsibilities.md",
+      "docs/governance/code-of-conduct.md",
+    ];
+    for (const doc of governanceDocs) {
+      if (fs.existsSync(doc)) {
+        this.results.passed.push(`Governance doc exists: ${doc}`);
+      } else {
+        this.results.warnings.push(`Missing governance doc: ${doc}`);
       }
     }
 
-    async scanForSecrets() {
-      console.log("Scanning for secrets in infrastructure files...");
-      const secretPatterns = [
-        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
-        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
-        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
-        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
-      ];
-      const files = this.getInfraFiles();
-      for (const file of files) {
-        const content = fs.readFileSync(file, "utf8");
-        for (const pattern of secretPatterns) {
-          if (pattern.test(content)) {
-            this.results.failed.push(`Potential secret found in ${file}`);
-          }
-        }
+    // Training records
+    const trainingFiles = [
+      "docs/training/security-awareness.md",
+      "docs/training/cloud-training.md",
+    ];
+    for (const file of trainingFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Training record exists: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing training record: ${file}`);
       }
     }
 
-    getInfraFiles() {
-      // Recursively get all .tf, .yml, .yaml, .env files in infra/
-      const walk = (dir) => {
-        let results = [];
-        if (!fs.existsSync(dir)) return results;
-        const list = fs.readdirSync(dir);
-        for (const file of list) {
-          const fullPath = path.join(dir, file);
-          const stat = fs.statSync(fullPath);
-          if (stat && stat.isDirectory()) {
-            results = results.concat(walk(fullPath));
-          } else if (/(\.tf|\.yml|\.yaml|\.env)$/.test(file)) {
-            results.push(fullPath);
-          }
-        }
-        return results;
-      };
-      return walk("infra");
-    }
-
-    async checkVulnerableDependencies() {
-      console.log("Checking for vulnerable dependencies...");
-      try {
-        const output = execSync("npm audit --json").toString();
-        const audit = JSON.parse(output);
-        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
-          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
-        } else {
-          this.results.passed.push("No vulnerable dependencies detected");
-        }
-      } catch (error) {
-        this.results.warnings.push("Dependency audit failed: " + error.message);
+    // Security awareness materials
+    const awarenessFiles = [
+      "docs/security/security-awareness.md",
+      "docs/security/incident-response-guide.md",
+    ];
+    for (const file of awarenessFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Security awareness material exists: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing security awareness material: ${file}`);
       }
     }
+  }
+
+  async scanForSecrets() {
+    console.log("Scanning for secrets in infrastructure files...");
+    const secretPatterns = [
+      /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+      /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+      /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+      /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+    ];
+    const files = this.getInfraFiles();
+    for (const file of files) {
+      const content = fs.readFileSync(file, "utf8");
+      for (const pattern of secretPatterns) {
+        if (pattern.test(content)) {
+          this.results.failed.push(`Potential secret found in ${file}`);
+        }
+      }
+    }
+  }
+
+  getInfraFiles() {
+    // Recursively get all .tf, .yml, .yaml, .env files in infra/
+    const walk = (dir) => {
+      let results = [];
+      if (!fs.existsSync(dir)) return results;
+      const list = fs.readdirSync(dir);
+      for (const file of list) {
+        const fullPath = path.join(dir, file);
+        const stat = fs.statSync(fullPath);
+        if (stat && stat.isDirectory()) {
+          results = results.concat(walk(fullPath));
+        } else if (/(\.tf|\.yml|\.yaml|\.env)$/.test(file)) {
+          results.push(fullPath);
+        }
+      }
+      return results;
+    };
+    return walk("infra");
+  }
+
+  async checkVulnerableDependencies() {
+    console.log("Checking for vulnerable dependencies...");
+    try {
+      const output = execSync("npm audit --json").toString();
+      const audit = JSON.parse(output);
+      if (
+        audit.metadata &&
+        audit.metadata.vulnerabilities &&
+        audit.metadata.vulnerabilities.total > 0
+      ) {
+        this.results.failed.push(
+          `Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`
+        );
+      } else {
+        this.results.passed.push("No vulnerable dependencies detected");
+      }
+    } catch (error) {
+      this.results.warnings.push("Dependency audit failed: " + error.message);
+    }
+  }
 
   async validateAWS() {
     console.log("Checking AWS Configuration...");
@@ -124,10 +129,10 @@ class CloudValidator {
       if (awsConfig) {
         await this.validateAWSResources();
       }
-  // Scan for secrets
-  await this.scanForSecrets();
-  // Check for vulnerable dependencies
-  await this.checkVulnerableDependencies();
+      // Scan for secrets
+      await this.scanForSecrets();
+      // Check for vulnerable dependencies
+      await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("AWS validation failed: " + error.message);
     }
@@ -138,7 +143,7 @@ class CloudValidator {
       execSync("aws configure list");
       this.results.passed.push("AWS CLI configured");
       return true;
-    } catch (error) {
+    } catch {
       this.results.warnings.push("AWS CLI not configured or credentials missing");
       return false;
     }
@@ -214,7 +219,7 @@ class CloudValidator {
       execSync("az account show");
       this.results.passed.push("Azure CLI configured");
       return true;
-    } catch (error) {
+    } catch {
       this.results.warnings.push("Azure CLI not configured or credentials missing");
       return false;
     }
@@ -249,7 +254,7 @@ class CloudValidator {
       execSync("gcloud config list");
       this.results.passed.push("GCloud CLI configured");
       return true;
-    } catch (error) {
+    } catch {
       this.results.warnings.push("GCloud CLI not configured or credentials missing");
       return false;
     }
@@ -282,28 +287,17 @@ class CloudValidator {
 
   async validateCrossCloudTags() {
     // Check for consistent resource tagging across clouds
-    const requiredTags = ["Environment", "Application", "Owner", "CostCenter"];
 
     try {
-      // AWS Tags
-      const awsResources = JSON.parse(
-        execSync("aws resourcegroupstaggingapi get-resources").toString()
-      );
-      // Azure Tags
-      const azureResources = JSON.parse(execSync("az tag list").toString());
-      // GCP Labels
-      const gcpResources = JSON.parse(
-        execSync("gcloud resource-manager tags list --format=json").toString()
-      );
-
-      // Validate tag consistency
-      this.validateTagConsistency(requiredTags, awsResources, azureResources, gcpResources);
+      // Validate tag consistency across cloud providers
+      // Implementation would fetch actual resources from each provider
+      this.validateTagConsistency();
     } catch (error) {
       this.results.warnings.push("Cross-cloud tag validation failed: " + error.message);
     }
   }
 
-  validateTagConsistency(requiredTags, awsResources, azureResources, gcpResources) {
+  validateTagConsistency() {
     // Implementation would check for tag presence and consistency across providers
     this.results.warnings.push(
       "Manual verification required: Check tag consistency across cloud providers"
@@ -369,7 +363,7 @@ class CloudValidator {
     const cwppConfigs = [
       "config/cwpp-config.yml",
       "security/workload-protection.json",
-      ".github/workflows/cwpp-scan.yml"
+      ".github/workflows/cwpp-scan.yml",
     ];
     for (const config of cwppConfigs) {
       if (fs.existsSync(config)) {
@@ -385,7 +379,7 @@ class CloudValidator {
     const cspmConfigs = [
       "config/cspm-config.yml",
       "security/posture-monitoring.json",
-      "terraform/security-monitoring.tf"
+      "terraform/security-monitoring.tf",
     ];
     for (const config of cspmConfigs) {
       if (fs.existsSync(config)) {
@@ -401,7 +395,7 @@ class CloudValidator {
     const complianceConfigs = [
       ".github/workflows/compliance-check.yml",
       "config/compliance-rules.json",
-      "security/compliance-automation.yml"
+      "security/compliance-automation.yml",
     ];
     for (const config of complianceConfigs) {
       if (fs.existsSync(config)) {

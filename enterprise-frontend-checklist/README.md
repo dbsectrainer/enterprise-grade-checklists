@@ -166,7 +166,6 @@ graph LR
 
 ### 4. Security
 
-
 ## Security Controls
 
 - Input validation and output encoding for all user data

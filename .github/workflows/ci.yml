@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Lint
-        run: npx eslint . --ignore-pattern 'chart.min.js' --ignore-pattern '**/dist/**' --ignore-pattern '**/build/**'
+        run: npx eslint .
       - name: Prettier Check
         run: npx prettier --check .
       - name: Run tests

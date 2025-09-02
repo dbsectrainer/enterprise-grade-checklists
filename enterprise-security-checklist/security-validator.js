@@ -6,7 +6,6 @@
  */
 
 const fs = require("fs");
-const https = require("https");
 const { execSync } = require("child_process");
 const crypto = require("crypto");
 
@@ -20,102 +19,108 @@ class SecurityValidator {
     };
   }
 
-    async validateGovernanceAndTraining() {
-      console.log("Checking Governance, Training, and Security Awareness...");
-      // Governance documentation
-      const governanceDocs = [
-        "docs/governance/security-policy.md",
-        "docs/governance/roles-responsibilities.md",
-        "docs/governance/code-of-conduct.md"
-      ];
-      for (const doc of governanceDocs) {
-        if (fs.existsSync(doc)) {
-          this.results.passed.push(`Governance doc exists: ${doc}`);
-        } else {
-          this.results.warnings.push(`Missing governance doc: ${doc}`);
-        }
-      }
-
-      // Training records
-      const trainingFiles = [
-        "docs/training/security-awareness.md",
-        "docs/training/security-training.md"
-      ];
-      for (const file of trainingFiles) {
-        if (fs.existsSync(file)) {
-          this.results.passed.push(`Training record exists: ${file}`);
-        } else {
-          this.results.warnings.push(`Missing training record: ${file}`);
-        }
-      }
-
-      // Security awareness materials
-      const awarenessFiles = [
-        "docs/security/security-awareness.md",
-        "docs/security/incident-response-guide.md"
-      ];
-      for (const file of awarenessFiles) {
-        if (fs.existsSync(file)) {
-          this.results.passed.push(`Security awareness material exists: ${file}`);
-        } else {
-          this.results.warnings.push(`Missing security awareness material: ${file}`);
-        }
+  async validateGovernanceAndTraining() {
+    console.log("Checking Governance, Training, and Security Awareness...");
+    // Governance documentation
+    const governanceDocs = [
+      "docs/governance/security-policy.md",
+      "docs/governance/roles-responsibilities.md",
+      "docs/governance/code-of-conduct.md",
+    ];
+    for (const doc of governanceDocs) {
+      if (fs.existsSync(doc)) {
+        this.results.passed.push(`Governance doc exists: ${doc}`);
+      } else {
+        this.results.warnings.push(`Missing governance doc: ${doc}`);
       }
     }
 
-    async scanForSecrets() {
-      console.log("Scanning for secrets in security config/source files...");
-      const secretPatterns = [
-        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
-        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
-        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
-        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
-      ];
-      const files = this.getSecurityFiles();
-      for (const file of files) {
-        const content = fs.readFileSync(file, "utf8");
-        for (const pattern of secretPatterns) {
-          if (pattern.test(content)) {
-            this.results.failed.push(`Potential secret found in ${file}`);
-          }
-        }
+    // Training records
+    const trainingFiles = [
+      "docs/training/security-awareness.md",
+      "docs/training/security-training.md",
+    ];
+    for (const file of trainingFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Training record exists: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing training record: ${file}`);
       }
     }
 
-    getSecurityFiles() {
-      // Recursively get all .js, .ts, .env, .yml, .yaml files in config/ and src/
-      const walk = (dir) => {
-        let results = [];
-        if (!fs.existsSync(dir)) return results;
-        const list = fs.readdirSync(dir);
-        for (const file of list) {
-          const fullPath = path.join(dir, file);
-          const stat = fs.statSync(fullPath);
-          if (stat && stat.isDirectory()) {
-            results = results.concat(walk(fullPath));
-          } else if (/(\.js|\.ts|\.env|\.yml|\.yaml)$/.test(file)) {
-            results.push(fullPath);
-          }
-        }
-        return results;
-      };
-      return walk("config").concat(walk("src"));
-    }
-
-    async checkVulnerableDependencies() {
-      console.log("Checking for vulnerable dependencies...");
-      try {
-        const output = execSync("npm audit --json").toString();
-        const audit = JSON.parse(output);
-        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
-          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
-        } else {
-          this.results.passed.push("No vulnerable dependencies detected");
-        }
-      } catch (error) {
-        this.results.warnings.push("Dependency audit failed: " + error.message);
+    // Security awareness materials
+    const awarenessFiles = [
+      "docs/security/security-awareness.md",
+      "docs/security/incident-response-guide.md",
+    ];
+    for (const file of awarenessFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Security awareness material exists: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing security awareness material: ${file}`);
       }
     }
+  }
+
+  async scanForSecrets() {
+    console.log("Scanning for secrets in security config/source files...");
+    const secretPatterns = [
+      /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+      /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+      /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+      /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+    ];
+    const files = this.getSecurityFiles();
+    for (const file of files) {
+      const content = fs.readFileSync(file, "utf8");
+      for (const pattern of secretPatterns) {
+        if (pattern.test(content)) {
+          this.results.failed.push(`Potential secret found in ${file}`);
+        }
+      }
+    }
+  }
+
+  getSecurityFiles() {
+    // Recursively get all .js, .ts, .env, .yml, .yaml files in config/ and src/
+    const walk = (dir) => {
+      let results = [];
+      if (!fs.existsSync(dir)) return results;
+      const list = fs.readdirSync(dir);
+      for (const file of list) {
+        const fullPath = path.join(dir, file);
+        const stat = fs.statSync(fullPath);
+        if (stat && stat.isDirectory()) {
+          results = results.concat(walk(fullPath));
+        } else if (/(\.js|\.ts|\.env|\.yml|\.yaml)$/.test(file)) {
+          results.push(fullPath);
+        }
+      }
+      return results;
+    };
+    return walk("config").concat(walk("src"));
+  }
+
+  async checkVulnerableDependencies() {
+    console.log("Checking for vulnerable dependencies...");
+    try {
+      const output = execSync("npm audit --json").toString();
+      const audit = JSON.parse(output);
+      if (
+        audit.metadata &&
+        audit.metadata.vulnerabilities &&
+        audit.metadata.vulnerabilities.total > 0
+      ) {
+        this.results.failed.push(
+          `Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`
+        );
+      } else {
+        this.results.passed.push("No vulnerable dependencies detected");
+      }
+    } catch (error) {
+      this.results.warnings.push("Dependency audit failed: " + error.message);
+    }
+  }
 
   async validateMFA() {
     console.log("Checking MFA Configuration...");
@@ -127,10 +132,10 @@ class SecurityValidator {
           `Manual verification required: Check MFA settings in ${provider}`
         );
       }
-  // Scan for secrets
-  await this.scanForSecrets();
-  // Check for vulnerable dependencies
-  await this.checkVulnerableDependencies();
+      // Scan for secrets
+      await this.scanForSecrets();
+      // Check for vulnerable dependencies
+      await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("MFA validation failed: " + error.message);
     }
@@ -263,7 +268,11 @@ class SecurityValidator {
     console.log("Checking Application Security Testing...");
     try {
       // Check for SAST/DAST configuration
-      const securityConfigs = [".github/workflows/security.yml", "sonar-project.properties", ".snyk"];
+      const securityConfigs = [
+        ".github/workflows/security.yml",
+        "sonar-project.properties",
+        ".snyk",
+      ];
       for (const config of securityConfigs) {
         if (fs.existsSync(config)) {
           this.results.passed.push(`Security testing config found: ${config}`);
@@ -298,7 +307,7 @@ class SecurityValidator {
     const threatDocs = [
       "docs/security/threat-model.md",
       "docs/security/attack-surface.md",
-      "docs/security/risk-assessment.md"
+      "docs/security/risk-assessment.md",
     ];
     for (const doc of threatDocs) {
       if (fs.existsSync(doc)) {

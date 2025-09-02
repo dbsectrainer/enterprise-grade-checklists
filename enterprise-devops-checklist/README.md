@@ -237,9 +237,7 @@ graph TD
 
 ### 1. Security Scanning
 
-
 ### 2. Compliance Automation
-
 
 ### Actionable Security Controls
 

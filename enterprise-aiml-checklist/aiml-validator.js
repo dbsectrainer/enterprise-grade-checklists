@@ -20,102 +20,105 @@ class AIMLValidator {
     };
   }
 
-    async validateGovernanceAndTraining() {
-      console.log("Checking Governance, Training, and Security Awareness...");
-      // Governance documentation
-      const governanceDocs = [
-        "docs/governance/security-policy.md",
-        "docs/governance/roles-responsibilities.md",
-        "docs/governance/code-of-conduct.md"
-      ];
-      for (const doc of governanceDocs) {
-        if (fs.existsSync(doc)) {
-          this.results.passed.push(`Governance doc exists: ${doc}`);
-        } else {
-          this.results.warnings.push(`Missing governance doc: ${doc}`);
-        }
-      }
-
-      // Training records
-      const trainingFiles = [
-        "docs/training/security-awareness.md",
-        "docs/training/aiml-training.md"
-      ];
-      for (const file of trainingFiles) {
-        if (fs.existsSync(file)) {
-          this.results.passed.push(`Training record exists: ${file}`);
-        } else {
-          this.results.warnings.push(`Missing training record: ${file}`);
-        }
-      }
-
-      // Security awareness materials
-      const awarenessFiles = [
-        "docs/security/security-awareness.md",
-        "docs/security/incident-response-guide.md"
-      ];
-      for (const file of awarenessFiles) {
-        if (fs.existsSync(file)) {
-          this.results.passed.push(`Security awareness material exists: ${file}`);
-        } else {
-          this.results.warnings.push(`Missing security awareness material: ${file}`);
-        }
+  async validateGovernanceAndTraining() {
+    console.log("Checking Governance, Training, and Security Awareness...");
+    // Governance documentation
+    const governanceDocs = [
+      "docs/governance/security-policy.md",
+      "docs/governance/roles-responsibilities.md",
+      "docs/governance/code-of-conduct.md",
+    ];
+    for (const doc of governanceDocs) {
+      if (fs.existsSync(doc)) {
+        this.results.passed.push(`Governance doc exists: ${doc}`);
+      } else {
+        this.results.warnings.push(`Missing governance doc: ${doc}`);
       }
     }
 
-    async scanForSecrets() {
-      console.log("Scanning for secrets in AI/ML source/config files...");
-      const secretPatterns = [
-        /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
-        /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
-        /password\s*[:=]\s*['\"][^'\"]{6,}/i,
-        /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i
-      ];
-      const files = this.getAIMLFiles();
-      for (const file of files) {
-        const content = fs.readFileSync(file, "utf8");
-        for (const pattern of secretPatterns) {
-          if (pattern.test(content)) {
-            this.results.failed.push(`Potential secret found in ${file}`);
-          }
-        }
+    // Training records
+    const trainingFiles = ["docs/training/security-awareness.md", "docs/training/aiml-training.md"];
+    for (const file of trainingFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Training record exists: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing training record: ${file}`);
       }
     }
 
-    getAIMLFiles() {
-      // Recursively get all .py, .js, .ts, .env, .yml, .yaml files in src/, config/, and notebooks/
-      const walk = (dir) => {
-        let results = [];
-        if (!fs.existsSync(dir)) return results;
-        const list = fs.readdirSync(dir);
-        for (const file of list) {
-          const fullPath = path.join(dir, file);
-          const stat = fs.statSync(fullPath);
-          if (stat && stat.isDirectory()) {
-            results = results.concat(walk(fullPath));
-          } else if (/(\.py|\.js|\.ts|\.env|\.yml|\.yaml)$/.test(file)) {
-            results.push(fullPath);
-          }
-        }
-        return results;
-      };
-      return walk("src").concat(walk("config")).concat(walk("notebooks"));
-    }
-
-    async checkVulnerableDependencies() {
-      console.log("Checking for vulnerable dependencies...");
-      try {
-        const output = execSync("npm audit --json").toString();
-        const audit = JSON.parse(output);
-        if (audit.metadata && audit.metadata.vulnerabilities && audit.metadata.vulnerabilities.total > 0) {
-          this.results.failed.push(`Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`);
-        } else {
-          this.results.passed.push("No vulnerable dependencies detected");
-        }
-      } catch (error) {
-        this.results.warnings.push("Dependency audit failed: " + error.message);
+    // Security awareness materials
+    const awarenessFiles = [
+      "docs/security/security-awareness.md",
+      "docs/security/incident-response-guide.md",
+    ];
+    for (const file of awarenessFiles) {
+      if (fs.existsSync(file)) {
+        this.results.passed.push(`Security awareness material exists: ${file}`);
+      } else {
+        this.results.warnings.push(`Missing security awareness material: ${file}`);
       }
     }
+  }
+
+  async scanForSecrets() {
+    console.log("Scanning for secrets in AI/ML source/config files...");
+    const secretPatterns = [
+      /api[_-]?key\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+      /secret\s*[:=]\s*['\"][A-Za-z0-9\-_]{8,}/i,
+      /password\s*[:=]\s*['\"][^'\"]{6,}/i,
+      /token\s*[:=]\s*['\"][A-Za-z0-9\-_]{16,}/i,
+    ];
+    const files = this.getAIMLFiles();
+    for (const file of files) {
+      const content = fs.readFileSync(file, "utf8");
+      for (const pattern of secretPatterns) {
+        if (pattern.test(content)) {
+          this.results.failed.push(`Potential secret found in ${file}`);
+        }
+      }
+    }
+  }
+
+  getAIMLFiles() {
+    // Recursively get all .py, .js, .ts, .env, .yml, .yaml files in src/, config/, and notebooks/
+    const walk = (dir) => {
+      let results = [];
+      if (!fs.existsSync(dir)) return results;
+      const list = fs.readdirSync(dir);
+      for (const file of list) {
+        const fullPath = path.join(dir, file);
+        const stat = fs.statSync(fullPath);
+        if (stat && stat.isDirectory()) {
+          results = results.concat(walk(fullPath));
+        } else if (/(\.py|\.js|\.ts|\.env|\.yml|\.yaml)$/.test(file)) {
+          results.push(fullPath);
+        }
+      }
+      return results;
+    };
+    return walk("src").concat(walk("config")).concat(walk("notebooks"));
+  }
+
+  async checkVulnerableDependencies() {
+    console.log("Checking for vulnerable dependencies...");
+    try {
+      const output = execSync("npm audit --json").toString();
+      const audit = JSON.parse(output);
+      if (
+        audit.metadata &&
+        audit.metadata.vulnerabilities &&
+        audit.metadata.vulnerabilities.total > 0
+      ) {
+        this.results.failed.push(
+          `Vulnerable dependencies found: ${audit.metadata.vulnerabilities.total}`
+        );
+      } else {
+        this.results.passed.push("No vulnerable dependencies detected");
+      }
+    } catch (error) {
+      this.results.warnings.push("Dependency audit failed: " + error.message);
+    }
+  }
 
   async validateDataPipeline() {
     console.log("Checking Data Pipeline...");
@@ -126,10 +129,10 @@ class AIMLValidator {
       await this.checkDataValidation();
       // Check feature engineering
       await this.checkFeatureEngineering();
-  // Scan for secrets
-  await this.scanForSecrets();
-  // Check for vulnerable dependencies
-  await this.checkVulnerableDependencies();
+      // Scan for secrets
+      await this.scanForSecrets();
+      // Check for vulnerable dependencies
+      await this.checkVulnerableDependencies();
     } catch (error) {
       this.results.failed.push("Data pipeline validation failed: " + error.message);
     }
@@ -381,7 +384,7 @@ class AIMLValidator {
     const robustnessFiles = [
       "tests/adversarial_test.py",
       "src/security/adversarial_defense.py",
-      "config/robustness_config.yml"
+      "config/robustness_config.yml",
     ];
     for (const file of robustnessFiles) {
       if (fs.existsSync(file)) {
@@ -394,10 +397,7 @@ class AIMLValidator {
 
   async validateModelExtraction() {
     console.log("Checking Model Extraction Protection...");
-    const protectionFiles = [
-      "src/security/model_protection.py",
-      "config/extraction_defense.yml"
-    ];
+    const protectionFiles = ["src/security/model_protection.py", "config/extraction_defense.yml"];
     for (const file of protectionFiles) {
       if (fs.existsSync(file)) {
         this.results.passed.push(`Model extraction protection found: ${file}`);
@@ -411,7 +411,7 @@ class AIMLValidator {
     console.log("Checking Differential Privacy Implementation...");
     const privacyFiles = [
       "src/privacy/differential_privacy.py",
-      "src/federated/federated_learning.py"
+      "src/federated/federated_learning.py",
     ];
     for (const file of privacyFiles) {
       if (fs.existsSync(file)) {
@@ -427,7 +427,7 @@ class AIMLValidator {
     const securityConfigs = [
       ".github/workflows/ml-security.yml",
       "security/ml-security-tests.py",
-      "config/ml-security.yml"
+      "config/ml-security.yml",
     ];
     for (const config of securityConfigs) {
       if (fs.existsSync(config)) {

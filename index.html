@@ -1,244 +1,234 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise Checklist Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enterprise Checklist Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
-</head>
-
-<body>
-  <div class="container">
-    <header>
-      <div class="header-top">
-        <h1>Enterprise Checklist Dashboard</h1>
-        <div class="user-controls">
-          <button id="theme-toggle" class="control-btn" title="Toggle dark mode">
-            <span>🌙</span>
-          </button>
-          <button id="export-data" class="control-btn" title="Export progress">
-            <span>📊</span>
-          </button>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-top">
+          <h1>Enterprise Checklist Dashboard</h1>
+          <div class="user-controls">
+            <button id="theme-toggle" class="control-btn" title="Toggle dark mode">
+              <span>🌙</span>
+            </button>
+            <button id="export-data" class="control-btn" title="Export progress">
+              <span>📊</span>
+            </button>
+          </div>
         </div>
-      </div>
-      <p class="intro">
-        A comprehensive overview of enterprise-grade checklists covering frontend, backend, cloud,
-        data, DevOps, mobile, security, and AI/ML domains.
-      </p>
+        <p class="intro">
+          A comprehensive overview of enterprise-grade checklists covering frontend, backend, cloud,
+          data, DevOps, mobile, security, and AI/ML domains.
+        </p>
 
-      <div class="dashboard-summary">
-        <div class="summary-card">
-          <h3>Overall Progress</h3>
-          <div class="global-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" id="global-progress-fill"></div>
-              <span class="progress-text" id="global-progress-text">0%</span>
+        <div class="dashboard-summary">
+          <div class="summary-card">
+            <h3>Overall Progress</h3>
+            <div class="global-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" id="global-progress-fill"></div>
+                <span class="progress-text" id="global-progress-text">0%</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="controls">
-        <div class="control-group">
-          <button id="reset-all" class="control-btn danger" title="Reset all checklists">
-            Reset All
-          </button>
-          <button id="export-pdf" class="control-btn" title="Export as PDF">Export PDF</button>
-        </div>
-        <div class="search-container">
-          <input type="text" id="search" placeholder="Search across all checklists..." />
-          <select id="filter-type" class="filter-select">
-            <option value="all">All Categories</option>
-            <option value="required">Required Items</option>
-            <option value="suggested">Suggested Items</option>
-          </select>
-        </div>
-      </div>
-    </header>
-
-    <main class="dashboard-grid">
-      <div class="checklist-card" data-checklist="frontend">
-        <div class="card-header">
-          <h2>Frontend</h2>
-          <span class="priority-badge high">High Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="frontend-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="controls">
+          <div class="control-group">
+            <button id="reset-all" class="control-btn danger" title="Reset all checklists">
+              Reset All
+            </button>
+            <button id="export-pdf" class="control-btn" title="Export as PDF">Export PDF</button>
+          </div>
+          <div class="search-container">
+            <input type="text" id="search" placeholder="Search across all checklists..." />
+            <select id="filter-type" class="filter-select">
+              <option value="all">All Categories</option>
+              <option value="required">Required Items</option>
+              <option value="suggested">Suggested Items</option>
+            </select>
           </div>
         </div>
-        <p>
-          Modern enterprise-grade frontend applications with focus on security, accessibility, and
-          performance.
-        </p>
-        <div class="card-footer">
-          <a href="enterprise-frontend-checklist/index.html" class="view-btn">View Checklist</a>
+      </header>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="backend">
-        <div class="card-header">
-          <h2>Backend</h2>
-          <span class="priority-badge high">High Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="backend-progress"></div>
-            <span class="progress-text">0%</span>
+      <main class="dashboard-grid">
+        <div class="checklist-card" data-checklist="frontend">
+          <div class="card-header">
+            <h2>Frontend</h2>
+            <span class="priority-badge high">High Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="frontend-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>
+            Modern enterprise-grade frontend applications with focus on security, accessibility, and
+            performance.
+          </p>
+          <div class="card-footer">
+            <a href="enterprise-frontend-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>Robust backend systems with focus on scalability, reliability, and API design.</p>
-        <div class="card-footer">
-          <a href="enterprise-backend-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="cloud">
-        <div class="card-header">
-          <h2>Cloud</h2>
-          <span class="priority-badge high">High Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="cloud-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="checklist-card" data-checklist="backend">
+          <div class="card-header">
+            <h2>Backend</h2>
+            <span class="priority-badge high">High Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="backend-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>Robust backend systems with focus on scalability, reliability, and API design.</p>
+          <div class="card-footer">
+            <a href="enterprise-backend-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>Cloud infrastructure and services with focus on scalability and cost optimization.</p>
-        <div class="card-footer">
-          <a href="enterprise-cloud-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="data">
-        <div class="card-header">
-          <h2>Data</h2>
-          <span class="priority-badge medium">Medium Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="data-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="checklist-card" data-checklist="cloud">
+          <div class="card-header">
+            <h2>Cloud</h2>
+            <span class="priority-badge high">High Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="cloud-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>Cloud infrastructure and services with focus on scalability and cost optimization.</p>
+          <div class="card-footer">
+            <a href="enterprise-cloud-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>Data management and analytics with focus on security and governance.</p>
-        <div class="card-footer">
-          <a href="enterprise-data-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="devops">
-        <div class="card-header">
-          <h2>DevOps</h2>
-          <span class="priority-badge high">High Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="devops-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="checklist-card" data-checklist="data">
+          <div class="card-header">
+            <h2>Data</h2>
+            <span class="priority-badge medium">Medium Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="data-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>Data management and analytics with focus on security and governance.</p>
+          <div class="card-footer">
+            <a href="enterprise-data-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>DevOps practices and tools with focus on automation and monitoring.</p>
-        <div class="card-footer">
-          <a href="enterprise-devops-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="mobile">
-        <div class="card-header">
-          <h2>Mobile</h2>
-          <span class="priority-badge medium">Medium Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="mobile-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="checklist-card" data-checklist="devops">
+          <div class="card-header">
+            <h2>DevOps</h2>
+            <span class="priority-badge high">High Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="devops-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>DevOps practices and tools with focus on automation and monitoring.</p>
+          <div class="card-footer">
+            <a href="enterprise-devops-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>Mobile development best practices with focus on user experience and performance.</p>
-        <div class="card-footer">
-          <a href="enterprise-mobile-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="security">
-        <div class="card-header">
-          <h2>Security</h2>
-          <span class="priority-badge critical">Critical Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="security-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="checklist-card" data-checklist="mobile">
+          <div class="card-header">
+            <h2>Mobile</h2>
+            <span class="priority-badge medium">Medium Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="mobile-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>Mobile development best practices with focus on user experience and performance.</p>
+          <div class="card-footer">
+            <a href="enterprise-mobile-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>Security best practices and compliance with focus on protection and privacy.</p>
-        <div class="card-footer">
-          <a href="enterprise-security-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-
-      <div class="checklist-card" data-checklist="aiml">
-        <div class="card-header">
-          <h2>AI/ML</h2>
-          <span class="priority-badge medium">Medium Priority</span>
-        </div>
-        <div class="card-progress">
-          <div class="progress-bar">
-            <div class="progress-fill" id="aiml-progress"></div>
-            <span class="progress-text">0%</span>
+        <div class="checklist-card" data-checklist="security">
+          <div class="card-header">
+            <h2>Security</h2>
+            <span class="priority-badge critical">Critical Priority</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="security-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
+          </div>
+          <p>Security best practices and compliance with focus on protection and privacy.</p>
+          <div class="card-footer">
+            <a href="enterprise-security-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-        <p>AI/ML integration and management with focus on ethics and performance.</p>
-        <div class="card-footer">
-          <a href="enterprise-aiml-checklist/index.html" class="view-btn">View Checklist</a>
 
-        </div>
-      </div>
-    </main>
-
-    <footer class="dashboard-footer">
-      <div class="footer-content">
-        <div class="stats-summary">
-          <div class="stat-item">
-            <span class="stat-label">Total Items:</span>
-            <span class="stat-value" id="total-items">0</span>
+        <div class="checklist-card" data-checklist="aiml">
+          <div class="card-header">
+            <h2>AI/ML</h2>
+            <span class="priority-badge medium">Medium Priority</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-label">Completed Items:</span>
-            <span class="stat-value" id="completed-items">0</span>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="aiml-progress"></div>
+              <span class="progress-text">0%</span>
+            </div>
           </div>
-          <div class="stat-item">
-            <span class="stat-label">Critical Items:</span>
-            <span class="stat-value" id="critical-items">0</span>
+          <p>AI/ML integration and management with focus on ethics and performance.</p>
+          <div class="card-footer">
+            <a href="enterprise-aiml-checklist/index.html" class="view-btn">View Checklist</a>
           </div>
         </div>
-      </div>
-    </footer>
-  </div>
+      </main>
 
-  <!-- Modal for export options -->
-  <div id="export-modal" class="modal">
-    <div class="modal-content">
-      <h2>Export Dashboard</h2>
-      <div class="export-options">
-        <button class="export-option" data-format="pdf">PDF Report</button>
-        <button class="export-option" data-format="json">JSON Data</button>
-        <button class="export-option" data-format="csv">CSV Format</button>
-      </div>
-      <button class="modal-close">Close</button>
+      <footer class="dashboard-footer">
+        <div class="footer-content">
+          <div class="stats-summary">
+            <div class="stat-item">
+              <span class="stat-label">Total Items:</span>
+              <span class="stat-value" id="total-items">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Completed Items:</span>
+              <span class="stat-value" id="completed-items">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Critical Items:</span>
+              <span class="stat-value" id="critical-items">0</span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</body>
 
+    <!-- Modal for export options -->
+    <div id="export-modal" class="modal">
+      <div class="modal-content">
+        <h2>Export Dashboard</h2>
+        <div class="export-options">
+          <button class="export-option" data-format="pdf">PDF Report</button>
+          <button class="export-option" data-format="json">JSON Data</button>
+          <button class="export-option" data-format="csv">CSV Format</button>
+        </div>
+        <button class="modal-close">Close</button>
+      </div>
+    </div>
+  </body>
 </html>

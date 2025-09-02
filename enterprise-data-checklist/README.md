@@ -179,7 +179,6 @@ graph TD
 
 ### 3. Data Security
 
-
 ## Security Controls
 
 - Classify and protect sensitive data
