@@ -64,7 +64,7 @@ function updateProgressBar(elementId, percentage) {
   if (!progressBar) return;
 
   const progressFill = progressBar;
-  const progressText = progressBar.parentElement.querySelector('.progress-text');
+  const progressText = progressBar.parentElement.querySelector(".progress-text");
 
   progressFill.style.width = `${percentage}%`;
   progressText.textContent = `${percentage}%`;
