@@ -88,9 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const timestamp = new Date().toISOString();
     localStorage.setItem("backendLastUpdated", timestamp);
 
-    // Trigger storage event for dashboard update
-    const event = new Event("storage");
-    event.key = "backendChecklistStates";
+    // Trigger custom event for dashboard update
+    const event = new CustomEvent("checklistUpdated", {
+      detail: { checklist: "backend" }
+    });
     window.dispatchEvent(event);
   }
 

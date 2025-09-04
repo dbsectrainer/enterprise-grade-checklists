@@ -88,9 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const timestamp = new Date().toISOString();
     localStorage.setItem("mobileLastUpdated", timestamp);
 
-    // Trigger storage event for dashboard update
-    const event = new Event("storage");
-    event.key = "mobileChecklistStates";
+    // Trigger custom event for dashboard update
+    const event = new CustomEvent("checklistUpdated", {
+      detail: { checklist: "mobile" }
+    });
     window.dispatchEvent(event);
   }
 

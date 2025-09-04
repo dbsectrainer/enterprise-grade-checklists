@@ -25,9 +25,8 @@ function initializeDashboard() {
     updateLastUpdated(checklist);
   });
 
-  // Update global progress and stats
+  // Update global progress
   updateGlobalProgress();
-  updateStats();
 }
 
 // Set up event listeners
@@ -65,7 +64,7 @@ function updateProgressBar(elementId, percentage) {
   if (!progressBar) return;
 
   const progressFill = progressBar;
-  const progressText = progressBar.nextElementSibling;
+  const progressText = progressBar.parentElement.querySelector('.progress-text');
 
   progressFill.style.width = `${percentage}%`;
   progressText.textContent = `${percentage}%`;
@@ -101,37 +100,6 @@ function updateGlobalProgress() {
   document.getElementById("global-progress-text").textContent = `${globalProgress}%`;
 }
 
-// Update statistics
-function updateStats() {
-  const checklists = [
-    "frontend",
-    "backend",
-    "cloud",
-    "data",
-    "devops",
-    "mobile",
-    "security",
-    "aiml",
-  ];
-  let totalItems = 0;
-  let completedItems = 0;
-  let criticalItems = 0;
-
-  checklists.forEach((checklist) => {
-    const states = JSON.parse(localStorage.getItem(`${checklist}ChecklistStates`)) || {};
-    const items = Object.keys(states).length;
-    totalItems += items;
-    completedItems += Object.values(states).filter((state) => state).length;
-    // Assuming critical items are marked in the data structure
-    criticalItems += Object.entries(states).filter(
-      ([key, value]) => key.includes("critical") && !value
-    ).length;
-  });
-
-  document.getElementById("total-items").textContent = totalItems;
-  document.getElementById("completed-items").textContent = completedItems;
-  document.getElementById("critical-items").textContent = criticalItems;
-}
 
 // Handle search functionality
 function handleSearch(event) {
@@ -278,10 +246,12 @@ function updateLastUpdated(checklist) {
   const card = document.querySelector(`[data-checklist="${checklist}"]`);
   if (card) {
     const timeElement = card.querySelector(".update-time");
-    if (timestamp) {
-      timeElement.textContent = new Date(timestamp).toLocaleString();
-    } else {
-      timeElement.textContent = "Never";
+    if (timeElement) {
+      if (timestamp) {
+        timeElement.textContent = new Date(timestamp).toLocaleString();
+      } else {
+        timeElement.textContent = "Never";
+      }
     }
   }
 }
@@ -311,17 +281,15 @@ function resetAllChecklists() {
   });
 
   updateGlobalProgress();
-  updateStats();
 }
 
-// Listen for storage changes from other checklist pages
-window.addEventListener("storage", (event) => {
-  if (event.key && event.key.endsWith("ChecklistStates")) {
-    const checklist = event.key.replace("ChecklistStates", "");
+// Listen for custom checklist update events
+window.addEventListener("checklistUpdated", (event) => {
+  const checklist = event.detail.checklist;
+  if (checklist) {
     const progress = loadChecklistProgress(checklist);
     updateProgressBar(`${checklist}-progress`, progress);
     updateGlobalProgress();
-    updateStats();
     updateLastUpdated(checklist);
   }
 });
