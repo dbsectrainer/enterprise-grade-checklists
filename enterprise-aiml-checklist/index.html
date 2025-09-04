@@ -84,11 +84,16 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What data quality metrics do you track (completeness, accuracy, consistency, timeliness)?</li>
+                      <li>
+                        What data quality metrics do you track (completeness, accuracy, consistency,
+                        timeliness)?
+                      </li>
                       <li>How do you define and measure data quality thresholds?</li>
                       <li>What automated checks run during data ingestion and processing?</li>
                       <li>How do you handle data that fails quality checks?</li>
-                      <li>What is your process for investigating and resolving data quality issues?</li>
+                      <li>
+                        What is your process for investigating and resolving data quality issues?
+                      </li>
                       <li>How often are data quality rules reviewed and updated?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -120,8 +125,13 @@
                       <li>Can you trace data lineage from raw source to model predictions?</li>
                       <li>How do you handle schema evolution and backward compatibility?</li>
                       <li>What tools do you use for data versioning (DVC, Delta Lake, etc.)?</li>
-                      <li>How do you ensure reproducibility of model training with specific data versions?</li>
-                      <li>Can you quickly rollback to previous data versions if issues are discovered?</li>
+                      <li>
+                        How do you ensure reproducibility of model training with specific data
+                        versions?
+                      </li>
+                      <li>
+                        Can you quickly rollback to previous data versions if issues are discovered?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
@@ -148,8 +158,13 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What data privacy regulations apply to your ML systems (GDPR, CCPA, HIPAA)?</li>
-                      <li>How do you handle personally identifiable information (PII) in training data?</li>
+                      <li>
+                        What data privacy regulations apply to your ML systems (GDPR, CCPA, HIPAA)?
+                      </li>
+                      <li>
+                        How do you handle personally identifiable information (PII) in training
+                        data?
+                      </li>
                       <li>What data anonymization or pseudonymization techniques do you use?</li>
                       <li>How do you implement "right to be forgotten" requests in ML systems?</li>
                       <li>Do you conduct privacy impact assessments for new ML projects?</li>
@@ -157,7 +172,10 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement privacy-preserving ML techniques (differential privacy, federated learning)</li>
+                      <li>
+                        Implement privacy-preserving ML techniques (differential privacy, federated
+                        learning)
+                      </li>
                       <li>Establish data governance policies and procedures</li>
                       <li>Regular compliance audits and documentation</li>
                       <li>Train teams on privacy regulations and best practices</li>
@@ -185,8 +203,14 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What metadata is captured for each dataset (schema, quality, usage, ownership)?</li>
-                      <li>How do users discover and search for relevant datasets across the organization?</li>
+                      <li>
+                        What metadata is captured for each dataset (schema, quality, usage,
+                        ownership)?
+                      </li>
+                      <li>
+                        How do users discover and search for relevant datasets across the
+                        organization?
+                      </li>
                       <li>What data lineage information is available through the catalog?</li>
                       <li>How do you track data usage patterns and popularity metrics?</li>
                       <li>What approval processes exist for accessing cataloged datasets?</li>
@@ -195,7 +219,9 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement automated metadata extraction and profiling</li>
-                      <li>Provide search and filtering capabilities with business-friendly terminology</li>
+                      <li>
+                        Provide search and filtering capabilities with business-friendly terminology
+                      </li>
                       <li>Include data quality scores and freshness indicators</li>
                       <li>Enable collaboration features like comments and ratings</li>
                     </ul>
@@ -217,17 +243,29 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What data augmentation techniques are appropriate for your data type and domain?</li>
-                      <li>How do you validate that augmented data maintains realistic characteristics?</li>
+                      <li>
+                        What data augmentation techniques are appropriate for your data type and
+                        domain?
+                      </li>
+                      <li>
+                        How do you validate that augmented data maintains realistic characteristics?
+                      </li>
                       <li>What is the optimal ratio of original to augmented training data?</li>
-                      <li>How do you prevent data leakage when applying augmentation techniques?</li>
+                      <li>
+                        How do you prevent data leakage when applying augmentation techniques?
+                      </li>
                       <li>What tools and libraries do you use for systematic data augmentation?</li>
                       <li>How do you measure the impact of augmentation on model performance?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Apply domain-specific augmentation (rotation/scaling for images, paraphrasing for text)</li>
-                      <li>Use progressive augmentation strategies that increase complexity gradually</li>
+                      <li>
+                        Apply domain-specific augmentation (rotation/scaling for images,
+                        paraphrasing for text)
+                      </li>
+                      <li>
+                        Use progressive augmentation strategies that increase complexity gradually
+                      </li>
                       <li>Maintain separate validation sets without augmented data</li>
                       <li>Consider advanced techniques like GAN-based synthetic data generation</li>
                     </ul>
@@ -236,7 +274,10 @@
                       <li>Applying inappropriate augmentation that creates unrealistic data</li>
                       <li>Augmentation that introduces bias or degrades data quality</li>
                       <li>No validation of augmented data quality or realism</li>
-                      <li>Augmentation applied to validation/test sets causing overly optimistic results</li>
+                      <li>
+                        Augmentation applied to validation/test sets causing overly optimistic
+                        results
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -258,11 +299,19 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Why was this specific model architecture chosen for the problem domain?</li>
-                      <li>What alternative architectures were considered and why were they rejected?</li>
+                      <li>
+                        Why was this specific model architecture chosen for the problem domain?
+                      </li>
+                      <li>
+                        What alternative architectures were considered and why were they rejected?
+                      </li>
                       <li>How do model complexity and interpretability requirements balance?</li>
-                      <li>What are the computational requirements and performance characteristics?</li>
-                      <li>How does the architecture handle different input sizes and data types?</li>
+                      <li>
+                        What are the computational requirements and performance characteristics?
+                      </li>
+                      <li>
+                        How does the architecture handle different input sizes and data types?
+                      </li>
                       <li>What are the model's scalability limitations and bottlenecks?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -290,10 +339,18 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What steps ensure exact reproducibility of training runs (seed management, environment isolation)?</li>
+                      <li>
+                        What steps ensure exact reproducibility of training runs (seed management,
+                        environment isolation)?
+                      </li>
                       <li>How do you handle hyperparameter configuration and experimentation?</li>
-                      <li>What compute resource management and scaling strategies are implemented?</li>
-                      <li>How do you track and log training progress, metrics, and intermediate results?</li>
+                      <li>
+                        What compute resource management and scaling strategies are implemented?
+                      </li>
+                      <li>
+                        How do you track and log training progress, metrics, and intermediate
+                        results?
+                      </li>
                       <li>What failure recovery and checkpointing mechanisms exist?</li>
                       <li>How do you handle distributed training across multiple GPUs or nodes?</li>
                     </ul>
@@ -322,9 +379,16 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What validation techniques are used (cross-validation, holdout, time-series splits)?</li>
-                      <li>How do you ensure validation data is representative of production data?</li>
-                      <li>What metrics are tracked beyond accuracy (precision, recall, F1, AUC)?</li>
+                      <li>
+                        What validation techniques are used (cross-validation, holdout, time-series
+                        splits)?
+                      </li>
+                      <li>
+                        How do you ensure validation data is representative of production data?
+                      </li>
+                      <li>
+                        What metrics are tracked beyond accuracy (precision, recall, F1, AUC)?
+                      </li>
                       <li>How do you validate model performance across different data segments?</li>
                       <li>What statistical tests are used to assess model significance?</li>
                       <li>How do you validate model robustness and edge case handling?</li>
@@ -333,7 +397,9 @@
                     <ul>
                       <li>Use stratified sampling to maintain class balance in validation sets</li>
                       <li>Implement business-relevant metrics alongside technical metrics</li>
-                      <li>Validate model performance across different time periods and conditions</li>
+                      <li>
+                        Validate model performance across different time periods and conditions
+                      </li>
                       <li>Include bias and fairness assessments in validation procedures</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -354,16 +420,27 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>How do you version and track model artifacts (weights, architecture, hyperparameters)?</li>
-                      <li>What metadata is stored with each model version (performance metrics, training data, timestamp)?</li>
-                      <li>How do you handle model promotion through development, staging, and production environments?</li>
+                      <li>
+                        How do you version and track model artifacts (weights, architecture,
+                        hyperparameters)?
+                      </li>
+                      <li>
+                        What metadata is stored with each model version (performance metrics,
+                        training data, timestamp)?
+                      </li>
+                      <li>
+                        How do you handle model promotion through development, staging, and
+                        production environments?
+                      </li>
                       <li>What rollback procedures exist when new model versions underperform?</li>
                       <li>How do you manage model dependencies and environment compatibility?</li>
                       <li>What tools do you use for model registry and lifecycle management?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use semantic versioning with clear promotion criteria between versions</li>
+                      <li>
+                        Use semantic versioning with clear promotion criteria between versions
+                      </li>
                       <li>Store complete model lineage including data versions and code commits</li>
                       <li>Implement automated model validation before version promotion</li>
                       <li>Maintain model performance benchmarks across versions</li>
@@ -391,18 +468,34 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What aspects of ML are automated (feature engineering, model selection, hyperparameter tuning)?</li>
-                      <li>How do you balance automation with domain expertise and interpretability needs?</li>
-                      <li>What constraints and guardrails ensure AutoML produces sensible results?</li>
-                      <li>How do you validate and interpret models generated through automated processes?</li>
+                      <li>
+                        What aspects of ML are automated (feature engineering, model selection,
+                        hyperparameter tuning)?
+                      </li>
+                      <li>
+                        How do you balance automation with domain expertise and interpretability
+                        needs?
+                      </li>
+                      <li>
+                        What constraints and guardrails ensure AutoML produces sensible results?
+                      </li>
+                      <li>
+                        How do you validate and interpret models generated through automated
+                        processes?
+                      </li>
                       <li>What human oversight exists in the AutoML pipeline?</li>
                       <li>How do you integrate AutoML results with existing ML workflows?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Start with neural architecture search or automated hyperparameter optimization</li>
+                      <li>
+                        Start with neural architecture search or automated hyperparameter
+                        optimization
+                      </li>
                       <li>Implement budget constraints for computational resources and time</li>
-                      <li>Maintain human review checkpoints for model quality and business alignment</li>
+                      <li>
+                        Maintain human review checkpoints for model quality and business alignment
+                      </li>
                       <li>Document automated decisions for reproducibility and compliance</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -423,19 +516,44 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What pre-trained models are available and suitable for your domain and task?</li>
+                      <li>
+                        What pre-trained models are available and suitable for your domain and task?
+                      </li>
                       <li>How do you assess the quality and relevance of source domain data?</li>
-                      <li>What strategies do you use for fine-tuning (feature extraction, fine-tuning, domain adaptation)?</li>
-                      <li>How do you prevent negative transfer when source and target domains differ significantly?</li>
-                      <li>What validation approaches ensure transferred knowledge improves performance?</li>
-                      <li>How do you handle licensing and intellectual property concerns with pre-trained models?</li>
+                      <li>
+                        What strategies do you use for fine-tuning (feature extraction, fine-tuning,
+                        domain adaptation)?
+                      </li>
+                      <li>
+                        How do you prevent negative transfer when source and target domains differ
+                        significantly?
+                      </li>
+                      <li>
+                        What validation approaches ensure transferred knowledge improves
+                        performance?
+                      </li>
+                      <li>
+                        How do you handle licensing and intellectual property concerns with
+                        pre-trained models?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Start with models pre-trained on large, diverse datasets relevant to your domain</li>
-                      <li>Implement layer freezing strategies and progressive unfreezing during fine-tuning</li>
-                      <li>Use smaller learning rates for pre-trained layers compared to new layers</li>
-                      <li>Validate that transfer learning provides better results than training from scratch</li>
+                      <li>
+                        Start with models pre-trained on large, diverse datasets relevant to your
+                        domain
+                      </li>
+                      <li>
+                        Implement layer freezing strategies and progressive unfreezing during
+                        fine-tuning
+                      </li>
+                      <li>
+                        Use smaller learning rates for pre-trained layers compared to new layers
+                      </li>
+                      <li>
+                        Validate that transfer learning provides better results than training from
+                        scratch
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -464,12 +582,18 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What ML-specific tests are automated (data validation, model testing, performance regression)?</li>
+                      <li>
+                        What ML-specific tests are automated (data validation, model testing,
+                        performance regression)?
+                      </li>
                       <li>How do you handle model artifacts in your CI/CD pipeline?</li>
                       <li>What triggers automated retraining and model updates?</li>
                       <li>How do you implement canary deployments and A/B testing for models?</li>
                       <li>What rollback mechanisms exist when model deployments fail?</li>
-                      <li>How do you manage environment consistency across development, staging, and production?</li>
+                      <li>
+                        How do you manage environment consistency across development, staging, and
+                        production?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
@@ -496,7 +620,10 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What information is tracked for each model in the registry (version, performance, metadata)?</li>
+                      <li>
+                        What information is tracked for each model in the registry (version,
+                        performance, metadata)?
+                      </li>
                       <li>How do you manage model promotion through different environments?</li>
                       <li>What approval workflows exist for model deployment to production?</li>
                       <li>How do you track which model versions are deployed where?</li>
@@ -528,7 +655,10 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What model serving framework supports your latency and throughput requirements?</li>
+                      <li>
+                        What model serving framework supports your latency and throughput
+                        requirements?
+                      </li>
                       <li>How do you handle model loading, caching, and memory management?</li>
                       <li>What auto-scaling policies respond to prediction request volume?</li>
                       <li>How do you implement batch vs. real-time serving strategies?</li>
@@ -537,7 +667,10 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Choose serving solutions that match your latency requirements (milliseconds vs. seconds)</li>
+                      <li>
+                        Choose serving solutions that match your latency requirements (milliseconds
+                        vs. seconds)
+                      </li>
                       <li>Implement model caching and pre-loading strategies</li>
                       <li>Use containerized serving with orchestration for scalability</li>
                       <li>Monitor resource utilization and cost optimization opportunities</li>
@@ -562,14 +695,19 @@
                     <ul>
                       <li>What model performance metrics are monitored in real-time?</li>
                       <li>How do you detect and alert on data drift and model degradation?</li>
-                      <li>What infrastructure metrics track serving performance and availability?</li>
+                      <li>
+                        What infrastructure metrics track serving performance and availability?
+                      </li>
                       <li>How do you correlate model performance with business outcomes?</li>
                       <li>What dashboards provide visibility into model health?</li>
                       <li>How do you handle alert fatigue while maintaining responsiveness?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Monitor both technical metrics (latency, error rates) and business metrics (accuracy, precision)</li>
+                      <li>
+                        Monitor both technical metrics (latency, error rates) and business metrics
+                        (accuracy, precision)
+                      </li>
                       <li>Implement statistical process control for drift detection</li>
                       <li>Create tiered alerting based on severity and impact</li>
                       <li>Provide self-service dashboards for stakeholders</li>
@@ -606,7 +744,9 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement both online and offline feature stores for different use cases</li>
+                      <li>
+                        Implement both online and offline feature stores for different use cases
+                      </li>
                       <li>Establish feature ownership and governance processes</li>
                       <li>Enable feature sharing and discovery across teams</li>
                       <li>Monitor feature drift and data quality</li>
@@ -629,10 +769,14 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>How do you design and implement experiments to compare model versions?</li>
+                      <li>
+                        How do you design and implement experiments to compare model versions?
+                      </li>
                       <li>What traffic splitting mechanisms ensure unbiased experiment results?</li>
                       <li>What metrics and statistical tests determine experiment success?</li>
-                      <li>How do you handle experiment assignment consistency and user experience?</li>
+                      <li>
+                        How do you handle experiment assignment consistency and user experience?
+                      </li>
                       <li>What guardrails prevent harmful experiments from impacting users?</li>
                       <li>How do you analyze and interpret A/B test results?</li>
                     </ul>
@@ -679,9 +823,15 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Monitor both technical metrics (accuracy, latency) and business metrics (conversion rates, revenue impact)</li>
+                      <li>
+                        Monitor both technical metrics (accuracy, latency) and business metrics
+                        (conversion rates, revenue impact)
+                      </li>
                       <li>Implement statistical process control for performance monitoring</li>
-                      <li>Create performance dashboards accessible to both technical and business stakeholders</li>
+                      <li>
+                        Create performance dashboards accessible to both technical and business
+                        stakeholders
+                      </li>
                       <li>Establish clear escalation procedures for performance issues</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -702,12 +852,26 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What statistical methods do you use to detect data drift (KS test, population stability index, chi-square)?</li>
-                      <li>How do you differentiate between seasonal changes and true data drift?</li>
-                      <li>What concept drift detection techniques monitor model performance degradation over time?</li>
-                      <li>How do you establish drift detection thresholds and sensitivity levels?</li>
-                      <li>What is your process for investigating and responding to drift alerts?</li>
-                      <li>How do you monitor drift across different data segments and feature subsets?</li>
+                      <li>
+                        What statistical methods do you use to detect data drift (KS test,
+                        population stability index, chi-square)?
+                      </li>
+                      <li>
+                        How do you differentiate between seasonal changes and true data drift?
+                      </li>
+                      <li>
+                        What concept drift detection techniques monitor model performance
+                        degradation over time?
+                      </li>
+                      <li>
+                        How do you establish drift detection thresholds and sensitivity levels?
+                      </li>
+                      <li>
+                        What is your process for investigating and responding to drift alerts?
+                      </li>
+                      <li>
+                        How do you monitor drift across different data segments and feature subsets?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
@@ -718,10 +882,21 @@
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Drift detection that generates too many false alarms or misses significant shifts</li>
-                      <li>No distinction between expected seasonal patterns and problematic drift</li>
-                      <li>Drift detection that operates only at aggregate level without segment analysis</li>
-                      <li>Alert systems that identify drift but provide no actionable response guidance</li>
+                      <li>
+                        Drift detection that generates too many false alarms or misses significant
+                        shifts
+                      </li>
+                      <li>
+                        No distinction between expected seasonal patterns and problematic drift
+                      </li>
+                      <li>
+                        Drift detection that operates only at aggregate level without segment
+                        analysis
+                      </li>
+                      <li>
+                        Alert systems that identify drift but provide no actionable response
+                        guidance
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -734,11 +909,25 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What computational resources are monitored (CPU, GPU, memory, disk I/O, network bandwidth)?</li>
-                      <li>How do you track and allocate costs across different models and projects?</li>
-                      <li>What resource utilization thresholds trigger scaling or optimization actions?</li>
-                      <li>How do you monitor and predict resource needs for different workload patterns?</li>
-                      <li>What tools provide visibility into resource usage across training and inference workloads?</li>
+                      <li>
+                        What computational resources are monitored (CPU, GPU, memory, disk I/O,
+                        network bandwidth)?
+                      </li>
+                      <li>
+                        How do you track and allocate costs across different models and projects?
+                      </li>
+                      <li>
+                        What resource utilization thresholds trigger scaling or optimization
+                        actions?
+                      </li>
+                      <li>
+                        How do you monitor and predict resource needs for different workload
+                        patterns?
+                      </li>
+                      <li>
+                        What tools provide visibility into resource usage across training and
+                        inference workloads?
+                      </li>
                       <li>How do you identify and eliminate resource waste and inefficiencies?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -746,12 +935,16 @@
                       <li>Implement real-time resource monitoring with historical trending</li>
                       <li>Set up cost allocation and chargeback mechanisms for ML workloads</li>
                       <li>Monitor both infrastructure and application-level resource metrics</li>
-                      <li>Create automated scaling policies based on resource utilization patterns</li>
+                      <li>
+                        Create automated scaling policies based on resource utilization patterns
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Resource costs that exceed project budgets without early warning</li>
-                      <li>No visibility into which models or experiments consume the most resources</li>
+                      <li>
+                        No visibility into which models or experiments consume the most resources
+                      </li>
                       <li>Resource bottlenecks that cause training or inference delays</li>
                       <li>Underutilized resources that could be optimized or repurposed</li>
                     </ul>
@@ -766,11 +959,25 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What alert severities and escalation procedures are defined for different types of model issues?</li>
-                      <li>How do you prevent alert fatigue while maintaining timely incident response?</li>
-                      <li>What notification channels and routing rules ensure alerts reach the right people?</li>
-                      <li>How do you correlate multiple alerts to identify root causes and avoid duplicate notifications?</li>
-                      <li>What self-healing or automated remediation actions can be triggered by alerts?</li>
+                      <li>
+                        What alert severities and escalation procedures are defined for different
+                        types of model issues?
+                      </li>
+                      <li>
+                        How do you prevent alert fatigue while maintaining timely incident response?
+                      </li>
+                      <li>
+                        What notification channels and routing rules ensure alerts reach the right
+                        people?
+                      </li>
+                      <li>
+                        How do you correlate multiple alerts to identify root causes and avoid
+                        duplicate notifications?
+                      </li>
+                      <li>
+                        What self-healing or automated remediation actions can be triggered by
+                        alerts?
+                      </li>
                       <li>How do you track alert response times and resolution effectiveness?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -783,8 +990,13 @@
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Alert storms that overwhelm teams and mask critical issues</li>
-                      <li>Alerts that fire frequently but don't require action, leading to ignored notifications</li>
-                      <li>No clear escalation path when initial alert responders are unavailable</li>
+                      <li>
+                        Alerts that fire frequently but don't require action, leading to ignored
+                        notifications
+                      </li>
+                      <li>
+                        No clear escalation path when initial alert responders are unavailable
+                      </li>
                       <li>Alerts that identify problems but provide no context for resolution</li>
                     </ul>
                   </div>
@@ -803,26 +1015,57 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What conditions trigger automated retraining (performance degradation, data drift, time intervals)?</li>
-                      <li>How do you ensure retraining uses appropriate data windows and validation procedures?</li>
-                      <li>What quality gates and approval processes govern automated model deployment?</li>
-                      <li>How do you handle retraining failures and fallback to previous model versions?</li>
-                      <li>What resource management ensures retraining doesn't interfere with production workloads?</li>
-                      <li>How do you track and compare the performance of automatically retrained models?</li>
+                      <li>
+                        What conditions trigger automated retraining (performance degradation, data
+                        drift, time intervals)?
+                      </li>
+                      <li>
+                        How do you ensure retraining uses appropriate data windows and validation
+                        procedures?
+                      </li>
+                      <li>
+                        What quality gates and approval processes govern automated model deployment?
+                      </li>
+                      <li>
+                        How do you handle retraining failures and fallback to previous model
+                        versions?
+                      </li>
+                      <li>
+                        What resource management ensures retraining doesn't interfere with
+                        production workloads?
+                      </li>
+                      <li>
+                        How do you track and compare the performance of automatically retrained
+                        models?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement gradual rollout strategies for automatically retrained models</li>
-                      <li>Use comprehensive validation pipelines before deploying retrained models</li>
-                      <li>Monitor business metrics, not just technical metrics, when evaluating retraining success</li>
-                      <li>Maintain human oversight and intervention capabilities in automated workflows</li>
+                      <li>
+                        Implement gradual rollout strategies for automatically retrained models
+                      </li>
+                      <li>
+                        Use comprehensive validation pipelines before deploying retrained models
+                      </li>
+                      <li>
+                        Monitor business metrics, not just technical metrics, when evaluating
+                        retraining success
+                      </li>
+                      <li>
+                        Maintain human oversight and intervention capabilities in automated
+                        workflows
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Automated retraining that deploys models without adequate validation</li>
-                      <li>Retraining triggers that fire too frequently, causing model instability</li>
+                      <li>
+                        Retraining triggers that fire too frequently, causing model instability
+                      </li>
                       <li>No fallback mechanism when automated retraining produces worse models</li>
-                      <li>Resource competition between retraining and production inference workloads</li>
+                      <li>
+                        Resource competition between retraining and production inference workloads
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -835,26 +1078,59 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What key performance indicators are displayed for different stakeholder groups (technical teams, business users)?</li>
-                      <li>How do you visualize trends, anomalies, and comparisons across multiple models and time periods?</li>
-                      <li>What drill-down capabilities allow users to investigate performance issues or understand model behavior?</li>
-                      <li>How do you ensure dashboards update in real-time and handle high-volume metrics efficiently?</li>
-                      <li>What customization options allow different teams to focus on relevant metrics for their roles?</li>
-                      <li>How do you integrate model performance with business outcome metrics in unified views?</li>
+                      <li>
+                        What key performance indicators are displayed for different stakeholder
+                        groups (technical teams, business users)?
+                      </li>
+                      <li>
+                        How do you visualize trends, anomalies, and comparisons across multiple
+                        models and time periods?
+                      </li>
+                      <li>
+                        What drill-down capabilities allow users to investigate performance issues
+                        or understand model behavior?
+                      </li>
+                      <li>
+                        How do you ensure dashboards update in real-time and handle high-volume
+                        metrics efficiently?
+                      </li>
+                      <li>
+                        What customization options allow different teams to focus on relevant
+                        metrics for their roles?
+                      </li>
+                      <li>
+                        How do you integrate model performance with business outcome metrics in
+                        unified views?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Design role-based dashboards that show relevant metrics for each audience</li>
-                      <li>Include both technical metrics (accuracy, latency) and business metrics (revenue impact, user satisfaction)</li>
-                      <li>Provide contextual information and alerts that help users understand when action is needed</li>
+                      <li>
+                        Design role-based dashboards that show relevant metrics for each audience
+                      </li>
+                      <li>
+                        Include both technical metrics (accuracy, latency) and business metrics
+                        (revenue impact, user satisfaction)
+                      </li>
+                      <li>
+                        Provide contextual information and alerts that help users understand when
+                        action is needed
+                      </li>
                       <li>Enable easy sharing and collaboration features for dashboard insights</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Dashboards that show data without context or actionable insights</li>
-                      <li>Performance visualizations that are too technical for business stakeholders</li>
-                      <li>Dashboards that become outdated or show stale data during critical periods</li>
-                      <li>No clear connection between model performance metrics and business value delivered</li>
+                      <li>
+                        Performance visualizations that are too technical for business stakeholders
+                      </li>
+                      <li>
+                        Dashboards that become outdated or show stale data during critical periods
+                      </li>
+                      <li>
+                        No clear connection between model performance metrics and business value
+                        delivered
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -876,24 +1152,39 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What protected attributes and sensitive variables are monitored for bias?</li>
-                      <li>How do you measure and quantify different types of bias (statistical, individual, group)?</li>
-                      <li>What bias detection tools and techniques are integrated into your pipeline?</li>
+                      <li>
+                        What protected attributes and sensitive variables are monitored for bias?
+                      </li>
+                      <li>
+                        How do you measure and quantify different types of bias (statistical,
+                        individual, group)?
+                      </li>
+                      <li>
+                        What bias detection tools and techniques are integrated into your pipeline?
+                      </li>
                       <li>How do you balance fairness constraints with model performance?</li>
                       <li>What is your process for addressing bias when it's detected?</li>
                       <li>How do you validate bias mitigation effectiveness over time?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement multiple fairness metrics (demographic parity, equalized odds, individual fairness)</li>
-                      <li>Use techniques like adversarial debiasing, fairness constraints, or post-processing</li>
+                      <li>
+                        Implement multiple fairness metrics (demographic parity, equalized odds,
+                        individual fairness)
+                      </li>
+                      <li>
+                        Use techniques like adversarial debiasing, fairness constraints, or
+                        post-processing
+                      </li>
                       <li>Document bias assessment results and mitigation strategies</li>
                       <li>Involve diverse stakeholders in defining fairness requirements</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>No systematic bias testing across different demographic groups</li>
-                      <li>Relying solely on overall accuracy metrics without fairness assessment</li>
+                      <li>
+                        Relying solely on overall accuracy metrics without fairness assessment
+                      </li>
                       <li>Bias discovered only after negative real-world impact</li>
                       <li>No clear process for handling fairness-performance trade-offs</li>
                     </ul>
@@ -908,25 +1199,56 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Which fairness metrics are most appropriate for your use case (demographic parity, equalized odds, equalized opportunity)?</li>
-                      <li>How do you define and measure fairness across different protected attributes (race, gender, age, disability)?</li>
-                      <li>What thresholds and acceptable ranges are established for each fairness metric?</li>
-                      <li>How do you handle intersectionality when multiple protected attributes are involved?</li>
-                      <li>What trade-offs exist between different fairness metrics and overall model performance?</li>
-                      <li>How frequently are fairness metrics evaluated and reported to stakeholders?</li>
+                      <li>
+                        Which fairness metrics are most appropriate for your use case (demographic
+                        parity, equalized odds, equalized opportunity)?
+                      </li>
+                      <li>
+                        How do you define and measure fairness across different protected attributes
+                        (race, gender, age, disability)?
+                      </li>
+                      <li>
+                        What thresholds and acceptable ranges are established for each fairness
+                        metric?
+                      </li>
+                      <li>
+                        How do you handle intersectionality when multiple protected attributes are
+                        involved?
+                      </li>
+                      <li>
+                        What trade-offs exist between different fairness metrics and overall model
+                        performance?
+                      </li>
+                      <li>
+                        How frequently are fairness metrics evaluated and reported to stakeholders?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement multiple fairness metrics as no single metric captures all aspects of fairness</li>
-                      <li>Establish fairness thresholds in collaboration with domain experts and affected communities</li>
-                      <li>Create fairness dashboards and regular reporting mechanisms for stakeholders</li>
+                      <li>
+                        Implement multiple fairness metrics as no single metric captures all aspects
+                        of fairness
+                      </li>
+                      <li>
+                        Establish fairness thresholds in collaboration with domain experts and
+                        affected communities
+                      </li>
+                      <li>
+                        Create fairness dashboards and regular reporting mechanisms for stakeholders
+                      </li>
                       <li>Document the rationale behind chosen fairness metrics and thresholds</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Relying on a single fairness metric without considering others</li>
-                      <li>Setting fairness thresholds without input from affected communities or stakeholders</li>
-                      <li>Fairness metrics that are measured only during development but not in production</li>
+                      <li>
+                        Setting fairness thresholds without input from affected communities or
+                        stakeholders
+                      </li>
+                      <li>
+                        Fairness metrics that are measured only during development but not in
+                        production
+                      </li>
                       <li>No clear documentation of fairness requirements and trade-offs</li>
                     </ul>
                   </div>
@@ -940,26 +1262,59 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What explainability techniques are appropriate for your model type (LIME, SHAP, attention maps, feature importance)?</li>
-                      <li>How do you provide explanations at different levels (global, local, counterfactual)?</li>
-                      <li>What is the target audience for explanations (data scientists, business users, end users, regulators)?</li>
+                      <li>
+                        What explainability techniques are appropriate for your model type (LIME,
+                        SHAP, attention maps, feature importance)?
+                      </li>
+                      <li>
+                        How do you provide explanations at different levels (global, local,
+                        counterfactual)?
+                      </li>
+                      <li>
+                        What is the target audience for explanations (data scientists, business
+                        users, end users, regulators)?
+                      </li>
                       <li>How do you validate that explanations are accurate and meaningful?</li>
-                      <li>What processes ensure explanations remain consistent as models are updated?</li>
-                      <li>How do you balance explainability requirements with model performance and complexity?</li>
+                      <li>
+                        What processes ensure explanations remain consistent as models are updated?
+                      </li>
+                      <li>
+                        How do you balance explainability requirements with model performance and
+                        complexity?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement multiple explanation techniques to provide comprehensive interpretability</li>
-                      <li>Tailor explanation formats and complexity to different stakeholder needs</li>
+                      <li>
+                        Implement multiple explanation techniques to provide comprehensive
+                        interpretability
+                      </li>
+                      <li>
+                        Tailor explanation formats and complexity to different stakeholder needs
+                      </li>
                       <li>Validate explanations against domain expert knowledge and intuition</li>
-                      <li>Integrate explainability tools into model development and deployment workflows</li>
+                      <li>
+                        Integrate explainability tools into model development and deployment
+                        workflows
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Using black-box models in high-stakes decisions without adequate explainability</li>
-                      <li>Explanations that are technically correct but incomprehensible to intended users</li>
-                      <li>No validation of explanation accuracy or faithfulness to actual model behavior</li>
-                      <li>Explanations that become outdated when models are retrained or updated</li>
+                      <li>
+                        Using black-box models in high-stakes decisions without adequate
+                        explainability
+                      </li>
+                      <li>
+                        Explanations that are technically correct but incomprehensible to intended
+                        users
+                      </li>
+                      <li>
+                        No validation of explanation accuracy or faithfulness to actual model
+                        behavior
+                      </li>
+                      <li>
+                        Explanations that become outdated when models are retrained or updated
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -972,26 +1327,56 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What ethical principles and values guide your AI development (transparency, accountability, human oversight)?</li>
-                      <li>How do you translate high-level ethical principles into specific, actionable guidelines for teams?</li>
-                      <li>What review processes ensure AI projects adhere to ethical guidelines throughout development?</li>
-                      <li>How do you handle ethical dilemmas and conflicts between different ethical principles?</li>
-                      <li>What training and education programs ensure team members understand and apply ethical guidelines?</li>
-                      <li>How do you update and evolve ethical guidelines as AI technology and societal norms change?</li>
+                      <li>
+                        What ethical principles and values guide your AI development (transparency,
+                        accountability, human oversight)?
+                      </li>
+                      <li>
+                        How do you translate high-level ethical principles into specific, actionable
+                        guidelines for teams?
+                      </li>
+                      <li>
+                        What review processes ensure AI projects adhere to ethical guidelines
+                        throughout development?
+                      </li>
+                      <li>
+                        How do you handle ethical dilemmas and conflicts between different ethical
+                        principles?
+                      </li>
+                      <li>
+                        What training and education programs ensure team members understand and
+                        apply ethical guidelines?
+                      </li>
+                      <li>
+                        How do you update and evolve ethical guidelines as AI technology and
+                        societal norms change?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Develop clear, specific guidelines that address common ethical issues in AI development</li>
+                      <li>
+                        Develop clear, specific guidelines that address common ethical issues in AI
+                        development
+                      </li>
                       <li>Implement mandatory ethics reviews at key project milestones</li>
-                      <li>Provide practical tools and checklists to help teams apply ethical principles</li>
-                      <li>Create escalation procedures for complex ethical decisions and conflicts</li>
+                      <li>
+                        Provide practical tools and checklists to help teams apply ethical
+                        principles
+                      </li>
+                      <li>
+                        Create escalation procedures for complex ethical decisions and conflicts
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Vague ethical statements without specific implementation guidance</li>
                       <li>No formal process for reviewing ethical implications of AI projects</li>
-                      <li>Ethics considered only at the end of development rather than throughout</li>
-                      <li>No mechanisms for updating guidelines as ethical understanding evolves</li>
+                      <li>
+                        Ethics considered only at the end of development rather than throughout
+                      </li>
+                      <li>
+                        No mechanisms for updating guidelines as ethical understanding evolves
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1009,25 +1394,49 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Who should serve on the ethics review board (ethicists, domain experts, affected community representatives, legal counsel)?</li>
-                      <li>What authority does the ethics board have to approve, modify, or reject AI projects?</li>
+                      <li>
+                        Who should serve on the ethics review board (ethicists, domain experts,
+                        affected community representatives, legal counsel)?
+                      </li>
+                      <li>
+                        What authority does the ethics board have to approve, modify, or reject AI
+                        projects?
+                      </li>
                       <li>What criteria and processes guide the board's review of AI projects?</li>
                       <li>How frequently does the board meet and what triggers a review?</li>
-                      <li>What documentation and evidence must projects provide for ethical review?</li>
-                      <li>How does the board handle appeals and disputes regarding ethical decisions?</li>
+                      <li>
+                        What documentation and evidence must projects provide for ethical review?
+                      </li>
+                      <li>
+                        How does the board handle appeals and disputes regarding ethical decisions?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Include diverse perspectives and expertise relevant to your AI applications</li>
+                      <li>
+                        Include diverse perspectives and expertise relevant to your AI applications
+                      </li>
                       <li>Establish clear review criteria and decision-making processes</li>
-                      <li>Provide board members with adequate training on AI technology and ethics</li>
-                      <li>Create efficient processes that don't create unnecessary project delays</li>
+                      <li>
+                        Provide board members with adequate training on AI technology and ethics
+                      </li>
+                      <li>
+                        Create efficient processes that don't create unnecessary project delays
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Ethics board composed only of internal technical staff without external perspectives</li>
-                      <li>Review board with no real authority to influence or stop problematic projects</li>
-                      <li>Inconsistent or unclear review criteria leading to arbitrary decisions</li>
+                      <li>
+                        Ethics board composed only of internal technical staff without external
+                        perspectives
+                      </li>
+                      <li>
+                        Review board with no real authority to influence or stop problematic
+                        projects
+                      </li>
+                      <li>
+                        Inconsistent or unclear review criteria leading to arbitrary decisions
+                      </li>
                       <li>Board meetings that are infrequent or reactive rather than proactive</li>
                     </ul>
                   </div>
@@ -1041,26 +1450,62 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What potential impacts (social, economic, environmental, psychological) are systematically assessed for each AI system?</li>
-                      <li>How do you identify and engage with stakeholders who may be affected by your AI systems?</li>
-                      <li>What methods are used to assess both intended and unintended consequences of AI deployment?</li>
-                      <li>How frequently are impact assessments updated as AI systems evolve and new evidence emerges?</li>
-                      <li>What mitigation strategies are developed for negative impacts identified in assessments?</li>
-                      <li>How are impact assessment findings communicated to stakeholders and decision-makers?</li>
+                      <li>
+                        What potential impacts (social, economic, environmental, psychological) are
+                        systematically assessed for each AI system?
+                      </li>
+                      <li>
+                        How do you identify and engage with stakeholders who may be affected by your
+                        AI systems?
+                      </li>
+                      <li>
+                        What methods are used to assess both intended and unintended consequences of
+                        AI deployment?
+                      </li>
+                      <li>
+                        How frequently are impact assessments updated as AI systems evolve and new
+                        evidence emerges?
+                      </li>
+                      <li>
+                        What mitigation strategies are developed for negative impacts identified in
+                        assessments?
+                      </li>
+                      <li>
+                        How are impact assessment findings communicated to stakeholders and
+                        decision-makers?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Conduct assessments early in development and update regularly throughout the AI system lifecycle</li>
-                      <li>Include diverse stakeholder perspectives in impact identification and assessment</li>
-                      <li>Consider both short-term and long-term impacts across different communities and contexts</li>
+                      <li>
+                        Conduct assessments early in development and update regularly throughout the
+                        AI system lifecycle
+                      </li>
+                      <li>
+                        Include diverse stakeholder perspectives in impact identification and
+                        assessment
+                      </li>
+                      <li>
+                        Consider both short-term and long-term impacts across different communities
+                        and contexts
+                      </li>
                       <li>Develop concrete mitigation plans for identified negative impacts</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Impact assessments conducted only after AI systems are fully developed or deployed</li>
-                      <li>Assessments that consider only technical impacts without broader societal effects</li>
+                      <li>
+                        Impact assessments conducted only after AI systems are fully developed or
+                        deployed
+                      </li>
+                      <li>
+                        Assessments that consider only technical impacts without broader societal
+                        effects
+                      </li>
                       <li>No follow-up monitoring to validate impact assessment predictions</li>
-                      <li>Limited stakeholder engagement resulting in blind spots about potential impacts</li>
+                      <li>
+                        Limited stakeholder engagement resulting in blind spots about potential
+                        impacts
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1082,25 +1527,45 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What model performance metrics, limitations, and intended use cases are documented in each model card?</li>
-                      <li>How do you document training data characteristics, biases, and representativeness?</li>
+                      <li>
+                        What model performance metrics, limitations, and intended use cases are
+                        documented in each model card?
+                      </li>
+                      <li>
+                        How do you document training data characteristics, biases, and
+                        representativeness?
+                      </li>
                       <li>What evaluation datasets and fairness assessments are included?</li>
-                      <li>How do you document model architecture decisions and hyperparameter choices?</li>
+                      <li>
+                        How do you document model architecture decisions and hyperparameter choices?
+                      </li>
                       <li>What ethical considerations and potential risks are outlined?</li>
-                      <li>How often are model cards updated as models evolve or new issues are discovered?</li>
+                      <li>
+                        How often are model cards updated as models evolve or new issues are
+                        discovered?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Follow standardized model card templates (Google Model Cards, Hugging Face Cards)</li>
-                      <li>Include quantitative performance metrics across different demographic groups</li>
+                      <li>
+                        Follow standardized model card templates (Google Model Cards, Hugging Face
+                        Cards)
+                      </li>
+                      <li>
+                        Include quantitative performance metrics across different demographic groups
+                      </li>
                       <li>Document known limitations, failure modes, and out-of-scope use cases</li>
-                      <li>Make model cards accessible to both technical and non-technical stakeholders</li>
+                      <li>
+                        Make model cards accessible to both technical and non-technical stakeholders
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Model cards that are created once and never updated</li>
                       <li>Missing documentation of model limitations or potential biases</li>
-                      <li>Technical jargon that makes cards inaccessible to business stakeholders</li>
+                      <li>
+                        Technical jargon that makes cards inaccessible to business stakeholders
+                      </li>
                       <li>No process for reviewing and approving model card content</li>
                     </ul>
                   </div>
@@ -1114,9 +1579,15 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What metadata is captured for each data source (origin, freshness, quality, ownership)?</li>
+                      <li>
+                        What metadata is captured for each data source (origin, freshness, quality,
+                        ownership)?
+                      </li>
                       <li>How do you document data schema evolution and backward compatibility?</li>
-                      <li>What transformations, feature engineering, and preprocessing steps are documented?</li>
+                      <li>
+                        What transformations, feature engineering, and preprocessing steps are
+                        documented?
+                      </li>
                       <li>How do you track data lineage from raw sources to final features?</li>
                       <li>What data quality issues and remediation steps are documented?</li>
                       <li>How do you document data sampling strategies and potential biases?</li>
@@ -1132,7 +1603,9 @@
                     <ul>
                       <li>Undocumented data transformations that affect model reproducibility</li>
                       <li>Missing documentation of data collection biases or limitations</li>
-                      <li>Outdated schema documentation that doesn't reflect current data structure</li>
+                      <li>
+                        Outdated schema documentation that doesn't reflect current data structure
+                      </li>
                       <li>No clear ownership or contact information for data sources</li>
                     </ul>
                   </div>
@@ -1146,16 +1619,31 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What pipeline architecture diagrams show data flow and component interactions?</li>
-                      <li>How do you document pipeline dependencies, configurations, and environment requirements?</li>
-                      <li>What deployment procedures, rollback processes, and monitoring setups are documented?</li>
+                      <li>
+                        What pipeline architecture diagrams show data flow and component
+                        interactions?
+                      </li>
+                      <li>
+                        How do you document pipeline dependencies, configurations, and environment
+                        requirements?
+                      </li>
+                      <li>
+                        What deployment procedures, rollback processes, and monitoring setups are
+                        documented?
+                      </li>
                       <li>How do you document pipeline failure modes and recovery procedures?</li>
-                      <li>What performance characteristics and resource requirements are specified?</li>
-                      <li>How do you maintain runbooks for pipeline operations and troubleshooting?</li>
+                      <li>
+                        What performance characteristics and resource requirements are specified?
+                      </li>
+                      <li>
+                        How do you maintain runbooks for pipeline operations and troubleshooting?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Create visual pipeline diagrams with clear data flow and decision points</li>
+                      <li>
+                        Create visual pipeline diagrams with clear data flow and decision points
+                      </li>
                       <li>Document all configuration parameters and environment variables</li>
                       <li>Maintain step-by-step deployment and rollback procedures</li>
                       <li>Include performance benchmarks and resource utilization guidelines</li>
@@ -1164,7 +1652,9 @@
                     <ul>
                       <li>Undocumented pipeline components that create knowledge silos</li>
                       <li>Missing documentation of failure recovery procedures</li>
-                      <li>Outdated deployment documentation that doesn't reflect current processes</li>
+                      <li>
+                        Outdated deployment documentation that doesn't reflect current processes
+                      </li>
                       <li>No documentation of pipeline performance characteristics or SLAs</li>
                     </ul>
                   </div>
@@ -1178,23 +1668,48 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What API endpoints are documented with request/response schemas and examples?</li>
-                      <li>How do you document authentication, authorization, and rate limiting requirements?</li>
-                      <li>What error codes, status messages, and troubleshooting guidance are provided?</li>
-                      <li>How do you document API versioning, deprecation policies, and migration paths?</li>
-                      <li>What performance characteristics, latency expectations, and SLAs are specified?</li>
-                      <li>How do you provide interactive documentation and code examples for different languages?</li>
+                      <li>
+                        What API endpoints are documented with request/response schemas and
+                        examples?
+                      </li>
+                      <li>
+                        How do you document authentication, authorization, and rate limiting
+                        requirements?
+                      </li>
+                      <li>
+                        What error codes, status messages, and troubleshooting guidance are
+                        provided?
+                      </li>
+                      <li>
+                        How do you document API versioning, deprecation policies, and migration
+                        paths?
+                      </li>
+                      <li>
+                        What performance characteristics, latency expectations, and SLAs are
+                        specified?
+                      </li>
+                      <li>
+                        How do you provide interactive documentation and code examples for different
+                        languages?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use OpenAPI/Swagger specifications for standardized, interactive documentation</li>
+                      <li>
+                        Use OpenAPI/Swagger specifications for standardized, interactive
+                        documentation
+                      </li>
                       <li>Provide realistic examples with actual data formats and edge cases</li>
                       <li>Document all possible error scenarios with appropriate response codes</li>
-                      <li>Include SDK examples and client libraries for popular programming languages</li>
+                      <li>
+                        Include SDK examples and client libraries for popular programming languages
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>API documentation that becomes stale and doesn't reflect actual endpoints</li>
+                      <li>
+                        API documentation that becomes stale and doesn't reflect actual endpoints
+                      </li>
                       <li>Missing documentation of error handling and edge cases</li>
                       <li>No examples or code snippets for common integration patterns</li>
                       <li>Unclear authentication requirements or API usage policies</li>
@@ -1215,18 +1730,37 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What architectural decisions are captured in decision records (model selection, infrastructure choices, design patterns)?</li>
-                      <li>How do you document the context, alternatives considered, and rationale for each decision?</li>
-                      <li>What is the process for creating, reviewing, and approving decision records?</li>
-                      <li>How do you track the consequences and outcomes of architectural decisions over time?</li>
+                      <li>
+                        What architectural decisions are captured in decision records (model
+                        selection, infrastructure choices, design patterns)?
+                      </li>
+                      <li>
+                        How do you document the context, alternatives considered, and rationale for
+                        each decision?
+                      </li>
+                      <li>
+                        What is the process for creating, reviewing, and approving decision records?
+                      </li>
+                      <li>
+                        How do you track the consequences and outcomes of architectural decisions
+                        over time?
+                      </li>
                       <li>What template or format ensures consistent decision record quality?</li>
-                      <li>How do you make decision records discoverable and searchable for future reference?</li>
+                      <li>
+                        How do you make decision records discoverable and searchable for future
+                        reference?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use standardized ADR templates with status, context, decision, and consequences</li>
+                      <li>
+                        Use standardized ADR templates with status, context, decision, and
+                        consequences
+                      </li>
                       <li>Document both technical and business rationale for decisions</li>
-                      <li>Review decisions periodically to assess outcomes and learn from results</li>
+                      <li>
+                        Review decisions periodically to assess outcomes and learn from results
+                      </li>
                       <li>Make decision records part of the code repository for version control</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -1247,17 +1781,38 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What experiment metadata is tracked (hypothesis, parameters, datasets, results)?</li>
-                      <li>How do you document experiment setup, configuration, and reproducibility requirements?</li>
-                      <li>What tools are used for experiment logging and result comparison (MLflow, Weights & Biases)?</li>
-                      <li>How do you track negative results and failed experiments for future reference?</li>
-                      <li>What process exists for peer review and validation of experiment results?</li>
-                      <li>How do you organize and search experiments across different projects and teams?</li>
+                      <li>
+                        What experiment metadata is tracked (hypothesis, parameters, datasets,
+                        results)?
+                      </li>
+                      <li>
+                        How do you document experiment setup, configuration, and reproducibility
+                        requirements?
+                      </li>
+                      <li>
+                        What tools are used for experiment logging and result comparison (MLflow,
+                        Weights & Biases)?
+                      </li>
+                      <li>
+                        How do you track negative results and failed experiments for future
+                        reference?
+                      </li>
+                      <li>
+                        What process exists for peer review and validation of experiment results?
+                      </li>
+                      <li>
+                        How do you organize and search experiments across different projects and
+                        teams?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement automated experiment logging with version control integration</li>
-                      <li>Document clear hypotheses and success criteria before running experiments</li>
+                      <li>
+                        Implement automated experiment logging with version control integration
+                      </li>
+                      <li>
+                        Document clear hypotheses and success criteria before running experiments
+                      </li>
                       <li>Track resource usage and computational costs for experiment planning</li>
                       <li>Create experiment summaries that highlight key insights and learnings</li>
                     </ul>
@@ -1265,7 +1820,9 @@
                     <ul>
                       <li>Experiments that cannot be reproduced due to missing documentation</li>
                       <li>No systematic tracking of negative results or failed approaches</li>
-                      <li>Experiment logs that are scattered across different tools and platforms</li>
+                      <li>
+                        Experiment logs that are scattered across different tools and platforms
+                      </li>
                       <li>Missing documentation of experiment rationale and business context</li>
                     </ul>
                   </div>
@@ -1288,10 +1845,16 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>How do you protect models from adversarial attacks and evasion techniques?</li>
-                      <li>What access controls are in place for model artifacts and training data?</li>
+                      <li>
+                        How do you protect models from adversarial attacks and evasion techniques?
+                      </li>
+                      <li>
+                        What access controls are in place for model artifacts and training data?
+                      </li>
                       <li>How do you prevent model extraction and intellectual property theft?</li>
-                      <li>What measures protect against data poisoning and training data manipulation?</li>
+                      <li>
+                        What measures protect against data poisoning and training data manipulation?
+                      </li>
                       <li>How do you secure model serving infrastructure and APIs?</li>
                       <li>What monitoring exists for unusual inference patterns or attacks?</li>
                     </ul>
@@ -1320,18 +1883,36 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>How do you encrypt sensitive data at rest and in transit throughout the ML pipeline?</li>
-                      <li>What access controls and authentication mechanisms protect training and inference data?</li>
-                      <li>How do you handle data masking and anonymization for development and testing environments?</li>
-                      <li>What data retention and deletion policies ensure compliance with privacy regulations?</li>
-                      <li>How do you audit data access and track data lineage for compliance purposes?</li>
-                      <li>What backup and disaster recovery procedures exist for critical ML datasets?</li>
+                      <li>
+                        How do you encrypt sensitive data at rest and in transit throughout the ML
+                        pipeline?
+                      </li>
+                      <li>
+                        What access controls and authentication mechanisms protect training and
+                        inference data?
+                      </li>
+                      <li>
+                        How do you handle data masking and anonymization for development and testing
+                        environments?
+                      </li>
+                      <li>
+                        What data retention and deletion policies ensure compliance with privacy
+                        regulations?
+                      </li>
+                      <li>
+                        How do you audit data access and track data lineage for compliance purposes?
+                      </li>
+                      <li>
+                        What backup and disaster recovery procedures exist for critical ML datasets?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement end-to-end encryption for data flows and storage</li>
                       <li>Use role-based access control with principle of least privilege</li>
-                      <li>Deploy data loss prevention (DLP) tools to monitor sensitive data movement</li>
+                      <li>
+                        Deploy data loss prevention (DLP) tools to monitor sensitive data movement
+                      </li>
                       <li>Establish secure data sharing protocols with external partners</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -1352,25 +1933,47 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What regulatory frameworks apply to your ML systems (GDPR, HIPAA, SOX, PCI-DSS)?</li>
-                      <li>How do you conduct ML model audits and validation for compliance purposes?</li>
-                      <li>What documentation and evidence is maintained for regulatory inspections?</li>
-                      <li>How do you ensure model decisions are explainable for compliance requirements?</li>
-                      <li>What processes exist for handling compliance violations or audit findings?</li>
-                      <li>How do you validate that ML systems meet industry-specific standards and certifications?</li>
+                      <li>
+                        What regulatory frameworks apply to your ML systems (GDPR, HIPAA, SOX,
+                        PCI-DSS)?
+                      </li>
+                      <li>
+                        How do you conduct ML model audits and validation for compliance purposes?
+                      </li>
+                      <li>
+                        What documentation and evidence is maintained for regulatory inspections?
+                      </li>
+                      <li>
+                        How do you ensure model decisions are explainable for compliance
+                        requirements?
+                      </li>
+                      <li>
+                        What processes exist for handling compliance violations or audit findings?
+                      </li>
+                      <li>
+                        How do you validate that ML systems meet industry-specific standards and
+                        certifications?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement automated compliance monitoring and reporting dashboards</li>
-                      <li>Maintain comprehensive audit trails for all model decisions and data processing</li>
-                      <li>Establish regular compliance review cycles with legal and regulatory teams</li>
+                      <li>
+                        Maintain comprehensive audit trails for all model decisions and data
+                        processing
+                      </li>
+                      <li>
+                        Establish regular compliance review cycles with legal and regulatory teams
+                      </li>
                       <li>Create compliance checklists specific to your industry and use cases</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>ML systems deployed without compliance review or approval</li>
                       <li>Lack of documentation for regulatory audits and inspections</li>
-                      <li>Models making decisions without explainability in regulated industries</li>
+                      <li>
+                        Models making decisions without explainability in regulated industries
+                      </li>
                       <li>No process for addressing compliance gaps or violations</li>
                     </ul>
                   </div>
@@ -1384,25 +1987,59 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What privacy-preserving ML techniques are implemented (federated learning, differential privacy, homomorphic encryption)?</li>
-                      <li>How do you ensure individual privacy while maintaining model utility and accuracy?</li>
-                      <li>What methods are used to prevent membership inference and model inversion attacks?</li>
-                      <li>How do you handle privacy requirements for cross-border data sharing and processing?</li>
-                      <li>What privacy impact assessments are conducted before model deployment?</li>
-                      <li>How do you validate privacy protection measures and monitor for privacy leaks?</li>
+                      <li>
+                        What privacy-preserving ML techniques are implemented (federated learning,
+                        differential privacy, homomorphic encryption)?
+                      </li>
+                      <li>
+                        How do you ensure individual privacy while maintaining model utility and
+                        accuracy?
+                      </li>
+                      <li>
+                        What methods are used to prevent membership inference and model inversion
+                        attacks?
+                      </li>
+                      <li>
+                        How do you handle privacy requirements for cross-border data sharing and
+                        processing?
+                      </li>
+                      <li>
+                        What privacy impact assessments are conducted before model deployment?
+                      </li>
+                      <li>
+                        How do you validate privacy protection measures and monitor for privacy
+                        leaks?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement differential privacy with appropriate epsilon values for your use case</li>
-                      <li>Use secure multi-party computation for collaborative ML without data sharing</li>
-                      <li>Deploy privacy-preserving synthetic data generation for model development</li>
-                      <li>Establish privacy budgets and governance for privacy-preserving analytics</li>
+                      <li>
+                        Implement differential privacy with appropriate epsilon values for your use
+                        case
+                      </li>
+                      <li>
+                        Use secure multi-party computation for collaborative ML without data sharing
+                      </li>
+                      <li>
+                        Deploy privacy-preserving synthetic data generation for model development
+                      </li>
+                      <li>
+                        Establish privacy budgets and governance for privacy-preserving analytics
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Privacy measures that significantly degrade model performance without justification</li>
-                      <li>No validation of privacy protection effectiveness or privacy budget management</li>
-                      <li>Privacy techniques implemented without understanding their limitations</li>
+                      <li>
+                        Privacy measures that significantly degrade model performance without
+                        justification
+                      </li>
+                      <li>
+                        No validation of privacy protection effectiveness or privacy budget
+                        management
+                      </li>
+                      <li>
+                        Privacy techniques implemented without understanding their limitations
+                      </li>
                       <li>Insufficient privacy protection for sensitive or regulated data types</li>
                     </ul>
                   </div>
@@ -1421,26 +2058,49 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What types of adversarial attacks are you defending against (evasion, poisoning, extraction, inference)?</li>
-                      <li>How do you implement adversarial training and robust optimization techniques?</li>
-                      <li>What input validation and sanitization measures prevent malicious inputs?</li>
-                      <li>How do you detect and respond to ongoing adversarial attacks in production?</li>
-                      <li>What rate limiting and behavioral analysis protect against systematic attacks?</li>
-                      <li>How do you balance robustness measures with model performance and usability?</li>
+                      <li>
+                        What types of adversarial attacks are you defending against (evasion,
+                        poisoning, extraction, inference)?
+                      </li>
+                      <li>
+                        How do you implement adversarial training and robust optimization
+                        techniques?
+                      </li>
+                      <li>
+                        What input validation and sanitization measures prevent malicious inputs?
+                      </li>
+                      <li>
+                        How do you detect and respond to ongoing adversarial attacks in production?
+                      </li>
+                      <li>
+                        What rate limiting and behavioral analysis protect against systematic
+                        attacks?
+                      </li>
+                      <li>
+                        How do you balance robustness measures with model performance and usability?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement gradient masking and defensive distillation techniques</li>
-                      <li>Deploy anomaly detection for unusual query patterns and attack signatures</li>
-                      <li>Use ensemble methods and randomized defenses to increase attack difficulty</li>
-                      <li>Establish incident response procedures for confirmed adversarial attacks</li>
+                      <li>
+                        Deploy anomaly detection for unusual query patterns and attack signatures
+                      </li>
+                      <li>
+                        Use ensemble methods and randomized defenses to increase attack difficulty
+                      </li>
+                      <li>
+                        Establish incident response procedures for confirmed adversarial attacks
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>No defense mechanisms against known adversarial attack vectors</li>
                       <li>Attack prevention measures that are easily circumvented or bypassed</li>
                       <li>Lack of monitoring for adversarial attack attempts and patterns</li>
-                      <li>Defensive measures that significantly degrade legitimate user experience</li>
+                      <li>
+                        Defensive measures that significantly degrade legitimate user experience
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1453,19 +2113,37 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What adversarial attack methods are used to test model robustness (FGSM, PGD, C&W)?</li>
-                      <li>How do you systematically evaluate model vulnerability across different attack scenarios?</li>
-                      <li>What robustness metrics and benchmarks do you use to measure defense effectiveness?</li>
-                      <li>How do you test robustness against both white-box and black-box attacks?</li>
-                      <li>What is your process for addressing vulnerabilities discovered during robustness testing?</li>
+                      <li>
+                        What adversarial attack methods are used to test model robustness (FGSM,
+                        PGD, C&W)?
+                      </li>
+                      <li>
+                        How do you systematically evaluate model vulnerability across different
+                        attack scenarios?
+                      </li>
+                      <li>
+                        What robustness metrics and benchmarks do you use to measure defense
+                        effectiveness?
+                      </li>
+                      <li>
+                        How do you test robustness against both white-box and black-box attacks?
+                      </li>
+                      <li>
+                        What is your process for addressing vulnerabilities discovered during
+                        robustness testing?
+                      </li>
                       <li>How often do you conduct robustness testing and update defenses?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement automated adversarial testing in your CI/CD pipeline</li>
-                      <li>Use diverse attack libraries and frameworks (CleverHans, Foolbox, ART)</li>
+                      <li>
+                        Use diverse attack libraries and frameworks (CleverHans, Foolbox, ART)
+                      </li>
                       <li>Test robustness across different input domains and attack strengths</li>
-                      <li>Establish robustness thresholds and acceptance criteria for deployment</li>
+                      <li>
+                        Establish robustness thresholds and acceptance criteria for deployment
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1485,19 +2163,43 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What monitoring systems detect suspicious query patterns indicative of model extraction attempts?</li>
-                      <li>How do you implement query rate limiting and request throttling to prevent extraction?</li>
-                      <li>What techniques protect against model stealing and reverse engineering (output perturbation, query budgets)?</li>
-                      <li>How do you detect and respond to systematic evasion attacks against your models?</li>
-                      <li>What logging and analytics track potential intellectual property theft attempts?</li>
-                      <li>How do you balance extraction protection with legitimate high-volume usage?</li>
+                      <li>
+                        What monitoring systems detect suspicious query patterns indicative of model
+                        extraction attempts?
+                      </li>
+                      <li>
+                        How do you implement query rate limiting and request throttling to prevent
+                        extraction?
+                      </li>
+                      <li>
+                        What techniques protect against model stealing and reverse engineering
+                        (output perturbation, query budgets)?
+                      </li>
+                      <li>
+                        How do you detect and respond to systematic evasion attacks against your
+                        models?
+                      </li>
+                      <li>
+                        What logging and analytics track potential intellectual property theft
+                        attempts?
+                      </li>
+                      <li>
+                        How do you balance extraction protection with legitimate high-volume usage?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement ML-based anomaly detection for unusual query patterns</li>
-                      <li>Use output randomization and noise injection as extraction countermeasures</li>
-                      <li>Deploy honeypot queries and detection mechanisms for automated extraction tools</li>
-                      <li>Establish legal frameworks and terms of service to deter extraction attempts</li>
+                      <li>
+                        Use output randomization and noise injection as extraction countermeasures
+                      </li>
+                      <li>
+                        Deploy honeypot queries and detection mechanisms for automated extraction
+                        tools
+                      </li>
+                      <li>
+                        Establish legal frameworks and terms of service to deter extraction attempts
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1517,26 +2219,60 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What differential privacy mechanisms and epsilon values are appropriate for your sensitivity requirements?</li>
-                      <li>How do you implement federated learning to keep sensitive data distributed while enabling collaborative model training?</li>
-                      <li>What privacy accounting and budget management systems track cumulative privacy loss?</li>
-                      <li>How do you validate that differential privacy provides meaningful protection without excessive utility loss?</li>
-                      <li>What secure aggregation protocols protect individual contributions in federated learning?</li>
-                      <li>How do you handle client dropout and byzantine behavior in federated learning systems?</li>
+                      <li>
+                        What differential privacy mechanisms and epsilon values are appropriate for
+                        your sensitivity requirements?
+                      </li>
+                      <li>
+                        How do you implement federated learning to keep sensitive data distributed
+                        while enabling collaborative model training?
+                      </li>
+                      <li>
+                        What privacy accounting and budget management systems track cumulative
+                        privacy loss?
+                      </li>
+                      <li>
+                        How do you validate that differential privacy provides meaningful protection
+                        without excessive utility loss?
+                      </li>
+                      <li>
+                        What secure aggregation protocols protect individual contributions in
+                        federated learning?
+                      </li>
+                      <li>
+                        How do you handle client dropout and byzantine behavior in federated
+                        learning systems?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement both local and global differential privacy depending on trust models</li>
-                      <li>Use advanced composition theorems to optimize privacy budgets across multiple queries</li>
-                      <li>Deploy secure multi-party computation for privacy-preserving aggregation</li>
-                      <li>Establish governance frameworks for privacy parameter selection and review</li>
+                      <li>
+                        Implement both local and global differential privacy depending on trust
+                        models
+                      </li>
+                      <li>
+                        Use advanced composition theorems to optimize privacy budgets across
+                        multiple queries
+                      </li>
+                      <li>
+                        Deploy secure multi-party computation for privacy-preserving aggregation
+                      </li>
+                      <li>
+                        Establish governance frameworks for privacy parameter selection and review
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Differential privacy parameters chosen without formal privacy analysis</li>
-                      <li>Federated learning systems vulnerable to inference attacks on model updates</li>
+                      <li>
+                        Differential privacy parameters chosen without formal privacy analysis
+                      </li>
+                      <li>
+                        Federated learning systems vulnerable to inference attacks on model updates
+                      </li>
                       <li>No monitoring of cumulative privacy budget depletion over time</li>
-                      <li>Privacy mechanisms that provide theoretical but not practical protection</li>
+                      <li>
+                        Privacy mechanisms that provide theoretical but not practical protection
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1549,16 +2285,36 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>What AI/ML-specific security tests are automated in your CI/CD pipelines (adversarial testing, data poisoning detection)?</li>
-                      <li>How do you conduct regular penetration testing specifically targeting ML systems and APIs?</li>
-                      <li>What security gates and quality checks prevent vulnerable models from reaching production?</li>
-                      <li>How do you test for security regressions when updating models or ML infrastructure?</li>
-                      <li>What threat modeling processes identify potential attack vectors in your ML systems?</li>
-                      <li>How do you integrate ML security testing with traditional application security testing?</li>
+                      <li>
+                        What AI/ML-specific security tests are automated in your CI/CD pipelines
+                        (adversarial testing, data poisoning detection)?
+                      </li>
+                      <li>
+                        How do you conduct regular penetration testing specifically targeting ML
+                        systems and APIs?
+                      </li>
+                      <li>
+                        What security gates and quality checks prevent vulnerable models from
+                        reaching production?
+                      </li>
+                      <li>
+                        How do you test for security regressions when updating models or ML
+                        infrastructure?
+                      </li>
+                      <li>
+                        What threat modeling processes identify potential attack vectors in your ML
+                        systems?
+                      </li>
+                      <li>
+                        How do you integrate ML security testing with traditional application
+                        security testing?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement automated adversarial example generation and robustness testing</li>
+                      <li>
+                        Implement automated adversarial example generation and robustness testing
+                      </li>
                       <li>Deploy ML-specific vulnerability scanners and security analysis tools</li>
                       <li>Establish security performance baselines and regression testing</li>
                       <li>Include red team exercises focused on ML system compromise</li>
@@ -1566,9 +2322,13 @@
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>ML systems deployed without any security testing or validation</li>
-                      <li>Security testing that ignores ML-specific attack vectors and vulnerabilities</li>
+                      <li>
+                        Security testing that ignores ML-specific attack vectors and vulnerabilities
+                      </li>
                       <li>No integration between ML security testing and deployment gates</li>
-                      <li>Penetration testing that treats ML systems like traditional applications</li>
+                      <li>
+                        Penetration testing that treats ML systems like traditional applications
+                      </li>
                     </ul>
                   </div>
                 </label>

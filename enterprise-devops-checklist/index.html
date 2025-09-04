@@ -50,26 +50,41 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Have you defined a clear branching strategy (GitFlow, GitHub Flow, or trunk-based) with documented workflows?</li>
-                      <li>Are branch protection rules enabled with required reviews and status checks?</li>
-                      <li>Do you have automated merge conflict detection and resolution procedures?</li>
-                      <li>Is your commit message format standardized with semantic versioning support?</li>
+                      <li>
+                        Have you defined a clear branching strategy (GitFlow, GitHub Flow, or
+                        trunk-based) with documented workflows?
+                      </li>
+                      <li>
+                        Are branch protection rules enabled with required reviews and status checks?
+                      </li>
+                      <li>
+                        Do you have automated merge conflict detection and resolution procedures?
+                      </li>
+                      <li>
+                        Is your commit message format standardized with semantic versioning support?
+                      </li>
                       <li>Are pre-commit hooks configured for code quality and security checks?</li>
                       <li>Do you have automated release tagging and changelog generation?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Choose strategy based on team size, release frequency, and risk tolerance</li>
+                      <li>
+                        Choose strategy based on team size, release frequency, and risk tolerance
+                      </li>
                       <li>Implement automated branch cleanup and maintenance procedures</li>
                       <li>Establish clear merge policies and review requirements</li>
-                      <li>Enable Git LFS for large binary assets and proper repository organization</li>
+                      <li>
+                        Enable Git LFS for large binary assets and proper repository organization
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Direct pushes to main branch without review or protection</li>
                       <li>No standardized commit messages or branching conventions</li>
                       <li>Long-lived feature branches creating integration nightmares</li>
-                      <li>Missing or outdated repository documentation and contributor guidelines</li>
+                      <li>
+                        Missing or outdated repository documentation and contributor guidelines
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -84,17 +99,28 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are builds triggered automatically on every code commit and pull request?</li>
-                      <li>Do you have dependency caching and versioning to ensure reproducible builds?</li>
-                      <li>Are build artifacts properly versioned, tagged, and stored in secure repositories?</li>
+                      <li>
+                        Are builds triggered automatically on every code commit and pull request?
+                      </li>
+                      <li>
+                        Do you have dependency caching and versioning to ensure reproducible builds?
+                      </li>
+                      <li>
+                        Are build artifacts properly versioned, tagged, and stored in secure
+                        repositories?
+                      </li>
                       <li>Is the build process containerized and environment-agnostic?</li>
                       <li>Do you have parallel build execution to minimize build times?</li>
                       <li>Are build notifications configured for failures and successes?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement build matrix testing across multiple environments and versions</li>
-                      <li>Use immutable build environments with Docker or similar containerization</li>
+                      <li>
+                        Implement build matrix testing across multiple environments and versions
+                      </li>
+                      <li>
+                        Use immutable build environments with Docker or similar containerization
+                      </li>
                       <li>Establish artifact retention policies and storage optimization</li>
                       <li>Monitor build performance metrics and optimize bottlenecks</li>
                     </ul>
@@ -116,9 +142,15 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you have unit tests with minimum 80% code coverage and quality gates?</li>
-                      <li>Are integration tests validating API contracts and service interactions?</li>
-                      <li>Do end-to-end tests cover critical user journeys and business workflows?</li>
+                      <li>
+                        Do you have unit tests with minimum 80% code coverage and quality gates?
+                      </li>
+                      <li>
+                        Are integration tests validating API contracts and service interactions?
+                      </li>
+                      <li>
+                        Do end-to-end tests cover critical user journeys and business workflows?
+                      </li>
                       <li>Is test execution parallelized and optimized for fast feedback loops?</li>
                       <li>Are flaky tests identified, fixed, or quarantined systematically?</li>
                       <li>Do you have performance and load testing integrated into CI/CD?</li>
@@ -148,19 +180,35 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are SAST tools scanning code for security vulnerabilities on every commit?</li>
+                      <li>
+                        Are SAST tools scanning code for security vulnerabilities on every commit?
+                      </li>
                       <li>Is DAST integrated to test running applications for security flaws?</li>
                       <li>Do you have dependency vulnerability scanning with automated updates?</li>
-                      <li>Are security scan results blocking deployments when critical issues are found?</li>
+                      <li>
+                        Are security scan results blocking deployments when critical issues are
+                        found?
+                      </li>
                       <li>Is there a process for triaging and remediating security findings?</li>
-                      <li>Are security tests covering authentication, authorization, and input validation?</li>
+                      <li>
+                        Are security tests covering authentication, authorization, and input
+                        validation?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Configure security scanners with appropriate rule sets and false positive filtering</li>
-                      <li>Implement security testing in multiple pipeline stages (build, deploy, runtime)</li>
+                      <li>
+                        Configure security scanners with appropriate rule sets and false positive
+                        filtering
+                      </li>
+                      <li>
+                        Implement security testing in multiple pipeline stages (build, deploy,
+                        runtime)
+                      </li>
                       <li>Establish vulnerability management workflows with SLA definitions</li>
-                      <li>Integrate with security orchestration platforms for automated response</li>
+                      <li>
+                        Integrate with security orchestration platforms for automated response
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -181,16 +229,27 @@
                     <strong>Implementation Questions:</strong>
                     <ul>
                       <li>Are deployments fully automated with zero-touch production releases?</li>
-                      <li>Do you have blue-green, canary, or rolling deployment strategies implemented?</li>
-                      <li>Are environment configurations managed as code with proper versioning?</li>
+                      <li>
+                        Do you have blue-green, canary, or rolling deployment strategies
+                        implemented?
+                      </li>
+                      <li>
+                        Are environment configurations managed as code with proper versioning?
+                      </li>
                       <li>Is there automated rollback capability with health check validation?</li>
-                      <li>Do deployment pipelines include smoke tests and deployment verification?</li>
-                      <li>Are deployment approvals and gates configured for production environments?</li>
+                      <li>
+                        Do deployment pipelines include smoke tests and deployment verification?
+                      </li>
+                      <li>
+                        Are deployment approvals and gates configured for production environments?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement deployment strategies that minimize downtime and risk</li>
-                      <li>Use feature flags for progressive feature rollouts and quick rollbacks</li>
+                      <li>
+                        Use feature flags for progressive feature rollouts and quick rollbacks
+                      </li>
                       <li>Establish deployment windows and maintenance scheduling</li>
                       <li>Monitor deployment metrics and track deployment success rates</li>
                     </ul>
@@ -217,26 +276,43 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do stakeholders have real-time visibility into pipeline status and progress?</li>
+                      <li>
+                        Do stakeholders have real-time visibility into pipeline status and progress?
+                      </li>
                       <li>Are pipeline metrics and trends displayed on accessible dashboards?</li>
-                      <li>Can team members easily trace deployments from code commit to production?</li>
-                      <li>Are pipeline bottlenecks and failure points clearly identified and visualized?</li>
-                      <li>Do you have historical pipeline data for trend analysis and optimization?</li>
-                      <li>Are pipeline visualizations integrated with monitoring and alerting systems?</li>
+                      <li>
+                        Can team members easily trace deployments from code commit to production?
+                      </li>
+                      <li>
+                        Are pipeline bottlenecks and failure points clearly identified and
+                        visualized?
+                      </li>
+                      <li>
+                        Do you have historical pipeline data for trend analysis and optimization?
+                      </li>
+                      <li>
+                        Are pipeline visualizations integrated with monitoring and alerting systems?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Choose visualization tools that integrate with existing CI/CD platforms</li>
+                      <li>
+                        Choose visualization tools that integrate with existing CI/CD platforms
+                      </li>
                       <li>Implement role-based access to pipeline information and controls</li>
                       <li>Create executive dashboards for high-level deployment metrics</li>
-                      <li>Use pipeline visualization for root cause analysis and process improvement</li>
+                      <li>
+                        Use pipeline visualization for root cause analysis and process improvement
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Team members unaware of deployment status or recent changes</li>
                       <li>No visibility into pipeline performance or failure patterns</li>
                       <li>Difficulty correlating application issues with recent deployments</li>
-                      <li>Pipeline information siloed and not accessible to relevant stakeholders</li>
+                      <li>
+                        Pipeline information siloed and not accessible to relevant stakeholders
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -249,17 +325,30 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you have release planning tools with dependency mapping and scheduling?</li>
-                      <li>Are releases coordinated across multiple teams and services effectively?</li>
-                      <li>Is there automated release note generation and stakeholder communication?</li>
-                      <li>Do you track release metrics like lead time, deployment frequency, and MTTR?</li>
+                      <li>
+                        Do you have release planning tools with dependency mapping and scheduling?
+                      </li>
+                      <li>
+                        Are releases coordinated across multiple teams and services effectively?
+                      </li>
+                      <li>
+                        Is there automated release note generation and stakeholder communication?
+                      </li>
+                      <li>
+                        Do you track release metrics like lead time, deployment frequency, and MTTR?
+                      </li>
                       <li>Are rollback plans documented and tested for each major release?</li>
                       <li>Do you have release approval workflows with appropriate governance?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement release trains or coordinated deployment windows for complex systems</li>
-                      <li>Use release management platforms that integrate with existing toolchain</li>
+                      <li>
+                        Implement release trains or coordinated deployment windows for complex
+                        systems
+                      </li>
+                      <li>
+                        Use release management platforms that integrate with existing toolchain
+                      </li>
                       <li>Establish clear communication channels for release status and issues</li>
                       <li>Track and optimize DORA metrics for continuous improvement</li>
                     </ul>
@@ -290,10 +379,16 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are all infrastructure components defined as code with version control?</li>
-                      <li>Do templates include security best practices and compliance requirements?</li>
+                      <li>
+                        Are all infrastructure components defined as code with version control?
+                      </li>
+                      <li>
+                        Do templates include security best practices and compliance requirements?
+                      </li>
                       <li>Are infrastructure changes deployed through automated pipelines?</li>
-                      <li>Do you have environment-specific configurations parameterized properly?</li>
+                      <li>
+                        Do you have environment-specific configurations parameterized properly?
+                      </li>
                       <li>Are infrastructure templates modular and reusable across projects?</li>
                       <li>Is state management secure and backed up for infrastructure tools?</li>
                     </ul>
@@ -302,7 +397,9 @@
                       <li>Choose IaC tools based on cloud providers and team expertise</li>
                       <li>Implement proper state locking and remote state management</li>
                       <li>Use modules and templates to promote consistency and reusability</li>
-                      <li>Establish change management processes for infrastructure modifications</li>
+                      <li>
+                        Establish change management processes for infrastructure modifications
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -322,16 +419,27 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are server configurations managed through automated, idempotent processes?</li>
-                      <li>Do configuration changes go through version control and review processes?</li>
-                      <li>Are configurations tested in non-production environments before deployment?</li>
+                      <li>
+                        Are server configurations managed through automated, idempotent processes?
+                      </li>
+                      <li>
+                        Do configuration changes go through version control and review processes?
+                      </li>
+                      <li>
+                        Are configurations tested in non-production environments before deployment?
+                      </li>
                       <li>Is configuration drift detected and automatically corrected?</li>
-                      <li>Do you have role-based access controls for configuration management tools?</li>
+                      <li>
+                        Do you have role-based access controls for configuration management tools?
+                      </li>
                       <li>Are configuration templates parameterized for different environments?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Choose configuration management tools that align with infrastructure strategy</li>
+                      <li>
+                        Choose configuration management tools that align with infrastructure
+                        strategy
+                      </li>
                       <li>Implement configuration validation and compliance checking</li>
                       <li>Use encrypted communication and secure credential management</li>
                       <li>Establish configuration baselines and drift monitoring</li>
@@ -354,11 +462,20 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are all secrets stored in dedicated secret management systems (HashiCorp Vault, AWS Secrets Manager)?</li>
-                      <li>Do applications retrieve secrets at runtime rather than storing them in configuration?</li>
+                      <li>
+                        Are all secrets stored in dedicated secret management systems (HashiCorp
+                        Vault, AWS Secrets Manager)?
+                      </li>
+                      <li>
+                        Do applications retrieve secrets at runtime rather than storing them in
+                        configuration?
+                      </li>
                       <li>Are secrets automatically rotated with minimal application downtime?</li>
                       <li>Is secret access logged and monitored for unauthorized attempts?</li>
-                      <li>Do you have different secret management strategies for different environments?</li>
+                      <li>
+                        Do you have different secret management strategies for different
+                        environments?
+                      </li>
                       <li>Are secrets encrypted both at rest and in transit?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -386,9 +503,17 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you validate infrastructure templates before deployment (terraform validate, cfn-lint)?</li>
-                      <li>Are infrastructure changes tested in isolated environments before production?</li>
-                      <li>Do you have compliance testing for security and governance requirements?</li>
+                      <li>
+                        Do you validate infrastructure templates before deployment (terraform
+                        validate, cfn-lint)?
+                      </li>
+                      <li>
+                        Are infrastructure changes tested in isolated environments before
+                        production?
+                      </li>
+                      <li>
+                        Do you have compliance testing for security and governance requirements?
+                      </li>
                       <li>Are infrastructure tests integrated into CI/CD pipelines?</li>
                       <li>Do you test disaster recovery scenarios and backup procedures?</li>
                       <li>Are performance and capacity planning validated through testing?</li>
@@ -396,8 +521,13 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Use tools like Terratest, Kitchen-Terraform, or AWS Config Rules</li>
-                      <li>Implement infrastructure testing at multiple levels (syntax, integration, compliance)</li>
-                      <li>Create test environments that closely mirror production infrastructure</li>
+                      <li>
+                        Implement infrastructure testing at multiple levels (syntax, integration,
+                        compliance)
+                      </li>
+                      <li>
+                        Create test environments that closely mirror production infrastructure
+                      </li>
                       <li>Establish infrastructure testing standards and quality gates</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -423,18 +553,30 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are governance policies enforced automatically in infrastructure provisioning?</li>
-                      <li>Do policies cover security, compliance, and cost management requirements?</li>
+                      <li>
+                        Are governance policies enforced automatically in infrastructure
+                        provisioning?
+                      </li>
+                      <li>
+                        Do policies cover security, compliance, and cost management requirements?
+                      </li>
                       <li>Are policy violations blocked before infrastructure deployment?</li>
-                      <li>Do you have policy testing and validation in development environments?</li>
+                      <li>
+                        Do you have policy testing and validation in development environments?
+                      </li>
                       <li>Are policies version-controlled and managed as code?</li>
                       <li>Do policy frameworks integrate with existing infrastructure tools?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Define policies that align with organizational security and compliance requirements</li>
+                      <li>
+                        Define policies that align with organizational security and compliance
+                        requirements
+                      </li>
                       <li>Implement policy-as-code with proper testing and validation workflows</li>
-                      <li>Use policy engines that support your infrastructure platforms and tools</li>
+                      <li>
+                        Use policy engines that support your infrastructure platforms and tools
+                      </li>
                       <li>Establish policy exception processes for legitimate business needs</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -455,18 +597,33 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are infrastructure diagrams automatically generated from actual deployed resources?</li>
-                      <li>Is documentation updated automatically when infrastructure changes occur?</li>
+                      <li>
+                        Are infrastructure diagrams automatically generated from actual deployed
+                        resources?
+                      </li>
+                      <li>
+                        Is documentation updated automatically when infrastructure changes occur?
+                      </li>
                       <li>Do diagrams show network topology, security groups, and data flows?</li>
                       <li>Are runbooks and operational procedures documented and accessible?</li>
-                      <li>Do you maintain architectural decision records (ADRs) for infrastructure choices?</li>
-                      <li>Is documentation searchable and integrated with other development tools?</li>
+                      <li>
+                        Do you maintain architectural decision records (ADRs) for infrastructure
+                        choices?
+                      </li>
+                      <li>
+                        Is documentation searchable and integrated with other development tools?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use tools like Cloudcraft, Lucidchart, or infrastructure visualization APIs</li>
+                      <li>
+                        Use tools like Cloudcraft, Lucidchart, or infrastructure visualization APIs
+                      </li>
                       <li>Implement documentation-as-code practices with automated generation</li>
-                      <li>Create different documentation views for different audiences (technical, business)</li>
+                      <li>
+                        Create different documentation views for different audiences (technical,
+                        business)
+                      </li>
                       <li>Establish documentation review and approval processes</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -474,7 +631,10 @@
                       <li>Infrastructure diagrams that don't reflect actual deployed resources</li>
                       <li>Documentation updated manually and frequently out of date</li>
                       <li>No operational runbooks for common infrastructure tasks</li>
-                      <li>Team members unable to understand infrastructure architecture from documentation</li>
+                      <li>
+                        Team members unable to understand infrastructure architecture from
+                        documentation
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -496,19 +656,34 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you have standardized base images with security hardening and compliance?</li>
-                      <li>Are container images built from minimal, distroless, or security-focused base images?</li>
-                      <li>Is there a container image lifecycle management strategy with retention policies?</li>
+                      <li>
+                        Do you have standardized base images with security hardening and compliance?
+                      </li>
+                      <li>
+                        Are container images built from minimal, distroless, or security-focused
+                        base images?
+                      </li>
+                      <li>
+                        Is there a container image lifecycle management strategy with retention
+                        policies?
+                      </li>
                       <li>Do containers run as non-root users with minimal required privileges?</li>
                       <li>Are container images scanned for vulnerabilities before deployment?</li>
                       <li>Do you have container resource limits and security contexts defined?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Establish golden images and standardized container patterns for consistency</li>
-                      <li>Implement multi-stage builds to minimize final image size and attack surface</li>
+                      <li>
+                        Establish golden images and standardized container patterns for consistency
+                      </li>
+                      <li>
+                        Implement multi-stage builds to minimize final image size and attack surface
+                      </li>
                       <li>Use semantic versioning and immutable tags for container images</li>
-                      <li>Define container security policies including network and storage restrictions</li>
+                      <li>
+                        Define container security policies including network and storage
+                        restrictions
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -529,17 +704,26 @@
                     <strong>Implementation Questions:</strong>
                     <ul>
                       <li>Is the container registry configured with role-based access controls?</li>
-                      <li>Are container images automatically scanned for security vulnerabilities?</li>
+                      <li>
+                        Are container images automatically scanned for security vulnerabilities?
+                      </li>
                       <li>Do you have image signing and verification for supply chain security?</li>
                       <li>Are registry access logs monitored and security incidents tracked?</li>
-                      <li>Is the registry integrated with CI/CD pipelines for automated image management?</li>
+                      <li>
+                        Is the registry integrated with CI/CD pipelines for automated image
+                        management?
+                      </li>
                       <li>Do you have backup and disaster recovery for container registry data?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Choose enterprise-grade registries with security and compliance features</li>
+                      <li>
+                        Choose enterprise-grade registries with security and compliance features
+                      </li>
                       <li>Implement image promotion workflows across environments</li>
-                      <li>Use private registries for proprietary images and public for open source</li>
+                      <li>
+                        Use private registries for proprietary images and public for open source
+                      </li>
                       <li>Establish image retention policies and automated cleanup processes</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -560,25 +744,46 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Is the orchestration platform configured for high availability and fault tolerance?</li>
-                      <li>Do you have proper resource quotas and limits configured for workloads?</li>
-                      <li>Are workloads deployed using declarative configurations (YAML manifests, Helm charts)?</li>
-                      <li>Is the orchestration platform integrated with monitoring and logging systems?</li>
+                      <li>
+                        Is the orchestration platform configured for high availability and fault
+                        tolerance?
+                      </li>
+                      <li>
+                        Do you have proper resource quotas and limits configured for workloads?
+                      </li>
+                      <li>
+                        Are workloads deployed using declarative configurations (YAML manifests,
+                        Helm charts)?
+                      </li>
+                      <li>
+                        Is the orchestration platform integrated with monitoring and logging
+                        systems?
+                      </li>
                       <li>Do you have automated scaling policies based on metrics and demand?</li>
-                      <li>Are security policies enforced through pod security standards or admission controllers?</li>
+                      <li>
+                        Are security policies enforced through pod security standards or admission
+                        controllers?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement GitOps workflows for declarative configuration management</li>
-                      <li>Use managed orchestration services where appropriate to reduce operational overhead</li>
-                      <li>Establish cluster networking and security policies appropriate for workloads</li>
+                      <li>
+                        Use managed orchestration services where appropriate to reduce operational
+                        overhead
+                      </li>
+                      <li>
+                        Establish cluster networking and security policies appropriate for workloads
+                      </li>
                       <li>Implement proper ingress, load balancing, and service mesh if needed</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Manual deployment of containers without orchestration or scheduling</li>
                       <li>Orchestration platform without proper backup or disaster recovery</li>
-                      <li>No resource limits leading to resource contention or cluster instability</li>
+                      <li>
+                        No resource limits leading to resource contention or cluster instability
+                      </li>
                       <li>Security policies not enforced at the orchestration level</li>
                     </ul>
                   </div>
@@ -592,23 +797,52 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are container images scanned for vulnerabilities at build time and periodically?</li>
-                      <li>Do you have runtime security monitoring for container behavior and anomalies?</li>
-                      <li>Are container workloads protected with network segmentation and security policies?</li>
-                      <li>Is there container compliance scanning against security benchmarks (CIS, NIST)?</li>
-                      <li>Do you monitor for privilege escalation and suspicious container activities?</li>
-                      <li>Are container security alerts integrated with incident response workflows?</li>
+                      <li>
+                        Are container images scanned for vulnerabilities at build time and
+                        periodically?
+                      </li>
+                      <li>
+                        Do you have runtime security monitoring for container behavior and
+                        anomalies?
+                      </li>
+                      <li>
+                        Are container workloads protected with network segmentation and security
+                        policies?
+                      </li>
+                      <li>
+                        Is there container compliance scanning against security benchmarks (CIS,
+                        NIST)?
+                      </li>
+                      <li>
+                        Do you monitor for privilege escalation and suspicious container activities?
+                      </li>
+                      <li>
+                        Are container security alerts integrated with incident response workflows?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement defense-in-depth with scanning, runtime protection, and network security</li>
-                      <li>Use admission controllers to enforce security policies before container deployment</li>
-                      <li>Establish vulnerability management workflows for container security findings</li>
-                      <li>Integrate container security tools with existing security operations center (SOC)</li>
+                      <li>
+                        Implement defense-in-depth with scanning, runtime protection, and network
+                        security
+                      </li>
+                      <li>
+                        Use admission controllers to enforce security policies before container
+                        deployment
+                      </li>
+                      <li>
+                        Establish vulnerability management workflows for container security findings
+                      </li>
+                      <li>
+                        Integrate container security tools with existing security operations center
+                        (SOC)
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Containers deployed without security scanning or vulnerability assessment</li>
+                      <li>
+                        Containers deployed without security scanning or vulnerability assessment
+                      </li>
                       <li>No runtime monitoring or detection of malicious container activity</li>
                       <li>Containers with excessive privileges or insecure configurations</li>
                       <li>Security findings from containers not tracked or remediated promptly</li>
@@ -629,23 +863,44 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Is service-to-service communication encrypted and authenticated automatically?</li>
-                      <li>Do you have distributed tracing and observability across all services?</li>
-                      <li>Are traffic management policies (routing, load balancing) configured declaratively?</li>
-                      <li>Do you have circuit breaking and retry policies to handle service failures?</li>
-                      <li>Are security policies enforced at the service mesh level (mTLS, authorization)?</li>
-                      <li>Is the service mesh configuration managed through GitOps and version control?</li>
+                      <li>
+                        Is service-to-service communication encrypted and authenticated
+                        automatically?
+                      </li>
+                      <li>
+                        Do you have distributed tracing and observability across all services?
+                      </li>
+                      <li>
+                        Are traffic management policies (routing, load balancing) configured
+                        declaratively?
+                      </li>
+                      <li>
+                        Do you have circuit breaking and retry policies to handle service failures?
+                      </li>
+                      <li>
+                        Are security policies enforced at the service mesh level (mTLS,
+                        authorization)?
+                      </li>
+                      <li>
+                        Is the service mesh configuration managed through GitOps and version
+                        control?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Choose service mesh solutions that align with orchestration platform and requirements</li>
+                      <li>
+                        Choose service mesh solutions that align with orchestration platform and
+                        requirements
+                      </li>
                       <li>Implement gradual rollout and canary deployment capabilities</li>
                       <li>Use service mesh for progressive delivery and feature flag management</li>
                       <li>Establish performance baselines and monitor service mesh overhead</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Service mesh adding significant latency or complexity without clear benefits</li>
+                      <li>
+                        Service mesh adding significant latency or complexity without clear benefits
+                      </li>
                       <li>Manual service mesh configuration or policy management</li>
                       <li>No service mesh security policies or disabled mTLS</li>
                       <li>Service mesh observability not integrated with monitoring systems</li>
@@ -661,23 +916,40 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you monitor container resource usage, performance, and health metrics?</li>
-                      <li>Are orchestration platform metrics (cluster health, node status) tracked and alerted?</li>
-                      <li>Do you have container-level logging aggregation and search capabilities?</li>
-                      <li>Are application performance metrics collected from containerized applications?</li>
+                      <li>
+                        Do you monitor container resource usage, performance, and health metrics?
+                      </li>
+                      <li>
+                        Are orchestration platform metrics (cluster health, node status) tracked and
+                        alerted?
+                      </li>
+                      <li>
+                        Do you have container-level logging aggregation and search capabilities?
+                      </li>
+                      <li>
+                        Are application performance metrics collected from containerized
+                        applications?
+                      </li>
                       <li>Do you monitor container registry usage and security scan results?</li>
-                      <li>Are container deployment and scaling events tracked and correlated with performance?</li>
+                      <li>
+                        Are container deployment and scaling events tracked and correlated with
+                        performance?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use container-native monitoring tools (Prometheus, Kubernetes metrics)</li>
+                      <li>
+                        Use container-native monitoring tools (Prometheus, Kubernetes metrics)
+                      </li>
                       <li>Implement distributed tracing for microservices architectures</li>
                       <li>Establish container performance baselines and anomaly detection</li>
                       <li>Create container-specific dashboards for different stakeholders</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>No visibility into container resource consumption or performance bottlenecks</li>
+                      <li>
+                        No visibility into container resource consumption or performance bottlenecks
+                      </li>
                       <li>Container failures or scaling events going unnoticed</li>
                       <li>Monitoring tools not designed for dynamic container environments</li>
                       <li>No correlation between container metrics and application performance</li>
@@ -702,26 +974,47 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are business metrics, technical metrics, and infrastructure metrics all collected?</li>
-                      <li>Do you have standardized metric naming conventions and labeling strategies?</li>
-                      <li>Are metrics collected at appropriate intervals without overwhelming systems?</li>
-                      <li>Do you track SLI/SLO metrics for all critical services and user journeys?</li>
-                      <li>Are metrics stored with sufficient retention for trend analysis and capacity planning?</li>
-                      <li>Do custom applications expose metrics in standard formats (Prometheus, StatsD)?</li>
+                      <li>
+                        Are business metrics, technical metrics, and infrastructure metrics all
+                        collected?
+                      </li>
+                      <li>
+                        Do you have standardized metric naming conventions and labeling strategies?
+                      </li>
+                      <li>
+                        Are metrics collected at appropriate intervals without overwhelming systems?
+                      </li>
+                      <li>
+                        Do you track SLI/SLO metrics for all critical services and user journeys?
+                      </li>
+                      <li>
+                        Are metrics stored with sufficient retention for trend analysis and capacity
+                        planning?
+                      </li>
+                      <li>
+                        Do custom applications expose metrics in standard formats (Prometheus,
+                        StatsD)?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Implement metric collection that scales with infrastructure growth</li>
-                      <li>Use metric aggregation and downsampling for long-term storage efficiency</li>
+                      <li>
+                        Use metric aggregation and downsampling for long-term storage efficiency
+                      </li>
                       <li>Establish metric governance to prevent metric explosion and confusion</li>
-                      <li>Create metric collection standards and libraries for development teams</li>
+                      <li>
+                        Create metric collection standards and libraries for development teams
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Critical system components without metric collection or visibility</li>
                       <li>Inconsistent metric naming or labeling across different services</li>
                       <li>Metric collection causing performance impact on production systems</li>
-                      <li>No business-relevant metrics to understand user impact of technical issues</li>
+                      <li>
+                        No business-relevant metrics to understand user impact of technical issues
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -734,19 +1027,31 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are logs from all applications and infrastructure components centrally aggregated?</li>
+                      <li>
+                        Are logs from all applications and infrastructure components centrally
+                        aggregated?
+                      </li>
                       <li>Do you have structured logging with consistent format and metadata?</li>
                       <li>Are logs searchable with full-text search and filtering capabilities?</li>
-                      <li>Do you have appropriate log retention policies for compliance and operational needs?</li>
+                      <li>
+                        Do you have appropriate log retention policies for compliance and
+                        operational needs?
+                      </li>
                       <li>Are sensitive data and credentials scrubbed from logs automatically?</li>
-                      <li>Do log aggregation systems have high availability and disaster recovery?</li>
+                      <li>
+                        Do log aggregation systems have high availability and disaster recovery?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement log shipping that can handle volume spikes and network issues</li>
+                      <li>
+                        Implement log shipping that can handle volume spikes and network issues
+                      </li>
                       <li>Use log parsing and enrichment to extract meaningful information</li>
                       <li>Establish log levels and guidelines for developers to ensure quality</li>
-                      <li>Implement log correlation with traces and metrics for better observability</li>
+                      <li>
+                        Implement log correlation with traces and metrics for better observability
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -766,26 +1071,48 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are alerts configured for all critical system failures and performance degradations?</li>
-                      <li>Do alerts include sufficient context and runbook information for responders?</li>
-                      <li>Are alert thresholds tuned to minimize false positives and alert fatigue?</li>
-                      <li>Do you have escalation policies that ensure critical issues reach appropriate teams?</li>
-                      <li>Are alerts integrated with incident management and communication tools?</li>
-                      <li>Do alert notifications include suggested actions and relevant dashboard links?</li>
+                      <li>
+                        Are alerts configured for all critical system failures and performance
+                        degradations?
+                      </li>
+                      <li>
+                        Do alerts include sufficient context and runbook information for responders?
+                      </li>
+                      <li>
+                        Are alert thresholds tuned to minimize false positives and alert fatigue?
+                      </li>
+                      <li>
+                        Do you have escalation policies that ensure critical issues reach
+                        appropriate teams?
+                      </li>
+                      <li>
+                        Are alerts integrated with incident management and communication tools?
+                      </li>
+                      <li>
+                        Do alert notifications include suggested actions and relevant dashboard
+                        links?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement different alert severity levels with appropriate routing and escalation</li>
+                      <li>
+                        Implement different alert severity levels with appropriate routing and
+                        escalation
+                      </li>
                       <li>Use alert correlation and grouping to reduce noise during outages</li>
                       <li>Establish on-call schedules and rotation policies for alert response</li>
-                      <li>Regularly review and tune alert thresholds based on operational experience</li>
+                      <li>
+                        Regularly review and tune alert thresholds based on operational experience
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Critical system failures going undetected or unalerted</li>
                       <li>High false positive rate causing team members to ignore alerts</li>
                       <li>No escalation path or alerts not reaching appropriate responders</li>
-                      <li>Alerts lacking context or actionable information for effective response</li>
+                      <li>
+                        Alerts lacking context or actionable information for effective response
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -798,18 +1125,36 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you have distributed tracing across all microservices and system boundaries?</li>
-                      <li>Are user journeys monitored end-to-end with synthetic transaction monitoring?</li>
-                      <li>Do you track application performance metrics (response time, throughput, errors)?</li>
+                      <li>
+                        Do you have distributed tracing across all microservices and system
+                        boundaries?
+                      </li>
+                      <li>
+                        Are user journeys monitored end-to-end with synthetic transaction
+                        monitoring?
+                      </li>
+                      <li>
+                        Do you track application performance metrics (response time, throughput,
+                        errors)?
+                      </li>
                       <li>Are database queries and external API calls traced and monitored?</li>
-                      <li>Do you have real user monitoring (RUM) to understand actual user experience?</li>
+                      <li>
+                        Do you have real user monitoring (RUM) to understand actual user experience?
+                      </li>
                       <li>Are performance bottlenecks automatically detected and escalated?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement APM tools that support your technology stack and deployment model</li>
-                      <li>Use sampling strategies to balance trace completeness with performance impact</li>
-                      <li>Correlate performance data with deployments and infrastructure changes</li>
+                      <li>
+                        Implement APM tools that support your technology stack and deployment model
+                      </li>
+                      <li>
+                        Use sampling strategies to balance trace completeness with performance
+                        impact
+                      </li>
+                      <li>
+                        Correlate performance data with deployments and infrastructure changes
+                      </li>
                       <li>Establish performance baselines and SLOs for critical user workflows</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -817,7 +1162,10 @@
                       <li>Performance issues discovered only through user complaints</li>
                       <li>No visibility into service dependencies or bottlenecks during outages</li>
                       <li>Performance monitoring tools causing significant overhead or impact</li>
-                      <li>Inability to trace requests across service boundaries or identify root causes</li>
+                      <li>
+                        Inability to trace requests across service boundaries or identify root
+                        causes
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -835,26 +1183,48 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do executives have high-level dashboards showing business impact and SLA compliance?</li>
-                      <li>Are technical teams provided with detailed operational and performance dashboards?</li>
-                      <li>Do development teams have dashboards showing application metrics and deployment status?</li>
-                      <li>Are dashboards automatically updated and accessible from mobile devices?</li>
-                      <li>Do dashboards include drill-down capabilities for detailed investigation?</li>
-                      <li>Are dashboard access controls implemented based on role and need-to-know?</li>
+                      <li>
+                        Do executives have high-level dashboards showing business impact and SLA
+                        compliance?
+                      </li>
+                      <li>
+                        Are technical teams provided with detailed operational and performance
+                        dashboards?
+                      </li>
+                      <li>
+                        Do development teams have dashboards showing application metrics and
+                        deployment status?
+                      </li>
+                      <li>
+                        Are dashboards automatically updated and accessible from mobile devices?
+                      </li>
+                      <li>
+                        Do dashboards include drill-down capabilities for detailed investigation?
+                      </li>
+                      <li>
+                        Are dashboard access controls implemented based on role and need-to-know?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Design dashboards with appropriate level of detail for each audience</li>
-                      <li>Use consistent visualization standards and color schemes across dashboards</li>
+                      <li>
+                        Use consistent visualization standards and color schemes across dashboards
+                      </li>
                       <li>Implement dashboard as code for version control and reproducibility</li>
                       <li>Create dashboard templates and standards to promote consistency</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Dashboards showing too much or too little information for the intended audience</li>
+                      <li>
+                        Dashboards showing too much or too little information for the intended
+                        audience
+                      </li>
                       <li>Static dashboards that don't reflect current system state</li>
                       <li>No standardization in dashboard design leading to confusion</li>
-                      <li>Key stakeholders unable to access relevant dashboards during incidents</li>
+                      <li>
+                        Key stakeholders unable to access relevant dashboards during incidents
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -867,19 +1237,38 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are machine learning models trained on historical data to detect performance anomalies?</li>
-                      <li>Do AI systems automatically adjust alert thresholds based on patterns and trends?</li>
-                      <li>Are predictive analytics used for capacity planning and failure prediction?</li>
-                      <li>Do anomaly detection systems integrate with existing alerting and incident response?</li>
-                      <li>Are ML models regularly retrained with new data and performance feedback?</li>
-                      <li>Do you have explainable AI to understand why certain anomalies are detected?</li>
+                      <li>
+                        Are machine learning models trained on historical data to detect performance
+                        anomalies?
+                      </li>
+                      <li>
+                        Do AI systems automatically adjust alert thresholds based on patterns and
+                        trends?
+                      </li>
+                      <li>
+                        Are predictive analytics used for capacity planning and failure prediction?
+                      </li>
+                      <li>
+                        Do anomaly detection systems integrate with existing alerting and incident
+                        response?
+                      </li>
+                      <li>
+                        Are ML models regularly retrained with new data and performance feedback?
+                      </li>
+                      <li>
+                        Do you have explainable AI to understand why certain anomalies are detected?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Start with supervised learning using known incidents and patterns</li>
                       <li>Implement feedback loops to improve model accuracy over time</li>
-                      <li>Use AI to augment human decision-making rather than replace it entirely</li>
-                      <li>Establish model governance and bias detection for AI-powered monitoring</li>
+                      <li>
+                        Use AI to augment human decision-making rather than replace it entirely
+                      </li>
+                      <li>
+                        Establish model governance and bias detection for AI-powered monitoring
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -908,26 +1297,50 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are all security scanning tools integrated into every build and deployment pipeline?</li>
-                      <li>Do security scans have appropriate quality gates that can block deployments?</li>
-                      <li>Are vulnerability findings automatically triaged and assigned to appropriate teams?</li>
+                      <li>
+                        Are all security scanning tools integrated into every build and deployment
+                        pipeline?
+                      </li>
+                      <li>
+                        Do security scans have appropriate quality gates that can block deployments?
+                      </li>
+                      <li>
+                        Are vulnerability findings automatically triaged and assigned to appropriate
+                        teams?
+                      </li>
                       <li>Do you have security scanning for Infrastructure as Code templates?</li>
-                      <li>Are security scan results aggregated and tracked for trending and compliance?</li>
-                      <li>Do security tools provide developer-friendly feedback and remediation guidance?</li>
+                      <li>
+                        Are security scan results aggregated and tracked for trending and
+                        compliance?
+                      </li>
+                      <li>
+                        Do security tools provide developer-friendly feedback and remediation
+                        guidance?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement security scanning at multiple pipeline stages (commit, build, deploy)</li>
-                      <li>Use security tools that integrate with development environments and IDEs</li>
+                      <li>
+                        Implement security scanning at multiple pipeline stages (commit, build,
+                        deploy)
+                      </li>
+                      <li>
+                        Use security tools that integrate with development environments and IDEs
+                      </li>
                       <li>Establish vulnerability SLAs and remediation processes</li>
-                      <li>Create security champion programs to embed security expertise in teams</li>
+                      <li>
+                        Create security champion programs to embed security expertise in teams
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Security scans running only periodically or as separate processes</li>
                       <li>High rate of security scan false positives causing tool abandonment</li>
                       <li>No clear ownership or process for remediating security findings</li>
-                      <li>Security tools not configured for your specific application stack or frameworks</li>
+                      <li>
+                        Security tools not configured for your specific application stack or
+                        frameworks
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -941,25 +1354,48 @@
                     <strong>Implementation Questions:</strong>
                     <ul>
                       <li>Are security policies defined declaratively and version-controlled?</li>
-                      <li>Do automated compliance checks run continuously against deployed infrastructure?</li>
-                      <li>Are policy violations automatically detected and remediated where possible?</li>
-                      <li>Do security policies cover network, identity, data, and application security?</li>
-                      <li>Are compliance frameworks (SOC2, PCI, HIPAA) mapped to automated policy checks?</li>
+                      <li>
+                        Do automated compliance checks run continuously against deployed
+                        infrastructure?
+                      </li>
+                      <li>
+                        Are policy violations automatically detected and remediated where possible?
+                      </li>
+                      <li>
+                        Do security policies cover network, identity, data, and application
+                        security?
+                      </li>
+                      <li>
+                        Are compliance frameworks (SOC2, PCI, HIPAA) mapped to automated policy
+                        checks?
+                      </li>
                       <li>Do policy engines provide detailed reporting and audit trails?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use policy frameworks that support your cloud providers and infrastructure tools</li>
+                      <li>
+                        Use policy frameworks that support your cloud providers and infrastructure
+                        tools
+                      </li>
                       <li>Implement policy testing and validation before enforcement</li>
-                      <li>Create policy libraries and templates for common security requirements</li>
+                      <li>
+                        Create policy libraries and templates for common security requirements
+                      </li>
                       <li>Establish policy exception processes for legitimate business needs</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Security policies enforced manually or inconsistently across environments</li>
+                      <li>
+                        Security policies enforced manually or inconsistently across environments
+                      </li>
                       <li>Policy violations discovered only during audits or security incidents</li>
-                      <li>No mapping between business compliance requirements and technical policies</li>
-                      <li>Policy engines blocking legitimate operations without clear exception processes</li>
+                      <li>
+                        No mapping between business compliance requirements and technical policies
+                      </li>
+                      <li>
+                        Policy engines blocking legitimate operations without clear exception
+                        processes
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -972,17 +1408,34 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do CI/CD pipelines retrieve secrets dynamically without storing them in configuration?</li>
+                      <li>
+                        Do CI/CD pipelines retrieve secrets dynamically without storing them in
+                        configuration?
+                      </li>
                       <li>Are pipeline credentials short-lived and automatically rotated?</li>
-                      <li>Do different environments use separate secret management instances or namespaces?</li>
+                      <li>
+                        Do different environments use separate secret management instances or
+                        namespaces?
+                      </li>
                       <li>Are secret access patterns logged and monitored for anomalies?</li>
-                      <li>Do build agents and deployment tools use service accounts with minimal privileges?</li>
-                      <li>Are secrets injection mechanisms secure and resistant to credential exposure?</li>
+                      <li>
+                        Do build agents and deployment tools use service accounts with minimal
+                        privileges?
+                      </li>
+                      <li>
+                        Are secrets injection mechanisms secure and resistant to credential
+                        exposure?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use workload identity or similar mechanisms to avoid storing long-lived credentials</li>
-                      <li>Implement secret scanning in repositories to prevent accidental commits</li>
+                      <li>
+                        Use workload identity or similar mechanisms to avoid storing long-lived
+                        credentials
+                      </li>
+                      <li>
+                        Implement secret scanning in repositories to prevent accidental commits
+                      </li>
                       <li>Use just-in-time secret provisioning for sensitive operations</li>
                       <li>Establish secret lifecycle management integrated with CI/CD workflows</li>
                     </ul>
@@ -1004,26 +1457,52 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are compliance requirements automatically tested against deployed systems?</li>
-                      <li>Do you have automated reporting for audit requirements and regulatory frameworks?</li>
+                      <li>
+                        Are compliance requirements automatically tested against deployed systems?
+                      </li>
+                      <li>
+                        Do you have automated reporting for audit requirements and regulatory
+                        frameworks?
+                      </li>
                       <li>Are compliance violations detected and escalated in real-time?</li>
-                      <li>Do compliance checks cover configuration, access controls, and data handling?</li>
-                      <li>Are compliance reports automatically generated and distributed to stakeholders?</li>
-                      <li>Do you maintain continuous compliance rather than point-in-time assessments?</li>
+                      <li>
+                        Do compliance checks cover configuration, access controls, and data
+                        handling?
+                      </li>
+                      <li>
+                        Are compliance reports automatically generated and distributed to
+                        stakeholders?
+                      </li>
+                      <li>
+                        Do you maintain continuous compliance rather than point-in-time assessments?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Map regulatory requirements to specific technical controls and automated tests</li>
-                      <li>Use compliance-as-code tools to maintain consistency and reduce manual effort</li>
+                      <li>
+                        Map regulatory requirements to specific technical controls and automated
+                        tests
+                      </li>
+                      <li>
+                        Use compliance-as-code tools to maintain consistency and reduce manual
+                        effort
+                      </li>
                       <li>Implement evidence collection and documentation automation for audits</li>
-                      <li>Create compliance dashboards for continuous monitoring and management oversight</li>
+                      <li>
+                        Create compliance dashboards for continuous monitoring and management
+                        oversight
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Compliance checks performed only during audit cycles</li>
                       <li>Manual compliance reporting causing delays and errors</li>
-                      <li>No alignment between compliance requirements and technical implementation</li>
-                      <li>Compliance violations discovered after systems are already in production</li>
+                      <li>
+                        No alignment between compliance requirements and technical implementation
+                      </li>
+                      <li>
+                        Compliance violations discovered after systems are already in production
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1036,19 +1515,38 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Is single sign-on (SSO) implemented across all DevOps tools and platforms?</li>
-                      <li>Are role-based access controls (RBAC) defined based on job functions and responsibilities?</li>
-                      <li>Do you have just-in-time access provisioning for sensitive operations?</li>
-                      <li>Are service accounts and API keys managed with appropriate lifecycle policies?</li>
+                      <li>
+                        Is single sign-on (SSO) implemented across all DevOps tools and platforms?
+                      </li>
+                      <li>
+                        Are role-based access controls (RBAC) defined based on job functions and
+                        responsibilities?
+                      </li>
+                      <li>
+                        Do you have just-in-time access provisioning for sensitive operations?
+                      </li>
+                      <li>
+                        Are service accounts and API keys managed with appropriate lifecycle
+                        policies?
+                      </li>
                       <li>Is multi-factor authentication required for all privileged accounts?</li>
-                      <li>Do access controls integrate with identity providers and directory services?</li>
+                      <li>
+                        Do access controls integrate with identity providers and directory services?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement principle of least privilege across all tools and environments</li>
-                      <li>Use identity federation to centralize access management and reduce complexity</li>
+                      <li>
+                        Implement principle of least privilege across all tools and environments
+                      </li>
+                      <li>
+                        Use identity federation to centralize access management and reduce
+                        complexity
+                      </li>
                       <li>Establish access review processes and automated deprovisioning</li>
-                      <li>Monitor privileged account usage and detect suspicious access patterns</li>
+                      <li>
+                        Monitor privileged account usage and detect suspicious access patterns
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1068,17 +1566,32 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are all infrastructure and application changes logged with user attribution?</li>
-                      <li>Do audit logs capture sufficient detail for forensic analysis and compliance?</li>
-                      <li>Are logs tamper-evident and stored in immutable or write-once storage?</li>
-                      <li>Do you have centralized audit log collection across all systems and tools?</li>
-                      <li>Are audit logs monitored for suspicious activities and policy violations?</li>
+                      <li>
+                        Are all infrastructure and application changes logged with user attribution?
+                      </li>
+                      <li>
+                        Do audit logs capture sufficient detail for forensic analysis and
+                        compliance?
+                      </li>
+                      <li>
+                        Are logs tamper-evident and stored in immutable or write-once storage?
+                      </li>
+                      <li>
+                        Do you have centralized audit log collection across all systems and tools?
+                      </li>
+                      <li>
+                        Are audit logs monitored for suspicious activities and policy violations?
+                      </li>
                       <li>Do log retention policies meet regulatory and business requirements?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement structured logging with consistent formats across all systems</li>
-                      <li>Use log correlation and analysis tools to detect patterns and anomalies</li>
+                      <li>
+                        Implement structured logging with consistent formats across all systems
+                      </li>
+                      <li>
+                        Use log correlation and analysis tools to detect patterns and anomalies
+                      </li>
                       <li>Establish log integrity verification and chain of custody procedures</li>
                       <li>Create automated reports for audit and compliance requirements</li>
                     </ul>
@@ -1105,25 +1618,51 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do team members receive regular security training relevant to DevOps practices?</li>
-                      <li>Are security training programs updated with current threats and vulnerabilities?</li>
-                      <li>Do developers understand secure coding practices and common vulnerability patterns?</li>
-                      <li>Is there hands-on training with security tools integrated into development workflows?</li>
-                      <li>Are security incidents used as learning opportunities with blameless post-mortems?</li>
+                      <li>
+                        Do team members receive regular security training relevant to DevOps
+                        practices?
+                      </li>
+                      <li>
+                        Are security training programs updated with current threats and
+                        vulnerabilities?
+                      </li>
+                      <li>
+                        Do developers understand secure coding practices and common vulnerability
+                        patterns?
+                      </li>
+                      <li>
+                        Is there hands-on training with security tools integrated into development
+                        workflows?
+                      </li>
+                      <li>
+                        Are security incidents used as learning opportunities with blameless
+                        post-mortems?
+                      </li>
                       <li>Do you have security champions or advocates within development teams?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Provide role-specific security training for developers, operators, and managers</li>
+                      <li>
+                        Provide role-specific security training for developers, operators, and
+                        managers
+                      </li>
                       <li>Use gamification and practical exercises to increase engagement</li>
-                      <li>Integrate security training with onboarding and continuous learning programs</li>
-                      <li>Measure training effectiveness through assessments and practical application</li>
+                      <li>
+                        Integrate security training with onboarding and continuous learning programs
+                      </li>
+                      <li>
+                        Measure training effectiveness through assessments and practical application
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Generic security training not relevant to DevOps roles and responsibilities</li>
+                      <li>
+                        Generic security training not relevant to DevOps roles and responsibilities
+                      </li>
                       <li>One-time training without reinforcement or updates</li>
-                      <li>Security training treated as compliance checkbox rather than skill building</li>
+                      <li>
+                        Security training treated as compliance checkbox rather than skill building
+                      </li>
                       <li>Team members unable to identify or respond to common security issues</li>
                     </ul>
                   </div>
@@ -1137,12 +1676,29 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are threat models created for new infrastructure and CI/CD pipeline designs?</li>
-                      <li>Do threat modeling sessions include diverse stakeholders (dev, ops, security)?</li>
-                      <li>Are identified threats prioritized and mapped to specific mitigation controls?</li>
-                      <li>Do you update threat models when infrastructure or processes change significantly?</li>
-                      <li>Are threat modeling results integrated into security requirements and testing?</li>
-                      <li>Do you validate implemented controls against identified threats periodically?</li>
+                      <li>
+                        Are threat models created for new infrastructure and CI/CD pipeline designs?
+                      </li>
+                      <li>
+                        Do threat modeling sessions include diverse stakeholders (dev, ops,
+                        security)?
+                      </li>
+                      <li>
+                        Are identified threats prioritized and mapped to specific mitigation
+                        controls?
+                      </li>
+                      <li>
+                        Do you update threat models when infrastructure or processes change
+                        significantly?
+                      </li>
+                      <li>
+                        Are threat modeling results integrated into security requirements and
+                        testing?
+                      </li>
+                      <li>
+                        Do you validate implemented controls against identified threats
+                        periodically?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
@@ -1153,10 +1709,16 @@
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Infrastructure deployed without security design review or threat analysis</li>
+                      <li>
+                        Infrastructure deployed without security design review or threat analysis
+                      </li>
                       <li>Threat models created once and never updated or validated</li>
-                      <li>No connection between identified threats and implemented security controls</li>
-                      <li>Threat modeling performed by security team in isolation from development</li>
+                      <li>
+                        No connection between identified threats and implemented security controls
+                      </li>
+                      <li>
+                        Threat modeling performed by security team in isolation from development
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1178,8 +1740,12 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Is documentation automatically updated when processes or systems change?</li>
-                      <li>Do runbooks include step-by-step procedures for common operational tasks?</li>
+                      <li>
+                        Is documentation automatically updated when processes or systems change?
+                      </li>
+                      <li>
+                        Do runbooks include step-by-step procedures for common operational tasks?
+                      </li>
                       <li>Are troubleshooting guides based on actual incidents and resolutions?</li>
                       <li>Is documentation searchable and organized for easy discovery?</li>
                       <li>Do you have different documentation levels for different audiences?</li>
@@ -1187,17 +1753,28 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use documentation-as-code approaches with version control and review processes</li>
+                      <li>
+                        Use documentation-as-code approaches with version control and review
+                        processes
+                      </li>
                       <li>Implement docs-like-code with automated testing and validation</li>
                       <li>Create templates and standards for consistent documentation quality</li>
-                      <li>Use collaborative editing tools that integrate with development workflows</li>
+                      <li>
+                        Use collaborative editing tools that integrate with development workflows
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Documentation that contradicts actual system behavior or processes</li>
-                      <li>Critical procedures existing only in individual team members' knowledge</li>
-                      <li>Documentation scattered across multiple systems without central organization</li>
-                      <li>New team members unable to onboard effectively using existing documentation</li>
+                      <li>
+                        Critical procedures existing only in individual team members' knowledge
+                      </li>
+                      <li>
+                        Documentation scattered across multiple systems without central organization
+                      </li>
+                      <li>
+                        New team members unable to onboard effectively using existing documentation
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1210,24 +1787,54 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are communication channels clearly defined for different types of information?</li>
-                      <li>Do teams have established protocols for incident communication and escalation?</li>
-                      <li>Are deployment and maintenance communications automated and well-structured?</li>
-                      <li>Do stakeholders receive appropriate notifications about system status and changes?</li>
-                      <li>Are communication channels integrated with monitoring and alerting systems?</li>
-                      <li>Do you have backup communication methods for when primary channels fail?</li>
+                      <li>
+                        Are communication channels clearly defined for different types of
+                        information?
+                      </li>
+                      <li>
+                        Do teams have established protocols for incident communication and
+                        escalation?
+                      </li>
+                      <li>
+                        Are deployment and maintenance communications automated and well-structured?
+                      </li>
+                      <li>
+                        Do stakeholders receive appropriate notifications about system status and
+                        changes?
+                      </li>
+                      <li>
+                        Are communication channels integrated with monitoring and alerting systems?
+                      </li>
+                      <li>
+                        Do you have backup communication methods for when primary channels fail?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Use ChatOps integration to bring automation and information into team channels</li>
-                      <li>Establish communication patterns that reduce noise while ensuring critical information reaches the right people</li>
-                      <li>Implement status pages and communication tools for external stakeholder updates</li>
-                      <li>Create communication templates for common scenarios (deployments, incidents, maintenance)</li>
+                      <li>
+                        Use ChatOps integration to bring automation and information into team
+                        channels
+                      </li>
+                      <li>
+                        Establish communication patterns that reduce noise while ensuring critical
+                        information reaches the right people
+                      </li>
+                      <li>
+                        Implement status pages and communication tools for external stakeholder
+                        updates
+                      </li>
+                      <li>
+                        Create communication templates for common scenarios (deployments, incidents,
+                        maintenance)
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Critical information shared through informal or unreliable channels</li>
-                      <li>Stakeholders learning about issues from users rather than internal communication</li>
+                      <li>
+                        Stakeholders learning about issues from users rather than internal
+                        communication
+                      </li>
                       <li>No clear communication ownership or accountability during incidents</li>
                       <li>Communication channels that create information silos between teams</li>
                     </ul>
@@ -1242,9 +1849,16 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do teams hold regular knowledge sharing sessions (lunch-and-learns, tech talks)?</li>
-                      <li>Are lessons learned from incidents and projects documented and shared?</li>
-                      <li>Do you have cross-training programs to reduce single points of failure?</li>
+                      <li>
+                        Do teams hold regular knowledge sharing sessions (lunch-and-learns, tech
+                        talks)?
+                      </li>
+                      <li>
+                        Are lessons learned from incidents and projects documented and shared?
+                      </li>
+                      <li>
+                        Do you have cross-training programs to reduce single points of failure?
+                      </li>
                       <li>Are new tools, techniques, and best practices shared across teams?</li>
                       <li>Do senior team members mentor junior members through formal programs?</li>
                       <li>Is tribal knowledge systematically captured and documented?</li>
@@ -1252,16 +1866,25 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Create communities of practice around different technical domains</li>
-                      <li>Use internal wikis, blogs, or knowledge bases for persistent knowledge sharing</li>
+                      <li>
+                        Use internal wikis, blogs, or knowledge bases for persistent knowledge
+                        sharing
+                      </li>
                       <li>Implement peer review processes that naturally share knowledge</li>
                       <li>Encourage experimentation and sharing of results across teams</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Knowledge concentrated in individual team members creating bus factor risks</li>
-                      <li>Teams repeatedly making the same mistakes due to lack of knowledge sharing</li>
+                      <li>
+                        Knowledge concentrated in individual team members creating bus factor risks
+                      </li>
+                      <li>
+                        Teams repeatedly making the same mistakes due to lack of knowledge sharing
+                      </li>
                       <li>No formal mechanisms for capturing and transferring knowledge</li>
-                      <li>Resistance to knowledge sharing due to competitive or territorial attitudes</li>
+                      <li>
+                        Resistance to knowledge sharing due to competitive or territorial attitudes
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1274,24 +1897,48 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are incident response procedures clearly documented with roles and responsibilities?</li>
+                      <li>
+                        Are incident response procedures clearly documented with roles and
+                        responsibilities?
+                      </li>
                       <li>Do you have automated incident detection and escalation workflows?</li>
-                      <li>Are post-mortems conducted for all significant incidents with action items?</li>
-                      <li>Do incident management processes integrate with communication and monitoring tools?</li>
-                      <li>Are incident response times and resolution metrics tracked and improved?</li>
-                      <li>Do you conduct regular incident response training and simulation exercises?</li>
+                      <li>
+                        Are post-mortems conducted for all significant incidents with action items?
+                      </li>
+                      <li>
+                        Do incident management processes integrate with communication and monitoring
+                        tools?
+                      </li>
+                      <li>
+                        Are incident response times and resolution metrics tracked and improved?
+                      </li>
+                      <li>
+                        Do you conduct regular incident response training and simulation exercises?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement blameless post-mortem culture focused on system improvements</li>
-                      <li>Use incident management tools that provide timeline tracking and collaboration</li>
-                      <li>Establish clear incident severity levels with appropriate response procedures</li>
+                      <li>
+                        Implement blameless post-mortem culture focused on system improvements
+                      </li>
+                      <li>
+                        Use incident management tools that provide timeline tracking and
+                        collaboration
+                      </li>
+                      <li>
+                        Establish clear incident severity levels with appropriate response
+                        procedures
+                      </li>
                       <li>Create incident response playbooks for common failure scenarios</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Incidents handled ad-hoc without consistent processes or documentation</li>
-                      <li>Post-mortems that blame individuals rather than focus on system improvements</li>
+                      <li>
+                        Incidents handled ad-hoc without consistent processes or documentation
+                      </li>
+                      <li>
+                        Post-mortems that blame individuals rather than focus on system improvements
+                      </li>
                       <li>Incident response procedures not tested or updated regularly</li>
                       <li>No tracking of incident trends or root cause analysis</li>
                     </ul>
@@ -1311,18 +1958,35 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do team members have access to relevant DevOps training and certification programs?</li>
-                      <li>Are training plans aligned with career development and organizational needs?</li>
+                      <li>
+                        Do team members have access to relevant DevOps training and certification
+                        programs?
+                      </li>
+                      <li>
+                        Are training plans aligned with career development and organizational needs?
+                      </li>
                       <li>Do you provide hands-on lab environments for practicing new skills?</li>
                       <li>Are training investments measured and tracked for effectiveness?</li>
-                      <li>Do you have internal training programs based on organizational practices?</li>
-                      <li>Are conference attendance and external training opportunities provided?</li>
+                      <li>
+                        Do you have internal training programs based on organizational practices?
+                      </li>
+                      <li>
+                        Are conference attendance and external training opportunities provided?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Create learning paths for different roles (development, operations, security)</li>
-                      <li>Use vendor-specific training for tools and platforms in your environment</li>
-                      <li>Implement learning budgets and time allocation for continuous skill development</li>
+                      <li>
+                        Create learning paths for different roles (development, operations,
+                        security)
+                      </li>
+                      <li>
+                        Use vendor-specific training for tools and platforms in your environment
+                      </li>
+                      <li>
+                        Implement learning budgets and time allocation for continuous skill
+                        development
+                      </li>
                       <li>Encourage industry certifications that align with career paths</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -1343,24 +2007,43 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you track DORA metrics (deployment frequency, lead time, MTTR, change failure rate)?</li>
-                      <li>Are team productivity and flow metrics visualized and reviewed regularly?</li>
+                      <li>
+                        Do you track DORA metrics (deployment frequency, lead time, MTTR, change
+                        failure rate)?
+                      </li>
+                      <li>
+                        Are team productivity and flow metrics visualized and reviewed regularly?
+                      </li>
                       <li>Do dashboards show both operational metrics and business outcomes?</li>
-                      <li>Are metrics used for continuous improvement rather than individual performance evaluation?</li>
+                      <li>
+                        Are metrics used for continuous improvement rather than individual
+                        performance evaluation?
+                      </li>
                       <li>Do you track metrics for code quality, security, and technical debt?</li>
-                      <li>Are metric trends analyzed to identify patterns and improvement opportunities?</li>
+                      <li>
+                        Are metric trends analyzed to identify patterns and improvement
+                        opportunities?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Focus on metrics that drive behavior change and improvement</li>
-                      <li>Use leading indicators alongside lagging indicators for proactive management</li>
+                      <li>
+                        Use leading indicators alongside lagging indicators for proactive management
+                      </li>
                       <li>Implement metric collection that doesn't create significant overhead</li>
                       <li>Create different metric views for different stakeholder groups</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Metrics used for individual performance evaluation rather than system improvement</li>
-                      <li>Vanity metrics that don't correlate with actual business or operational outcomes</li>
+                      <li>
+                        Metrics used for individual performance evaluation rather than system
+                        improvement
+                      </li>
+                      <li>
+                        Vanity metrics that don't correlate with actual business or operational
+                        outcomes
+                      </li>
                       <li>No regular review or action taken based on metric trends</li>
                       <li>Metrics causing unintended consequences or gaming behaviors</li>
                     </ul>
@@ -1384,18 +2067,37 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are all critical data and systems included in automated backup processes?</li>
-                      <li>Do you have multiple backup copies stored in different geographic locations?</li>
-                      <li>Are backup restoration procedures tested regularly with success/failure tracking?</li>
-                      <li>Do backups include both data and system configurations/infrastructure?</li>
+                      <li>
+                        Are all critical data and systems included in automated backup processes?
+                      </li>
+                      <li>
+                        Do you have multiple backup copies stored in different geographic locations?
+                      </li>
+                      <li>
+                        Are backup restoration procedures tested regularly with success/failure
+                        tracking?
+                      </li>
+                      <li>
+                        Do backups include both data and system configurations/infrastructure?
+                      </li>
                       <li>Are backup processes monitored with alerts for failures or anomalies?</li>
-                      <li>Do you have different backup strategies for different data criticality levels?</li>
+                      <li>
+                        Do you have different backup strategies for different data criticality
+                        levels?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement 3-2-1 backup strategy (3 copies, 2 different media, 1 offsite)</li>
-                      <li>Use immutable backups to protect against ransomware and accidental deletion</li>
-                      <li>Test not just restoration but also recovery time objectives (RTO) and recovery point objectives (RPO)</li>
+                      <li>
+                        Implement 3-2-1 backup strategy (3 copies, 2 different media, 1 offsite)
+                      </li>
+                      <li>
+                        Use immutable backups to protect against ransomware and accidental deletion
+                      </li>
+                      <li>
+                        Test not just restoration but also recovery time objectives (RTO) and
+                        recovery point objectives (RPO)
+                      </li>
                       <li>Automate backup verification and integrity checking</li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -1416,17 +2118,34 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are disaster recovery plans documented with step-by-step procedures for different failure scenarios?</li>
-                      <li>Do you conduct regular DR drills with defined success criteria and timeline expectations?</li>
-                      <li>Are DR procedures tested at different scales (single service, entire region, complete outage)?</li>
-                      <li>Do recovery procedures include both technical steps and communication protocols?</li>
+                      <li>
+                        Are disaster recovery plans documented with step-by-step procedures for
+                        different failure scenarios?
+                      </li>
+                      <li>
+                        Do you conduct regular DR drills with defined success criteria and timeline
+                        expectations?
+                      </li>
+                      <li>
+                        Are DR procedures tested at different scales (single service, entire region,
+                        complete outage)?
+                      </li>
+                      <li>
+                        Do recovery procedures include both technical steps and communication
+                        protocols?
+                      </li>
                       <li>Are DR plans updated when infrastructure or applications change?</li>
                       <li>Do you have automated DR capabilities for critical systems?</li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Create DR scenarios based on actual risk assessments and business impact analysis</li>
-                      <li>Test DR procedures during business hours to validate realistic conditions</li>
+                      <li>
+                        Create DR scenarios based on actual risk assessments and business impact
+                        analysis
+                      </li>
+                      <li>
+                        Test DR procedures during business hours to validate realistic conditions
+                      </li>
                       <li>Use infrastructure as code to enable rapid environment recreation</li>
                       <li>Document lessons learned from DR tests and actual incidents</li>
                     </ul>
@@ -1434,7 +2153,9 @@
                     <ul>
                       <li>DR procedures that exist only on paper without regular testing</li>
                       <li>DR tests that consistently fail to meet RTO/RPO objectives</li>
-                      <li>No clear roles and responsibilities during disaster recovery scenarios</li>
+                      <li>
+                        No clear roles and responsibilities during disaster recovery scenarios
+                      </li>
                       <li>DR procedures that require manual steps or unavailable personnel</li>
                     </ul>
                   </div>
@@ -1448,24 +2169,46 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are business continuity plans aligned with business priorities and customer impact?</li>
-                      <li>Do you have alternative processes and workarounds for critical business functions?</li>
-                      <li>Are key personnel identified with backup contacts and decision-making authority?</li>
-                      <li>Do continuity plans address both technology failures and other business disruptions?</li>
-                      <li>Are business continuity plans tested through tabletop exercises and simulations?</li>
-                      <li>Do plans include customer communication and vendor management procedures?</li>
+                      <li>
+                        Are business continuity plans aligned with business priorities and customer
+                        impact?
+                      </li>
+                      <li>
+                        Do you have alternative processes and workarounds for critical business
+                        functions?
+                      </li>
+                      <li>
+                        Are key personnel identified with backup contacts and decision-making
+                        authority?
+                      </li>
+                      <li>
+                        Do continuity plans address both technology failures and other business
+                        disruptions?
+                      </li>
+                      <li>
+                        Are business continuity plans tested through tabletop exercises and
+                        simulations?
+                      </li>
+                      <li>
+                        Do plans include customer communication and vendor management procedures?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>Conduct business impact analysis to prioritize systems and functions</li>
                       <li>Establish maximum tolerable downtime for different business processes</li>
                       <li>Create decision trees for different scenarios and escalation paths</li>
-                      <li>Coordinate with legal, HR, and communications teams for comprehensive planning</li>
+                      <li>
+                        Coordinate with legal, HR, and communications teams for comprehensive
+                        planning
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>Business continuity planning focused only on technical systems</li>
-                      <li>Plans that haven't been updated to reflect current business operations</li>
+                      <li>
+                        Plans that haven't been updated to reflect current business operations
+                      </li>
                       <li>No consideration of supply chain or vendor dependencies</li>
                       <li>Continuity plans not accessible during actual emergency situations</li>
                     </ul>
@@ -1480,23 +2223,45 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are data recovery procedures documented for databases, file systems, and application data?</li>
-                      <li>Do you regularly test point-in-time recovery and partial data restoration?</li>
-                      <li>Are data recovery procedures tested across different failure scenarios (corruption, deletion, hardware failure)?</li>
-                      <li>Do recovery procedures include data validation and integrity checking?</li>
-                      <li>Are recovery time objectives (RTO) and recovery point objectives (RPO) defined and measurable?</li>
-                      <li>Do you have automated data recovery capabilities for critical systems?</li>
+                      <li>
+                        Are data recovery procedures documented for databases, file systems, and
+                        application data?
+                      </li>
+                      <li>
+                        Do you regularly test point-in-time recovery and partial data restoration?
+                      </li>
+                      <li>
+                        Are data recovery procedures tested across different failure scenarios
+                        (corruption, deletion, hardware failure)?
+                      </li>
+                      <li>
+                        Do recovery procedures include data validation and integrity checking?
+                      </li>
+                      <li>
+                        Are recovery time objectives (RTO) and recovery point objectives (RPO)
+                        defined and measurable?
+                      </li>
+                      <li>
+                        Do you have automated data recovery capabilities for critical systems?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement different recovery strategies based on data criticality and business requirements</li>
-                      <li>Use database replication and clustering for high availability scenarios</li>
+                      <li>
+                        Implement different recovery strategies based on data criticality and
+                        business requirements
+                      </li>
+                      <li>
+                        Use database replication and clustering for high availability scenarios
+                      </li>
                       <li>Test recovery procedures with realistic data volumes and complexity</li>
                       <li>Document dependencies between systems that affect recovery sequencing</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Data recovery procedures that haven't been tested with production-like data</li>
+                      <li>
+                        Data recovery procedures that haven't been tested with production-like data
+                      </li>
                       <li>Recovery procedures that exceed business requirements for RTO/RPO</li>
                       <li>No validation process to ensure recovered data integrity</li>
                       <li>Data recovery dependent on individuals or manual processes</li>
@@ -1517,17 +2282,35 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Do you regularly inject controlled failures to test system resilience?</li>
-                      <li>Are chaos experiments designed to validate specific resilience hypotheses?</li>
-                      <li>Do chaos engineering practices start small and gradually increase in scope?</li>
-                      <li>Are chaos experiments monitored and analyzed for system behavior and recovery?</li>
-                      <li>Do you have automated rollback and safety mechanisms for chaos experiments?</li>
-                      <li>Are chaos engineering results used to improve system design and operations?</li>
+                      <li>
+                        Do you regularly inject controlled failures to test system resilience?
+                      </li>
+                      <li>
+                        Are chaos experiments designed to validate specific resilience hypotheses?
+                      </li>
+                      <li>
+                        Do chaos engineering practices start small and gradually increase in scope?
+                      </li>
+                      <li>
+                        Are chaos experiments monitored and analyzed for system behavior and
+                        recovery?
+                      </li>
+                      <li>
+                        Do you have automated rollback and safety mechanisms for chaos experiments?
+                      </li>
+                      <li>
+                        Are chaos engineering results used to improve system design and operations?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Start with development and staging environments before production chaos testing</li>
-                      <li>Use chaos engineering tools that integrate with your infrastructure platform</li>
+                      <li>
+                        Start with development and staging environments before production chaos
+                        testing
+                      </li>
+                      <li>
+                        Use chaos engineering tools that integrate with your infrastructure platform
+                      </li>
                       <li>Focus on business-critical paths and high-value scenarios</li>
                       <li>Build team confidence and expertise through gradual adoption</li>
                     </ul>
@@ -1535,8 +2318,12 @@
                     <ul>
                       <li>Chaos experiments causing uncontrolled or unexpected system damage</li>
                       <li>No clear hypotheses or learning objectives for chaos experiments</li>
-                      <li>Chaos engineering performed without proper monitoring or safety controls</li>
-                      <li>Team resistance to chaos engineering due to fear or lack of confidence</li>
+                      <li>
+                        Chaos engineering performed without proper monitoring or safety controls
+                      </li>
+                      <li>
+                        Team resistance to chaos engineering due to fear or lack of confidence
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1549,26 +2336,50 @@
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
-                      <li>Are common recovery scenarios automated with minimal human intervention?</li>
-                      <li>Do automated recovery procedures include safety checks and rollback mechanisms?</li>
-                      <li>Are recovery automation tools integrated with monitoring and alerting systems?</li>
+                      <li>
+                        Are common recovery scenarios automated with minimal human intervention?
+                      </li>
+                      <li>
+                        Do automated recovery procedures include safety checks and rollback
+                        mechanisms?
+                      </li>
+                      <li>
+                        Are recovery automation tools integrated with monitoring and alerting
+                        systems?
+                      </li>
                       <li>Do you have self-healing capabilities for known failure patterns?</li>
-                      <li>Are automated recovery procedures tested regularly and updated with new scenarios?</li>
-                      <li>Do manual override capabilities exist for complex or unexpected situations?</li>
+                      <li>
+                        Are automated recovery procedures tested regularly and updated with new
+                        scenarios?
+                      </li>
+                      <li>
+                        Do manual override capabilities exist for complex or unexpected situations?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Automate recovery for well-understood, repeatable failure scenarios first</li>
-                      <li>Implement progressive automation with human approval gates for high-risk operations</li>
+                      <li>
+                        Automate recovery for well-understood, repeatable failure scenarios first
+                      </li>
+                      <li>
+                        Implement progressive automation with human approval gates for high-risk
+                        operations
+                      </li>
                       <li>Use infrastructure as code to enable rapid environment recreation</li>
                       <li>Monitor automated recovery success rates and continuously improve</li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>Automated recovery procedures causing more damage than original failure</li>
+                      <li>
+                        Automated recovery procedures causing more damage than original failure
+                      </li>
                       <li>No human oversight or approval for critical recovery operations</li>
-                      <li>Recovery automation that hasn't been tested in realistic failure scenarios</li>
-                      <li>Over-reliance on automation without maintaining manual recovery capabilities</li>
+                      <li>
+                        Recovery automation that hasn't been tested in realistic failure scenarios
+                      </li>
+                      <li>
+                        Over-reliance on automation without maintaining manual recovery capabilities
+                      </li>
                     </ul>
                   </div>
                 </label>

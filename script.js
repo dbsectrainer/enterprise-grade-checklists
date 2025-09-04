@@ -100,7 +100,6 @@ function updateGlobalProgress() {
   document.getElementById("global-progress-text").textContent = `${globalProgress}%`;
 }
 
-
 // Handle search functionality
 function handleSearch(event) {
   const searchTerm = event.target.value.toLowerCase();

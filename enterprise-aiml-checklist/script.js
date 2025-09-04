@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Trigger custom event for dashboard update
     const event = new CustomEvent("checklistUpdated", {
-      detail: { checklist: "aiml" }
+      detail: { checklist: "aiml" },
     });
     window.dispatchEvent(event);
   }
