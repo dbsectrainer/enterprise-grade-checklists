@@ -19,6 +19,28 @@ The Enterprise Checklist Dashboard provides a unified interface to manage and mo
 
 ## Features
 
+### 🔍 Repository Validator (NEW!)
+
+**Automatically validate your GitHub repository against enterprise standards!**
+
+Our new [Repository Validator](validator.html) provides:
+
+- **Automated Compliance Checking**: Scan any public GitHub repository for compliance with enterprise standards
+- **Multi-Domain Analysis**: Validates across all 8 domains (Frontend, Backend, Cloud, Data, DevOps, Mobile, Security, AI/ML)
+- **Standards Mapping**: Checks compliance with ISO 27001, NIST CSF, SOC 2, GDPR, OWASP Top 10, WCAG 2.1, PCI DSS, HIPAA, and more
+- **Real-time Results**: Get instant feedback on your repository's compliance status
+- **Export Capabilities**: Export validation results as JSON, CSV, or PDF
+- **Detailed Reports**: View passed checks, failed checks, warnings, and standards compliance
+
+**How to use:**
+
+1. Visit the [Repository Validator](validator.html) page
+2. Enter your GitHub repository URL (e.g., `https://github.com/username/repository`)
+3. Select domains to validate
+4. Click "Validate Repository" and get instant results!
+
+### Dashboard Features
+
 - **Unified Dashboard**: Central view of all checklists with progress tracking
 - **Automated Validation**: Built-in validators for each checklist domain
 - **Compliance Mapping**: Integrated compliance tracking for standards (HIPAA, SOC2, etc.)

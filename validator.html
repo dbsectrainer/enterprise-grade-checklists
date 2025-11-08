@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Automated validation for enterprise-grade repositories across Frontend, Backend, Cloud, Data, DevOps, Mobile, Security, and AI/ML domains"
+    />
+    <title>Enterprise Repository Validator - Validate Your Repo</title>
+    <link rel="stylesheet" href="validator.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🔍 Enterprise Repository Validator</h1>
+        <p class="subtitle">
+          Automated compliance and best practices validation for your GitHub repositories
+        </p>
+      </header>
+
+      <nav class="breadcrumb">
+        <a href="index.html">← Back to Dashboard</a>
+      </nav>
+
+      <section class="validator-input">
+        <h2>Validate Your Repository</h2>
+        <p class="help-text">
+          Enter a GitHub repository URL to analyze its compliance with enterprise standards
+          across 8 critical domains.
+        </p>
+
+        <form id="validationForm">
+          <div class="form-group">
+            <label for="repoUrl">GitHub Repository URL</label>
+            <input
+              type="url"
+              id="repoUrl"
+              name="repoUrl"
+              placeholder="https://github.com/username/repository"
+              pattern="https://github\.com/[^/]+/[^/]+"
+              required
+            />
+            <small class="form-hint">
+              Example: https://github.com/facebook/react or github.com/microsoft/vscode
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="domains">Select Domains to Validate</label>
+            <div class="domain-checkboxes">
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="frontend" checked />
+                <span>Frontend</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="backend" checked />
+                <span>Backend</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="cloud" checked />
+                <span>Cloud</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="data" checked />
+                <span>Data</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="devops" checked />
+                <span>DevOps</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="mobile" />
+                <span>Mobile</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="security" checked />
+                <span>Security</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="domain" value="aiml" />
+                <span>AI/ML</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="includeStandards" checked />
+              Include standards compliance mapping (ISO, NIST, SOC2, GDPR, OWASP)
+            </label>
+          </div>
+
+          <button type="submit" id="validateBtn" class="btn-primary">
+            <span class="btn-text">🚀 Validate Repository</span>
+          </button>
+        </form>
+      </section>
+
+      <section id="loadingSection" class="loading-section" style="display: none">
+        <div class="loader"></div>
+        <p id="loadingText">Analyzing repository...</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </section>
+
+      <section id="resultsSection" class="results-section" style="display: none">
+        <div class="results-header">
+          <h2>Validation Results</h2>
+          <div class="results-meta">
+            <span id="repoName" class="repo-name"></span>
+            <span id="validationTime" class="validation-time"></span>
+          </div>
+        </div>
+
+        <div class="results-summary">
+          <div class="summary-card">
+            <div class="summary-icon">✅</div>
+            <div class="summary-content">
+              <h3 id="passedCount">0</h3>
+              <p>Passed</p>
+            </div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-icon">❌</div>
+            <div class="summary-content">
+              <h3 id="failedCount">0</h3>
+              <p>Failed</p>
+            </div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-icon">⚠️</div>
+            <div class="summary-content">
+              <h3 id="warningCount">0</h3>
+              <p>Warnings</p>
+            </div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-icon">📊</div>
+            <div class="summary-content">
+              <h3 id="scorePercent">0%</h3>
+              <p>Overall Score</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-tabs">
+          <button class="tab-btn active" data-tab="all">All Results</button>
+          <button class="tab-btn" data-tab="passed">Passed</button>
+          <button class="tab-btn" data-tab="failed">Failed</button>
+          <button class="tab-btn" data-tab="warnings">Warnings</button>
+          <button class="tab-btn" data-tab="standards">Standards Compliance</button>
+        </div>
+
+        <div id="resultsContent" class="results-content"></div>
+
+        <div class="results-actions">
+          <button id="exportJsonBtn" class="btn-secondary">📥 Export JSON</button>
+          <button id="exportCsvBtn" class="btn-secondary">📥 Export CSV</button>
+          <button id="exportPdfBtn" class="btn-secondary">📥 Export PDF</button>
+          <button id="newValidationBtn" class="btn-primary">🔄 New Validation</button>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <h2>What Gets Validated?</h2>
+        <div class="validation-domains">
+          <div class="domain-card">
+            <h3>🎨 Frontend</h3>
+            <ul>
+              <li>Security headers & CSP</li>
+              <li>Accessibility (WCAG 2.1)</li>
+              <li>Performance metrics</li>
+              <li>Bundle size optimization</li>
+              <li>Code quality standards</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>⚙️ Backend</h3>
+            <ul>
+              <li>API design best practices</li>
+              <li>Database optimization</li>
+              <li>Error handling patterns</li>
+              <li>Dependency security</li>
+              <li>Rate limiting & caching</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>☁️ Cloud</h3>
+            <ul>
+              <li>Infrastructure as Code</li>
+              <li>Cost optimization</li>
+              <li>Compliance mapping</li>
+              <li>High availability</li>
+              <li>Disaster recovery</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>📊 Data</h3>
+            <ul>
+              <li>Data quality governance</li>
+              <li>Privacy compliance</li>
+              <li>Encryption standards</li>
+              <li>Backup strategies</li>
+              <li>Data lineage</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>🚀 DevOps</h3>
+            <ul>
+              <li>CI/CD pipeline validation</li>
+              <li>Infrastructure monitoring</li>
+              <li>Deployment strategies</li>
+              <li>Secret management</li>
+              <li>Container security</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>📱 Mobile</h3>
+            <ul>
+              <li>Platform-specific checks</li>
+              <li>Performance optimization</li>
+              <li>Security standards</li>
+              <li>App store compliance</li>
+              <li>Offline capabilities</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>🔒 Security</h3>
+            <ul>
+              <li>OWASP Top 10 compliance</li>
+              <li>Secret scanning</li>
+              <li>Vulnerability detection</li>
+              <li>Access control</li>
+              <li>Incident response</li>
+            </ul>
+          </div>
+          <div class="domain-card">
+            <h3>🤖 AI/ML</h3>
+            <ul>
+              <li>Model governance</li>
+              <li>Bias & fairness checks</li>
+              <li>Ethics compliance</li>
+              <li>Model monitoring</li>
+              <li>Data privacy</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="standards-section">
+        <h2>Standards & Compliance Frameworks</h2>
+        <p>Our validator checks compliance with the following industry standards:</p>
+        <div class="standards-grid">
+          <div class="standard-badge">ISO 27001</div>
+          <div class="standard-badge">NIST CSF</div>
+          <div class="standard-badge">SOC 2</div>
+          <div class="standard-badge">GDPR</div>
+          <div class="standard-badge">OWASP Top 10</div>
+          <div class="standard-badge">WCAG 2.1</div>
+          <div class="standard-badge">PCI DSS</div>
+          <div class="standard-badge">HIPAA</div>
+          <div class="standard-badge">CIS Benchmarks</div>
+          <div class="standard-badge">NIST 800-53</div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>
+        Enterprise Repository Validator | Open Source Project |
+        <a href="https://github.com/dbsectrainer/enterprise-grade-checklists" target="_blank">
+          View on GitHub
+        </a>
+      </p>
+    </footer>
+
+    <script src="validator.js"></script>
+  </body>
+</html>
