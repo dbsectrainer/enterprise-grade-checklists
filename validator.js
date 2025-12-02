@@ -62,7 +62,7 @@ class RepositoryValidator {
 
     const repoUrl = document.getElementById("repoUrl").value.trim();
     const selectedDomains = Array.from(
-      document.querySelectorAll("input[name=\"domain\"]:checked")
+      document.querySelectorAll('input[name="domain"]:checked')
     ).map((cb) => cb.value);
     const includeStandards = document.getElementById("includeStandards").checked;
 
@@ -379,9 +379,7 @@ class RepositoryValidator {
     );
 
     // Check for Kubernetes
-    const hasK8s = contents.some(
-      (file) => file.name === "kubernetes" || file.name.includes("k8s")
-    );
+    const hasK8s = contents.some((file) => file.name === "kubernetes" || file.name.includes("k8s"));
     this.addResult(
       hasK8s ? "passed" : "warning",
       "cloud",
@@ -599,7 +597,9 @@ class RepositoryValidator {
     );
 
     // Check for HTTPS enforcement
-    const hasHTTPS = contents.some((file) => file.name.includes("ssl") || file.name.includes("tls"));
+    const hasHTTPS = contents.some(
+      (file) => file.name.includes("ssl") || file.name.includes("tls")
+    );
     this.addResult(
       hasHTTPS ? "passed" : "warning",
       "security",
@@ -762,17 +762,13 @@ class RepositoryValidator {
         return;
       case "all":
       default:
-        resultsToShow = [
-          ...this.results.failed,
-          ...this.results.warnings,
-          ...this.results.passed,
-        ];
+        resultsToShow = [...this.results.failed, ...this.results.warnings, ...this.results.passed];
         break;
     }
 
     resultsContent.innerHTML = resultsToShow.length
       ? resultsToShow.map((result) => this.renderResult(result)).join("")
-      : "<p style=\"text-align: center; color: var(--text-secondary); padding: 2rem;\">No results to display</p>";
+      : '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No results to display</p>';
   }
 
   renderResult(result) {
@@ -834,7 +830,7 @@ class RepositoryValidator {
 
     resultsContent.innerHTML =
       html ||
-      "<p style=\"text-align: center; color: var(--text-secondary); padding: 2rem;\">No standards compliance data available</p>";
+      '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No standards compliance data available</p>';
   }
 
   exportJSON() {
@@ -843,11 +839,7 @@ class RepositoryValidator {
   }
 
   exportCSV() {
-    const allResults = [
-      ...this.results.passed,
-      ...this.results.failed,
-      ...this.results.warnings,
-    ];
+    const allResults = [...this.results.passed, ...this.results.failed, ...this.results.warnings];
 
     const headers = ["Status", "Domain", "Title", "Description", "Standards"];
     const rows = allResults.map((r) => [
@@ -858,7 +850,9 @@ class RepositoryValidator {
       r.standards.join("; "),
     ]);
 
-    const csv = [headers, ...rows].map((row) => row.map((cell) => `"${cell}"`).join(",")).join("\n");
+    const csv = [headers, ...rows]
+      .map((row) => row.map((cell) => `"${cell}"`).join(","))
+      .join("\n");
 
     this.downloadFile(csv, "validation-results.csv", "text/csv");
   }
