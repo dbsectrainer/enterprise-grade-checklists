@@ -62,7 +62,7 @@ class RepositoryValidator {
 
     const repoUrl = document.getElementById("repoUrl").value.trim();
     const selectedDomains = Array.from(
-      document.querySelectorAll('input[name="domain"]:checked')
+      document.querySelectorAll("input[name=\"domain\"]:checked")
     ).map((cb) => cb.value);
     const includeStandards = document.getElementById("includeStandards").checked;
 
@@ -177,7 +177,7 @@ class RepositoryValidator {
   // Domain Validators
 
   async validateFrontend(repoData, includeStandards) {
-    const { contents, repository } = repoData;
+    const { contents } = repoData;
 
     // Check for package.json
     const hasPackageJson = contents.some((file) => file.name === "package.json");
@@ -262,7 +262,7 @@ class RepositoryValidator {
   }
 
   async validateBackend(repoData, includeStandards) {
-    const { contents, repository } = repoData;
+    const { contents } = repoData;
 
     // Check for API documentation
     const hasAPIDoc = contents.some(
@@ -687,7 +687,7 @@ class RepositoryValidator {
         };
 
         return dependencies.some((dep) => dep in allDeps);
-      } catch (error) {
+      } catch {
         return false;
       }
     }
@@ -772,7 +772,7 @@ class RepositoryValidator {
 
     resultsContent.innerHTML = resultsToShow.length
       ? resultsToShow.map((result) => this.renderResult(result)).join("")
-      : '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No results to display</p>';
+      : "<p style=\"text-align: center; color: var(--text-secondary); padding: 2rem;\">No results to display</p>";
   }
 
   renderResult(result) {
@@ -834,7 +834,7 @@ class RepositoryValidator {
 
     resultsContent.innerHTML =
       html ||
-      '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No standards compliance data available</p>';
+      "<p style=\"text-align: center; color: var(--text-secondary); padding: 2rem;\">No standards compliance data available</p>";
   }
 
   exportJSON() {
