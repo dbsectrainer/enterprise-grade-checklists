@@ -10,11 +10,11 @@ This mapping helps organizations understand how cloud infrastructure controls al
 
 | Framework                  | Coverage | Last Updated |
 | -------------------------- | -------- | ------------ |
-| ISO 27017 (Cloud Security) | 92%      | 2024-02-13   |
-| CSA CCM 4.0                | 95%      | 2024-02-13   |
-| NIST 800-53                | 88%      | 2024-02-13   |
-| CIS Benchmarks             | 94%      | 2024-02-13   |
-| SOC 2                      | 90%      | 2024-02-13   |
+| ISO 27017 (Cloud Security) | 92%      | 2026-09-22   |
+| CSA CCM 4.0                | 95%      | 2026-09-22   |
+| NIST 800-53                | 88%      | 2026-09-22   |
+| CIS Benchmarks             | 94%      | 2026-09-22   |
+| SOC 2                      | 90%      | 2026-09-22   |
 
 ## Cloud Provider Security Standards
 

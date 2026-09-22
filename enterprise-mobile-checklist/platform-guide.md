@@ -4,6 +4,17 @@ A comprehensive guide for implementing native modules and platform-specific feat
 
 ## Native Module Architecture
 
+> **2026 update:** React Native's **New Architecture** (Fabric renderer + TurboModules + JSI) has been the
+> default for new apps since RN 0.76 (late 2024). It replaces the legacy async bridge with **JSI
+> (JavaScript Interface)** — a lightweight C++ layer that lets JS and native code hold direct references to
+> each other and call synchronously, without serializing everything to JSON and batching it over a bridge.
+> Native modules are now generated from typed specs via **Codegen** (TurboModules) and the renderer
+> (**Fabric**) can mount and update native views synchronously with JS. Most teams now bootstrap and manage
+> RN apps with **Expo** (Expo Modules API, EAS Build/Update, prebuild config plugins) rather than raw
+> `react-native init`, even for New Architecture native modules. This guide shows the New Architecture
+> pattern as the current recommended approach, clearly labeled, alongside the legacy bridge pattern for
+> teams still maintaining apps that haven't migrated yet.
+
 ### Module Structure
 
 ```mermaid
@@ -14,20 +25,96 @@ graph TD
 
     B --> B1[Swift/Obj-C]
     B --> B2[iOS APIs]
-    B --> B3[Bridge]
+    B --> B3[JSI / Fabric / TurboModules]
 
     C --> C1[Kotlin/Java]
     C --> C2[Android APIs]
-    C --> C3[Bridge]
+    C --> C3[JSI / Fabric / TurboModules]
 
-    D --> D1[TypeScript Definitions]
+    D --> D1[TypeScript Definitions / Codegen Specs]
     D --> D2[Event Handling]
     D --> D3[Error Handling]
 ```
 
+### Cross-Platform Architecture Options
+
+When choosing how to share code across iOS and Android, React Native (New Architecture), Flutter, fully
+native, and **Kotlin Multiplatform (KMP)** are the four options enterprise teams should evaluate:
+
+- **React Native (New Architecture)** — JS/TypeScript business logic and UI, native modules via
+  TurboModules/JSI, native views via Fabric. Best when the team is JS/TS-heavy and wants a single UI
+  codebase.
+- **Flutter** — Dart UI compiled to native, its own rendering engine. Best for pixel-consistent UI across
+  platforms with a single codebase and team.
+- **Kotlin Multiplatform (KMP)** — Shares business logic, networking, and data layers (Kotlin) while
+  keeping **fully native UI** on each platform (SwiftUI on iOS, Jetpack Compose on Android). Best when
+  native look-and-feel and platform API access matter most, but duplicate UI development is not
+  desirable at the logic layer. Increasingly used by enterprises alongside or instead of React Native
+  where SwiftUI/Compose are already the team's UI toolkits.
+- **Fully Native (Swift/SwiftUI + Kotlin/Jetpack Compose)** — Maximum platform fidelity and performance,
+  highest maintenance cost (two codebases, two teams).
+
 ## iOS Implementation
 
-### 1. Swift Module Template
+### 1a. TurboModule Template (New Architecture — Recommended)
+
+TurboModules are defined from a typed JS/TypeScript spec and generated at build time via **Codegen**,
+giving you compile-time-checked native method signatures instead of the old stringly-typed bridge calls.
+
+```typescript
+// NativeCustomModule.ts — Codegen spec (source of truth for the native interface)
+import type { TurboModule } from "react-native";
+import { TurboModuleRegistry } from "react-native";
+
+export interface Spec extends TurboModule {
+  methodWithPromise(): Promise<string>;
+  methodWithCallback(callback: (error: string | null, result?: string) => void): void;
+  readonly onCustomEvent: EventEmitter<{ payload: string }>;
+}
+
+export default TurboModuleRegistry.getEnforcing<Spec>("RNCustomModule");
+```
+
+```swift
+// RNCustomModule.swift — TurboModule implementation (conforms to the Codegen-generated protocol)
+@objc(RNCustomModule)
+class RNCustomModule: NSObject, NativeCustomModuleSpec {
+    // MARK: - Module Methods (JSI-backed, no bridge serialization)
+    @objc
+    func methodWithPromise(_ resolve: @escaping RCTPromiseResolveBlock,
+                          rejecter reject: @escaping RCTPromiseRejectBlock) {
+        do {
+            let result = try performOperation()
+            resolve(result)
+        } catch let error {
+            reject("ERROR_CODE", error.localizedDescription, error)
+        }
+    }
+
+    @objc
+    func methodWithCallback(_ callback: @escaping RCTResponseSenderBlock) {
+        callback([NSNull(), "result"])
+    }
+
+    // Event emission via the Codegen-generated typed EventEmitter (no manual RCTEventEmitter subclass needed)
+    func emitCustomEvent(payload: String) {
+        emitOnCustomEvent(payload: payload)
+    }
+
+    static func moduleName() -> String! {
+        return "RNCustomModule"
+    }
+}
+```
+
+> With the New Architecture, most teams create and manage this module structure via **Expo Modules API**
+> (`npx create-expo-module`) or `expo prebuild`, which generates the Codegen spec wiring, podspec, and
+> Gradle config automatically rather than hand-authoring them.
+
+### 1b. Swift Module Template (Legacy Bridge — Old Architecture)
+
+> Kept for teams maintaining apps still on the legacy bridge. New modules should use the TurboModule
+> pattern above.
 
 ```swift
 @objc(RNCustomModule)

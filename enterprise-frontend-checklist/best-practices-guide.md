@@ -128,6 +128,41 @@ const useUser = () => {
 };
 ```
 
+#### Lighter Alternatives: Zustand & TanStack Query
+
+Redux Toolkit is still the right call for large applications with complex, deeply-shared
+client state, where its explicit action/reducer model, middleware ecosystem, and
+time-travel debugging earn back their setup cost. For many 2026 apps, though, state falls
+into two simpler buckets that lighter tools handle with far less boilerplate:
+
+- **Client UI state** (theme, sidebar open/closed, selected tab) — a minimal store like
+  [Zustand](https://github.com/pmndrs/zustand) is often enough:
+
+  ```typescript
+  // ✅ Good Practice - Zustand store
+  const useUserStore = create<{ user: User | null; setUser: (u: User) => void }>((set) => ({
+    user: null,
+    setUser: (user) => set({ user }),
+  }));
+  ```
+
+- **Server state** (data fetched from an API — caching, refetching, invalidation) — this is
+  what [TanStack Query](https://tanstack.com/query) is purpose-built for, and it removes
+  most of the manual loading/error/cache bookkeeping that Redux thunks/sagas otherwise need:
+
+  ```typescript
+  // ✅ Good Practice - TanStack Query for server state
+  const { data: user, isLoading, error } = useQuery({
+    queryKey: ["user", userId],
+    queryFn: () => fetchUser(userId),
+  });
+  ```
+
+Rule of thumb: reach for Redux Toolkit when many features share complex, interrelated
+client state and you need strict auditability; reach for Zustand + TanStack Query (or
+Context + `useSyncExternalStore` for very small cases) when state is mostly local-ish UI
+state plus server data — which is the common case for new feature work.
+
 ## Performance Optimization
 
 ### 1. Memoization
@@ -169,28 +204,51 @@ const App: React.FC = () => (
 
 ### 1. Error Boundaries
 
+The React error boundary API is still implemented as a class under the hood (there is no
+hook equivalent as of React 19), but enterprise teams should not hand-roll one per app.
+Wrap the class once in a small reusable component — or adopt a maintained library like
+[`react-error-boundary`](https://github.com/bvaugon/react-error-boundary) — so the rest of
+the codebase only ever touches a functional API:
+
 ```typescript
-// ✅ Good Practice
-class ErrorBoundary extends React.Component<Props, State> {
-  state = { hasError: false, error: null };
+// ✅ Good Practice - functional usage via react-error-boundary
+import { ErrorBoundary } from "react-error-boundary";
 
-  static getDerivedStateFromError(error: Error) {
-    return { hasError: true, error };
-  }
+const Dashboard: React.FC = () => (
+  <ErrorBoundary
+    FallbackComponent={ErrorFallback}
+    onError={(error, info) => logError(error, info)}
+    onReset={() => queryClient.resetQueries()}
+  >
+    <DashboardContent />
+  </ErrorBoundary>
+);
+```
 
-  componentDidCatch(error: Error, info: React.ErrorInfo) {
-    logError(error, info);
-  }
+If you're not pulling in a library, the same idea applies: define the class once as an
+internal implementation detail and export a small functional wrapper so consuming code
+never touches `React.Component` directly.
 
-  render() {
-    if (this.state.hasError) {
-      return <ErrorFallback error={this.state.error} />;
-    }
+#### Newer Patterns Worth Evaluating (React Server Components, `use()`, Actions)
 
-    return this.props.children;
-  }
+For greenfield or major replatforming work, weigh **React Server Components (RSC)** —
+available via meta-frameworks like Next.js and increasingly others — which move
+data-fetching and non-interactive rendering to the server and ship less JavaScript to the
+client. React 19 also introduces the `use()` hook for reading promises and context during
+render, and the **Actions** API (`useActionState`, `useFormStatus`, `useOptimistic`) for
+handling form submissions and pending/optimistic UI without hand-written state machines:
+
+```typescript
+// ✅ React 19 - reading an async resource with use()
+function UserProfile({ userPromise }: { userPromise: Promise<User> }) {
+  const user = use(userPromise); // suspends until resolved
+  return <h3>{user.name}</h3>;
 }
 ```
+
+These are architecture-level decisions (they affect routing, data-fetching, and
+deployment topology), not drop-in replacements for the patterns above — evaluate them
+against your framework and team's SSR/CSR strategy before adopting.
 
 ### 2. API Error Handling
 
@@ -407,8 +465,8 @@ const withPerformanceTracking = <P extends object>(
 
 ## Resources
 
-- [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [React Performance](https://reactjs.org/docs/optimizing-performance.html)
+- [React Documentation](https://react.dev/learn)
+- [React Performance](https://react.dev/learn/render-and-commit)
 - [Web Vitals](https://web.dev/vitals/)
 - [WCAG Guidelines](https://www.w3.org/WAI/standards-guidelines/wcag/)
 - [Security Checklist](https://www.npmjs.com/package/react-security-checklist)

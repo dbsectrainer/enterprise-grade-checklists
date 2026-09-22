@@ -18,7 +18,7 @@ class RepositoryValidator {
       "SOC 2": ["security", "data", "cloud"],
       GDPR: ["data", "security", "backend"],
       "OWASP Top 10": ["security", "frontend", "backend"],
-      "WCAG 2.1": ["frontend"],
+      "WCAG 2.2": ["frontend"],
       "PCI DSS": ["security", "data"],
       HIPAA: ["security", "data"],
       "CIS Benchmarks": ["security", "cloud", "devops"],
@@ -217,7 +217,7 @@ class RepositoryValidator {
       "frontend",
       "Accessibility Testing",
       "Accessibility testing tools configured (axe, jest-axe, or eslint-plugin-jsx-a11y)",
-      includeStandards ? ["WCAG 2.1"] : []
+      includeStandards ? ["WCAG 2.2"] : []
     );
 
     // Check for security headers

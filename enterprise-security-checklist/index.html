@@ -52,7 +52,7 @@
                     <ul>
                       <li>
                         What MFA methods are supported (SMS, TOTP, push notifications, hardware
-                        tokens, biometrics)?
+                        tokens, biometrics, passkeys/WebAuthn/FIDO2)?
                       </li>
                       <li>Which systems and applications enforce MFA requirements?</li>
                       <li>How do you handle MFA for service accounts and automated systems?</li>
@@ -67,6 +67,10 @@
                         behavior)
                       </li>
                       <li>Support multiple MFA methods to accommodate different user needs</li>
+                      <li>
+                        Prioritize phishing-resistant, passwordless authentication such as passkeys
+                        (WebAuthn/FIDO2) over SMS or OTP-based factors where possible
+                      </li>
                       <li>Establish clear policies for MFA exemptions and emergency access</li>
                       <li>Monitor and log all MFA events for security analysis</li>
                     </ul>
@@ -2994,6 +2998,10 @@
                       <li>
                         Ensure SBOM generation covers container images, cloud services, and
                         infrastructure components
+                      </li>
+                      <li>
+                        Benchmark build and provenance integrity against the SLSA (Supply-chain
+                        Levels for Software Artifacts) framework alongside SBOM tooling
                       </li>
                     </ul>
                     <strong>Red Flags:</strong>

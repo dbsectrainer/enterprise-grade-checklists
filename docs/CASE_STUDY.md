@@ -158,7 +158,7 @@ The implementation of the Enterprise Checklist Dashboard has led to several sign
 
 ### 3. Accessibility Compliance
 
-- WCAG 2.1 AA standards
+- WCAG 2.2 AA standards
 - Semantic HTML requirements
 - Keyboard navigation
 - Screen reader compatibility

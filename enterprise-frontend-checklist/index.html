@@ -389,6 +389,10 @@
                         providers?
                       </li>
                       <li>Are account lockout and brute force protection mechanisms in place?</li>
+                      <li>
+                        Are passkeys (WebAuthn) offered as a phishing-resistant, passwordless
+                        authentication option alongside or instead of passwords?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
@@ -402,6 +406,11 @@
                       <li>Design permission systems to be auditable and easily configurable</li>
                       <li>
                         Consider implementing device-based trust and risk-based authentication
+                      </li>
+                      <li>
+                        Adopt passkeys/WebAuthn where feasible — they remove shared-secret
+                        credentials from the threat model entirely and are supported by all major
+                        browsers and platform authenticators
                       </li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -620,7 +629,7 @@
               <li>
                 <label class="checklist-item">
                   <input type="checkbox" class="checkbox" />
-                  <span class="item-text">WCAG 2.1 AA Compliance</span>
+                  <span class="item-text">WCAG 2.2 AA Compliance</span>
                   <button class="expand-btn">ⓘ</button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
@@ -1247,11 +1256,14 @@
                         requests
                       </li>
                       <li>
-                        Use webpack bundle analyzer or similar tools to visualize and optimize
-                        bundle composition
+                        Default to modern, esbuild/Rollup-based tooling like Vite for new projects —
+                        it provides fast dev-server startup, native ES modules, and built-in
+                        bundle-visualization plugins (e.g. rollup-plugin-visualizer)
                       </li>
                       <li>
-                        Consider using modern build tools like Vite or esbuild for faster builds
+                        Webpack (with webpack-bundle-analyzer) remains a valid choice for legacy
+                        applications or complex enterprise setups with deep custom configuration,
+                        but it is no longer the default starting point for greenfield work
                       </li>
                       <li>
                         Regularly audit and remove unused dependencies to maintain optimal bundle
@@ -5160,6 +5172,83 @@
                       <li>
                         Generated code not following established coding standards or security
                         practices
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">AI-Assisted Development Tooling</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Is there an approved, governed list of AI pair-programming tools (e.g.
+                        GitHub Copilot, Cursor, Claude Code) developers are permitted to use?
+                      </li>
+                      <li>
+                        Are policies in place covering what code/data may be shared with AI coding
+                        assistants, including handling of proprietary code and secrets?
+                      </li>
+                      <li>
+                        Is AI-generated code subject to the same code review and security review
+                        process as human-written code before merging?
+                      </li>
+                      <li>
+                        Are static analysis, dependency scanning, and secret scanning run on
+                        AI-generated code paths, not just human-authored ones?
+                      </li>
+                      <li>
+                        Do developers understand licensing/provenance risk for AI-suggested code
+                        (e.g. verbatim reproduction of training data)?
+                      </li>
+                      <li>
+                        Is AI tool usage and its impact on velocity/quality measured rather than
+                        assumed?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Treat AI-assisted coding tools as a governed capability, not a
+                        bring-your-own-tool free-for-all — agree on approved tools, data-handling
+                        rules, and licensing terms at the org level
+                      </li>
+                      <li>
+                        Require human review of AI-generated code with the same scrutiny as any
+                        other contribution, especially for security-sensitive logic
+                        (auth, input handling, data access)
+                      </li>
+                      <li>
+                        Configure AI assistants to respect existing linting, formatting, and
+                        architectural conventions rather than introducing inconsistent patterns
+                      </li>
+                      <li>
+                        Provide onboarding/training so developers know the tools' limitations
+                        (hallucinated APIs, outdated patterns, insecure defaults) and how to verify
+                        output
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        AI coding assistants used without any policy on what code or data can be
+                        shared with third-party AI services
+                      </li>
+                      <li>
+                        AI-generated code merged with reduced or skipped code review because "the
+                        AI already checked it"
+                      </li>
+                      <li>
+                        No process for catching insecure patterns (e.g. hardcoded secrets, missing
+                        input validation) commonly introduced by AI suggestions
+                      </li>
+                      <li>
+                        Inconsistent or ungoverned tool adoption across teams making code review
+                        and onboarding harder
                       </li>
                     </ul>
                   </div>

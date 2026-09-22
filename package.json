@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.html",
   "scripts": {
-    "lint": "eslint . --ext .js",
+    "lint": "eslint .",
     "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
     "serve": "http-server . -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -36,6 +36,6 @@
     "prettier": "^3.6.2"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.0.0"
   }
 }
