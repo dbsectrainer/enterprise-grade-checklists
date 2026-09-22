@@ -65,6 +65,7 @@ giving you compile-time-checked native method signatures instead of the old stri
 // NativeCustomModule.ts — Codegen spec (source of truth for the native interface)
 import type { TurboModule } from "react-native";
 import { TurboModuleRegistry } from "react-native";
+import type { EventEmitter } from "react-native/Libraries/Types/CodegenTypes";
 
 export interface Spec extends TurboModule {
   methodWithPromise(): Promise<string>;

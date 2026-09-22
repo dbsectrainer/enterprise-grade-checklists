@@ -14,7 +14,7 @@ This checklist helps organizations implement robust AI/ML practices focusing on 
 - **Model Monitoring** — performance monitoring, drift detection, resource monitoring, and alerting
 - **Ethics & Fairness** — bias detection, fairness metrics, explainability, and ethics review processes
 - **Generative AI & LLM** — prompt injection and jailbreak defenses, RAG evaluation and retrieval quality, vector database access control, hallucination detection and mitigation, agentic AI guardrails (tool-use permission scoping, autonomous action guardrails), and human-in-the-loop checkpoints
-- **AI Risk Tiering & Regulatory Compliance** — EU AI Act risk-tier classification (high-risk/GPAI/limited-risk/minimal-risk), NIST AI RMF alignment, and ISO/IEC 42001 AI management system
+- **AI Risk Tiering & Regulatory Compliance** — EU AI Act risk-tier classification (high-risk/limited-risk/minimal-risk) with separate GPAI model obligations, NIST AI RMF alignment, and ISO/IEC 42001 AI management system
 - **Documentation** — model cards, foundation model/system cards, data documentation, and pipeline/API documentation
 - **Security & Compliance** — model and data security, adversarial robustness testing, LLM red-teaming and safety evaluations, and privacy protection
 

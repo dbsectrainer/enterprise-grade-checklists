@@ -119,7 +119,7 @@ The validator checks compliance with the following industry standards:
 **ISO/IEC 27001:2022 - Information Security Management**
 
 - Comprehensive information security management system
-- 14 control domains covering all aspects of security
+- Four Annex A themes (organizational, people, physical, technological) with 93 controls
 - Applicable to: Security, Data, Cloud, DevOps domains
 
 ### NIST Cybersecurity Framework (CSF)

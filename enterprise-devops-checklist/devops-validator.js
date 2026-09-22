@@ -173,6 +173,9 @@ class DevOpsValidator {
           // Legacy Jenkins pipeline: still supported, but new pipelines
           // should prefer GitHub Actions, GitLab CI, or Buildkite.
           this.validateJenkinsfile(content);
+        } else if (configPath.includes(".buildkite")) {
+          const yamlContent = yaml.load(content);
+          this.validateBuildkitePipeline(yamlContent);
         } else {
           const yamlContent = yaml.load(content);
           this.validateWorkflowStructure(yamlContent);
@@ -211,6 +214,45 @@ class DevOpsValidator {
       workflow.stages.forEach((stage) => stages.add(stage.toLowerCase()));
     }
 
+    return Array.from(stages);
+  }
+
+  validateBuildkitePipeline(pipeline) {
+    const requiredStages = ["build", "test", "deploy"];
+    const stages = this.extractBuildkiteStages(pipeline);
+
+    for (const stage of requiredStages) {
+      if (stages.includes(stage)) {
+        this.results.passed.push(`Pipeline includes ${stage} stage`);
+      } else {
+        this.results.warnings.push(`Pipeline missing ${stage} stage`);
+      }
+    }
+  }
+
+  extractBuildkiteStages(pipeline) {
+    const stages = new Set();
+    const requiredStages = ["build", "test", "deploy"];
+
+    const walkSteps = (steps) => {
+      if (!Array.isArray(steps)) return;
+
+      for (const step of steps) {
+        const text = [step.label, step.key, step.command, step.name]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+        for (const stage of requiredStages) {
+          if (text.includes(stage)) stages.add(stage);
+        }
+
+        if (Array.isArray(step.steps)) walkSteps(step.steps);
+        if (Array.isArray(step.group)) walkSteps(step.group);
+      }
+    };
+
+    walkSteps(pipeline?.steps);
     return Array.from(stages);
   }
 

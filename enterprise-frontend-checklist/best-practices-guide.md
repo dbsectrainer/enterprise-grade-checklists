@@ -211,7 +211,7 @@ const App: React.FC = () => (
 The React error boundary API is still implemented as a class under the hood (there is no
 hook equivalent as of React 19), but enterprise teams should not hand-roll one per app.
 Wrap the class once in a small reusable component — or adopt a maintained library like
-[`react-error-boundary`](https://github.com/bvaugon/react-error-boundary) — so the rest of
+[`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) — so the rest of
 the codebase only ever touches a functional API:
 
 ```typescript

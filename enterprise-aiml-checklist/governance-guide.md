@@ -474,6 +474,9 @@ class VectorStoreAccessControl:
 ### Agentic AI Guardrails
 
 ```python
+RISK_LEVEL_ORDER = {"Low": 0, "Medium": 1, "High": 2, "Critical": 3}
+
+
 class AgentToolGuardrail:
     """Scopes tool access per agent role and gates high-impact actions
     behind human approval."""
@@ -487,7 +490,9 @@ class AgentToolGuardrail:
         if tool_name not in self.allowed_tools:
             return AuthorizationResult(allowed=False, reason="tool not in agent's allowlist")
 
-        if action.risk_level >= self.approval_threshold:
+        if RISK_LEVEL_ORDER.get(action.risk_level, 0) >= RISK_LEVEL_ORDER.get(
+            self.approval_threshold, 0
+        ):
             return AuthorizationResult(
                 allowed=False,
                 requires_human_approval=True,
@@ -507,7 +512,8 @@ class AISystemRiskProfile:
     deployment context changes."""
 
     system_name: str
-    eu_ai_act_tier: str  # "Unacceptable" | "High" | "GPAI" | "Limited" | "Minimal"
+    eu_ai_act_tier: str  # "Unacceptable" | "High" | "Limited" | "Minimal"
+    gpai_obligations: bool  # separate from risk tier — applies to general-purpose models used or provided
     conformity_assessment_required: bool
     nist_rmf_functions_implemented: List[str]  # subset of Govern/Map/Measure/Manage
     iso42001_aims_scope: bool  # in scope of the org's AI Management System
