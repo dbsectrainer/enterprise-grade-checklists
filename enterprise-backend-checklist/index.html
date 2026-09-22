@@ -16,8 +16,8 @@
         systems, with focus on security, scalability, reliability, performance, API design, and
         infrastructure management. This enhanced checklist covers traditional backend concerns while
         embracing cloud-native architectures and emerging technologies, including backend
-        engineering practices for AI/LLM integration (RAG pipelines, vector databases, and
-        agent tool-calling security).
+        engineering practices for AI/LLM integration (RAG pipelines, vector databases, and agent
+        tool-calling security).
       </p>
 
       <div class="header-controls">
@@ -810,8 +810,8 @@
                       </li>
                       <li>
                         For multi-team GraphQL services, is GraphQL Federation (or a similar
-                        supergraph approach) used to compose subgraphs owned by different teams
-                        into a single graph?
+                        supergraph approach) used to compose subgraphs owned by different teams into
+                        a single graph?
                       </li>
                       <li>
                         How do you decide between REST, GraphQL, gRPC, tRPC, and GraphQL Federation
@@ -838,13 +838,13 @@
                         compile-time type safety without maintaining a separate API contract
                       </li>
                       <li>
-                        Use GraphQL Federation when multiple teams own independent GraphQL
-                        subgraphs that need to be composed into one graph for clients
+                        Use GraphQL Federation when multiple teams own independent GraphQL subgraphs
+                        that need to be composed into one graph for clients
                       </li>
                       <li>
                         Match the paradigm to the actual constraint (team boundaries, client
-                        language diversity, performance) rather than defaulting to REST, GraphQL,
-                        or gRPC out of habit
+                        language diversity, performance) rather than defaulting to REST, GraphQL, or
+                        gRPC out of habit
                       </li>
                       <li>
                         Keep the choice consistent with existing auth, rate limiting, and
@@ -854,8 +854,8 @@
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>
-                        Adopting tRPC across polyglot clients where the lack of a
-                        language-agnostic contract creates integration friction
+                        Adopting tRPC across polyglot clients where the lack of a language-agnostic
+                        contract creates integration friction
                       </li>
                       <li>
                         Federating GraphQL subgraphs without a schema registry or composition
@@ -866,8 +866,8 @@
                         client integration patterns
                       </li>
                       <li>
-                        No consistent authorization enforcement across federated subgraphs,
-                        creating gaps at composition boundaries
+                        No consistent authorization enforcement across federated subgraphs, creating
+                        gaps at composition boundaries
                       </li>
                     </ul>
                   </div>
@@ -1026,7 +1026,10 @@
                         What access control ensures a query against the vector store only returns
                         chunks the requesting user or tenant is authorized to see?
                       </li>
-                      <li>How do you monitor retrieval quality and latency separately from generation quality?</li>
+                      <li>
+                        How do you monitor retrieval quality and latency separately from generation
+                        quality?
+                      </li>
                       <li>
                         How do you handle embedding model versioning and re-indexing when the
                         embedding model changes?
@@ -1083,8 +1086,8 @@
                     <strong>Implementation Questions:</strong>
                     <ul>
                       <li>
-                        What input sanitization runs on user-supplied text and retrieved/RAG
-                        content before it reaches the model (delimiter injection, instruction-override
+                        What input sanitization runs on user-supplied text and retrieved/RAG content
+                        before it reaches the model (delimiter injection, instruction-override
                         attempts)?
                       </li>
                       <li>
@@ -1126,7 +1129,9 @@
                       <li>
                         For model-level red-teaming, jailbreak testing, and generative-AI
                         governance, see the
-                        <a href="../enterprise-aiml-checklist/index.html">enterprise-aiml-checklist</a>
+                        <a href="../enterprise-aiml-checklist/index.html"
+                          >enterprise-aiml-checklist</a
+                        >
                       </li>
                     </ul>
                     <strong>Red Flags:</strong>
@@ -1139,7 +1144,9 @@
                         Model output passed directly to a shell, SQL query, or eval() without
                         validation
                       </li>
-                      <li>No logging or monitoring of prompts/outputs to detect injection attempts</li>
+                      <li>
+                        No logging or monitoring of prompts/outputs to detect injection attempts
+                      </li>
                       <li>
                         Treating prompt-injection defense as solely a model-level concern with no
                         backend-side controls
@@ -2834,7 +2841,9 @@
                         For backends that serve AI/LLM workloads, track EU AI Act risk-tiering
                         obligations and NIST AI RMF governance functions alongside SOC 2/ISO
                         27001/PCI DSS controls — see the
-                        <a href="../enterprise-aiml-checklist/index.html">enterprise-aiml-checklist</a>
+                        <a href="../enterprise-aiml-checklist/index.html"
+                          >enterprise-aiml-checklist</a
+                        >
                         for model-level governance
                       </li>
                     </ul>
@@ -3065,8 +3074,8 @@
                       <li>Document both manual and automated deployment procedures</li>
                       <li>Include rollback procedures and disaster recovery steps</li>
                       <li>
-                        Standardize on current LTS runtime versions (Node.js 22 or 24, Python
-                        3.13, Java 21+) across environments to ensure security patches, performance
+                        Standardize on current LTS runtime versions (Node.js 22 or 24, Python 3.13,
+                        Java 21+) across environments to ensure security patches, performance
                         improvements, and long-term support
                       </li>
                     </ul>

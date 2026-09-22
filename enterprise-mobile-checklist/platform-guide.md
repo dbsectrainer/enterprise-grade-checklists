@@ -509,7 +509,7 @@ fun BiometricGateScreen(
 
 ## JavaScript Interface
 
-> **New Architecture:** the `Spec` interface shown in section 1a *is* the TypeScript definition — Codegen
+> **New Architecture:** the `Spec` interface shown in section 1a _is_ the TypeScript definition — Codegen
 > consumes it directly, so the interface below and the module-usage pattern are effectively unified into
 > one typed source of truth. The legacy pattern (separate hand-written interface + untyped
 > `NativeModules.X` lookup) is shown below for reference.

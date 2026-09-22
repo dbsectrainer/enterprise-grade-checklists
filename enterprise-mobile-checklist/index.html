@@ -144,13 +144,13 @@
                       </li>
                       <li>
                         If choosing React Native, is your team building on the New Architecture
-                        (Fabric renderer + TurboModules + JSI), or are you maintaining a legacy-bridge
-                        app that needs a migration plan?
+                        (Fabric renderer + TurboModules + JSI), or are you maintaining a
+                        legacy-bridge app that needs a migration plan?
                       </li>
                       <li>
                         Have you evaluated Kotlin Multiplatform (KMP) as an alternative to React
-                        Native/Flutter when native UI fidelity (SwiftUI/Jetpack Compose) matters more
-                        than a single shared UI codebase?
+                        Native/Flutter when native UI fidelity (SwiftUI/Jetpack Compose) matters
+                        more than a single shared UI codebase?
                       </li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -186,7 +186,8 @@
                       <li>Assuming 100% code sharing is possible with cross-platform solutions</li>
                       <li>
                         Starting a new React Native app on the legacy bridge architecture instead of
-                        the New Architecture (Fabric/TurboModules) without a specific reason to do so
+                        the New Architecture (Fabric/TurboModules) without a specific reason to do
+                        so
                       </li>
                       <li>
                         Not planning for platform-specific testing and optimization strategies
@@ -450,24 +451,24 @@
                     <strong>Implementation Questions:</strong>
                     <ul>
                       <li>
-                        Which on-device AI/ML capabilities would provide real user value (summarization,
-                        smart replies, image analysis, classification)?
+                        Which on-device AI/ML capabilities would provide real user value
+                        (summarization, smart replies, image analysis, classification)?
                       </li>
                       <li>
                         On iOS, will you use Apple Intelligence system APIs and/or CoreML for custom
                         on-device models, and what are the minimum OS/device requirements?
                       </li>
                       <li>
-                        On Android, will you use ML Kit (on-device APIs) and/or on-device Gemini Nano
-                        (AICore) for generative features, and which device tiers support them?
+                        On Android, will you use ML Kit (on-device APIs) and/or on-device Gemini
+                        Nano (AICore) for generative features, and which device tiers support them?
                       </li>
                       <li>
                         What is your fallback strategy for devices or OS versions that don't support
                         on-device AI features?
                       </li>
                       <li>
-                        How will you evaluate on-device model accuracy, latency, battery, and storage
-                        impact before shipping?
+                        How will you evaluate on-device model accuracy, latency, battery, and
+                        storage impact before shipping?
                       </li>
                       <li>
                         What data governance applies to inputs/outputs processed by on-device models
@@ -477,16 +478,17 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>
-                        On-device AI keeps sensitive data on the device, which can simplify privacy and
-                        compliance posture versus server-side inference
+                        On-device AI keeps sensitive data on the device, which can simplify privacy
+                        and compliance posture versus server-side inference
                       </li>
                       <li>
-                        Model and feature availability varies significantly by device tier, OS version,
-                        and chipset (Neural Engine / Tensor / NPU) - plan graceful degradation
+                        Model and feature availability varies significantly by device tier, OS
+                        version, and chipset (Neural Engine / Tensor / NPU) - plan graceful
+                        degradation
                       </li>
                       <li>
-                        Treat on-device AI features as progressive enhancements, not hard dependencies,
-                        given inconsistent hardware support
+                        Treat on-device AI features as progressive enhancements, not hard
+                        dependencies, given inconsistent hardware support
                       </li>
                       <li>
                         Factor on-device model size and update strategy into app size and OTA update
@@ -496,8 +498,8 @@
                     <strong>Red Flags:</strong>
                     <ul>
                       <li>
-                        Requiring on-device AI features without a fallback for unsupported devices or OS
-                        versions
+                        Requiring on-device AI features without a fallback for unsupported devices
+                        or OS versions
                       </li>
                       <li>
                         Assuming on-device processing eliminates all privacy/compliance obligations
@@ -508,7 +510,8 @@
                         startup performance
                       </li>
                       <li>
-                        Not testing on-device AI features across the actual range of supported hardware
+                        Not testing on-device AI features across the actual range of supported
+                        hardware
                       </li>
                     </ul>
                   </div>
@@ -1453,8 +1456,8 @@
                         rejection
                       </li>
                       <li>
-                        Treat privacy manifest and data-safety accuracy as a release-blocking CI check,
-                        not a one-time submission task
+                        Treat privacy manifest and data-safety accuracy as a release-blocking CI
+                        check, not a one-time submission task
                       </li>
                       <li>
                         Third-party and open-source SDKs are a common source of undeclared data

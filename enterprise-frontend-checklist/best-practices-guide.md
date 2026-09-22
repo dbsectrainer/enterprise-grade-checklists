@@ -152,7 +152,11 @@ into two simpler buckets that lighter tools handle with far less boilerplate:
 
   ```typescript
   // ✅ Good Practice - TanStack Query for server state
-  const { data: user, isLoading, error } = useQuery({
+  const {
+    data: user,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["user", userId],
     queryFn: () => fetchUser(userId),
   });

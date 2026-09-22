@@ -18,8 +18,8 @@
         modern AI/ML architectures and methodologies. It spans both classical/predictive ML systems
         (the data pipelines, model training, drift detection, and fairness metrics below) and
         generative AI/LLM systems (prompt injection defenses, RAG quality, agentic AI governance,
-        and AI Act/NIST/ISO risk tiering) — enterprises now run both, and neither should be
-        governed by the other's playbook alone.
+        and AI Act/NIST/ISO risk tiering) — enterprises now run both, and neither should be governed
+        by the other's playbook alone.
       </p>
 
       <div class="header-controls">
@@ -1563,7 +1563,9 @@
                         Use input/output filtering and instruction-hierarchy techniques (system
                         prompts privileged over retrieved/user content)
                       </li>
-                      <li>Sandbox and apply least-privilege to any tool or plugin the LLM can invoke</li>
+                      <li>
+                        Sandbox and apply least-privilege to any tool or plugin the LLM can invoke
+                      </li>
                       <li>
                         Continuously red-team with updated jailbreak corpora rather than a one-time
                         pre-launch test
@@ -1611,7 +1613,10 @@
                         What process re-indexes or refreshes the knowledge base, and how do you
                         prevent stale or conflicting sources from degrading answers?
                       </li>
-                      <li>How do you test RAG pipelines against adversarial or out-of-distribution queries?</li>
+                      <li>
+                        How do you test RAG pipelines against adversarial or out-of-distribution
+                        queries?
+                      </li>
                       <li>
                         What chunking, embedding, and re-ranking strategies were evaluated and why
                         were they chosen?
@@ -1627,9 +1632,17 @@
                         Maintain a labeled evaluation set of query/expected-context/expected-answer
                         triples for regression testing
                       </li>
-                      <li>Track groundedness/faithfulness scores alongside traditional retrieval metrics</li>
-                      <li>Version and audit the knowledge corpus the same way you version training data</li>
-                      <li>Include citation/source attribution in generated answers where feasible</li>
+                      <li>
+                        Track groundedness/faithfulness scores alongside traditional retrieval
+                        metrics
+                      </li>
+                      <li>
+                        Version and audit the knowledge corpus the same way you version training
+                        data
+                      </li>
+                      <li>
+                        Include citation/source attribution in generated answers where feasible
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1637,7 +1650,10 @@
                         No automated evaluation harness for retrieval or answer quality; changes
                         assessed only by spot-checking
                       </li>
-                      <li>Retrieved context that is stale, duplicated, or contradictory without detection</li>
+                      <li>
+                        Retrieved context that is stale, duplicated, or contradictory without
+                        detection
+                      </li>
                       <li>Generated answers that cite sources they did not actually retrieve</li>
                       <li>
                         RAG pipeline changes deployed without regression testing against a held-out
@@ -1690,8 +1706,14 @@
                         Filter retrieval results by the requesting user's permissions before they
                         ever reach the prompt context
                       </li>
-                      <li>Encrypt embeddings and metadata, and rotate credentials for vector database access</li>
-                      <li>Treat embedding deletion as part of the standard data-retention/deletion workflow</li>
+                      <li>
+                        Encrypt embeddings and metadata, and rotate credentials for vector database
+                        access
+                      </li>
+                      <li>
+                        Treat embedding deletion as part of the standard data-retention/deletion
+                        workflow
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1699,12 +1721,16 @@
                         A shared vector index across tenants or users with no row/namespace-level
                         filtering
                       </li>
-                      <li>Embeddings that retain sensitive data after the source document was deleted</li>
+                      <li>
+                        Embeddings that retain sensitive data after the source document was deleted
+                      </li>
                       <li>
                         Vector database endpoints reachable without authentication or with overly
                         broad service credentials
                       </li>
-                      <li>No audit trail of who queried what, making leak investigation impossible</li>
+                      <li>
+                        No audit trail of who queried what, making leak investigation impossible
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1756,11 +1782,16 @@
                         Require human review for hallucination-sensitive domains (legal, medical,
                         financial advice)
                       </li>
-                      <li>Track hallucination rate as a first-class production metric, not just accuracy</li>
+                      <li>
+                        Track hallucination rate as a first-class production metric, not just
+                        accuracy
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
-                      <li>No systematic measurement of hallucination rate before or after deployment</li>
+                      <li>
+                        No systematic measurement of hallucination rate before or after deployment
+                      </li>
                       <li>
                         Fabricated citations, statistics, or facts presented with the same
                         confidence as verified content
@@ -1826,7 +1857,10 @@
                         Require approval gates or rate limits for actions above a defined
                         risk/impact threshold
                       </li>
-                      <li>Log every tool call, input, and output in the agent's action trace for auditability</li>
+                      <li>
+                        Log every tool call, input, and output in the agent's action trace for
+                        auditability
+                      </li>
                       <li>
                         Test agents in a sandboxed environment with synthetic tools before
                         connecting to production systems
@@ -1838,7 +1872,9 @@
                         Agents granted broad API keys or credentials far beyond what their task
                         requires
                       </li>
-                      <li>No approval step before an agent executes irreversible or high-cost actions</li>
+                      <li>
+                        No approval step before an agent executes irreversible or high-cost actions
+                      </li>
                       <li>
                         Agent action logs that are incomplete or not correlated with the reasoning
                         that triggered them
@@ -1894,7 +1930,10 @@
                         Design review interfaces that surface the agent's reasoning and evidence,
                         not just the final action
                       </li>
-                      <li>Default to a safe, blocked state when human review is required but unavailable</li>
+                      <li>
+                        Default to a safe, blocked state when human review is required but
+                        unavailable
+                      </li>
                       <li>
                         Periodically audit override/approval patterns to recalibrate where
                         checkpoints are placed
@@ -1913,7 +1952,10 @@
                       <li>
                         Agents that proceed autonomously by default when a reviewer fails to respond
                       </li>
-                      <li>No audit trail of what a human approved versus what the agent originally proposed</li>
+                      <li>
+                        No audit trail of what a human approved versus what the agent originally
+                        proposed
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -2017,7 +2059,10 @@
                         What organizational structures and policies implement the "Govern" function
                         (accountability, culture, risk tolerance)?
                       </li>
-                      <li>How do you "Map" context and risks for each AI system before development begins?</li>
+                      <li>
+                        How do you "Map" context and risks for each AI system before development
+                        begins?
+                      </li>
                       <li>
                         What quantitative and qualitative methods do you use to "Measure" identified
                         risks (bias, robustness, safety, security)?
@@ -2056,8 +2101,14 @@
                         AI risk management that exists only as documentation with no operational
                         tie-in to development or deployment gates
                       </li>
-                      <li>No designated accountable owner for AI risk decisions (the "Govern" function)</li>
-                      <li>Risks identified during "Map" that are never revisited during "Measure" or "Manage"</li>
+                      <li>
+                        No designated accountable owner for AI risk decisions (the "Govern"
+                        function)
+                      </li>
+                      <li>
+                        Risks identified during "Map" that are never revisited during "Measure" or
+                        "Manage"
+                      </li>
                       <li>
                         Generative AI systems evaluated using only classical-ML risk criteria,
                         ignoring genAI-specific failure modes
@@ -2075,8 +2126,8 @@
                     <strong>Implementation Questions:</strong>
                     <ul>
                       <li>
-                        Does your organization have a documented AI Management System (AIMS)
-                        aligned to ISO/IEC 42001, or a roadmap toward certification?
+                        Does your organization have a documented AI Management System (AIMS) aligned
+                        to ISO/IEC 42001, or a roadmap toward certification?
                       </li>
                       <li>
                         What AI policy, objectives, and top-management commitment are documented as
@@ -2086,7 +2137,10 @@
                         How do you conduct and document AI-specific risk and impact assessments as
                         part of the AIMS?
                       </li>
-                      <li>What internal audit and management review cadence exists for the AI management system?</li>
+                      <li>
+                        What internal audit and management review cadence exists for the AI
+                        management system?
+                      </li>
                       <li>
                         How is the AIMS scoped — which AI systems, business units, and third-party
                         AI dependencies are in scope?
@@ -2121,7 +2175,10 @@
                         AI policy that exists as a static document with no management review or
                         continual improvement process
                       </li>
-                      <li>No AI-specific risk register distinct from general IT/security risk registers</li>
+                      <li>
+                        No AI-specific risk register distinct from general IT/security risk
+                        registers
+                      </li>
                       <li>
                         AIMS scope that excludes third-party or vendor-supplied AI/LLM components
                         actually in production use
@@ -2222,8 +2279,8 @@
                         outputs)?
                       </li>
                       <li>
-                        How do you document the model's content provenance and
-                        watermarking/labeling approach for generated content, where applicable?
+                        How do you document the model's content provenance and watermarking/labeling
+                        approach for generated content, where applicable?
                       </li>
                       <li>
                         How do you handle documentation when building on top of a third-party

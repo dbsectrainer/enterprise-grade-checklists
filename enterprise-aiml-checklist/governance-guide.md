@@ -517,13 +517,13 @@ class AISystemRiskProfile:
 
 ### Governance Checklist Summary
 
-| Topic | Classical ML | Generative AI / LLM |
-| --- | --- | --- |
-| Adversarial testing | Evasion / data poisoning red-team | Jailbreak / harmful-output red-team |
-| Documentation | Model Cards | Foundation Model / System Cards |
-| Access control | Model & training-data access control | Vector database & retrieval access control |
-| Autonomy risk | Automated retraining guardrails | Agentic AI tool-use & action guardrails |
-| Regulatory tiering | Sector-specific compliance (GDPR, HIPAA) | EU AI Act tiering, NIST AI RMF, ISO/IEC 42001 |
+| Topic               | Classical ML                             | Generative AI / LLM                           |
+| ------------------- | ---------------------------------------- | --------------------------------------------- |
+| Adversarial testing | Evasion / data poisoning red-team        | Jailbreak / harmful-output red-team           |
+| Documentation       | Model Cards                              | Foundation Model / System Cards               |
+| Access control      | Model & training-data access control     | Vector database & retrieval access control    |
+| Autonomy risk       | Automated retraining guardrails          | Agentic AI tool-use & action guardrails       |
+| Regulatory tiering  | Sector-specific compliance (GDPR, HIPAA) | EU AI Act tiering, NIST AI RMF, ISO/IEC 42001 |
 
 ## Resources
 

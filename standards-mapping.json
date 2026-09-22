@@ -316,7 +316,7 @@
       "Explainability": ["EU AI Act - High"],
       "Fairness Testing": [],
       "Generative AI & LLM Security": ["EU AI Act - GPAI", "NIST AI RMF - Manage"],
-      "AI Risk Tiering": ["EU AI Act", "ISO/IEC 42001"]
+      "AI Risk Tiering": ["EU AI Act", "ISO/IEC 42001", "NIST AI RMF - Govern"]
     }
   },
   "complianceChecklists": {
