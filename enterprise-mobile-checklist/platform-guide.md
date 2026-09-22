@@ -162,7 +162,11 @@ class RNCustomModuleManager: RCTEventEmitter {
 }
 ```
 
-### 2. iOS Bridge Configuration
+### 2. iOS Bridge Configuration (Legacy — Old Architecture)
+
+> With the New Architecture, Codegen generates this Objective-C glue automatically from the TypeScript
+> spec shown in section 1a — you no longer hand-write `RCT_EXTERN_MODULE`/`RCT_EXTERN_METHOD` declarations
+> for new modules. Shown here for reference when working in a legacy-bridge codebase.
 
 ```objc
 // RNCustomModule.m
@@ -183,7 +187,7 @@ RCT_EXTERN_METHOD(methodWithCallback:(RCTResponseSenderBlock)callback)
 ### 3. iOS Platform Features
 
 ```swift
-// MARK: - Biometrics
+// MARK: - Biometrics (UIKit-era imperative pattern)
 class BiometricAuth {
     func authenticate() -> Promise<Bool> {
         return Promise { resolve, reject in
@@ -225,9 +229,115 @@ class PushNotificationManager {
 }
 ```
 
+### 3b. SwiftUI Pattern (Modern iOS UI Approach)
+
+SwiftUI is now the standard approach for new iOS UI (including for native screens embedded in an RN New
+Architecture app via Fabric interop, or for KMP's native-UI layer). The same biometric flow above is
+expressed declaratively as an `ObservableObject` driving view state, instead of an imperative
+callback/Promise wrapper:
+
+```swift
+// MARK: - Biometrics (SwiftUI pattern)
+@MainActor
+final class BiometricAuthViewModel: ObservableObject {
+    @Published private(set) var isAuthenticated = false
+    @Published private(set) var errorMessage: String?
+
+    func authenticate() async {
+        let context = LAContext()
+        var error: NSError?
+
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            errorMessage = error?.localizedDescription ?? "Biometrics unavailable"
+            return
+        }
+
+        do {
+            isAuthenticated = try await context.evaluatePolicy(
+                .deviceOwnerAuthenticationWithBiometrics,
+                localizedReason: "Authentication required"
+            )
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+}
+
+struct BiometricGateView: View {
+    @StateObject private var viewModel = BiometricAuthViewModel()
+
+    var body: some View {
+        VStack(spacing: 16) {
+            if viewModel.isAuthenticated {
+                Text("Unlocked").font(.headline)
+            } else {
+                Button("Authenticate") {
+                    Task { await viewModel.authenticate() }
+                }
+                if let message = viewModel.errorMessage {
+                    Text(message).foregroundStyle(.red).font(.footnote)
+                }
+            }
+        }
+        .task { await viewModel.authenticate() }
+    }
+}
+```
+
 ## Android Implementation
 
-### 1. Kotlin Module Template
+### 1a. TurboModule Template (New Architecture — Recommended)
+
+The Kotlin implementation now extends a Codegen-generated spec class (from the same TypeScript spec shown
+in the iOS section) instead of the legacy `ReactContextBaseJavaModule`/`ReactPackage` pair, and is invoked
+through JSI rather than the batched bridge:
+
+```kotlin
+class CustomModule(reactContext: ReactApplicationContext) :
+    NativeCustomModuleSpec(reactContext) {
+
+    override fun getName() = "CustomModule"
+
+    // Promise-based method — JSI-backed, no serialization to the bridge's JSON message queue
+    override fun methodWithPromise(promise: Promise) {
+        try {
+            val result = performOperation()
+            promise.resolve(result)
+        } catch (e: Exception) {
+            promise.reject("ERROR_CODE", e)
+        }
+    }
+
+    override fun methodWithCallback(callback: Callback) {
+        try {
+            val result = performOperation()
+            callback.invoke(null, result)
+        } catch (e: Exception) {
+            callback.invoke(e.message)
+        }
+    }
+}
+
+// TurboReactPackage — registers the module for lazy, on-demand loading via TurboModuleManager
+class CustomTurboPackage : TurboReactPackage() {
+    override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? =
+        if (name == CustomModule.NAME) CustomModule(reactContext) else null
+
+    override fun getReactModuleInfoProvider() = ReactModuleInfoProvider {
+        mapOf(CustomModule.NAME to ReactModuleInfo(
+            CustomModule.NAME, CustomModule.NAME, false, false, false, true /* isTurboModule */
+        ))
+    }
+}
+```
+
+> As with iOS, most teams scaffold this via the **Expo Modules API** (`npx create-expo-module`) rather
+> than hand-writing the TurboReactPackage registration.
+
+### 1b. Kotlin Module Template (Legacy Bridge — Old Architecture)
+
+> Kept for teams maintaining apps still on the legacy bridge. New modules should use the TurboModule
+> pattern above.
 
 ```kotlin
 class CustomModule(reactContext: ReactApplicationContext) :
@@ -280,7 +390,7 @@ class CustomPackage : ReactPackage {
 ### 2. Android Platform Features
 
 ```kotlin
-// Biometric Authentication
+// Biometric Authentication (imperative View-based pattern)
 class BiometricAuth(private val activity: FragmentActivity) {
     fun authenticate(): Promise<Boolean> {
         return Promise { resolve, reject ->
@@ -334,9 +444,77 @@ class NotificationManager(private val context: Context) {
 }
 ```
 
+### 2b. Jetpack Compose Pattern (Modern Android UI Approach)
+
+Jetpack Compose is now the standard approach for new Android UI (including native screens in an RN New
+Architecture app, or KMP's native-UI layer). The same biometric flow is expressed as a composable driving
+state through a `ViewModel`, instead of an imperative `Promise`/callback wrapper:
+
+```kotlin
+class BiometricAuthViewModel : ViewModel() {
+    private val _isAuthenticated = mutableStateOf(false)
+    val isAuthenticated: State<Boolean> = _isAuthenticated
+
+    private val _errorMessage = mutableStateOf<String?>(null)
+    val errorMessage: State<String?> = _errorMessage
+
+    fun authenticate(activity: FragmentActivity) {
+        val biometricPrompt = BiometricPrompt(
+            activity,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    _isAuthenticated.value = true
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    _errorMessage.value = errString.toString()
+                }
+            }
+        )
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Authentication Required")
+            .setNegativeButtonText("Cancel")
+            .build()
+
+        biometricPrompt.authenticate(promptInfo)
+    }
+}
+
+@Composable
+fun BiometricGateScreen(
+    activity: FragmentActivity,
+    viewModel: BiometricAuthViewModel = viewModel()
+) {
+    val isAuthenticated by viewModel.isAuthenticated
+    val errorMessage by viewModel.errorMessage
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.padding(16.dp)
+    ) {
+        if (isAuthenticated) {
+            Text("Unlocked", style = MaterialTheme.typography.headlineSmall)
+        } else {
+            Button(onClick = { viewModel.authenticate(activity) }) {
+                Text("Authenticate")
+            }
+            errorMessage?.let {
+                Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+            }
+        }
+    }
+}
+```
+
 ## JavaScript Interface
 
-### 1. TypeScript Definitions
+> **New Architecture:** the `Spec` interface shown in section 1a *is* the TypeScript definition — Codegen
+> consumes it directly, so the interface below and the module-usage pattern are effectively unified into
+> one typed source of truth. The legacy pattern (separate hand-written interface + untyped
+> `NativeModules.X` lookup) is shown below for reference.
+
+### 1. TypeScript Definitions (Legacy Pattern)
 
 ```typescript
 interface CustomModule {
@@ -361,9 +539,12 @@ interface PlatformFeatures {
 ### 2. Module Usage
 
 ```typescript
-// Module initialization
+// Legacy: untyped lookup via the bridge's module registry
 const CustomModule: CustomModule = NativeModules.CustomModule;
 const PlatformFeatures: PlatformFeatures = NativeModules.PlatformFeatures;
+
+// New Architecture: import the Codegen-generated module directly — fully typed, JSI-backed
+// import CustomModule from "./NativeCustomModule";
 
 // Event subscription
 const eventEmitter = new NativeEventEmitter(CustomModule);
@@ -379,16 +560,32 @@ useEffect(() => {
 
 ## Performance Considerations
 
-### 1. Bridge Optimization
+### 1. Bridge Optimization (Legacy) vs. JSI (New Architecture)
+
+The legacy bridge batches and JSON-serializes every call between JS and native threads, which is the
+dominant source of native-module overhead at scale:
 
 ```mermaid
 graph LR
-    A[JS Thread] --> B{Bridge}
+    A[JS Thread] --> B{Legacy Bridge}
     B --> C[Native Thread]
 
     D[Batch Calls] --> B
-    E[Data Serialization] --> B
+    E[JSON Serialization] --> B
     F[Thread Management] --> B
+```
+
+With the New Architecture, **JSI** gives JS and native code direct, synchronous references to each other's
+objects/functions, removing the serialization step entirely for most calls:
+
+```mermaid
+graph LR
+    A[JS Thread] --> B[JSI - Direct References]
+    B --> C[Native Thread]
+
+    D[TurboModules] --> B
+    E[Fabric] --> B
+    F[No JSON Serialization] --> B
 ```
 
 ### 2. Memory Management

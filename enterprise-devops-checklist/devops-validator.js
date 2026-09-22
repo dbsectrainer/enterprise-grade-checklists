@@ -126,12 +126,17 @@ class DevOpsValidator {
   async validateCICD() {
     console.log("Checking CI/CD Configuration...");
     try {
-      // Check common CI/CD config files
+      // Check common CI/CD config files. GitHub Actions, GitLab CI, and
+      // Buildkite are the primary modern defaults recommended for new
+      // pipelines. Jenkinsfile and Azure Pipelines are still detected and
+      // validated below for organizations maintaining legacy or existing
+      // investments in those tools.
       const configFiles = [
         ".github/workflows",
         ".gitlab-ci.yml",
-        "Jenkinsfile",
+        ".buildkite/pipeline.yml",
         "azure-pipelines.yml",
+        "Jenkinsfile",
       ];
 
       for (const config of configFiles) {
@@ -165,6 +170,8 @@ class DevOpsValidator {
         // Single pipeline file
         const content = fs.readFileSync(configPath, "utf8");
         if (configPath.includes("Jenkinsfile")) {
+          // Legacy Jenkins pipeline: still supported, but new pipelines
+          // should prefer GitHub Actions, GitLab CI, or Buildkite.
           this.validateJenkinsfile(content);
         } else {
           const yamlContent = yaml.load(content);
@@ -208,7 +215,10 @@ class DevOpsValidator {
   }
 
   validateJenkinsfile(content) {
-    // Basic Jenkinsfile validation
+    // Basic Jenkinsfile validation. Jenkins is treated here as a
+    // still-supported legacy CI/CD tool for existing pipelines; GitHub
+    // Actions, GitLab CI, or Buildkite are the recommended defaults for
+    // new pipeline development.
     const requiredSections = ["pipeline", "stages", "stage"];
     for (const section of requiredSections) {
       if (!content.includes(section)) {

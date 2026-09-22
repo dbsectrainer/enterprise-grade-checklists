@@ -1298,6 +1298,66 @@
                   </div>
                 </label>
               </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Post-Quantum Cryptography (PQC) Migration Planning</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Have you inventoried all systems using cryptography vulnerable to
+                        cryptanalytically relevant quantum computers (RSA, ECC/ECDSA, Diffie-Hellman)?
+                      </li>
+                      <li>
+                        What is your migration roadmap to NIST's finalized post-quantum cryptography
+                        standards (ML-KEM for key encapsulation, ML-DSA and SLH-DSA for digital
+                        signatures)?
+                      </li>
+                      <li>
+                        How do you prioritize systems for PQC migration based on data sensitivity and
+                        "harvest now, decrypt later" risk?
+                      </li>
+                      <li>
+                        What crypto-agility mechanisms allow algorithms to be swapped without
+                        re-architecting dependent systems?
+                      </li>
+                      <li>
+                        How are vendors and cloud/HSM providers tracking toward PQC and
+                        hybrid classical/PQC support?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Track NIST's finalized PQC standards (FIPS 203 ML-KEM, FIPS 204 ML-DSA, FIPS
+                        205 SLH-DSA, published 2024) as the baseline for migration planning
+                      </li>
+                      <li>
+                        Use hybrid classical/PQC key exchange during the transition period to
+                        maintain compatibility while adding quantum resistance
+                      </li>
+                      <li>
+                        Treat long-lived, highly sensitive data as highest priority given "harvest
+                        now, decrypt later" adversary strategies
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>No inventory of where and how public-key cryptography is used</li>
+                      <li>
+                        No migration timeline or owner for transitioning to NIST-standardized PQC
+                        algorithms
+                      </li>
+                      <li>
+                        Cryptographic implementations hard-coded in ways that block future algorithm
+                        agility
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -2938,6 +2998,73 @@
                       <li>SCA scanning that doesn't cover all dependency types and sources</li>
                       <li>
                         No processes for timely component updates when security patches are released
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">AI/LLM Security & Prompt Injection Defense</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        How do you defend AI/LLM-integrated applications against direct and indirect
+                        prompt injection attacks?
+                      </li>
+                      <li>
+                        What controls vet the supply chain risk of third-party and open-weight models
+                        (provenance, tampering, malicious weights)?
+                      </li>
+                      <li>
+                        How do you sandbox and constrain the permissions of tools, plugins, and data
+                        sources an LLM agent can invoke?
+                      </li>
+                      <li>
+                        What AI red-teaming and adversarial testing occurs before and after deploying
+                        AI-powered features?
+                      </li>
+                      <li>
+                        How do you prevent sensitive data leakage through prompts, model outputs, or
+                        training/fine-tuning pipelines?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Treat prompt injection and model supply-chain risk as first-class threats in
+                        application threat models, not as generic input validation
+                      </li>
+                      <li>
+                        Require provenance, signing, and vulnerability review for third-party and
+                        open-weight models before deployment, similar to other software dependencies
+                      </li>
+                      <li>
+                        Run regular AI red-teaming exercises covering jailbreaks, data exfiltration,
+                        and unsafe tool/agent actions
+                      </li>
+                      <li>
+                        For deeper AI governance, model risk management, and responsible-AI controls,
+                        see the
+                        <a href="../enterprise-aiml-checklist/index.html">Enterprise AI/ML Checklist</a>
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        LLM-integrated features shipped without any prompt injection or jailbreak
+                        testing
+                      </li>
+                      <li>
+                        Third-party or open-weight models deployed with no provenance or integrity
+                        verification
+                      </li>
+                      <li>
+                        AI agents granted broad tool, data, or system access without least-privilege
+                        constraints
                       </li>
                     </ul>
                   </div>

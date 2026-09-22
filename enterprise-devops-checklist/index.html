@@ -123,6 +123,12 @@
                       </li>
                       <li>Establish artifact retention policies and storage optimization</li>
                       <li>Monitor build performance metrics and optimize bottlenecks</li>
+                      <li>
+                        Default to modern cloud-native CI/CD platforms (GitHub Actions, GitLab CI,
+                        Buildkite) for new pipelines; legacy self-hosted tools such as Jenkins
+                        remain supported for existing investments but typically carry higher
+                        operational and maintenance overhead
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -756,6 +762,10 @@
                         Helm charts)?
                       </li>
                       <li>
+                        Do you use a GitOps continuous-delivery tool (e.g., ArgoCD, Flux) to
+                        reconcile cluster state from a Git repository?
+                      </li>
+                      <li>
                         Is the orchestration platform integrated with monitoring and logging
                         systems?
                       </li>
@@ -767,7 +777,11 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement GitOps workflows for declarative configuration management</li>
+                      <li>
+                        Implement GitOps workflows for declarative configuration management using
+                        tools such as ArgoCD or Flux to automatically sync Helm charts and
+                        manifests from Git
+                      </li>
                       <li>
                         Use managed orchestration services where appropriate to reduce operational
                         overhead
@@ -939,7 +953,8 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>
-                        Use container-native monitoring tools (Prometheus, Kubernetes metrics)
+                        Use container-native monitoring tools and standards (Prometheus,
+                        OpenTelemetry, Kubernetes metrics)
                       </li>
                       <li>Implement distributed tracing for microservices architectures</li>
                       <li>Establish container performance baselines and anomaly detection</li>
@@ -993,7 +1008,7 @@
                       </li>
                       <li>
                         Do custom applications expose metrics in standard formats (Prometheus,
-                        StatsD)?
+                        OpenTelemetry, StatsD)?
                       </li>
                     </ul>
                     <strong>Key Considerations:</strong>

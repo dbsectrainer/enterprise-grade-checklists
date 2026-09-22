@@ -10,11 +10,11 @@ This mapping helps organizations understand how data management controls align w
 
 | Framework | Coverage | Last Updated |
 | --------- | -------- | ------------ |
-| GDPR      | 95%      | 2024-02-13   |
-| CCPA      | 92%      | 2024-02-13   |
-| HIPAA     | 90%      | 2024-02-13   |
-| SOX       | 88%      | 2024-02-13   |
-| GLBA      | 93%      | 2024-02-13   |
+| GDPR      | 95%      | 2026-09-22   |
+| CCPA      | 92%      | 2026-09-22   |
+| HIPAA     | 90%      | 2026-09-22   |
+| SOX       | 88%      | 2026-09-22   |
+| GLBA      | 93%      | 2026-09-22   |
 
 ## Data Protection Framework
 
