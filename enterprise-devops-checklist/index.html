@@ -713,7 +713,14 @@
                       <li>
                         Are container images automatically scanned for security vulnerabilities?
                       </li>
-                      <li>Do you have image signing and verification for supply chain security?</li>
+                      <li>
+                        Do you have image signing and verification (e.g., Sigstore/cosign) for
+                        supply chain security?
+                      </li>
+                      <li>
+                        Do you generate a Software Bill of Materials (SBOM) in a standard format
+                        (SPDX, CycloneDX) for each container image?
+                      </li>
                       <li>Are registry access logs monitored and security incidents tracked?</li>
                       <li>
                         Is the registry integrated with CI/CD pipelines for automated image
@@ -731,6 +738,11 @@
                         Use private registries for proprietary images and public for open source
                       </li>
                       <li>Establish image retention policies and automated cleanup processes</li>
+                      <li>
+                        Benchmark supply chain maturity against SLSA (Supply-chain Levels for
+                        Software Artifacts) framework levels to guide provenance and build
+                        integrity improvements
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1161,7 +1173,9 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>
-                        Implement APM tools that support your technology stack and deployment model
+                        Adopt OpenTelemetry as the vendor-neutral standard framework for traces,
+                        metrics, and logs, paired with APM tools that support your technology
+                        stack and deployment model
                       </li>
                       <li>
                         Use sampling strategies to balance trace completeness with performance

@@ -678,6 +678,11 @@ describe("CustomModule Integration", () => {
 ## Resources
 
 - [React Native Native Modules](https://reactnative.dev/docs/native-modules-intro)
+- [React Native New Architecture (Fabric, TurboModules, JSI)](https://reactnative.dev/docs/the-new-architecture/landing-page)
+- [Expo Modules API](https://docs.expo.dev/modules/overview/)
+- [SwiftUI Documentation](https://developer.apple.com/documentation/swiftui/)
+- [Jetpack Compose Documentation](https://developer.android.com/jetpack/compose)
+- [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
 - [iOS Development Guide](https://developer.apple.com/documentation/)
 - [Android Development Guide](https://developer.android.com/guide)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)

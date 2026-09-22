@@ -917,6 +917,309 @@
         </div>
 
         <div class="section">
+          <h2>AI/LLM Backend Integration</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">RAG Pipeline & Vector Database Integration</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        How is the retrieval step (embedding generation, similarity search,
+                        re-ranking) orchestrated separately from the generation step so each can be
+                        scaled, monitored, and failed over independently?
+                      </li>
+                      <li>
+                        What vector database is used, and how is it deployed, backed up, and
+                        access-controlled (network policies, service accounts, per-tenant
+                        namespaces/collections)?
+                      </li>
+                      <li>
+                        How do you keep embeddings in sync with source-of-truth data as documents
+                        are created, updated, or deleted?
+                      </li>
+                      <li>
+                        What access control ensures a query against the vector store only returns
+                        chunks the requesting user or tenant is authorized to see?
+                      </li>
+                      <li>How do you monitor retrieval quality and latency separately from generation quality?</li>
+                      <li>
+                        How do you handle embedding model versioning and re-indexing when the
+                        embedding model changes?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Treat the vector database as a first-class data store requiring the same
+                        authentication, authorization, encryption, and backup discipline as your
+                        primary database
+                      </li>
+                      <li>
+                        Enforce document-level authorization at retrieval time, not just at the API
+                        gateway, so retrieval can't leak data across tenants
+                      </li>
+                      <li>
+                        Decouple retrieval and generation services so each can be scaled and
+                        rate-limited independently
+                      </li>
+                      <li>
+                        Cache embeddings and retrieval results where freshness requirements allow,
+                        to reduce vector database load and cost
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Vector database exposed without authentication or with a single shared
+                        collection across all tenants
+                      </li>
+                      <li>
+                        No process for keeping embeddings in sync with deletions, allowing retrieval
+                        of stale or removed data
+                      </li>
+                      <li>
+                        Retrieval results returned without re-checking the requesting user's
+                        authorization for each retrieved chunk
+                      </li>
+                      <li>
+                        RAG pipeline steps tightly coupled into a single synchronous call with no
+                        independent scaling or observability
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Prompt Injection Defense at the API Boundary</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What input sanitization runs on user-supplied text and retrieved/RAG
+                        content before it reaches the model (delimiter injection, instruction-override
+                        attempts)?
+                      </li>
+                      <li>
+                        How do you validate and constrain model output before it is returned to
+                        clients or used to trigger downstream actions?
+                      </li>
+                      <li>
+                        How do you distinguish trusted system/developer instructions from untrusted
+                        user or retrieved content in the prompt structure?
+                      </li>
+                      <li>
+                        What monitoring detects anomalous prompts or outputs consistent with
+                        injection or jailbreak attempts?
+                      </li>
+                      <li>
+                        How do you handle model output that contains executable content (code, SQL,
+                        shell commands) before it is executed or rendered?
+                      </li>
+                      <li>
+                        How is this backend-layer defense coordinated with model-level governance
+                        controls?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Sanitize and clearly delimit untrusted content (user input, retrieved
+                        documents) separately from trusted system instructions
+                      </li>
+                      <li>
+                        Validate structured output against a schema before consuming it
+                        programmatically; never directly execute model-generated code or commands
+                        without review
+                      </li>
+                      <li>
+                        Apply output filtering for sensitive data leakage (PII, secrets) in addition
+                        to input filtering
+                      </li>
+                      <li>
+                        For model-level red-teaming, jailbreak testing, and generative-AI
+                        governance, see the
+                        <a href="../enterprise-aiml-checklist/index.html">enterprise-aiml-checklist</a>
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        User input or retrieved content concatenated directly into prompts with no
+                        sanitization or delimiting
+                      </li>
+                      <li>
+                        Model output passed directly to a shell, SQL query, or eval() without
+                        validation
+                      </li>
+                      <li>No logging or monitoring of prompts/outputs to detect injection attempts</li>
+                      <li>
+                        Treating prompt-injection defense as solely a model-level concern with no
+                        backend-side controls
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">LLM API Rate Limiting & Cost Control</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        How are LLM API calls rate-limited per user, tenant, or API key, separate
+                        from general API rate limiting?
+                      </li>
+                      <li>
+                        What token-based budgets or quotas prevent runaway generation costs from a
+                        single request or user?
+                      </li>
+                      <li>
+                        How do you track and attribute LLM spend by feature, team, or customer for
+                        cost accounting?
+                      </li>
+                      <li>
+                        What fallback behavior (smaller model, cached response, graceful error)
+                        applies when quotas or provider rate limits are hit?
+                      </li>
+                      <li>
+                        How do you handle streaming responses and long-running generations in your
+                        rate-limiting and timeout strategy?
+                      </li>
+                      <li>What alerting exists for unexpected spikes in LLM API cost or usage?</li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Rate-limit and budget by token count/cost, not just request count, since LLM
+                        cost scales with input and output tokens
+                      </li>
+                      <li>
+                        Implement per-tenant and per-feature cost attribution to catch runaway usage
+                        early
+                      </li>
+                      <li>
+                        Set hard timeouts and max-token limits on generation calls to bound
+                        worst-case latency and cost
+                      </li>
+                      <li>
+                        Build in graceful degradation (cached answers, smaller/cheaper models) when
+                        limits are reached rather than hard failures
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        No token-level budget, allowing a single request to generate unbounded
+                        output and cost
+                      </li>
+                      <li>
+                        LLM API keys shared across all tenants/features with no per-tenant usage
+                        attribution
+                      </li>
+                      <li>No alerting when LLM spend spikes unexpectedly</li>
+                      <li>
+                        Rate limiting applied only at the general API gateway without LLM-specific
+                        token/cost awareness
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">AI Agent & Tool-Calling Security</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What backend actions/tools can an AI agent invoke, and is that set
+                        explicitly scoped and allow-listed rather than open-ended?
+                      </li>
+                      <li>
+                        How do you enforce the same authentication/authorization checks on
+                        agent-invoked actions as on direct user-invoked actions?
+                      </li>
+                      <li>
+                        What approval or confirmation step is required before an agent executes a
+                        high-risk or irreversible action (payments, deletions, external
+                        communications)?
+                      </li>
+                      <li>
+                        How do you log and audit every tool call an agent makes, including the
+                        context that triggered it?
+                      </li>
+                      <li>
+                        How do you prevent an agent from chaining tool calls in ways that escalate
+                        privilege or bypass business rules?
+                      </li>
+                      <li>
+                        How do you test agent behavior against adversarial prompts designed to
+                        trigger unintended tool calls?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Scope agent tool access with the same least-privilege principle used for
+                        human accounts and service accounts
+                      </li>
+                      <li>
+                        Require the backend to independently validate and authorize every
+                        agent-invoked action, never trusting the model's own judgment as the sole
+                        gate
+                      </li>
+                      <li>
+                        Gate irreversible or high-impact actions behind explicit confirmation or
+                        human-in-the-loop approval
+                      </li>
+                      <li>
+                        Audit-log tool calls with enough context to reconstruct why the agent took
+                        an action
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>Agents granted broad or unscoped API/database access "to be flexible"</li>
+                      <li>
+                        Tool-calling actions executed without re-validating authorization at the
+                        backend, trusting the model's function-call output directly
+                      </li>
+                      <li>
+                        No audit trail linking an agent's tool calls back to the triggering request
+                        or user
+                      </li>
+                      <li>
+                        High-risk actions (payments, deletions, data exports) executable by an agent
+                        without human confirmation
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
           <h2>Database Management</h2>
           <div class="checklist-group">
             <h3>Required</h3>
