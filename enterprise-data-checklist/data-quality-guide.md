@@ -222,7 +222,7 @@ graph TD
 | Dimension    | Metric               | Target | Current | Trend |
 | ------------ | -------------------- | ------ | ------- | ----- |
 | Completeness | % Required Fields    | 99.9%  | 99.5%   | ↑     |
-| Accuracy     | % Valid Values       | 99.5%  | 99.2%   | ↗    |
+| Accuracy     | % Valid Values       | 99.5%  | 99.2%   | ↗     |
 | Consistency  | % Consistent Records | 99.0%  | 98.8%   | →     |
 | Timeliness   | Avg. Latency (min)   | < 5    | 4.2     | ↓     |
 
