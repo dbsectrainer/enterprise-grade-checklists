@@ -4,41 +4,88 @@
 
 This roadmap outlines our phased approach to both enhancing existing checklists and creating new ones, ensuring comprehensive coverage of enterprise development needs.
 
-## Phase 1: Core Enhancement (Q1 2025)
+## Phase 1: Core Enhancement — Completed (2.0.0, 2025-02-13)
 
 ### Security Enhancement
 
-- [ ] Add Zero Trust Architecture framework
-  - [ ] Network segmentation guidelines
-  - [ ] Identity verification protocols
-  - [ ] Access control policies
-  - [ ] Monitoring and logging requirements
+- [x] Add Zero Trust Architecture framework
+  - [x] Network segmentation guidelines
+  - [x] Identity verification protocols
+  - [x] Access control policies
+  - [x] Monitoring and logging requirements
 
 ### Cloud Optimization
 
-- [ ] Integrate cost optimization guidelines
-  - [ ] Resource sizing recommendations
-  - [ ] Auto-scaling strategies
-  - [ ] Cost monitoring tools
-  - [ ] Budget management practices
+- [x] Integrate cost optimization guidelines
+  - [x] Resource sizing recommendations
+  - [x] Auto-scaling strategies
+  - [x] Cost monitoring tools
+  - [x] Budget management practices
 
 ### Compliance Integration
 
-- [ ] Add compliance mapping across all checklists
-  - [ ] HIPAA requirements
-  - [ ] SOC2 controls
-  - [ ] GDPR guidelines
-  - [ ] PCI DSS requirements
+- [x] Add compliance mapping across all checklists
+  - [x] HIPAA requirements
+  - [x] SOC2 controls
+  - [x] GDPR guidelines
+  - [x] PCI DSS requirements
 
 ### Technical Demonstrations
 
-- [ ] Add practical examples
-  - [ ] Code snippets
-  - [ ] Configuration examples
-  - [ ] Implementation guides
-  - [ ] Best practice demonstrations
+- [x] Add practical examples
+  - [x] Code snippets
+  - [x] Configuration examples
+  - [x] Implementation guides
+  - [x] Best practice demonstrations
 
-## Phase 2: Critical Additions (Q2 2025)
+## Phase 2: 2026 Technology Refresh — Completed (2.1.0, 2026-09-22)
+
+A repo-wide content refresh bringing checklist content, standards
+references, and root tooling up to date for 2026. Evergreen content
+(accessibility, Zero Trust, DORA metrics, data-quality fundamentals, etc.)
+was left untouched — this release is additive and corrective, not a
+rewrite. See [CHANGELOG.md](CHANGELOG.md) for the full itemized list.
+
+- [x] AI/ML checklist: Generative AI & LLM section (prompt injection, RAG
+      evaluation, vector DB access control, hallucination mitigation),
+      agentic AI governance, foundation-model/system cards, LLM
+      red-teaming, EU AI Act / NIST AI RMF / ISO 42001 risk-tiering
+- [x] Mobile checklist: React Native New Architecture (Fabric,
+      TurboModules, JSI), SwiftUI/Jetpack Compose, Kotlin Multiplatform,
+      on-device AI, privacy manifest requirements
+- [x] Frontend checklist: modern React patterns (Server Components, React
+      19), Zustand/TanStack Query, Vite-first bundler framing,
+      AI-assisted dev tooling governance, passkeys/WebAuthn
+- [x] Backend checklist: AI/LLM backend integration (RAG, vector DBs,
+      prompt-injection defense, agent tool-calling security), tRPC/GraphQL
+      Federation, current LTS runtime guidance
+- [x] Security checklist: passkeys/WebAuthn/FIDO2, post-quantum
+      cryptography migration planning, SLSA framework, AI/LLM security
+- [x] Cloud checklist: Spot VM terminology, Terraform provider version
+      pinning, OpenTelemetry, eBPF/Cilium
+- [x] DevOps checklist: modern CI/CD defaults, named GitOps tooling
+      (ArgoCD/Flux), platform engineering / internal developer platforms,
+      OpenTelemetry, named supply-chain tooling (SLSA, Sigstore/cosign,
+      SPDX/CycloneDX)
+- [x] Data checklist: vector databases & embedding stores, LLMOps & AI
+      data-pipeline governance, concrete lakehouse platform examples
+- [x] Root tooling & standards: removed stale ESLint config, bumped
+      Node/CI to 22, ISO/IEC 27001:2022, WCAG 2.2, EU AI Act (in force),
+      NIST AI RMF, ISO/IEC 42001, refreshed compliance-mapping dates
+
+## Phase 3: Deeper AI Governance (Next)
+
+- [ ] Agentic AI guardrail tooling and reference implementations across
+      checklists, building on the items added in the 2026 refresh
+- [ ] EU AI Act full-applicability (August 2026) readiness review across
+      all domains, not just AI/ML
+- [ ] Post-quantum cryptography migration reference implementations,
+      building on the Security checklist's new PQC item
+
+## Backlog: New Checklist Domains
+
+These proposed new checklists have not yet been created; they remain
+open backlog items rather than time-boxed to a specific quarter.
 
 ### New: Enterprise Architecture Checklist
 
@@ -70,32 +117,23 @@ This roadmap outlines our phased approach to both enhancing existing checklists 
   - [ ] Rate limiting
   - [ ] Input validation
 
-## Phase 3: Operational Enhancement (Q3 2025)
-
-### Disaster Recovery & Business Continuity
+### Operational Enhancement
 
 - [ ] Add DR/BC procedures
   - [ ] Recovery strategies
   - [ ] Backup procedures
   - [ ] Failover configurations
   - [ ] Testing protocols
-
-### Monitoring & Validation
-
 - [ ] Enhanced monitoring sections
-
   - [ ] Performance metrics
   - [ ] Health checks
   - [ ] Alert configurations
   - [ ] Log management
-
 - [ ] Automated validation
   - [ ] Validation scripts
   - [ ] Compliance checks
   - [ ] Security scans
   - [ ] Performance tests
-
-## Phase 4: Specialized Expansion (Q4 2025)
 
 ### New: Infrastructure as Code Checklist
 
@@ -127,8 +165,6 @@ This roadmap outlines our phased approach to both enhancing existing checklists 
   - [ ] Coverage metrics
   - [ ] Reporting
 
-## Phase 5: Integration & Refinement (Q1 2026)
-
 ### New: System Integration Checklist
 
 - [ ] Integration Patterns
@@ -145,6 +181,10 @@ This roadmap outlines our phased approach to both enhancing existing checklists 
   - [ ] Error handling
 
 ### Cross-Checklist Integration
+
+The 2026 refresh added a handful of direct cross-links between related
+checklists (e.g. Security → AI/ML, Backend → AI/ML, Data → AI/ML) as a
+first step. Fuller integration remains open:
 
 - [ ] Relationship Mapping
 

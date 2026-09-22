@@ -18,7 +18,7 @@ class RepositoryValidator {
       "SOC 2": ["security", "data", "cloud"],
       GDPR: ["data", "security", "backend"],
       "OWASP Top 10": ["security", "frontend", "backend"],
-      "WCAG 2.1": ["frontend"],
+      "WCAG 2.2": ["frontend"],
       "PCI DSS": ["security", "data"],
       HIPAA: ["security", "data"],
       "CIS Benchmarks": ["security", "cloud", "devops"],
@@ -217,7 +217,7 @@ class RepositoryValidator {
       "frontend",
       "Accessibility Testing",
       "Accessibility testing tools configured (axe, jest-axe, or eslint-plugin-jsx-a11y)",
-      includeStandards ? ["WCAG 2.1"] : []
+      includeStandards ? ["WCAG 2.2"] : []
     );
 
     // Check for security headers
@@ -234,7 +234,12 @@ class RepositoryValidator {
 
     // Check for linting
     const hasESLint = contents.some(
-      (file) => file.name === ".eslintrc.json" || file.name === ".eslintrc.js"
+      (file) =>
+        file.name === ".eslintrc.json" ||
+        file.name === ".eslintrc.js" ||
+        file.name === "eslint.config.js" ||
+        file.name === "eslint.config.mjs" ||
+        file.name === "eslint.config.cjs"
     );
     this.addResult(
       hasESLint ? "passed" : "warning",
@@ -631,7 +636,7 @@ class RepositoryValidator {
       "aiml",
       "ML Framework",
       "Machine learning framework detected (Python environment)",
-      includeStandards ? [] : []
+      includeStandards ? ["ISO/IEC 42001"] : []
     );
 
     // Check for model versioning
@@ -643,7 +648,7 @@ class RepositoryValidator {
       "aiml",
       "Model Versioning",
       "Model versioning system configured (MLflow, DVC)",
-      includeStandards ? [] : []
+      includeStandards ? ["ISO/IEC 42001", "NIST AI RMF"] : []
     );
 
     // Check for ethics documentation
@@ -655,7 +660,7 @@ class RepositoryValidator {
       "aiml",
       "AI Ethics Documentation",
       "AI ethics and bias documentation found",
-      includeStandards ? [] : []
+      includeStandards ? ["NIST AI RMF", "ISO/IEC 42001", "EU AI Act"] : []
     );
 
     // Check for model monitoring
@@ -665,7 +670,7 @@ class RepositoryValidator {
       "aiml",
       "Model Monitoring",
       "Model monitoring configuration found",
-      includeStandards ? [] : []
+      includeStandards ? ["NIST AI RMF", "EU AI Act"] : []
     );
   }
 

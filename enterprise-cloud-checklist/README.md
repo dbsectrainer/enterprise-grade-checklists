@@ -195,6 +195,16 @@ flowchart LR
 
 ```terraform
 # Example Terraform configuration
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+  required_version = ">= 1.5.0"
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
@@ -209,6 +219,8 @@ resource "aws_subnet" "private" {
   cidr_block = "10.0.1.0/24"
 }
 ```
+
+> Pinning `required_providers` (and `required_version`) keeps provider upgrades intentional rather than accidental. Note that since Terraform's 2023 BSL relicensing, [OpenTofu](https://opentofu.org/) has emerged as an open-source, Apache 2.0-licensed fork and is a drop-in alternative worth evaluating for teams that require a fully open-source IaC toolchain.
 
 ### 2. Security Policy
 

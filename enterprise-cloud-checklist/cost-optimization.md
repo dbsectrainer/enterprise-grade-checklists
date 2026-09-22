@@ -211,7 +211,7 @@ graph TD
 
    - Use GCP Recommender
    - Implement Managed Instance Groups
-   - Use Preemptible VMs
+   - Use Spot VMs (formerly/also known as Preemptible VMs) for fault-tolerant, interruptible workloads
 
 2. Storage optimization
    - Object lifecycle management

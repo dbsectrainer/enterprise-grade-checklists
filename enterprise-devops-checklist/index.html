@@ -123,6 +123,12 @@
                       </li>
                       <li>Establish artifact retention policies and storage optimization</li>
                       <li>Monitor build performance metrics and optimize bottlenecks</li>
+                      <li>
+                        Default to modern cloud-native CI/CD platforms (GitHub Actions, GitLab CI,
+                        Buildkite) for new pipelines; legacy self-hosted tools such as Jenkins
+                        remain supported for existing investments but typically carry higher
+                        operational and maintenance overhead
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -639,6 +645,81 @@
                   </div>
                 </label>
               </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Platform Engineering & Internal Developer Platform</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Have you adopted an internal developer platform (IDP), such as Backstage, to
+                        give teams a unified interface to services, docs, and tooling?
+                      </li>
+                      <li>
+                        Do you provide golden-path templates for common service types (e.g., REST
+                        API, event consumer, scheduled job) that scaffold CI/CD, observability, and
+                        security defaults?
+                      </li>
+                      <li>
+                        Can developers self-service provision infrastructure (namespaces, databases,
+                        queues) through the platform without filing a ticket?
+                      </li>
+                      <li>
+                        Is the platform's service catalog kept up to date automatically from
+                        source-of-truth metadata rather than manual entry?
+                      </li>
+                      <li>
+                        Do golden-path templates encode organizational standards (security scanning,
+                        GitOps deployment, logging/tracing) by default?
+                      </li>
+                      <li>
+                        Do you measure platform adoption and developer experience (e.g., time to
+                        first deploy for a new service)?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Treat the internal developer platform as a product with its own roadmap and
+                        a dedicated platform engineering team
+                      </li>
+                      <li>
+                        Start with a small set of golden-path templates for the most common
+                        workloads rather than trying to cover every use case upfront
+                      </li>
+                      <li>
+                        Integrate self-service provisioning with existing IaC, policy-as-code, and
+                        secret management tooling rather than bypassing it
+                      </li>
+                      <li>
+                        Gather continuous feedback from developer teams to prioritize platform
+                        investments
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Every new service still requires manual, ticket-driven infrastructure
+                        provisioning
+                      </li>
+                      <li>
+                        No golden paths, so each team reinvents CI/CD, observability, and security
+                        wiring independently
+                      </li>
+                      <li>
+                        Platform tooling built once and left unmaintained, with no ownership or
+                        roadmap
+                      </li>
+                      <li>
+                        Developers routinely bypass the platform because it is slower or less
+                        flexible than doing it themselves
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
             </ul>
           </div>
         </div>
@@ -707,7 +788,14 @@
                       <li>
                         Are container images automatically scanned for security vulnerabilities?
                       </li>
-                      <li>Do you have image signing and verification for supply chain security?</li>
+                      <li>
+                        Do you have image signing and verification (e.g., Sigstore/cosign) for
+                        supply chain security?
+                      </li>
+                      <li>
+                        Do you generate a Software Bill of Materials (SBOM) in a standard format
+                        (SPDX, CycloneDX) for each container image?
+                      </li>
                       <li>Are registry access logs monitored and security incidents tracked?</li>
                       <li>
                         Is the registry integrated with CI/CD pipelines for automated image
@@ -725,6 +813,11 @@
                         Use private registries for proprietary images and public for open source
                       </li>
                       <li>Establish image retention policies and automated cleanup processes</li>
+                      <li>
+                        Benchmark supply chain maturity against SLSA (Supply-chain Levels for
+                        Software Artifacts) framework levels to guide provenance and build integrity
+                        improvements
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -756,6 +849,10 @@
                         Helm charts)?
                       </li>
                       <li>
+                        Do you use a GitOps continuous-delivery tool (e.g., ArgoCD, Flux) to
+                        reconcile cluster state from a Git repository?
+                      </li>
+                      <li>
                         Is the orchestration platform integrated with monitoring and logging
                         systems?
                       </li>
@@ -767,7 +864,11 @@
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
-                      <li>Implement GitOps workflows for declarative configuration management</li>
+                      <li>
+                        Implement GitOps workflows for declarative configuration management using
+                        tools such as ArgoCD or Flux to automatically sync Helm charts and manifests
+                        from Git
+                      </li>
                       <li>
                         Use managed orchestration services where appropriate to reduce operational
                         overhead
@@ -939,7 +1040,8 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>
-                        Use container-native monitoring tools (Prometheus, Kubernetes metrics)
+                        Use container-native monitoring tools and standards (Prometheus,
+                        OpenTelemetry, Kubernetes metrics)
                       </li>
                       <li>Implement distributed tracing for microservices architectures</li>
                       <li>Establish container performance baselines and anomaly detection</li>
@@ -993,7 +1095,7 @@
                       </li>
                       <li>
                         Do custom applications expose metrics in standard formats (Prometheus,
-                        StatsD)?
+                        OpenTelemetry, StatsD)?
                       </li>
                     </ul>
                     <strong>Key Considerations:</strong>
@@ -1146,7 +1248,9 @@
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>
-                        Implement APM tools that support your technology stack and deployment model
+                        Adopt OpenTelemetry as the vendor-neutral standard framework for traces,
+                        metrics, and logs, paired with APM tools that support your technology stack
+                        and deployment model
                       </li>
                       <li>
                         Use sampling strategies to balance trace completeness with performance

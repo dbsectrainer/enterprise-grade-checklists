@@ -126,12 +126,17 @@ class DevOpsValidator {
   async validateCICD() {
     console.log("Checking CI/CD Configuration...");
     try {
-      // Check common CI/CD config files
+      // Check common CI/CD config files. GitHub Actions, GitLab CI, and
+      // Buildkite are the primary modern defaults recommended for new
+      // pipelines. Jenkinsfile and Azure Pipelines are still detected and
+      // validated below for organizations maintaining legacy or existing
+      // investments in those tools.
       const configFiles = [
         ".github/workflows",
         ".gitlab-ci.yml",
-        "Jenkinsfile",
+        ".buildkite/pipeline.yml",
         "azure-pipelines.yml",
+        "Jenkinsfile",
       ];
 
       for (const config of configFiles) {
@@ -165,7 +170,12 @@ class DevOpsValidator {
         // Single pipeline file
         const content = fs.readFileSync(configPath, "utf8");
         if (configPath.includes("Jenkinsfile")) {
+          // Legacy Jenkins pipeline: still supported, but new pipelines
+          // should prefer GitHub Actions, GitLab CI, or Buildkite.
           this.validateJenkinsfile(content);
+        } else if (configPath.includes(".buildkite")) {
+          const yamlContent = yaml.load(content);
+          this.validateBuildkitePipeline(yamlContent);
         } else {
           const yamlContent = yaml.load(content);
           this.validateWorkflowStructure(yamlContent);
@@ -207,8 +217,50 @@ class DevOpsValidator {
     return Array.from(stages);
   }
 
+  validateBuildkitePipeline(pipeline) {
+    const requiredStages = ["build", "test", "deploy"];
+    const stages = this.extractBuildkiteStages(pipeline);
+
+    for (const stage of requiredStages) {
+      if (stages.includes(stage)) {
+        this.results.passed.push(`Pipeline includes ${stage} stage`);
+      } else {
+        this.results.warnings.push(`Pipeline missing ${stage} stage`);
+      }
+    }
+  }
+
+  extractBuildkiteStages(pipeline) {
+    const stages = new Set();
+    const requiredStages = ["build", "test", "deploy"];
+
+    const walkSteps = (steps) => {
+      if (!Array.isArray(steps)) return;
+
+      for (const step of steps) {
+        const text = [step.label, step.key, step.command, step.name]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+        for (const stage of requiredStages) {
+          if (text.includes(stage)) stages.add(stage);
+        }
+
+        if (Array.isArray(step.steps)) walkSteps(step.steps);
+        if (Array.isArray(step.group)) walkSteps(step.group);
+      }
+    };
+
+    walkSteps(pipeline?.steps);
+    return Array.from(stages);
+  }
+
   validateJenkinsfile(content) {
-    // Basic Jenkinsfile validation
+    // Basic Jenkinsfile validation. Jenkins is treated here as a
+    // still-supported legacy CI/CD tool for existing pipelines; GitHub
+    // Actions, GitLab CI, or Buildkite are the recommended defaults for
+    // new pipeline development.
     const requiredSections = ["pipeline", "stages", "stage"];
     for (const section of requiredSections) {
       if (!content.includes(section)) {

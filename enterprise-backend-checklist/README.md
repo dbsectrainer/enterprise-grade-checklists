@@ -4,7 +4,7 @@ A comprehensive guide for implementing and maintaining enterprise-grade backend 
 
 ## Purpose
 
-This checklist helps organizations implement robust backend practices focusing on scalability, reliability, security, and maintainability.
+This checklist helps organizations implement robust backend practices focusing on scalability, reliability, security, maintainability, and — for teams serving AI/LLM features — the backend engineering practices (RAG pipelines, vector database access, prompt/output safety, cost control, and agent tool-calling security) needed to run them safely in production.
 
 ## Rationale
 
@@ -52,19 +52,46 @@ graph LR
     A[API Design] --> B[REST]
     A --> C[GraphQL]
     A --> D[gRPC]
+    A --> I[tRPC]
+    A --> J[GraphQL Federation]
 
     B --> E[Resources]
     C --> F[Schema]
     D --> G[Protobuf]
+    I --> K[Type Safety]
+    J --> L[Supergraph]
 
     E --> H[Performance]
     F --> H
     G --> H
+    K --> H
+    L --> H
 ```
 
 #### Case Study: API Success
 
 An e-commerce platform reduced server load by 70% and improved client satisfaction through implementing GraphQL and efficient caching strategies.
+
+### AI/LLM Backend Integration
+
+```mermaid
+graph TD
+    A[AI/LLM Backend Integration] --> B[RAG Pipeline]
+    A --> C[Vector Database]
+    A --> D[Prompt/Output Safety]
+    A --> E[Cost & Rate Control]
+    A --> F[Agent Tool-Calling]
+
+    B --> G[Retrieval]
+    B --> H[Generation]
+    C --> I[Access Control]
+    D --> J[Input Sanitization]
+    D --> K[Output Validation]
+```
+
+#### Real-World Example
+
+A SaaS platform added a RAG-based support assistant and avoided a data-leak incident by enforcing per-tenant access control at the vector database layer and validating model output before returning it to users — the same discipline expected of any backend data path. This checklist covers the backend engineering side of AI/LLM integration (API design, rate limiting/cost control, input sanitization, output validation, vector database access patterns); for model-level generative-AI governance (red-teaming, bias evaluation, model risk management), see the [`enterprise-aiml-checklist`](../enterprise-aiml-checklist/README.md).
 
 ## Implementation Guide
 
@@ -424,3 +451,4 @@ class Logger {
 - [GraphQL Best Practices](https://graphql.org/learn/best-practices/)
 - [Database Design](https://www.postgresql.org/docs/current/ddl.html)
 - [Security Best Practices](https://owasp.org/www-project-api-security/)
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)

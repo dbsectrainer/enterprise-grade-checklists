@@ -142,16 +142,32 @@
                         How will you manage code sharing while maintaining platform-specific
                         optimizations?
                       </li>
+                      <li>
+                        If choosing React Native, is your team building on the New Architecture
+                        (Fabric renderer + TurboModules + JSI), or are you maintaining a
+                        legacy-bridge app that needs a migration plan?
+                      </li>
+                      <li>
+                        Have you evaluated Kotlin Multiplatform (KMP) as an alternative to React
+                        Native/Flutter when native UI fidelity (SwiftUI/Jetpack Compose) matters
+                        more than a single shared UI codebase?
+                      </li>
                     </ul>
                     <strong>Key Considerations:</strong>
                     <ul>
                       <li>
-                        Native development offers best performance but requires platform-specific
-                        expertise
+                        Native development (SwiftUI on iOS, Jetpack Compose on Android) offers best
+                        performance and platform fidelity but requires platform-specific expertise
                       </li>
                       <li>
-                        Cross-platform frameworks like React Native or Flutter reduce development
-                        time
+                        Cross-platform frameworks like React Native (now on the New Architecture -
+                        Fabric/TurboModules/JSI, typically bootstrapped with Expo) or Flutter reduce
+                        development time
+                      </li>
+                      <li>
+                        Kotlin Multiplatform (KMP) shares business logic and data layers in Kotlin
+                        while keeping fully native UI per platform - worth evaluating alongside
+                        React Native and Flutter
                       </li>
                       <li>Consider the long-term maintenance costs of each approach</li>
                       <li>
@@ -168,6 +184,11 @@
                         essential
                       </li>
                       <li>Assuming 100% code sharing is possible with cross-platform solutions</li>
+                      <li>
+                        Starting a new React Native app on the legacy bridge architecture instead of
+                        the New Architecture (Fabric/TurboModules) without a specific reason to do
+                        so
+                      </li>
                       <li>
                         Not planning for platform-specific testing and optimization strategies
                       </li>
@@ -417,6 +438,81 @@
                         Creating platform-specific features that break the core user experience
                       </li>
                       <li>Not planning for the additional QA and maintenance overhead</li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">On-Device AI & ML</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Which on-device AI/ML capabilities would provide real user value
+                        (summarization, smart replies, image analysis, classification)?
+                      </li>
+                      <li>
+                        On iOS, will you use Apple Intelligence system APIs and/or CoreML for custom
+                        on-device models, and what are the minimum OS/device requirements?
+                      </li>
+                      <li>
+                        On Android, will you use ML Kit (on-device APIs) and/or on-device Gemini
+                        Nano (AICore) for generative features, and which device tiers support them?
+                      </li>
+                      <li>
+                        What is your fallback strategy for devices or OS versions that don't support
+                        on-device AI features?
+                      </li>
+                      <li>
+                        How will you evaluate on-device model accuracy, latency, battery, and
+                        storage impact before shipping?
+                      </li>
+                      <li>
+                        What data governance applies to inputs/outputs processed by on-device models
+                        (even though on-device processing avoids sending data to a server)?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        On-device AI keeps sensitive data on the device, which can simplify privacy
+                        and compliance posture versus server-side inference
+                      </li>
+                      <li>
+                        Model and feature availability varies significantly by device tier, OS
+                        version, and chipset (Neural Engine / Tensor / NPU) - plan graceful
+                        degradation
+                      </li>
+                      <li>
+                        Treat on-device AI features as progressive enhancements, not hard
+                        dependencies, given inconsistent hardware support
+                      </li>
+                      <li>
+                        Factor on-device model size and update strategy into app size and OTA update
+                        budgets
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Requiring on-device AI features without a fallback for unsupported devices
+                        or OS versions
+                      </li>
+                      <li>
+                        Assuming on-device processing eliminates all privacy/compliance obligations
+                        without verifying actual data flows
+                      </li>
+                      <li>
+                        Bundling large custom ML models without evaluating impact on app size and
+                        startup performance
+                      </li>
+                      <li>
+                        Not testing on-device AI features across the actual range of supported
+                        hardware
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -1314,6 +1410,82 @@
                         implications
                       </li>
                       <li>Over-engineering protection for low-value applications</li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Privacy Manifest & Data Disclosure</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Does your app include Apple's required Privacy Manifest
+                        (PrivacyInfo.xcprivacy) declaring data collection, tracking domains, and
+                        Required Reason API usage?
+                      </li>
+                      <li>
+                        Have you audited every third-party SDK for its own privacy manifest and
+                        aggregated signatures, since Apple requires SDKs to ship these as well?
+                      </li>
+                      <li>
+                        Is your App Store "Privacy Nutrition Label" (App Privacy details) accurate
+                        and kept in sync with what the app and its SDKs actually collect?
+                      </li>
+                      <li>
+                        Have you completed Google Play's Data Safety section, and does it match your
+                        actual data collection, sharing, and security practices?
+                      </li>
+                      <li>
+                        What is your process for re-verifying privacy manifests and data-safety
+                        disclosures whenever a dependency or SDK is updated?
+                      </li>
+                      <li>
+                        How will you catch undeclared "Required Reason" API usage (e.g. file
+                        timestamps, disk space, user defaults) that Apple's build-time checks flag?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Apple has required privacy manifests for apps and commonly used third-party
+                        SDKs since 2024 - missing or inaccurate manifests can cause App Store
+                        rejection
+                      </li>
+                      <li>
+                        Treat privacy manifest and data-safety accuracy as a release-blocking CI
+                        check, not a one-time submission task
+                      </li>
+                      <li>
+                        Third-party and open-source SDKs are a common source of undeclared data
+                        collection - audit the full dependency tree, not just first-party code
+                      </li>
+                      <li>
+                        Keep Android's Data Safety form and iOS's Privacy Nutrition Label
+                        conceptually aligned even though the platforms format them differently
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Shipping without a Privacy Manifest or with a manifest that hasn't been
+                        updated since a major SDK version bump
+                      </li>
+                      <li>
+                        Privacy Nutrition Label or Data Safety disclosures that don't match actual
+                        SDK/network behavior observed in testing
+                      </li>
+                      <li>
+                        Treating privacy manifest compliance as a one-time task instead of part of
+                        the dependency-update workflow
+                      </li>
+                      <li>
+                        No owner or process for responding to app store rejections tied to privacy
+                        disclosure mismatches
+                      </li>
                     </ul>
                   </div>
                 </label>

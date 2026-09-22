@@ -1,24 +1,14 @@
 {
   "standards": {
     "ISO 27001": {
-      "fullName": "ISO/IEC 27001:2013 - Information Security Management",
+      "fullName": "ISO/IEC 27001:2022 - Information Security Management",
       "description": "International standard for information security management systems (ISMS)",
-      "url": "https://www.iso.org/standard/54534.html",
+      "url": "https://www.iso.org/standard/82875.html",
       "controls": {
-        "A.5": "Information Security Policies",
-        "A.6": "Organization of Information Security",
-        "A.7": "Human Resource Security",
-        "A.8": "Asset Management",
-        "A.9": "Access Control",
-        "A.10": "Cryptography",
-        "A.11": "Physical and Environmental Security",
-        "A.12": "Operations Security",
-        "A.13": "Communications Security",
-        "A.14": "System Acquisition, Development and Maintenance",
-        "A.15": "Supplier Relationships",
-        "A.16": "Information Security Incident Management",
-        "A.17": "Information Security Aspects of Business Continuity Management",
-        "A.18": "Compliance"
+        "A.5": "Organizational controls (37 controls, e.g. policies, supplier relationships, incident management)",
+        "A.6": "People controls (8 controls, e.g. screening, awareness, remote working)",
+        "A.7": "Physical controls (14 controls, e.g. perimeters, equipment, clear desk)",
+        "A.8": "Technological controls (34 controls, e.g. access control, cryptography, secure development)"
       },
       "domains": ["security", "data", "cloud", "devops"]
     },
@@ -90,10 +80,10 @@
       },
       "domains": ["security", "frontend", "backend"]
     },
-    "WCAG 2.1": {
-      "fullName": "Web Content Accessibility Guidelines 2.1",
+    "WCAG 2.2": {
+      "fullName": "Web Content Accessibility Guidelines 2.2",
       "description": "Guidelines for making web content more accessible",
-      "url": "https://www.w3.org/WAI/WCAG21/quickref/",
+      "url": "https://www.w3.org/WAI/WCAG22/quickref/",
       "principles": {
         "Perceivable": "Information and user interface components must be presentable to users in ways they can perceive",
         "Operable": "User interface components and navigation must be operable",
@@ -186,29 +176,64 @@
         "SA": "System and Services Acquisition"
       },
       "domains": ["security", "cloud", "data"]
+    },
+    "EU AI Act": {
+      "fullName": "EU Artificial Intelligence Act (Regulation (EU) 2024/1689)",
+      "description": "EU regulation establishing risk-based obligations for AI systems; in force since August 2024, with prohibited-practice obligations since February 2025, GPAI obligations since August 2025, and full applicability from August 2026",
+      "url": "https://artificialintelligenceact.eu/",
+      "riskTiers": {
+        "Unacceptable": "Prohibited AI practices (e.g. social scoring, manipulative systems)",
+        "High": "High-risk AI systems subject to conformity assessment, risk management, and human oversight",
+        "Limited": "Systems subject to transparency obligations (e.g. chatbots, deepfakes)",
+        "Minimal": "Minimal or no obligations"
+      },
+      "gpaiObligations": {
+        "Transparency": "Technical documentation and training data summary for general-purpose AI models",
+        "SystemicRisk": "Additional obligations for GPAI models with systemic risk (e.g. model evaluation, incident reporting)",
+        "Copyright": "Policy to comply with Union copyright law for training data"
+      },
+      "domains": ["aiml", "security", "data"]
+    },
+    "NIST AI RMF": {
+      "fullName": "NIST AI Risk Management Framework (AI RMF 1.0)",
+      "description": "Voluntary framework for managing risks of AI systems across their lifecycle",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "functions": {
+        "Govern": "Cultivate a risk management culture across the AI lifecycle",
+        "Map": "Establish context and identify AI risks",
+        "Measure": "Analyze and track identified risks",
+        "Manage": "Prioritize and act on risks based on assessment"
+      },
+      "domains": ["aiml", "security"]
+    },
+    "ISO/IEC 42001": {
+      "fullName": "ISO/IEC 42001:2023 - Artificial Intelligence Management System",
+      "description": "First international standard specifying requirements for an AI management system (AIMS)",
+      "url": "https://www.iso.org/standard/81230.html",
+      "domains": ["aiml"]
     }
   },
   "mappings": {
     "frontend": {
-      "Security Headers & CSP": ["OWASP Top 10 - A05", "ISO 27001 - A.13"],
-      "Accessibility Testing": ["WCAG 2.1 - All Levels"],
+      "Security Headers & CSP": ["OWASP Top 10 - A05", "ISO 27001 - A.8.20"],
+      "Accessibility Testing": ["WCAG 2.2 - All Levels"],
       "Performance Metrics": [],
       "Bundle Size Optimization": [],
-      "Code Quality - Linting": ["ISO 27001 - A.14"],
-      "Testing Framework": ["ISO 27001 - A.14"],
+      "Code Quality - Linting": ["ISO 27001 - A.8.25"],
+      "Testing Framework": ["ISO 27001 - A.8.25"],
       "Input Validation": ["OWASP Top 10 - A03", "GDPR - Data Minimization"],
       "XSS Prevention": ["OWASP Top 10 - A03"],
       "CSRF Protection": ["OWASP Top 10 - A01"]
     },
     "backend": {
       "API Documentation": ["OWASP Top 10 - A04"],
-      "Environment Configuration": ["OWASP Top 10 - A05", "ISO 27001 - A.10"],
+      "Environment Configuration": ["OWASP Top 10 - A05", "ISO 27001 - A.8.24"],
       "Database Migrations": [],
       "Input Validation": ["OWASP Top 10 - A03", "PCI DSS - 6"],
       "Rate Limiting": ["OWASP Top 10 - A04", "CIS Benchmarks"],
-      "Logging Framework": ["ISO 27001 - A.12", "SOC 2 - Availability"],
-      "Authentication": ["OWASP Top 10 - A07", "ISO 27001 - A.9", "NIST 800-53 - IA"],
-      "Authorization": ["OWASP Top 10 - A01", "ISO 27001 - A.9"],
+      "Logging Framework": ["ISO 27001 - A.8.15", "SOC 2 - Availability"],
+      "Authentication": ["OWASP Top 10 - A07", "ISO 27001 - A.8.3", "NIST 800-53 - IA"],
+      "Authorization": ["OWASP Top 10 - A01", "ISO 27001 - A.8.3"],
       "Error Handling": ["OWASP Top 10 - A05", "CIS Benchmarks"],
       "SQL Injection Prevention": ["OWASP Top 10 - A03", "PCI DSS - 6"]
     },
@@ -217,36 +242,40 @@
       "Containerization": ["CIS Benchmarks - Containers"],
       "Kubernetes Configuration": ["CIS Benchmarks - Kubernetes"],
       "Cost Optimization": [],
-      "High Availability": ["SOC 2 - Availability", "ISO 27001 - A.17"],
-      "Disaster Recovery": ["ISO 27001 - A.17", "NIST 800-53 - CP"],
-      "Backup Strategy": ["ISO 27001 - A.12", "SOC 2 - Availability"],
+      "High Availability": ["SOC 2 - Availability", "ISO 27001 - A.5.29"],
+      "Disaster Recovery": ["ISO 27001 - A.5.29", "NIST 800-53 - CP"],
+      "Backup Strategy": ["ISO 27001 - A.8.13", "SOC 2 - Availability"],
       "Network Security": ["CIS Benchmarks", "NIST 800-53 - SC"],
-      "Identity and Access Management": ["ISO 27001 - A.9", "NIST CSF - Protect"]
+      "Identity and Access Management": ["ISO 27001 - A.8.3", "NIST CSF - Protect"]
     },
     "data": {
       "Data Governance": ["GDPR - All Principles", "SOC 2 - Privacy"],
-      "Backup Strategy": ["ISO 27001 - A.12", "NIST 800-53 - CP"],
+      "Backup Strategy": ["ISO 27001 - A.8.13", "NIST 800-53 - CP"],
       "Data Encryption": ["GDPR - Integrity", "HIPAA - Technical Safeguards", "PCI DSS - 3,4"],
       "Data Validation": ["GDPR - Accuracy", "SOC 2 - Processing Integrity"],
-      "Data Classification": ["ISO 27001 - A.8", "NIST 800-53 - MP"],
+      "Data Classification": ["ISO 27001 - A.5.12", "NIST 800-53 - MP"],
       "Privacy Compliance": ["GDPR - All Rights", "HIPAA - Privacy Rule"],
       "Data Retention": ["GDPR - Storage Limitation", "HIPAA"],
       "Data Access Controls": [
         "GDPR - Accountability",
-        "ISO 27001 - A.9",
+        "ISO 27001 - A.8.3",
         "HIPAA - Administrative Safeguards"
       ],
       "Breach Notification": ["GDPR - Breach Notification", "HIPAA - Breach Notification Rule"]
     },
     "devops": {
-      "CI/CD Pipeline": ["NIST CSF - Protect", "ISO 27001 - A.14"],
-      "Monitoring Configuration": ["ISO 27001 - A.12", "NIST 800-53 - SI", "SOC 2 - Availability"],
-      "Secret Management": ["OWASP Top 10 - A02", "ISO 27001 - A.10", "CIS Benchmarks"],
-      "Deployment Strategy": ["ISO 27001 - A.14", "SOC 2 - Availability"],
+      "CI/CD Pipeline": ["NIST CSF - Protect", "ISO 27001 - A.8.25"],
+      "Monitoring Configuration": [
+        "ISO 27001 - A.8.15",
+        "NIST 800-53 - SI",
+        "SOC 2 - Availability"
+      ],
+      "Secret Management": ["OWASP Top 10 - A02", "ISO 27001 - A.8.24", "CIS Benchmarks"],
+      "Deployment Strategy": ["ISO 27001 - A.8.25", "SOC 2 - Availability"],
       "Container Security": ["CIS Benchmarks - Docker/Kubernetes", "NIST 800-53 - CM"],
-      "Infrastructure Monitoring": ["NIST CSF - Detect", "ISO 27001 - A.12"],
-      "Incident Response": ["ISO 27001 - A.16", "NIST CSF - Respond", "NIST 800-53 - IR"],
-      "Change Management": ["ISO 27001 - A.12", "NIST 800-53 - CM"],
+      "Infrastructure Monitoring": ["NIST CSF - Detect", "ISO 27001 - A.8.15"],
+      "Incident Response": ["ISO 27001 - A.5.24", "NIST CSF - Respond", "NIST 800-53 - IR"],
+      "Change Management": ["ISO 27001 - A.8.32", "NIST 800-53 - CM"],
       "Vulnerability Scanning": ["OWASP Top 10 - A06", "NIST CSF - Detect", "CIS Benchmarks"]
     },
     "mobile": {
@@ -256,34 +285,36 @@
       "Platform-specific Security": ["OWASP Mobile Top 10"],
       "Data Storage Security": ["OWASP Mobile Top 10 - M2", "GDPR"],
       "Network Communication": ["OWASP Mobile Top 10 - M3"],
-      "Authentication": ["OWASP Mobile Top 10 - M4", "ISO 27001 - A.9"],
+      "Authentication": ["OWASP Mobile Top 10 - M4", "ISO 27001 - A.8.3"],
       "Code Tampering Prevention": ["OWASP Mobile Top 10 - M8"]
     },
     "security": {
       "Git Ignore Configuration": ["OWASP Top 10 - A05"],
       "Security Scanning": ["OWASP Top 10 - A06", "NIST CSF - Detect", "CIS Benchmarks"],
-      "Authentication Library": ["OWASP Top 10 - A07", "ISO 27001 - A.9", "NIST 800-53 - IA"],
+      "Authentication Library": ["OWASP Top 10 - A07", "ISO 27001 - A.8.3", "NIST 800-53 - IA"],
       "HTTPS/TLS Configuration": [
         "OWASP Top 10 - A02",
         "PCI DSS - 4",
         "HIPAA - Technical Safeguards"
       ],
       "Security Policy": ["ISO 27001 - A.5", "NIST 800-53 - PL"],
-      "Vulnerability Management": ["ISO 27001 - A.12", "NIST CSF - Detect", "NIST 800-53 - RA"],
-      "Security Logging": ["OWASP Top 10 - A09", "ISO 27001 - A.12", "PCI DSS - 10"],
-      "Access Control": ["OWASP Top 10 - A01", "ISO 27001 - A.9", "NIST 800-53 - AC"],
-      "Incident Response Plan": ["ISO 27001 - A.16", "NIST CSF - Respond", "SOC 2 - Security"]
+      "Vulnerability Management": ["ISO 27001 - A.8.8", "NIST CSF - Detect", "NIST 800-53 - RA"],
+      "Security Logging": ["OWASP Top 10 - A09", "ISO 27001 - A.8.15", "PCI DSS - 10"],
+      "Access Control": ["OWASP Top 10 - A01", "ISO 27001 - A.8.3", "NIST 800-53 - AC"],
+      "Incident Response Plan": ["ISO 27001 - A.5.24", "NIST CSF - Respond", "SOC 2 - Security"]
     },
     "aiml": {
       "ML Framework": [],
       "Model Versioning": [],
-      "AI Ethics Documentation": ["EU AI Act (proposed)"],
-      "Model Monitoring": [],
-      "Bias Detection": ["EU AI Act (proposed)"],
+      "AI Ethics Documentation": ["EU AI Act - High", "NIST AI RMF - Govern"],
+      "Model Monitoring": ["NIST AI RMF - Measure"],
+      "Bias Detection": ["EU AI Act - High", "NIST AI RMF - Measure"],
       "Data Privacy": ["GDPR", "HIPAA"],
-      "Model Governance": [],
-      "Explainability": ["EU AI Act (proposed)"],
-      "Fairness Testing": []
+      "Model Governance": ["ISO/IEC 42001", "NIST AI RMF - Govern"],
+      "Explainability": ["EU AI Act - High"],
+      "Fairness Testing": [],
+      "Generative AI & LLM Security": ["EU AI Act - GPAI Obligations", "NIST AI RMF - Manage"],
+      "AI Risk Tiering": ["EU AI Act", "ISO/IEC 42001", "NIST AI RMF - Govern"]
     }
   },
   "complianceChecklists": {

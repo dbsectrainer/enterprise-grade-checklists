@@ -1198,6 +1198,11 @@
                       <li>Implement admission control for Kubernetes deployments</li>
                       <li>Enable behavioral analysis for anomaly detection</li>
                       <li>Integrate with SIEM for centralized alerting</li>
+                      <li>
+                        Consider eBPF-based tooling (e.g., Cilium) for kernel-level network policy
+                        enforcement and runtime observability as a modern alternative/complement to
+                        traditional agents
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -1301,6 +1306,10 @@
                     <ul>
                       <li>Use CloudWatch, Azure Monitor, or Google Cloud Operations Suite</li>
                       <li>Implement APM tools (DataDog, New Relic, AppDynamics)</li>
+                      <li>
+                        Adopt OpenTelemetry as the vendor-neutral standard for instrumenting
+                        metrics, logs, and traces across services
+                      </li>
                       <li>Enable detailed monitoring for all cloud services</li>
                       <li>Create custom metrics for business KPIs</li>
                     </ul>

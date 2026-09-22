@@ -27,7 +27,7 @@ Our new [Repository Validator](validator.html) provides:
 
 - **Automated Compliance Checking**: Scan any public GitHub repository for compliance with enterprise standards
 - **Multi-Domain Analysis**: Validates across all 8 domains (Frontend, Backend, Cloud, Data, DevOps, Mobile, Security, AI/ML)
-- **Standards Mapping**: Checks compliance with ISO 27001, NIST CSF, SOC 2, GDPR, OWASP Top 10, WCAG 2.1, PCI DSS, HIPAA, and more
+- **Standards Mapping**: Checks compliance with ISO 27001:2022, NIST CSF, SOC 2, GDPR, OWASP Top 10, WCAG 2.2, PCI DSS, HIPAA, EU AI Act, NIST AI RMF, ISO/IEC 42001, and more
 - **Real-time Results**: Get instant feedback on your repository's compliance status
 - **Export Capabilities**: Export validation results as JSON, CSV, or PDF
 - **Detailed Reports**: View passed checks, failed checks, warnings, and standards compliance

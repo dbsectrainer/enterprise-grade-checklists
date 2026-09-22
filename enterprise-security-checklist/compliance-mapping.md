@@ -10,11 +10,11 @@ This mapping helps organizations understand how implementing our security checkl
 
 | Framework | Coverage | Last Updated |
 | --------- | -------- | ------------ |
-| HIPAA     | 85%      | 2024-02-13   |
-| SOC 2     | 90%      | 2024-02-13   |
-| PCI DSS   | 88%      | 2024-02-13   |
-| ISO 27001 | 92%      | 2024-02-13   |
-| GDPR      | 87%      | 2024-02-13   |
+| HIPAA     | 85%      | 2026-09-22   |
+| SOC 2     | 90%      | 2026-09-22   |
+| PCI DSS   | 88%      | 2026-09-22   |
+| ISO 27001 | 92%      | 2026-09-22   |
+| GDPR      | 87%      | 2026-09-22   |
 
 ## Detailed Mapping
 

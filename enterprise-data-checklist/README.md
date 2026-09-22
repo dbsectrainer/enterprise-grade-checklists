@@ -4,7 +4,7 @@ A comprehensive guide for implementing and maintaining enterprise-grade data man
 
 ## Purpose
 
-This checklist helps organizations implement robust data management practices focusing on data governance, quality, security, and lifecycle management.
+This checklist helps organizations implement robust data management practices focusing on data governance, quality, security, and lifecycle management, including modern AI/GenAI data pipeline concerns such as vector databases, embedding stores, and LLMOps governance.
 
 ## Rationale
 
@@ -304,6 +304,8 @@ graph TD
 - Quality tools
 - ETL/ELT tools
 - Monitoring tools
+- Vector databases & embedding stores (e.g. Pinecone, Weaviate, Milvus, pgvector) for RAG pipelines
+- Modern lakehouse platforms and table formats (e.g. Databricks, Snowflake, Apache Iceberg, Delta Lake)
 
 ### 2. Security Tools
 

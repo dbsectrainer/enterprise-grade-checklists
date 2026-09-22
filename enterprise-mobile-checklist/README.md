@@ -6,6 +6,14 @@ A comprehensive guide for implementing and maintaining enterprise-grade mobile a
 
 This checklist helps organizations implement robust mobile development practices focusing on cross-platform development, native integration, performance, and security.
 
+Highlights of what this checklist covers:
+
+- Cross-platform strategy, including React Native (New Architecture: Fabric, TurboModules, JSI), Flutter, Kotlin Multiplatform (KMP), and fully native approaches
+- Modern native UI toolkits — SwiftUI on iOS and Jetpack Compose on Android — alongside legacy UIKit/View-based patterns
+- On-device AI/ML integration considerations (Apple Intelligence/CoreML, Android ML Kit and on-device Gemini Nano)
+- Privacy manifest / Privacy Nutrition Label and Android data-safety disclosure compliance
+- Performance, offline-sync, and enterprise-grade security controls (secure storage, RASP, MAST, root/jailbreak detection)
+
 ## Rationale
 
 Each section addresses critical mobile development concerns:
@@ -52,15 +60,29 @@ graph LR
     A[Cross-Platform] --> B[React Native]
     A --> C[Flutter]
     A --> D[Native Modules]
+    A --> I[Kotlin Multiplatform]
 
-    B --> E[JS Bridge]
+    B --> E[JSI / Fabric / TurboModules]
     C --> F[Native Compilation]
     D --> G[Platform APIs]
+    I --> J[Shared Kotlin Logic + Native UI]
 
     E --> H[Performance]
     F --> H
     G --> H
+    J --> H
 ```
+
+Four options are worth evaluating for enterprise cross-platform strategy:
+
+- **React Native** — now defaults to the **New Architecture** (Fabric renderer + TurboModules + JSI)
+  since RN 0.76, replacing the legacy async bridge. Most teams bootstrap and manage apps with **Expo**.
+- **Flutter** — Dart UI compiled to native with its own rendering engine.
+- **Native Modules** — fully native per platform (Swift/SwiftUI, Kotlin/Jetpack Compose) for maximum
+  fidelity and performance.
+- **Kotlin Multiplatform (KMP)** — shares business logic and data layers in Kotlin while keeping fully
+  native UI (SwiftUI on iOS, Jetpack Compose on Android); a strong option when native UI fidelity matters
+  more than a single shared UI codebase.
 
 #### Case Study: Performance Success
 

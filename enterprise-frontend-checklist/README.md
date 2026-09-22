@@ -171,6 +171,7 @@ graph LR
 - Input validation and output encoding for all user data
 - Use Content Security Policy (CSP) to mitigate XSS
 - Implement secure authentication flows (OAuth, SSO)
+- Offer passkeys/WebAuthn as a phishing-resistant, passwordless authentication option
 - Avoid exposing sensitive data in the frontend
 - Use HTTPS for all communications
 - Regularly update dependencies and scan for vulnerabilities

@@ -19,13 +19,13 @@ The Enterprise Repository Validator is an automated tool that analyzes GitHub re
 Validates:
 
 - Security headers and Content Security Policy (CSP)
-- Accessibility compliance (WCAG 2.1)
+- Accessibility compliance (WCAG 2.2)
 - Performance metrics and optimization
 - Build configuration and tooling
 - Code quality standards (ESLint)
 - Testing frameworks
 
-**Standards Checked**: OWASP Top 10, WCAG 2.1, ISO 27001
+**Standards Checked**: OWASP Top 10, WCAG 2.2, ISO 27001
 
 ### ⚙️ Backend
 
@@ -108,7 +108,7 @@ Validates:
 - Model monitoring configuration
 - Bias and fairness considerations
 
-**Standards Checked**: EU AI Act (proposed)
+**Standards Checked**: EU AI Act, NIST AI RMF, ISO/IEC 42001
 
 ## Compliance Standards
 
@@ -116,10 +116,10 @@ The validator checks compliance with the following industry standards:
 
 ### ISO 27001
 
-**ISO/IEC 27001:2013 - Information Security Management**
+**ISO/IEC 27001:2022 - Information Security Management**
 
 - Comprehensive information security management system
-- 14 control domains covering all aspects of security
+- Four Annex A themes (organizational, people, physical, technological) with 93 controls
 - Applicable to: Security, Data, Cloud, DevOps domains
 
 ### NIST Cybersecurity Framework (CSF)
@@ -153,9 +153,9 @@ The validator checks compliance with the following industry standards:
 - Covers: Broken Access Control, Cryptographic Failures, Injection, Insecure Design, Security Misconfiguration, Vulnerable Components, Authentication Failures, Integrity Failures, Logging Failures, SSRF
 - Applicable to: Security, Frontend, Backend domains
 
-### WCAG 2.1
+### WCAG 2.2
 
-**Web Content Accessibility Guidelines 2.1**
+**Web Content Accessibility Guidelines 2.2**
 
 - Four principles: Perceivable, Operable, Understandable, Robust
 - Three conformance levels: A, AA (recommended), AAA

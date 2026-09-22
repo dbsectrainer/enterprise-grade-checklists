@@ -15,7 +15,11 @@
         A comprehensive checklist for developing and deploying enterprise-grade AI/ML solutions,
         focusing on data management, model development, MLOps, monitoring, and ethical
         considerations. This checklist covers essential machine learning practices while embracing
-        modern AI/ML architectures and methodologies.
+        modern AI/ML architectures and methodologies. It spans both classical/predictive ML systems
+        (the data pipelines, model training, drift detection, and fairness metrics below) and
+        generative AI/LLM systems (prompt injection defenses, RAG quality, agentic AI governance,
+        and AI Act/NIST/ISO risk tiering) — enterprises now run both, and neither should be governed
+        by the other's playbook alone.
       </p>
 
       <div class="header-controls">
@@ -1515,6 +1519,683 @@
         </div>
 
         <div class="section">
+          <h2>Generative AI &amp; LLM</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Prompt Injection &amp; Jailbreak Defense</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What defenses are in place against direct and indirect prompt injection
+                        (e.g., malicious instructions embedded in retrieved documents, web content,
+                        or user uploads)?
+                      </li>
+                      <li>
+                        How do you distinguish trusted system/developer instructions from untrusted
+                        user or tool-retrieved content architecturally?
+                      </li>
+                      <li>
+                        What jailbreak detection techniques identify attempts to bypass safety
+                        guardrails (role-play framing, encoding tricks, multi-turn escalation)?
+                      </li>
+                      <li>
+                        How do you test for prompt injection vulnerabilities before and after
+                        deployment?
+                      </li>
+                      <li>
+                        What happens when an injection or jailbreak attempt is detected — is it
+                        logged, blocked, and escalated?
+                      </li>
+                      <li>
+                        How do you handle prompt injection risks introduced through third-party
+                        plugins, tools, or agent integrations?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Use input/output filtering and instruction-hierarchy techniques (system
+                        prompts privileged over retrieved/user content)
+                      </li>
+                      <li>
+                        Sandbox and apply least-privilege to any tool or plugin the LLM can invoke
+                      </li>
+                      <li>
+                        Continuously red-team with updated jailbreak corpora rather than a one-time
+                        pre-launch test
+                      </li>
+                      <li>
+                        Log prompts, retrieved context, and model outputs for forensic review of
+                        suspected injection attempts
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>System prompts or credentials that leak through crafted user inputs</li>
+                      <li>
+                        No distinction in the model pipeline between trusted instructions and
+                        untrusted retrieved/user content
+                      </li>
+                      <li>
+                        Jailbreak testing performed once at launch and never revisited as new
+                        techniques emerge
+                      </li>
+                      <li>
+                        LLM-driven tools that execute actions directly from unsanitized model output
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">RAG Evaluation &amp; Retrieval Quality</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What metrics measure retrieval quality (recall@k, precision, context
+                        relevance, groundedness)?
+                      </li>
+                      <li>
+                        How do you evaluate whether generated answers are actually grounded in
+                        retrieved context versus fabricated?
+                      </li>
+                      <li>
+                        What process re-indexes or refreshes the knowledge base, and how do you
+                        prevent stale or conflicting sources from degrading answers?
+                      </li>
+                      <li>
+                        How do you test RAG pipelines against adversarial or out-of-distribution
+                        queries?
+                      </li>
+                      <li>
+                        What chunking, embedding, and re-ranking strategies were evaluated and why
+                        were they chosen?
+                      </li>
+                      <li>
+                        How do you measure end-to-end RAG quality (not just retrieval, but the final
+                        answer) before and after pipeline changes?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Maintain a labeled evaluation set of query/expected-context/expected-answer
+                        triples for regression testing
+                      </li>
+                      <li>
+                        Track groundedness/faithfulness scores alongside traditional retrieval
+                        metrics
+                      </li>
+                      <li>
+                        Version and audit the knowledge corpus the same way you version training
+                        data
+                      </li>
+                      <li>
+                        Include citation/source attribution in generated answers where feasible
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        No automated evaluation harness for retrieval or answer quality; changes
+                        assessed only by spot-checking
+                      </li>
+                      <li>
+                        Retrieved context that is stale, duplicated, or contradictory without
+                        detection
+                      </li>
+                      <li>Generated answers that cite sources they did not actually retrieve</li>
+                      <li>
+                        RAG pipeline changes deployed without regression testing against a held-out
+                        evaluation set
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Vector Database Access Control</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What authentication and authorization controls restrict who and what
+                        services can query or write to the vector store?
+                      </li>
+                      <li>
+                        How do you enforce document-level or tenant-level access control so
+                        retrieval never surfaces content a requesting user isn't entitled to see?
+                      </li>
+                      <li>
+                        How is embedded data (which may contain PII or sensitive business data)
+                        encrypted at rest and in transit?
+                      </li>
+                      <li>
+                        What audit logging exists for vector database queries, especially bulk or
+                        anomalous access patterns?
+                      </li>
+                      <li>
+                        How do you handle data deletion and "right to be forgotten" for embeddings,
+                        not just source documents?
+                      </li>
+                      <li>
+                        How do you isolate vector indexes across environments (dev/staging/prod) and
+                        across customers in multi-tenant deployments?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Apply the same access-control rigor to embeddings/vector stores as to the
+                        source data they were derived from
+                      </li>
+                      <li>
+                        Filter retrieval results by the requesting user's permissions before they
+                        ever reach the prompt context
+                      </li>
+                      <li>
+                        Encrypt embeddings and metadata, and rotate credentials for vector database
+                        access
+                      </li>
+                      <li>
+                        Treat embedding deletion as part of the standard data-retention/deletion
+                        workflow
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        A shared vector index across tenants or users with no row/namespace-level
+                        filtering
+                      </li>
+                      <li>
+                        Embeddings that retain sensitive data after the source document was deleted
+                      </li>
+                      <li>
+                        Vector database endpoints reachable without authentication or with overly
+                        broad service credentials
+                      </li>
+                      <li>
+                        No audit trail of who queried what, making leak investigation impossible
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Hallucination Detection &amp; Mitigation</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What techniques detect factually incorrect or unsupported model outputs
+                        (self-consistency checks, retrieval grounding, claim verification)?
+                      </li>
+                      <li>
+                        How do you measure hallucination rate for your specific use case, and what
+                        threshold is acceptable?
+                      </li>
+                      <li>
+                        What guardrails prevent hallucinated outputs from reaching end users
+                        unreviewed in high-stakes workflows?
+                      </li>
+                      <li>
+                        How do you handle model confidence signaling — does the system communicate
+                        uncertainty to users?
+                      </li>
+                      <li>
+                        What feedback loop captures user-reported hallucinations and feeds them back
+                        into evaluation or fine-tuning?
+                      </li>
+                      <li>
+                        How do you test for hallucination under adversarial or out-of-scope prompts
+                        specifically designed to induce fabrication?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Ground generation in retrieved, citable sources wherever possible rather
+                        than relying on parametric knowledge
+                      </li>
+                      <li>
+                        Use automated fact-checking or claim-verification models as a secondary
+                        check on high-stakes outputs
+                      </li>
+                      <li>
+                        Require human review for hallucination-sensitive domains (legal, medical,
+                        financial advice)
+                      </li>
+                      <li>
+                        Track hallucination rate as a first-class production metric, not just
+                        accuracy
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        No systematic measurement of hallucination rate before or after deployment
+                      </li>
+                      <li>
+                        Fabricated citations, statistics, or facts presented with the same
+                        confidence as verified content
+                      </li>
+                      <li>
+                        Users given no indication of model uncertainty or the possibility of
+                        fabricated content
+                      </li>
+                      <li>
+                        Hallucination incidents discovered only through customer complaints rather
+                        than proactive monitoring
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="checklist-group">
+            <h3>Suggested</h3>
+            <ul class="checklist suggested">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Agentic AI Guardrails</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What tools, APIs, or systems can AI agents invoke, and how is that
+                        permission set scoped per agent and per task?
+                      </li>
+                      <li>
+                        How do you enforce least-privilege so an agent can only take actions
+                        necessary for its assigned task?
+                      </li>
+                      <li>
+                        What guardrails prevent an agent from taking irreversible or high-impact
+                        actions (financial transactions, data deletion, external communications)
+                        without approval?
+                      </li>
+                      <li>
+                        How do you constrain multi-step autonomous planning/execution loops to
+                        prevent runaway behavior or excessive resource consumption?
+                      </li>
+                      <li>
+                        What sandboxing or simulation environment is used to test agent behavior
+                        before granting production tool access?
+                      </li>
+                      <li>
+                        How do you audit and replay an agent's full chain of tool calls and
+                        decisions after an incident?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Define an explicit allowlist of tools/actions per agent role rather than
+                        granting broad system access
+                      </li>
+                      <li>
+                        Require approval gates or rate limits for actions above a defined
+                        risk/impact threshold
+                      </li>
+                      <li>
+                        Log every tool call, input, and output in the agent's action trace for
+                        auditability
+                      </li>
+                      <li>
+                        Test agents in a sandboxed environment with synthetic tools before
+                        connecting to production systems
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Agents granted broad API keys or credentials far beyond what their task
+                        requires
+                      </li>
+                      <li>
+                        No approval step before an agent executes irreversible or high-cost actions
+                      </li>
+                      <li>
+                        Agent action logs that are incomplete or not correlated with the reasoning
+                        that triggered them
+                      </li>
+                      <li>
+                        Multi-agent or multi-step workflows with no cap on iterations, cost, or
+                        elapsed time
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Human-in-the-Loop Checkpoints</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        For which agent actions or generative outputs is human review mandatory
+                        before execution or publication?
+                      </li>
+                      <li>
+                        How do you determine the risk threshold that triggers a human checkpoint
+                        versus fully autonomous operation?
+                      </li>
+                      <li>
+                        What interface do reviewers use to approve, reject, or modify an agent's
+                        proposed action?
+                      </li>
+                      <li>
+                        How do you prevent checkpoint fatigue where reviewers rubber-stamp requests
+                        without meaningful review?
+                      </li>
+                      <li>
+                        What happens when a human reviewer is unavailable — does the agent fail safe
+                        (block) or proceed?
+                      </li>
+                      <li>
+                        How do you track override rates and reviewer decisions to improve agent
+                        behavior and checkpoint placement over time?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Tier checkpoints by risk: low-risk actions proceed autonomously, high-risk
+                        actions require explicit human sign-off
+                      </li>
+                      <li>
+                        Design review interfaces that surface the agent's reasoning and evidence,
+                        not just the final action
+                      </li>
+                      <li>
+                        Default to a safe, blocked state when human review is required but
+                        unavailable
+                      </li>
+                      <li>
+                        Periodically audit override/approval patterns to recalibrate where
+                        checkpoints are placed
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        "Human-in-the-loop" that exists on paper but reviewers approve everything
+                        without real scrutiny
+                      </li>
+                      <li>
+                        No defined risk tiering — either everything requires review (unscalable) or
+                        nothing does (unsafe)
+                      </li>
+                      <li>
+                        Agents that proceed autonomously by default when a reviewer fails to respond
+                      </li>
+                      <li>
+                        No audit trail of what a human approved versus what the agent originally
+                        proposed
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>AI Risk Tiering &amp; Regulatory Compliance</h2>
+          <div class="checklist-group">
+            <h3>Required</h3>
+            <ul class="checklist required">
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">EU AI Act Risk Tiering</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Has each AI system been classified into an EU AI Act risk tier
+                        (unacceptable/prohibited, high-risk, limited-risk, minimal-risk)?
+                      </li>
+                      <li>
+                        For high-risk systems, what conformity assessment, risk management system,
+                        and human oversight measures are documented?
+                      </li>
+                      <li>
+                        For general-purpose AI models (GPAI), what transparency and systemic-risk
+                        documentation is maintained (technical documentation, training data summary,
+                        copyright compliance)?
+                      </li>
+                      <li>
+                        For limited-risk systems (e.g., chatbots, deepfake generators), what
+                        transparency obligations (disclosing AI interaction, labeling synthetic
+                        content) are implemented?
+                      </li>
+                      <li>
+                        How do you re-assess risk tier classification when a system's use case,
+                        deployment context, or capabilities change?
+                      </li>
+                      <li>
+                        Who owns the AI Act compliance process, and how is it kept current as
+                        enforcement phases take effect (prohibited practices since Feb 2025, GPAI
+                        since Aug 2025, full applicability Aug 2026)?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Maintain a system-level inventory that records each AI system's risk tier
+                        classification and supporting rationale
+                      </li>
+                      <li>
+                        Build conformity assessment and CE-marking readiness into the development
+                        lifecycle for high-risk systems, not as a late-stage gate
+                      </li>
+                      <li>
+                        Track GPAI obligations separately, since foundation models you build on may
+                        carry their own upstream compliance requirements
+                      </li>
+                      <li>
+                        Reassess tiering whenever a system is repurposed or deployed into a new
+                        context, since risk tier is use-case dependent, not model-dependent
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>No documented risk-tier classification for any deployed AI system</li>
+                      <li>
+                        High-risk systems in production without a risk management file, human
+                        oversight design, or conformity assessment
+                      </li>
+                      <li>
+                        Chatbots or generative features that don't disclose to users that they're
+                        interacting with AI
+                      </li>
+                      <li>
+                        Compliance treated as a one-time exercise rather than revisited as
+                        regulatory phases and system use cases evolve
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">NIST AI RMF Alignment</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        How does your AI governance program map to the four NIST AI RMF functions
+                        (Govern, Map, Measure, Manage)?
+                      </li>
+                      <li>
+                        What organizational structures and policies implement the "Govern" function
+                        (accountability, culture, risk tolerance)?
+                      </li>
+                      <li>
+                        How do you "Map" context and risks for each AI system before development
+                        begins?
+                      </li>
+                      <li>
+                        What quantitative and qualitative methods do you use to "Measure" identified
+                        risks (bias, robustness, safety, security)?
+                      </li>
+                      <li>
+                        How are measured risks prioritized and acted upon under the "Manage"
+                        function, and who has authority to stop or roll back a deployment?
+                      </li>
+                      <li>
+                        How do you use the NIST Generative AI Profile to address risks specific to
+                        LLMs and generative systems?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Treat AI RMF as a continuous lifecycle process, not a one-time checklist —
+                        Govern/Map/Measure/Manage repeat as systems evolve
+                      </li>
+                      <li>
+                        Align existing model risk management and MLOps processes to the four
+                        functions rather than building a parallel process
+                      </li>
+                      <li>
+                        Use the NIST Generative AI Profile as a supplement covering genAI-specific
+                        risks (confabulation, data privacy, content provenance)
+                      </li>
+                      <li>
+                        Document risk decisions and residual risk acceptance for audit and
+                        regulatory readiness
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        AI risk management that exists only as documentation with no operational
+                        tie-in to development or deployment gates
+                      </li>
+                      <li>
+                        No designated accountable owner for AI risk decisions (the "Govern"
+                        function)
+                      </li>
+                      <li>
+                        Risks identified during "Map" that are never revisited during "Measure" or
+                        "Manage"
+                      </li>
+                      <li>
+                        Generative AI systems evaluated using only classical-ML risk criteria,
+                        ignoring genAI-specific failure modes
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">ISO/IEC 42001 AI Management System</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Does your organization have a documented AI Management System (AIMS) aligned
+                        to ISO/IEC 42001, or a roadmap toward certification?
+                      </li>
+                      <li>
+                        What AI policy, objectives, and top-management commitment are documented as
+                        required by the standard?
+                      </li>
+                      <li>
+                        How do you conduct and document AI-specific risk and impact assessments as
+                        part of the AIMS?
+                      </li>
+                      <li>
+                        What internal audit and management review cadence exists for the AI
+                        management system?
+                      </li>
+                      <li>
+                        How is the AIMS scoped — which AI systems, business units, and third-party
+                        AI dependencies are in scope?
+                      </li>
+                      <li>
+                        How does ISO/IEC 42001 certification (or alignment) get evidenced to
+                        customers, auditors, or regulators as part of due diligence?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Scope the AIMS deliberately — start with highest-risk or highest-visibility
+                        AI systems rather than boiling the ocean
+                      </li>
+                      <li>
+                        Integrate AIMS processes with existing ISO 27001/SOC 2 management systems
+                        where controls overlap
+                      </li>
+                      <li>
+                        Assign clear ownership for the AI policy, risk register, and continual
+                        improvement cycle
+                      </li>
+                      <li>
+                        Use ISO/IEC 42001 as the operational management-system layer that
+                        complements EU AI Act and NIST AI RMF technical/regulatory requirements
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        AI policy that exists as a static document with no management review or
+                        continual improvement process
+                      </li>
+                      <li>
+                        No AI-specific risk register distinct from general IT/security risk
+                        registers
+                      </li>
+                      <li>
+                        AIMS scope that excludes third-party or vendor-supplied AI/LLM components
+                        actually in production use
+                      </li>
+                      <li>
+                        Certification or alignment claimed without evidence of internal audits or
+                        documented corrective actions
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
           <h2>Documentation</h2>
           <div class="checklist-group">
             <h3>Required</h3>
@@ -1567,6 +2248,83 @@
                         Technical jargon that makes cards inaccessible to business stakeholders
                       </li>
                       <li>No process for reviewing and approving model card content</li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Foundation Model / System Cards</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        How do you document training data provenance at a high level (data sources,
+                        collection methods, cutoff dates) without exposing proprietary or sensitive
+                        details?
+                      </li>
+                      <li>
+                        What intended uses and explicitly out-of-scope/misuse cases are documented
+                        for the foundation model or LLM-based system?
+                      </li>
+                      <li>
+                        What known limitations are disclosed (context window constraints,
+                        multilingual performance gaps, reasoning failure modes, knowledge cutoff)?
+                      </li>
+                      <li>
+                        What safety evaluation results are documented (red-teaming summaries,
+                        harmful-content benchmarks, bias evaluations specific to generative
+                        outputs)?
+                      </li>
+                      <li>
+                        How do you document the model's content provenance and watermarking/labeling
+                        approach for generated content, where applicable?
+                      </li>
+                      <li>
+                        How do you handle documentation when building on top of a third-party
+                        foundation model you didn't train yourself (vendor model/system cards)?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Distinguish a "system card" (documenting your deployed application,
+                        including prompts, guardrails, and RAG/tool integrations) from a raw
+                        foundation-model card
+                      </li>
+                      <li>
+                        Publish high-level training data provenance and licensing posture even when
+                        full dataset details can't be disclosed
+                      </li>
+                      <li>
+                        Include safety evaluation summaries (jailbreak resistance, harmful content
+                        refusal rates) alongside traditional performance metrics
+                      </li>
+                      <li>
+                        Update the system card whenever the underlying model, prompt, or tool
+                        integrations change materially
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Treating a vendor's foundation-model card as sufficient documentation for
+                        your own deployed system, prompts, and integrations
+                      </li>
+                      <li>
+                        No disclosure of intended use / misuse boundaries, leaving users to discover
+                        limitations through failure
+                      </li>
+                      <li>
+                        Safety evaluation section that is copied once at launch and never updated as
+                        the model or its integrations change
+                      </li>
+                      <li>
+                        No documentation of what happens when the underlying third-party model is
+                        silently updated by the vendor
+                      </li>
                     </ul>
                   </div>
                 </label>
@@ -2151,6 +2909,82 @@
                       <li>Testing only against basic attacks while ignoring advanced techniques</li>
                       <li>No systematic approach to fix vulnerabilities found during testing</li>
                       <li>Robustness testing performed only once without regular updates</li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">LLM Red-Teaming &amp; Safety Evaluations</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        What red-teaming process specifically targets LLM/generative behaviors
+                        (jailbreaks, harmful content generation, toxic or biased outputs, PII
+                        leakage through generation)?
+                      </li>
+                      <li>
+                        How do you differentiate this from classical adversarial-ML testing
+                        (evasion/poisoning attacks), which targets model inputs/training rather than
+                        generated outputs?
+                      </li>
+                      <li>
+                        What harm categories are in scope for red-teaming (violence, self-harm,
+                        illegal activity, misinformation, IP infringement, privacy leakage)?
+                      </li>
+                      <li>
+                        Do you use internal red teams, external/third-party red teams, or automated
+                        adversarial-prompt generation — or a combination?
+                      </li>
+                      <li>
+                        How are red-team findings triaged, remediated, and re-tested before and
+                        after each model or prompt-pipeline update?
+                      </li>
+                      <li>
+                        What ongoing safety evaluation cadence exists in production, beyond a
+                        one-time pre-launch red-team exercise?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Maintain a living library of known jailbreak techniques and harmful-prompt
+                        categories, refreshed as new techniques are published
+                      </li>
+                      <li>
+                        Combine manual red-teaming (creative, adversarial human testers) with
+                        automated adversarial-prompt generation for coverage and scale
+                      </li>
+                      <li>
+                        Track safety eval results as regression tests re-run on every model, prompt,
+                        or RAG-pipeline change
+                      </li>
+                      <li>
+                        Report red-team findings and remediation status to the same governance body
+                        reviewing classical-ML fairness/bias results
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Red-teaming performed once before launch with no re-testing after prompt,
+                        model, or tool changes
+                      </li>
+                      <li>
+                        Red-team scope that only covers classical adversarial-ML attacks and omits
+                        jailbreak/harmful-generation testing
+                      </li>
+                      <li>
+                        Findings logged but never fed back into prompt hardening, guardrail updates,
+                        or model selection decisions
+                      </li>
+                      <li>
+                        No safety evaluation coverage for a newly added tool/agent capability before
+                        it goes live
+                      </li>
                     </ul>
                   </div>
                 </label>
