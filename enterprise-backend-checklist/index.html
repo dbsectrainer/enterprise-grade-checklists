@@ -15,7 +15,9 @@
         A comprehensive checklist for building and maintaining modern enterprise-grade backend
         systems, with focus on security, scalability, reliability, performance, API design, and
         infrastructure management. This enhanced checklist covers traditional backend concerns while
-        embracing cloud-native architectures and emerging technologies.
+        embracing cloud-native architectures and emerging technologies, including backend
+        engineering practices for AI/LLM integration (RAG pipelines, vector databases, and
+        agent tool-calling security).
       </p>
 
       <div class="header-controls">
@@ -789,6 +791,83 @@
                       <li>Exposing sensitive data without proper field-level authorization</li>
                       <li>
                         Poor schema design leading to client-side complexity and over-coupling
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Modern API Paradigms (tRPC & GraphQL Federation)</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        For full-stack TypeScript projects, have you evaluated tRPC for end-to-end
+                        type-safe APIs without a separate schema or codegen step?
+                      </li>
+                      <li>
+                        For multi-team GraphQL services, is GraphQL Federation (or a similar
+                        supergraph approach) used to compose subgraphs owned by different teams
+                        into a single graph?
+                      </li>
+                      <li>
+                        How do you decide between REST, GraphQL, gRPC, tRPC, and GraphQL Federation
+                        for a given service based on client type, team topology, and performance
+                        needs?
+                      </li>
+                      <li>
+                        How is authentication and authorization enforced consistently across
+                        federated subgraphs or tRPC routers?
+                      </li>
+                      <li>
+                        What tooling validates schema compatibility when composing a federated
+                        supergraph or evolving tRPC router types?
+                      </li>
+                      <li>
+                        How do you document and version APIs built with these newer paradigms for
+                        external and internal consumers?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Use tRPC when both client and server are TypeScript and you want
+                        compile-time type safety without maintaining a separate API contract
+                      </li>
+                      <li>
+                        Use GraphQL Federation when multiple teams own independent GraphQL
+                        subgraphs that need to be composed into one graph for clients
+                      </li>
+                      <li>
+                        Match the paradigm to the actual constraint (team boundaries, client
+                        language diversity, performance) rather than defaulting to REST, GraphQL,
+                        or gRPC out of habit
+                      </li>
+                      <li>
+                        Keep the choice consistent with existing auth, rate limiting, and
+                        observability tooling so new paradigms don't create blind spots
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Adopting tRPC across polyglot clients where the lack of a
+                        language-agnostic contract creates integration friction
+                      </li>
+                      <li>
+                        Federating GraphQL subgraphs without a schema registry or composition
+                        checks, risking breaking changes at the supergraph level
+                      </li>
+                      <li>
+                        Mixing paradigms without a documented rationale, leading to inconsistent
+                        client integration patterns
+                      </li>
+                      <li>
+                        No consistent authorization enforcement across federated subgraphs,
+                        creating gaps at composition boundaries
                       </li>
                     </ul>
                   </div>
@@ -2732,7 +2811,8 @@
                     <ul>
                       <li>
                         What compliance frameworks and standards are monitored (SOC 2, ISO 27001,
-                        PCI DSS)?
+                        PCI DSS, and — for backends serving AI/LLM workloads — the EU AI Act and
+                        NIST AI RMF)?
                       </li>
                       <li>How do you implement continuous compliance monitoring and assessment?</li>
                       <li>What automated tools detect compliance violations and deviations?</li>
@@ -2750,6 +2830,13 @@
                         Integrate compliance checks into CI/CD pipelines and deployment processes
                       </li>
                       <li>Maintain evidence collection and documentation for audit purposes</li>
+                      <li>
+                        For backends that serve AI/LLM workloads, track EU AI Act risk-tiering
+                        obligations and NIST AI RMF governance functions alongside SOC 2/ISO
+                        27001/PCI DSS controls — see the
+                        <a href="../enterprise-aiml-checklist/index.html">enterprise-aiml-checklist</a>
+                        for model-level governance
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>
@@ -2977,6 +3064,11 @@
                       </li>
                       <li>Document both manual and automated deployment procedures</li>
                       <li>Include rollback procedures and disaster recovery steps</li>
+                      <li>
+                        Standardize on current LTS runtime versions (Node.js 22 or 24, Python
+                        3.13, Java 21+) across environments to ensure security patches, performance
+                        improvements, and long-term support
+                      </li>
                     </ul>
                     <strong>Red Flags:</strong>
                     <ul>

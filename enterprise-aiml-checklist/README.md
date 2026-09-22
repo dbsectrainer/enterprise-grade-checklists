@@ -4,7 +4,19 @@ A comprehensive guide for implementing and maintaining enterprise-grade AI/ML sy
 
 ## Purpose
 
-This checklist helps organizations implement robust AI/ML practices focusing on model development, deployment, monitoring, and maintenance.
+This checklist helps organizations implement robust AI/ML practices focusing on model development, deployment, monitoring, and maintenance. It covers both classical/predictive ML systems (model training, MLOps, drift detection, fairness metrics) and generative AI/LLM systems (prompt injection defenses, RAG evaluation, agentic AI governance, and EU AI Act/NIST AI RMF/ISO 42001 risk tiering) — enterprise AI portfolios now include both, and each needs governance suited to its own failure modes.
+
+## Sections
+
+- **Data Management** — data pipelines, quality, versioning, and privacy for training and evaluation data
+- **Model Development** — architecture selection, training pipelines, validation, and versioning
+- **MLOps** — CI/CD, model registry, serving, and monitoring setup for classical ML models
+- **Model Monitoring** — performance monitoring, drift detection, resource monitoring, and alerting
+- **Ethics & Fairness** — bias detection, fairness metrics, explainability, and ethics review processes
+- **Generative AI & LLM** — prompt injection and jailbreak defenses, RAG evaluation and retrieval quality, vector database access control, hallucination detection and mitigation, agentic AI guardrails (tool-use permission scoping, autonomous action guardrails), and human-in-the-loop checkpoints
+- **AI Risk Tiering & Regulatory Compliance** — EU AI Act risk-tier classification (high-risk/GPAI/limited-risk/minimal-risk), NIST AI RMF alignment, and ISO/IEC 42001 AI management system
+- **Documentation** — model cards, foundation model/system cards, data documentation, and pipeline/API documentation
+- **Security & Compliance** — model and data security, adversarial robustness testing, LLM red-teaming and safety evaluations, and privacy protection
 
 ## Rationale
 
@@ -448,3 +460,8 @@ class FairnessAnalyzer:
 - [Model Cards](https://modelcards.withgoogle.com/about)
 - [Responsible AI Practices](https://ai.google/responsibilities/responsible-ai-practices/)
 - [ML Testing Guide](https://developers.google.com/machine-learning/testing-debugging)
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [NIST Generative AI Profile](https://www.nist.gov/itl/ai-risk-management-framework)
+- [EU AI Act](https://artificialintelligenceact.eu/)
+- [ISO/IEC 42001:2023](https://www.iso.org/standard/81230.html)

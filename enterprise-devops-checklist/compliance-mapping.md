@@ -10,11 +10,11 @@ This mapping helps organizations understand how implementing DevOps practices he
 
 | Framework     | Coverage | Last Updated |
 | ------------- | -------- | ------------ |
-| ISO/IEC 27001 | 85%      | 2024-02-13   |
-| NIST 800-53   | 90%      | 2024-02-13   |
-| SOC 2         | 88%      | 2024-02-13   |
-| ITIL 4        | 95%      | 2024-02-13   |
-| COBIT 2019    | 87%      | 2024-02-13   |
+| ISO/IEC 27001 | 85%      | 2026-09-22   |
+| NIST 800-53   | 90%      | 2026-09-22   |
+| SOC 2         | 88%      | 2026-09-22   |
+| ITIL 4        | 95%      | 2026-09-22   |
+| COBIT 2019    | 87%      | 2026-09-22   |
 
 ## Detailed Mapping
 
@@ -124,7 +124,7 @@ graph LR
 ```markdown
 | Practice | Framework Requirement | Current Status | Gap                     | Remediation Plan       |
 | -------- | --------------------- | -------------- | ----------------------- | ---------------------- |
-| CI/CD    | ISO 27001 A.12.1.2    | Partial        | Missing change approval | Q2 2024 Implementation |
+| CI/CD    | ISO 27001 A.12.1.2    | Partial        | Missing change approval | Q4 2026 Implementation |
 ```
 
 ## Best Practices Alignment

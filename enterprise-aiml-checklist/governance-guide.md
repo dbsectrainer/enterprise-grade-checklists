@@ -1,6 +1,6 @@
 # Model Governance Guide
 
-A comprehensive guide for implementing responsible AI practices and model governance in enterprise AI/ML systems.
+A comprehensive guide for implementing responsible AI practices and model governance in enterprise AI/ML systems. Governance requirements differ for classical/predictive ML models (Sections 1-5 below) and generative AI/LLM systems (Section 6) — a fraud-detection classifier and a customer-facing chatbot built on a foundation model carry different risks and need different controls, even though both fall under "AI governance."
 
 ## Governance Framework
 
@@ -376,9 +376,163 @@ class ModelCard:
 - Maintenance: [Plan]
 ```
 
+## 6. Generative AI & LLM Governance
+
+Classical model governance (Sections 1-5) assumes a model that outputs a bounded prediction from a fixed label space. Generative AI systems — LLMs, RAG pipelines, and autonomous agents built on top of them — produce open-ended text, can call tools, and can be manipulated through their input in ways a classifier cannot. They need their own governance layer, on top of (not instead of) the classical controls.
+
+### GenAI Governance Lifecycle
+
+```mermaid
+graph TD
+    A[GenAI Governance] --> B[Risk Tiering]
+    A --> C[Safety Controls]
+    A --> D[Agentic Guardrails]
+    A --> E[Documentation]
+
+    B --> B1[EU AI Act Tier]
+    B --> B2[NIST AI RMF]
+    B --> B3[ISO/IEC 42001]
+
+    C --> C1[Prompt Injection Defense]
+    C --> C2[Hallucination Mitigation]
+    C --> C3[Red-Teaming]
+
+    D --> D1[Tool Permission Scoping]
+    D --> D2[Autonomous Action Limits]
+    D --> D3[Human-in-the-Loop]
+
+    E --> E1[System Cards]
+    E --> E2[RAG/Vector Store Controls]
+```
+
+### Prompt Injection & Jailbreak Defense
+
+```python
+class PromptInjectionGuard:
+    """Enforces an instruction hierarchy between trusted and untrusted content."""
+
+    def __init__(self, system_prompt: str, jailbreak_classifier: JailbreakClassifier):
+        self.system_prompt = system_prompt
+        self.jailbreak_classifier = jailbreak_classifier
+
+    def build_context(
+        self,
+        user_input: str,
+        retrieved_documents: List[str]
+    ) -> LLMContext:
+        """Assemble a prompt where system instructions are architecturally
+        privileged over untrusted user/retrieved content."""
+        risk = self.jailbreak_classifier.score(user_input)
+
+        if risk.is_high_risk:
+            self.log_and_block(user_input, risk)
+            raise BlockedInputError(risk.reason)
+
+        return LLMContext(
+            system=self.system_prompt,          # trusted, never overridden
+            retrieved=self.sanitize(retrieved_documents),  # untrusted, quarantined
+            user=user_input                       # untrusted
+        )
+
+    def sanitize(self, documents: List[str]) -> List[str]:
+        """Strip or neutralize embedded instructions in retrieved content
+        before it reaches the model context."""
+        return [strip_instruction_patterns(doc) for doc in documents]
+```
+
+### RAG Evaluation & Vector Store Access Control
+
+```python
+class RAGEvaluator:
+    def __init__(self, eval_set: List[RAGExample]):
+        self.eval_set = eval_set  # query, expected_context, expected_answer triples
+
+    def evaluate(self, rag_pipeline: RAGPipeline) -> RAGEvalReport:
+        """Score retrieval and end-to-end answer quality against a held-out set."""
+        results = []
+        for example in self.eval_set:
+            retrieved = rag_pipeline.retrieve(example.query)
+            answer = rag_pipeline.generate(example.query, retrieved)
+
+            results.append(RAGResult(
+                retrieval_recall=self.recall_at_k(retrieved, example.expected_context),
+                groundedness=self.groundedness_score(answer, retrieved),
+                correctness=self.compare(answer, example.expected_answer)
+            ))
+
+        return RAGEvalReport(results=results)
+
+
+class VectorStoreAccessControl:
+    def query(self, requester: Principal, query_vector, filters: dict):
+        """Filter retrieval results to only what the requester is entitled to see,
+        before the results ever reach the prompt context."""
+        acl_filters = self.build_acl_filters(requester)
+        return self.index.search(query_vector, filters={**filters, **acl_filters})
+```
+
+### Agentic AI Guardrails
+
+```python
+class AgentToolGuardrail:
+    """Scopes tool access per agent role and gates high-impact actions
+    behind human approval."""
+
+    def __init__(self, agent_role: str, allowed_tools: List[str], approval_threshold: str):
+        self.agent_role = agent_role
+        self.allowed_tools = set(allowed_tools)  # explicit allowlist, not a denylist
+        self.approval_threshold = approval_threshold
+
+    def authorize_tool_call(self, tool_name: str, action: AgentAction) -> AuthorizationResult:
+        if tool_name not in self.allowed_tools:
+            return AuthorizationResult(allowed=False, reason="tool not in agent's allowlist")
+
+        if action.risk_level >= self.approval_threshold:
+            return AuthorizationResult(
+                allowed=False,
+                requires_human_approval=True,
+                reason=f"{action.risk_level} action requires human-in-the-loop checkpoint"
+            )
+
+        self.audit_log.record(self.agent_role, tool_name, action)
+        return AuthorizationResult(allowed=True)
+```
+
+### AI Risk Tiering (EU AI Act / NIST AI RMF / ISO 42001)
+
+```python
+@dataclass
+class AISystemRiskProfile:
+    """Per-system risk classification, reviewed whenever use case or
+    deployment context changes."""
+
+    system_name: str
+    eu_ai_act_tier: str  # "Unacceptable" | "High" | "GPAI" | "Limited" | "Minimal"
+    conformity_assessment_required: bool
+    nist_rmf_functions_implemented: List[str]  # subset of Govern/Map/Measure/Manage
+    iso42001_aims_scope: bool  # in scope of the org's AI Management System
+    last_reviewed: date
+    reviewer: str
+```
+
+### Governance Checklist Summary
+
+| Topic | Classical ML | Generative AI / LLM |
+| --- | --- | --- |
+| Adversarial testing | Evasion / data poisoning red-team | Jailbreak / harmful-output red-team |
+| Documentation | Model Cards | Foundation Model / System Cards |
+| Access control | Model & training-data access control | Vector database & retrieval access control |
+| Autonomy risk | Automated retraining guardrails | Agentic AI tool-use & action guardrails |
+| Regulatory tiering | Sector-specific compliance (GDPR, HIPAA) | EU AI Act tiering, NIST AI RMF, ISO/IEC 42001 |
+
 ## Resources
 
 - [Google AI Principles](https://ai.google/principles/)
 - [Microsoft Responsible AI Standards](https://www.microsoft.com/en-us/ai/responsible-ai)
 - [IBM AI Ethics Guidelines](https://www.ibm.com/artificial-intelligence/ethics)
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [NIST Generative AI Profile (NIST-AI-600-1)](https://www.nist.gov/itl/ai-risk-management-framework)
+- [EU AI Act (Regulation (EU) 2024/1689)](https://artificialintelligenceact.eu/)
+- [ISO/IEC 42001:2023 - AI Management System](https://www.iso.org/standard/81230.html)
+- [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
+- [MITRE ATLAS - Adversarial Threat Landscape for AI Systems](https://atlas.mitre.org/)

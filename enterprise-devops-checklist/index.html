@@ -645,6 +645,81 @@
                   </div>
                 </label>
               </li>
+              <li>
+                <label class="checklist-item">
+                  <input type="checkbox" class="checkbox" />
+                  <span class="item-text">Platform Engineering & Internal Developer Platform</span>
+                  <button class="expand-btn">ⓘ</button>
+                  <div class="details">
+                    <strong>Implementation Questions:</strong>
+                    <ul>
+                      <li>
+                        Have you adopted an internal developer platform (IDP), such as Backstage,
+                        to give teams a unified interface to services, docs, and tooling?
+                      </li>
+                      <li>
+                        Do you provide golden-path templates for common service types (e.g., REST
+                        API, event consumer, scheduled job) that scaffold CI/CD, observability, and
+                        security defaults?
+                      </li>
+                      <li>
+                        Can developers self-service provision infrastructure (namespaces,
+                        databases, queues) through the platform without filing a ticket?
+                      </li>
+                      <li>
+                        Is the platform's service catalog kept up to date automatically from
+                        source-of-truth metadata rather than manual entry?
+                      </li>
+                      <li>
+                        Do golden-path templates encode organizational standards (security
+                        scanning, GitOps deployment, logging/tracing) by default?
+                      </li>
+                      <li>
+                        Do you measure platform adoption and developer experience (e.g., time to
+                        first deploy for a new service)?
+                      </li>
+                    </ul>
+                    <strong>Key Considerations:</strong>
+                    <ul>
+                      <li>
+                        Treat the internal developer platform as a product with its own roadmap
+                        and a dedicated platform engineering team
+                      </li>
+                      <li>
+                        Start with a small set of golden-path templates for the most common
+                        workloads rather than trying to cover every use case upfront
+                      </li>
+                      <li>
+                        Integrate self-service provisioning with existing IaC, policy-as-code, and
+                        secret management tooling rather than bypassing it
+                      </li>
+                      <li>
+                        Gather continuous feedback from developer teams to prioritize platform
+                        investments
+                      </li>
+                    </ul>
+                    <strong>Red Flags:</strong>
+                    <ul>
+                      <li>
+                        Every new service still requires manual, ticket-driven infrastructure
+                        provisioning
+                      </li>
+                      <li>
+                        No golden paths, so each team reinvents CI/CD, observability, and security
+                        wiring independently
+                      </li>
+                      <li>
+                        Platform tooling built once and left unmaintained, with no ownership or
+                        roadmap
+                      </li>
+                      <li>
+                        Developers routinely bypass the platform because it is slower or less
+                        flexible than doing it themselves
+                      </li>
+                    </ul>
+                  </div>
+                </label>
+              </li>
             </ul>
           </div>
         </div>

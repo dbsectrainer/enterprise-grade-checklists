@@ -12,6 +12,8 @@ Each section addresses key DevOps concerns:
 
 ### CI/CD Pipeline
 
+Modern implementations default to cloud-native platforms such as GitHub Actions, GitLab CI, or Buildkite for new pipelines. Legacy self-hosted tools like Jenkins remain a supported option for organizations with existing investments, but typically carry greater operational and maintenance overhead than the cloud-native defaults.
+
 ```mermaid
 graph TD
     A[Source Control] --> B[Build]
@@ -170,6 +172,7 @@ def validate_infrastructure(env):
 - Configuration management
 - Secret management
 - Access control
+- GitOps continuous delivery (e.g., ArgoCD, Flux) syncing Helm charts and manifests from Git
 
 ### 5. Monitoring & Observability
 
@@ -177,6 +180,14 @@ def validate_infrastructure(env):
 - Log aggregation
 - Tracing
 - Alerting
+- OpenTelemetry as the standard, vendor-neutral framework for metrics, logs, and traces
+
+### 6. Platform Engineering
+
+- Internal developer platform (IDP) adoption (e.g., Backstage)
+- Golden-path templates for common service types
+- Self-service infrastructure provisioning
+- Developer experience metrics (e.g., time to first deploy)
 
 ## Training & Documentation
 
@@ -246,6 +257,7 @@ graph TD
 - Use secrets management in build and deploy processes
 - Enforce branch protection and code review for security
 - Monitor pipeline logs for suspicious activity
+- Sign and verify container images (e.g., Sigstore/cosign) and generate SBOMs (SPDX, CycloneDX), benchmarked against SLSA framework levels
 
 ## Resources
 
