@@ -5,7 +5,7 @@ digraph G {
 
     /* Main Components */
     Dashboard [label="Enterprise Dashboard\nInterface", style=filled, fillcolor=lightblue];
-    
+
     /* Checklist Modules */
     subgraph cluster_0 {
         label="Domain Checklists";
@@ -60,17 +60,17 @@ digraph G {
     Dashboard -> Search [label="implements"];
     Dashboard -> Filters [label="includes"];
     Dashboard -> Reports [label="displays"];
-    
+
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> StateManager [label="state updates"];
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Validator [label="validates"];
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Monitor [label="monitors"];
-    
+
     StateManager -> Storage [label="persists"];
     StateManager -> Progress [label="tracks"];
     Progress -> Dashboard [label="updates"];
-    
+
     Validator -> Reports [label="generates"];
     Monitor -> Reports [label="updates"];
-    
+
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> {Guides Compliance Ethics} [label="references"];
 }

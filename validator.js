@@ -12,18 +12,7 @@ class RepositoryValidator {
       domains: [],
     };
 
-    this.standards = {
-      "ISO 27001": ["security", "data", "cloud"],
-      "NIST CSF": ["security", "devops"],
-      "SOC 2": ["security", "data", "cloud"],
-      GDPR: ["data", "security", "backend"],
-      "OWASP Top 10": ["security", "frontend", "backend"],
-      "WCAG 2.2": ["frontend"],
-      "PCI DSS": ["security", "data"],
-      HIPAA: ["security", "data"],
-      "CIS Benchmarks": ["security", "cloud", "devops"],
-      "NIST 800-53": ["security", "cloud"],
-    };
+    this.validationInProgress = false;
 
     this.domainValidators = {
       frontend: this.validateFrontend.bind(this),
@@ -41,11 +30,22 @@ class RepositoryValidator {
 
   initializeEventListeners() {
     const form = document.getElementById("validationForm");
+    if (!form) return;
+
     form.addEventListener("submit", this.handleSubmit.bind(this));
 
-    // Tab switching
-    document.querySelectorAll(".tab-btn").forEach((btn) => {
+    // Tab switching, including basic left/right keyboard support.
+    const tabs = Array.from(document.querySelectorAll(".tab-btn"));
+    tabs.forEach((btn, index) => {
       btn.addEventListener("click", () => this.switchTab(btn.dataset.tab));
+      btn.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const next = tabs[(index + direction + tabs.length) % tabs.length];
+        next.focus();
+        this.switchTab(next.dataset.tab);
+      });
     });
 
     // Export buttons
@@ -55,52 +55,92 @@ class RepositoryValidator {
     document
       .getElementById("newValidationBtn")
       ?.addEventListener("click", () => this.resetValidation());
+
+    const repoInput = document.getElementById("repoUrl");
+    repoInput?.addEventListener("input", () => this.clearError());
   }
 
   async handleSubmit(event) {
     event.preventDefault();
+    if (this.validationInProgress) return;
 
-    const repoUrl = document.getElementById("repoUrl").value.trim();
+    this.clearError();
+
+    const repoInput = document.getElementById("repoUrl");
+    const repoUrl = repoInput.value.trim();
     const selectedDomains = Array.from(
       document.querySelectorAll('input[name="domain"]:checked')
-    ).map((cb) => cb.value);
+    ).map((checkbox) => checkbox.value);
     const includeStandards = document.getElementById("includeStandards").checked;
 
-    if (selectedDomains.length === 0) {
-      alert("Please select at least one domain to validate.");
+    if (!repoUrl) {
+      this.showError("Enter a public GitHub repository URL.", repoInput);
       return;
     }
 
-    // Parse GitHub URL
+    if (selectedDomains.length === 0) {
+      this.showError(
+        "Select at least one domain to validate.",
+        document.querySelector('input[name="domain"]')
+      );
+      return;
+    }
+
     const repoInfo = this.parseGitHubUrl(repoUrl);
     if (!repoInfo) {
-      alert("Invalid GitHub URL. Please use format: https://github.com/username/repository");
+      this.showError(
+        "That does not look like a GitHub repository. Use https://github.com/owner/repository or github.com/owner/repository.",
+        repoInput
+      );
       return;
     }
 
+    this.validationInProgress = true;
     this.showLoading(true);
-    await this.runValidation(repoInfo, selectedDomains, includeStandards);
+
+    try {
+      await this.runValidation(repoInfo, selectedDomains, includeStandards);
+    } finally {
+      this.validationInProgress = false;
+    }
   }
 
   parseGitHubUrl(url) {
-    // Support both https://github.com/user/repo and github.com/user/repo
-    const normalized = url.startsWith("http") ? url : `https://${url}`;
-    const match = normalized.match(/github\.com\/([^\/]+)\/([^\/\?#]+)/);
-
-    if (match) {
-      return {
-        owner: match[1],
-        repo: match[2].replace(/\.git$/, ""),
-        url: normalized,
-      };
-    }
-    return null;
+    return window.ValidatorUtils ? window.ValidatorUtils.parseGitHubUrl(url) : null;
   }
 
   showLoading(show) {
     document.querySelector(".validator-input").style.display = show ? "none" : "block";
     document.getElementById("loadingSection").style.display = show ? "block" : "none";
+    document.getElementById("loadingSection").setAttribute("aria-busy", String(show));
     document.getElementById("resultsSection").style.display = "none";
+    if (!show) {
+      this.setProgress(0);
+    }
+  }
+
+  setProgress(value) {
+    const progressFill = document.getElementById("progressFill");
+    const progressBar = progressFill?.closest(".progress-bar");
+    if (progressFill) progressFill.style.width = `${value}%`;
+    if (progressBar) progressBar.setAttribute("aria-valuenow", String(Math.round(value)));
+  }
+
+  showError(message, element = null) {
+    const error = document.getElementById("formError");
+    if (!error) return;
+    error.textContent = message;
+    error.hidden = false;
+    if (element && typeof element.focus === "function") {
+      element.focus();
+    }
+  }
+
+  clearError() {
+    const error = document.getElementById("formError");
+    if (!error) return;
+    error.textContent = "";
+    error.hidden = true;
   }
 
   async runValidation(repoInfo, domains, includeStandards) {
@@ -115,63 +155,126 @@ class RepositoryValidator {
     };
 
     const loadingText = document.getElementById("loadingText");
-    const progressFill = document.getElementById("progressFill");
 
     try {
       // Fetch repository data
       loadingText.textContent = "Fetching repository data...";
-      progressFill.style.width = "10%";
+      this.setProgress(5);
 
       const repoData = await this.fetchRepositoryData(repoInfo);
       this.results.repositoryData = repoData;
 
-      progressFill.style.width = "30%";
+      this.setProgress(30);
 
       // Run domain validations
       const totalDomains = domains.length;
       for (let i = 0; i < domains.length; i++) {
         const domain = domains[i];
         loadingText.textContent = `Validating ${domain}...`;
-        progressFill.style.width = `${30 + ((i + 1) / totalDomains) * 60}%`;
+        this.setProgress(30 + ((i + 1) / totalDomains) * 60);
 
         await this.domainValidators[domain](repoData, includeStandards);
-        await this.sleep(500); // Simulate processing time
+        await this.sleep(150);
       }
 
-      progressFill.style.width = "100%";
+      this.setProgress(100);
       loadingText.textContent = "Generating report...";
 
-      await this.sleep(500);
+      await this.sleep(150);
       this.showResults();
     } catch (error) {
       console.error("Validation error:", error);
-      loadingText.textContent = `Error: ${error.message}`;
-      alert(`Validation failed: ${error.message}`);
       this.showLoading(false);
+      this.showError(error.message || "Validation failed. Please try again.");
     }
   }
 
   async fetchRepositoryData(repoInfo) {
-    // Use GitHub API to fetch repository data
     const apiBase = `https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}`;
+    const apiHeaders = {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    };
 
+    let repoResponse;
     try {
-      const [repo, contents, languages, commits] = await Promise.all([
-        fetch(apiBase).then((r) => (r.ok ? r.json() : Promise.reject(new Error("Repo not found")))),
-        fetch(`${apiBase}/contents`).then((r) => (r.ok ? r.json() : [])),
-        fetch(`${apiBase}/languages`).then((r) => (r.ok ? r.json() : {})),
-        fetch(`${apiBase}/commits?per_page=10`).then((r) => (r.ok ? r.json() : [])),
-      ]);
-
-      return {
-        repository: repo,
-        contents: contents,
-        languages: languages,
-        recentCommits: commits,
-      };
-    } catch (error) {
-      throw new Error(`Failed to fetch repository: ${error.message}`);
+      repoResponse = await fetch(apiBase, { headers: apiHeaders });
+    } catch {
+      throw new Error(
+        "Could not reach the GitHub API. Check your internet connection and try again."
+      );
     }
+
+    if (!repoResponse.ok) {
+      throw new Error(this.describeGitHubError(repoResponse));
+    }
+
+    const repository = await repoResponse.json();
+
+    // These facets are useful but not essential; fall back rather than failing the
+    // whole run if GitHub returns a transient error for one of them.
+    const [contentsValue, languagesValue] = await Promise.all([
+      this.fetchJsonOr(apiBase + "/contents", apiHeaders, []),
+      this.fetchJsonOr(apiBase + "/languages", apiHeaders, {}),
+    ]);
+
+    const contents = Array.isArray(contentsValue) ? contentsValue : [];
+    const languages =
+      languagesValue && typeof languagesValue === "object" && !Array.isArray(languagesValue)
+        ? languagesValue
+        : {};
+
+    // Fetch the manifest once. Dependency checks reuse this parsed object instead of
+    // requesting the same file for every domain (which also burns API quota).
+    let packageJson = null;
+    const packageFile = contents.find((file) => file && file.name === "package.json");
+    if (packageFile && packageFile.download_url) {
+      try {
+        const packageResponse = await fetch(packageFile.download_url);
+        if (packageResponse.ok) {
+          packageJson = await packageResponse.json();
+        }
+      } catch {
+        packageJson = null;
+      }
+    }
+
+    return {
+      repository,
+      contents,
+      languages,
+      packageJson,
+    };
+  }
+
+  async fetchJsonOr(url, headers, fallback) {
+    try {
+      const response = await fetch(url, { headers });
+      if (!response.ok) return fallback;
+      return await response.json();
+    } catch {
+      return fallback;
+    }
+  }
+
+  describeGitHubError(response) {
+    if (response.status === 404) {
+      return "Repository not found. Check the URL and confirm that the repository is public.";
+    }
+
+    if (response.status === 403 || response.status === 429) {
+      const remaining = response.headers.get("x-ratelimit-remaining");
+      if (remaining === "0" || response.status === 429) {
+        return window.ValidatorUtils.rateLimitMessage(response.headers.get("x-ratelimit-reset"));
+      }
+      return "GitHub refused the request (403). The repository may be private or access may be restricted.";
+    }
+
+    if (response.status >= 500) {
+      return "GitHub API is temporarily unavailable. Please try again later.";
+    }
+
+    return `GitHub API request failed (${response.status} ${response.statusText || "error"}).`;
   }
 
   // Domain Validators
@@ -610,7 +713,7 @@ class RepositoryValidator {
       "security",
       "HTTPS/TLS Configuration",
       "SSL/TLS configuration found",
-      includeStandards ? ["OWASP Top 10", "PCI DSS"] : []
+      includeStandards ? ["OWASP Top 10", "PCI DSS", "NIST 800-53"] : []
     );
 
     // Check for security policy
@@ -677,26 +780,19 @@ class RepositoryValidator {
   // Helper methods
 
   async checkDependencies(repoData, dependencies) {
-    // In a real implementation, this would fetch package.json and check dependencies
-    // For now, we'll do a simple check
-    const { contents } = repoData;
-    const packageJson = contents.find((file) => file.name === "package.json");
+    const packageJson = repoData.packageJson;
+    if (!packageJson || typeof packageJson !== "object") return false;
 
-    if (packageJson) {
-      try {
-        const response = await fetch(packageJson.download_url);
-        const content = await response.json();
-        const allDeps = {
-          ...content.dependencies,
-          ...content.devDependencies,
-        };
+    const allDeps = {
+      ...packageJson.dependencies,
+      ...packageJson.devDependencies,
+      ...packageJson.peerDependencies,
+      ...packageJson.optionalDependencies,
+    };
 
-        return dependencies.some((dep) => dep in allDeps);
-      } catch {
-        return false;
-      }
-    }
-    return false;
+    return dependencies.some((dependency) =>
+      Object.prototype.hasOwnProperty.call(allDeps, dependency)
+    );
   }
 
   addResult(status, domain, title, description, standards = []) {
@@ -718,18 +814,23 @@ class RepositoryValidator {
     }
   }
 
+  calculateScore() {
+    const total = this.results.passed.length + this.results.failed.length;
+    return total > 0 ? Math.round((this.results.passed.length / total) * 100) : 0;
+  }
+
   showResults() {
-    document.getElementById("loadingSection").style.display = "none";
+    const loadingSection = document.getElementById("loadingSection");
+    loadingSection.style.display = "none";
+    loadingSection.setAttribute("aria-busy", "false");
     document.getElementById("resultsSection").style.display = "block";
+    document.body.classList.add("results-active");
 
     // Update summary
     document.getElementById("passedCount").textContent = this.results.passed.length;
     document.getElementById("failedCount").textContent = this.results.failed.length;
     document.getElementById("warningCount").textContent = this.results.warnings.length;
-
-    const total = this.results.passed.length + this.results.failed.length;
-    const score = total > 0 ? Math.round((this.results.passed.length / total) * 100) : 0;
-    document.getElementById("scorePercent").textContent = `${score}%`;
+    document.getElementById("scorePercent").textContent = `${this.calculateScore()}%`;
 
     // Update meta info
     document.getElementById("repoName").textContent =
@@ -740,12 +841,21 @@ class RepositoryValidator {
 
     // Display results
     this.switchTab("all");
+
+    const heading = document.querySelector("#resultsSection h2");
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    }
   }
 
   switchTab(tab) {
-    // Update active tab
+    // Update active tab and its accessible selected state.
     document.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.tab === tab);
+      const isActive = btn.dataset.tab === tab;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-selected", String(isActive));
+      btn.tabIndex = isActive ? 0 : -1;
     });
 
     // Filter and display results
@@ -773,10 +883,11 @@ class RepositoryValidator {
 
     resultsContent.innerHTML = resultsToShow.length
       ? resultsToShow.map((result) => this.renderResult(result)).join("")
-      : '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No results to display</p>';
+      : '<p class="empty-state">No results to display.</p>';
   }
 
   renderResult(result) {
+    const escape = window.ValidatorUtils.escapeHtml;
     const statusIcon = {
       passed: "✅",
       failed: "❌",
@@ -784,23 +895,24 @@ class RepositoryValidator {
     };
 
     const standardsTags = result.standards
-      .map((std) => `<span class="standard-tag">${std}</span>`)
+      .map((standard) => `<span class="standard-tag">${escape(standard)}</span>`)
       .join("");
 
     return `
-      <div class="result-item ${result.status}">
+      <div class="result-item ${escape(result.status)}">
         <div class="result-item-header">
-          <span class="result-status">${statusIcon[result.status]}</span>
-          <span class="result-title">${result.title}</span>
-          <span class="result-domain">${result.domain}</span>
+          <span class="result-status">${statusIcon[result.status] || ""}</span>
+          <span class="result-title">${escape(result.title)}</span>
+          <span class="result-domain">${escape(result.domain)}</span>
         </div>
-        <div class="result-description">${result.description}</div>
+        <div class="result-description">${escape(result.description)}</div>
         ${standardsTags ? `<div class="result-standards">${standardsTags}</div>` : ""}
       </div>
     `;
   }
 
   showStandardsView() {
+    const escape = window.ValidatorUtils.escapeHtml;
     const resultsContent = document.getElementById("resultsContent");
     const standardsMap = {};
 
@@ -820,13 +932,13 @@ class RepositoryValidator {
         ([standard, data]) => `
       <div class="result-item">
         <div class="result-item-header">
-          <span class="result-title">${standard}</span>
+          <span class="result-title">${escape(standard)}</span>
         </div>
         <div class="result-description">
           ✅ ${data.passed} passed | ❌ ${data.failed} failed | ⚠️ ${data.warnings} warnings
         </div>
         <div class="result-standards">
-          ${data.items.map((item) => `<span class="standard-tag">${item.title}</span>`).join("")}
+          ${data.items.map((item) => `<span class="standard-tag">${escape(item.title)}</span>`).join("")}
         </div>
       </div>
     `
@@ -834,38 +946,48 @@ class RepositoryValidator {
       .join("");
 
     resultsContent.innerHTML =
-      html ||
-      '<p style="text-align: center; color: var(--text-secondary); padding: 2rem;">No standards compliance data available</p>';
+      html || '<p class="empty-state">No standards compliance data available.</p>';
   }
 
   exportJSON() {
-    const data = JSON.stringify(this.results, null, 2);
-    this.downloadFile(data, "validation-results.json", "application/json");
+    const serializable = { ...this.results };
+    delete serializable.repositoryData;
+
+    const data = {
+      validatorVersion: "1.1.0",
+      ...serializable,
+      summary: {
+        passed: this.results.passed.length,
+        failed: this.results.failed.length,
+        warnings: this.results.warnings.length,
+        score: this.calculateScore(),
+      },
+    };
+
+    this.downloadFile(JSON.stringify(data, null, 2), "validation-results.json", "application/json");
   }
 
   exportCSV() {
     const allResults = [...this.results.passed, ...this.results.failed, ...this.results.warnings];
 
     const headers = ["Status", "Domain", "Title", "Description", "Standards"];
-    const rows = allResults.map((r) => [
-      r.status,
-      r.domain,
-      r.title,
-      r.description,
-      r.standards.join("; "),
+    const rows = allResults.map((result) => [
+      result.status,
+      result.domain,
+      result.title,
+      result.description,
+      result.standards.join("; "),
     ]);
 
-    const csv = [headers, ...rows]
-      .map((row) => row.map((cell) => `"${cell}"`).join(","))
-      .join("\n");
+    const escapeCsv = (value) => `"${String(value).replace(/"/g, '""')}"`;
+    const csv = [headers, ...rows].map((row) => row.map(escapeCsv).join(",")).join("\n");
 
-    this.downloadFile(csv, "validation-results.csv", "text/csv");
+    this.downloadFile(csv, "validation-results.csv", "text/csv;charset=utf-8");
   }
 
   exportPDF() {
-    alert(
-      "PDF export would require a PDF library. For now, please use the browser's print function (Ctrl+P) to save as PDF."
-    );
+    // Print styles hide the form, informational sections, and action bars so the
+    // browser's "Save as PDF" destination produces a clean results report.
     window.print();
   }
 
@@ -885,7 +1007,11 @@ class RepositoryValidator {
     document.getElementById("resultsSection").style.display = "none";
     document.querySelector(".validator-input").style.display = "block";
     document.getElementById("validationForm").reset();
-    document.getElementById("progressFill").style.width = "0%";
+    document.getElementById("resultsContent").innerHTML = "";
+    document.body.classList.remove("results-active");
+    this.clearError();
+    this.setProgress(0);
+    document.getElementById("repoUrl").focus();
   }
 
   sleep(ms) {

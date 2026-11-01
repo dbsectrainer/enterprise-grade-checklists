@@ -73,7 +73,22 @@ rewrite. See [CHANGELOG.md](CHANGELOG.md) for the full itemized list.
       Node/CI to 22, ISO/IEC 27001:2022, WCAG 2.2, EU AI Act (in force),
       NIST AI RMF, ISO/IEC 42001, refreshed compliance-mapping dates
 
-## Phase 3: Deeper AI Governance (Next)
+## Phase 3: Repository Validator — Multi-Stack Support (Proposed)
+
+Triggered by a case study on
+[dbsectrainer/dod-cybersec-ops-framework](https://github.com/dbsectrainer/dod-cybersec-ops-framework)
+(Python / Streamlit DoD SOC dashboard). See
+[VALIDATOR_IMPROVEMENT_PLAN.md](VALIDATOR_IMPROVEMENT_PLAN.md) for the full
+phased plan.
+
+- [ ] Recursive repository tree walk (nested `dashboard/`, `infra/`, `k8s/`)
+- [ ] Primary stack detection (Python, Go, Rust, Java — not only JavaScript)
+- [ ] Multi-manifest dependency checks (`requirements.txt`, `pyproject.toml`, `go.mod`)
+- [ ] Stack-adaptive rule applicability (skip or adapt npm-only frontend checks)
+- [ ] Enriched export metadata (`repoProfile`, `applicable`, evidence paths)
+- [ ] Fixture-based validator unit tests (including Python case study tree)
+
+## Phase 4: Deeper AI Governance (Next)
 
 - [ ] Agentic AI guardrail tooling and reference implementations across
       checklists, building on the items added in the 2026 refresh

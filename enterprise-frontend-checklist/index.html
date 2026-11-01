@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Enterprise-grade Frontend checklist covering required and suggested practices."
+    />
     <title>Enterprise Frontend Checklist</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <a href="../index.html" class="return-dashboard"> <span>↩</span> Return to Dashboard </a>
-    <div class="container">
+    <main class="container">
+      <a href="../index.html" class="return-dashboard"> <span>↩</span> Return to Dashboard </a>
       <h1>Enterprise Frontend Checklist</h1>
       <p class="intro">
         A comprehensive checklist for building and maintaining modern enterprise-grade frontend
@@ -29,7 +34,12 @@
             <span>Suggested</span>
           </div>
         </div>
-        <button id="reset-checklist" class="reset-button" title="Reset all checklist items">
+        <button
+          id="reset-checklist"
+          type="button"
+          class="reset-button"
+          title="Reset all checklist items"
+        >
           <span>Reset Checklist</span>
         </button>
       </div>
@@ -46,7 +56,14 @@
                     <input type="checkbox" class="checkbox" />
                     <span class="item-text">HTTPS Everywhere</span>
                   </label>
-                  <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -109,7 +126,14 @@
                     <input type="checkbox" class="checkbox" />
                     <span class="item-text">Strict Content Security Policy (CSP)</span>
                   </label>
-                  <button class="expand-btn" aria-label="Show details">ⓘ</button>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -169,10 +193,19 @@
                 </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Secure Cookies and Session Management</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Secure Cookies and Session Management</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -225,13 +258,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Input Validation & Output Encoding</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Input Validation & Output Encoding</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -291,13 +333,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Dependency Vulnerability Scanning</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Dependency Vulnerability Scanning</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -358,13 +409,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Authentication & Authorization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Authentication & Authorization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -431,7 +491,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -439,10 +499,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Subresource Integrity (SRI)</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Subresource Integrity (SRI)</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -497,13 +566,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Certificate Pinning</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Certificate Pinning</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -556,13 +634,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Security Header Best Practices</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Security Header Best Practices</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -615,7 +702,7 @@
                       <li>Security headers configured incorrectly making them ineffective</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -627,10 +714,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">WCAG 2.2 AA Compliance</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">WCAG 2.2 AA Compliance</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -685,13 +781,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Semantic HTML</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Semantic HTML</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -749,13 +854,22 @@
                       <li>Tables used for layout purposes rather than tabular data presentation</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Keyboard Navigation</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Keyboard Navigation</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -822,13 +936,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">ARIA Landmarks and Roles</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">ARIA Landmarks and Roles</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -883,13 +1006,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Color Contrast</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Color Contrast</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -948,7 +1080,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -956,10 +1088,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Automated Accessibility Testing</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Automated Accessibility Testing</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1012,13 +1153,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Manual Screen Reader Testing</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Manual Screen Reader Testing</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1074,13 +1224,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Captioning & Transcripts</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Captioning & Transcripts</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1137,7 +1296,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -1149,10 +1308,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Performance Budget & Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Performance Budget & Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1217,13 +1385,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Efficient Bundling</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Efficient Bundling</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1284,13 +1461,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Caching Strategies</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Caching Strategies</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1347,13 +1533,22 @@
                       <li>Offline functionality promised but not properly implemented or tested</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Image Optimization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Image Optimization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1409,13 +1604,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">CDN</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">CDN</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1461,7 +1665,7 @@
                       <li>Single point of failure with no CDN redundancy or failover strategy</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -1469,12 +1673,21 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text"
-                    >Server-Side Rendering (SSR) or Static Site Generation (SSG)</span
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text"
+                      >Server-Side Rendering (SSR) or Static Site Generation (SSG)</span
+                    >
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
                   >
-                  <button class="expand-btn">ⓘ</button>
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1529,13 +1742,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Preloading & Prefetching</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Preloading & Prefetching</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1596,13 +1818,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Performance Profiling Tools</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Performance Profiling Tools</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1663,7 +1894,7 @@
                       <li>Long-running tasks blocking main thread causing poor user experience</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -1675,10 +1906,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Corporate Brand Guidelines</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Corporate Brand Guidelines</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1727,13 +1967,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Responsive/Mobile-First Design</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Responsive/Mobile-First Design</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1784,13 +2033,22 @@
                       <li>Poor performance on mobile devices due to desktop-first optimization</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Consistent UI Patterns</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Consistent UI Patterns</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1831,13 +2089,22 @@
                       <li>Component library outdated or not being actively maintained</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Localization & Internationalization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Localization & Internationalization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1889,7 +2156,7 @@
                       <li>RTL languages causing layout issues or text alignment problems</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -1897,10 +2164,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Design System / UI Library</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Design System / UI Library</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -1960,13 +2236,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Micro-Frontend Architecture</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Micro-Frontend Architecture</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2026,13 +2311,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Dark Mode / High-Contrast Themes</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Dark Mode / High-Contrast Themes</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2087,7 +2381,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -2099,10 +2393,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Modular Code Structure</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Modular Code Structure</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2159,13 +2462,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Version Control & Branching Strategy</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Version Control & Branching Strategy</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2207,13 +2519,22 @@
                       <li>Long-lived feature branches causing integration difficulties</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Automated Testing</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Automated Testing</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2268,13 +2589,22 @@
                       <li>Long-running test suite causing development velocity bottlenecks</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Continuous Integration (CI)</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Continuous Integration (CI)</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2326,7 +2656,7 @@
                       <li>CI configuration not version controlled or properly documented</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -2334,10 +2664,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Monorepo or Polyrepo Strategy</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Monorepo or Polyrepo Strategy</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2386,13 +2725,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Containerization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Containerization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2438,13 +2786,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Feature Flagging</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Feature Flagging</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2494,13 +2851,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Automated Code Review & Quality Checks</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Automated Code Review & Quality Checks</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2539,7 +2905,7 @@
                       <li>Quality metrics declining over time without intervention</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -2551,10 +2917,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Error & Crash Reporting</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Error & Crash Reporting</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2605,13 +2980,22 @@
                       <li>Error reports lacking sufficient context to reproduce and fix issues</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Usage Analytics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Usage Analytics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2663,13 +3047,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Logging & Alerting</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Logging & Alerting</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2722,7 +3115,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -2730,10 +3123,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Real User Monitoring (RUM)</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Real User Monitoring (RUM)</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2787,13 +3189,22 @@
                       <li>RUM implementation causing additional performance overhead for users</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Synthetic Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Synthetic Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2851,13 +3262,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Heatmaps & Session Replay</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Heatmaps & Session Replay</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2923,7 +3343,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -2935,10 +3355,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Privacy Regulations (GDPR, CCPA)</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Privacy Regulations (GDPR, CCPA)</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -2999,13 +3428,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Consent Management</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Consent Management</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3050,13 +3488,22 @@
                       <li>Third-party scripts loading before user consent is obtained</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Encryption of Sensitive Data</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Encryption of Sensitive Data</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3115,7 +3562,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -3123,10 +3570,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Regular Audits & Penetration Testing</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Regular Audits & Penetration Testing</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3190,13 +3646,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Data Retention Policies</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Data Retention Policies</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3255,7 +3720,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -3267,10 +3732,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Clear Documentation</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Clear Documentation</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3326,13 +3800,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Agile / Scrum / Kanban</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Agile / Scrum / Kanban</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3381,13 +3864,22 @@
                       <li>Technical debt accumulating without dedicated time for addressing it</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Cross-Functional Collaboration</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Cross-Functional Collaboration</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3453,7 +3945,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -3461,10 +3953,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Design-Development Handoff Tools</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Design-Development Handoff Tools</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3519,13 +4020,22 @@
                       <li>Developers making design decisions without designer input or approval</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Automated Deployments / CD</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Automated Deployments / CD</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3576,13 +4086,22 @@
                       <li>Deployment pipeline lacking proper testing and quality gates</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Peer Reviews & Pair Programming</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Peer Reviews & Pair Programming</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3643,7 +4162,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -3655,10 +4174,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Infrastructure as Code</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Infrastructure as Code</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3711,13 +4239,22 @@
                       <li>Infrastructure changes deployed without proper review or testing</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Multi-Region Strategy</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Multi-Region Strategy</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3763,13 +4300,22 @@
                       <li>Failover processes taking too long affecting business continuity</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Blue-Green Deployments</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Blue-Green Deployments</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3818,13 +4364,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Cloud Provider Best Practices</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Cloud Provider Best Practices</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3866,7 +4421,7 @@
                       <li>Lack of understanding of cloud service limitations and failure modes</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -3874,10 +4429,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Chaos Engineering</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Chaos Engineering</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3930,13 +4494,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Infrastructure Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Infrastructure Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -3989,13 +4562,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Cost Optimization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Cost Optimization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4042,7 +4624,7 @@
                       <li>No automated cost controls allowing runaway spending scenarios</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -4054,10 +4636,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Micro-Frontend Architecture</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Micro-Frontend Architecture</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4104,13 +4695,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">API Gateway Integration</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">API Gateway Integration</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4155,13 +4755,22 @@
                       <li>Gateway configuration not version controlled or properly documented</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Backend for Frontend (BFF)</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Backend for Frontend (BFF)</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4224,13 +4833,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Event-Driven Architecture</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Event-Driven Architecture</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4288,7 +4906,7 @@
                       <li>Event storms overwhelming frontend applications or causing crashes</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -4296,10 +4914,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">GraphQL Implementation</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">GraphQL Implementation</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4346,13 +4973,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Edge Computing</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Edge Computing</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4411,13 +5047,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Serverless Architecture</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Serverless Architecture</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4474,7 +5119,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -4486,10 +5131,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">AI Feature Integration</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">AI Feature Integration</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4533,13 +5187,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">ML Model Management</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">ML Model Management</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4589,13 +5252,22 @@
                       <li>Model bias or fairness issues not monitored or addressed</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">AI Analytics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">AI Analytics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4633,13 +5305,22 @@
                       <li>AI analytics collected but not used to inform product decisions</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Ethical AI Guidelines</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Ethical AI Guidelines</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4681,7 +5362,7 @@
                       <li>User data processed by AI without appropriate consent or transparency</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -4689,10 +5370,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">A/B Testing Framework</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">A/B Testing Framework</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4758,13 +5448,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">AI Performance Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">AI Performance Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4825,13 +5524,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Automated Model Updates</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Automated Model Updates</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4887,7 +5595,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -4899,10 +5607,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Developer Portal</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Developer Portal</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -4953,13 +5670,22 @@
                       <li>Developer onboarding taking excessive time due to poor documentation</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Internal Tools</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Internal Tools</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5001,13 +5727,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Documentation Automation</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Documentation Automation</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5048,13 +5783,22 @@
                       <li>Developers bypassing documentation requirements due to poor tooling</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Development Environments</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Development Environments</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5109,7 +5853,7 @@
                       <li>Container setup so complex that developers avoid using it</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -5117,10 +5861,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Code Generation Tools</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Code Generation Tools</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5175,13 +5928,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">AI-Assisted Development Tooling</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">AI-Assisted Development Tooling</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5252,13 +6014,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">IDE Integration</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">IDE Integration</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5315,13 +6086,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Development Metrics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Development Metrics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5380,7 +6160,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -5392,10 +6172,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Green Hosting</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Green Hosting</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5442,13 +6231,22 @@
                       <li>No tracking or reporting of environmental impact from hosting choices</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Carbon Footprint Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Carbon Footprint Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5485,13 +6283,22 @@
                       <li>Carbon footprint increasing over time without mitigation efforts</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Energy Efficiency</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Energy Efficiency</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5549,13 +6356,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Resource Optimization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Resource Optimization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5599,7 +6415,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -5607,10 +6423,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Sustainable CI/CD</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Sustainable CI/CD</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5652,13 +6477,22 @@
                       <li>No monitoring or awareness of CI/CD energy consumption</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Green Development Practices</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Green Development Practices</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5713,13 +6547,22 @@
                       <li>No measurement or tracking of sustainability improvements over time</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Environmental Impact Reports</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Environmental Impact Reports</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5776,7 +6619,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -5788,10 +6631,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Budget Planning & Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Budget Planning & Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5833,13 +6685,22 @@
                       <li>Budget planning disconnected from actual usage patterns and growth</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Cloud Cost Optimization</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Cloud Cost Optimization</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5895,13 +6756,22 @@
                       <li>Surprise cost increases not detected until monthly billing</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">ROI Metrics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">ROI Metrics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -5950,7 +6820,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -5958,10 +6828,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Cost Attribution</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Cost Attribution</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6017,13 +6896,22 @@
                       <li>Manual cost allocation processes prone to errors and inconsistencies</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Resource Usage Analytics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Resource Usage Analytics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6090,7 +6978,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -6102,10 +6990,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Vendor Evaluation Framework</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Vendor Evaluation Framework</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6158,13 +7055,22 @@
                       <li>Lack of vendor diversity creating concentrated risk and dependency</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Lock-in Prevention</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Lock-in Prevention</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6210,13 +7116,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">SLA Monitoring</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">SLA Monitoring</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6263,7 +7178,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -6271,10 +7186,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Vendor Diversification</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Vendor Diversification</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6334,13 +7258,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Regular Vendor Reviews</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Regular Vendor Reviews</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6399,7 +7332,7 @@
                       <li>Review processes lacking objectivity or not used for decision-making</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -6411,10 +7344,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Debt Assessment</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Debt Assessment</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6458,13 +7400,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Modernization Strategy</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Modernization Strategy</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6519,13 +7470,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Legacy Integration</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Legacy Integration</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6585,7 +7545,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -6593,10 +7553,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Debt Metrics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Debt Metrics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6653,13 +7622,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Refactoring Budget</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Refactoring Budget</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6716,7 +7694,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -6728,10 +7706,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Technology Radar</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Technology Radar</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6782,13 +7769,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">R&D Framework</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">R&D Framework</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6842,13 +7838,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">POC Guidelines</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">POC Guidelines</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6900,7 +7905,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -6908,10 +7913,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Innovation Time</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Innovation Time</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -6967,13 +7981,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Innovation Metrics</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Innovation Metrics</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -7033,7 +8056,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -7045,10 +8068,19 @@
             <h3>Required</h3>
             <ul class="checklist required">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Incident Response Plan</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Incident Response Plan</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -7094,13 +8126,22 @@
                       <li>Incident response procedures not tested or updated regularly</li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Communication Protocols</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Communication Protocols</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -7164,13 +8205,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Recovery Objectives</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Recovery Objectives</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -7227,7 +8277,7 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
@@ -7235,10 +8285,19 @@
             <h3>Suggested</h3>
             <ul class="checklist suggested">
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Crisis Simulation</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Crisis Simulation</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -7301,13 +8360,22 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
               <li>
-                <label class="checklist-item">
-                  <input type="checkbox" class="checkbox" />
-                  <span class="item-text">Post-Mortem Framework</span>
-                  <button class="expand-btn">ⓘ</button>
+                <div class="checklist-item">
+                  <label class="item-label">
+                    <input type="checkbox" class="checkbox" />
+                    <span class="item-text">Post-Mortem Framework</span>
+                  </label>
+                  <button
+                    class="expand-btn"
+                    type="button"
+                    aria-label="Show details"
+                    aria-expanded="false"
+                  >
+                    ⓘ
+                  </button>
                   <div class="details">
                     <strong>Implementation Questions:</strong>
                     <ul>
@@ -7369,12 +8437,12 @@
                       </li>
                     </ul>
                   </div>
-                </label>
+                </div>
               </li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </body>
 </html>

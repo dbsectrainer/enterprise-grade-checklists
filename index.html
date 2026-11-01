@@ -4,20 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enterprise Checklist Dashboard</title>
+    <meta
+      name="description"
+      content="Track enterprise-grade checklist progress across frontend, backend, cloud, data, DevOps, mobile, security, and AI/ML domains."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
 
   <body>
+    <a class="skip-link" href="#dashboard-grid">Skip to checklists</a>
     <div class="container">
       <header>
         <div class="header-top">
           <h1>Enterprise Checklist Dashboard</h1>
           <div class="user-controls">
-            <button id="theme-toggle" class="control-btn" title="Toggle dark mode">
+            <button
+              id="theme-toggle"
+              type="button"
+              class="control-btn"
+              title="Toggle dark mode"
+              aria-label="Switch to dark mode"
+              aria-pressed="false"
+            >
               <span>🌙</span>
             </button>
-            <button id="export-data" class="control-btn" title="Export progress">
+            <button
+              id="export-data"
+              type="button"
+              class="control-btn"
+              title="Export progress"
+              aria-label="Export progress"
+              aria-haspopup="dialog"
+              aria-controls="export-modal"
+            >
               <span>📊</span>
             </button>
           </div>
@@ -31,7 +52,14 @@
           <div class="summary-card">
             <h3>Overall Progress</h3>
             <div class="global-progress">
-              <div class="progress-bar">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-label="Overall checklist progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              >
                 <div class="progress-fill" id="global-progress-fill"></div>
                 <span class="progress-text" id="global-progress-text">0%</span>
               </div>
@@ -51,30 +79,60 @@
 
         <div class="controls">
           <div class="control-group">
-            <button id="reset-all" class="control-btn danger" title="Reset all checklists">
+            <button
+              id="reset-all"
+              type="button"
+              class="control-btn danger"
+              title="Reset all checklists"
+            >
               Reset All
             </button>
-            <button id="export-pdf" class="control-btn" title="Export as PDF">Export PDF</button>
+            <button
+              id="export-pdf"
+              type="button"
+              class="control-btn"
+              title="Print or save the dashboard as PDF"
+            >
+              Print / Save PDF
+            </button>
           </div>
           <div class="search-container">
-            <input type="text" id="search" placeholder="Search across all checklists..." />
-            <select id="filter-type" class="filter-select">
-              <option value="all">All Categories</option>
-              <option value="required">Required Items</option>
-              <option value="suggested">Suggested Items</option>
+            <input
+              type="search"
+              id="search"
+              aria-label="Search checklists"
+              autocomplete="off"
+              placeholder="Search checklists..."
+            />
+            <select
+              id="filter-type"
+              class="filter-select"
+              aria-label="Filter checklists by priority"
+            >
+              <option value="all">All Priorities</option>
+              <option value="critical">Critical Priority</option>
+              <option value="high">High Priority</option>
+              <option value="medium">Medium Priority</option>
             </select>
           </div>
         </div>
       </header>
 
-      <main class="dashboard-grid">
+      <main class="dashboard-grid" id="dashboard-grid">
         <div class="checklist-card" data-checklist="frontend">
           <div class="card-header">
             <h2>Frontend</h2>
             <span class="priority-badge high">High Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="Frontend checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="frontend-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -85,6 +143,7 @@
           </p>
           <div class="card-footer">
             <a href="enterprise-frontend-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -94,7 +153,14 @@
             <span class="priority-badge high">High Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="Backend checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="backend-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -102,6 +168,7 @@
           <p>Robust backend systems with focus on scalability, reliability, and API design.</p>
           <div class="card-footer">
             <a href="enterprise-backend-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -111,7 +178,14 @@
             <span class="priority-badge high">High Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="Cloud checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="cloud-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -119,6 +193,7 @@
           <p>Cloud infrastructure and services with focus on scalability and cost optimization.</p>
           <div class="card-footer">
             <a href="enterprise-cloud-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -128,7 +203,14 @@
             <span class="priority-badge medium">Medium Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="Data checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="data-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -136,6 +218,7 @@
           <p>Data management and analytics with focus on security and governance.</p>
           <div class="card-footer">
             <a href="enterprise-data-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -145,7 +228,14 @@
             <span class="priority-badge high">High Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="DevOps checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="devops-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -153,6 +243,7 @@
           <p>DevOps practices and tools with focus on automation and monitoring.</p>
           <div class="card-footer">
             <a href="enterprise-devops-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -162,7 +253,14 @@
             <span class="priority-badge medium">Medium Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="Mobile checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="mobile-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -170,6 +268,7 @@
           <p>Mobile development best practices with focus on user experience and performance.</p>
           <div class="card-footer">
             <a href="enterprise-mobile-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -179,7 +278,14 @@
             <span class="priority-badge critical">Critical Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="Security checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="security-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -187,6 +293,7 @@
           <p>Security best practices and compliance with focus on protection and privacy.</p>
           <div class="card-footer">
             <a href="enterprise-security-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
 
@@ -196,7 +303,14 @@
             <span class="priority-badge medium">Medium Priority</span>
           </div>
           <div class="card-progress">
-            <div class="progress-bar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-label="AI/ML checklist progress"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
               <div class="progress-fill" id="aiml-progress"></div>
               <span class="progress-text">0%</span>
             </div>
@@ -204,25 +318,44 @@
           <p>AI/ML integration and management with focus on ethics and performance.</p>
           <div class="card-footer">
             <a href="enterprise-aiml-checklist/index.html" class="view-btn">View Checklist</a>
+            <time class="update-time">Not started</time>
           </div>
         </div>
       </main>
 
+      <p id="search-empty" class="search-empty" role="status" hidden>
+        No checklists match your search and priority filter.
+      </p>
+
       <footer class="dashboard-footer">
-        <div class="footer-content"></div>
+        <div class="footer-content">
+          <p>Enterprise Checklist Dashboard · 8 domains · MIT License</p>
+          <nav class="footer-links" aria-label="Footer">
+            <a href="validator.html">Repository Validator</a>
+            <a href="docs/VALIDATOR.md">Validator Documentation</a>
+            <a href="https://github.com/dbsectrainer/enterprise-grade-checklists">GitHub</a>
+          </nav>
+        </div>
       </footer>
     </div>
 
     <!-- Modal for export options -->
-    <div id="export-modal" class="modal">
+    <div
+      id="export-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="export-modal-title"
+      aria-hidden="true"
+    >
       <div class="modal-content">
-        <h2>Export Dashboard</h2>
+        <h2 id="export-modal-title">Export Dashboard</h2>
         <div class="export-options">
-          <button class="export-option" data-format="pdf">PDF Report</button>
-          <button class="export-option" data-format="json">JSON Data</button>
-          <button class="export-option" data-format="csv">CSV Format</button>
+          <button type="button" class="export-option" data-format="pdf">PDF Report</button>
+          <button type="button" class="export-option" data-format="json">JSON Data</button>
+          <button type="button" class="export-option" data-format="csv">CSV Format</button>
         </div>
-        <button class="modal-close">Close</button>
+        <button type="button" class="modal-close">Close</button>
       </div>
     </div>
   </body>

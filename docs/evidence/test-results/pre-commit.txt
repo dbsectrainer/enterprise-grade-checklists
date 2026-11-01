@@ -1,0 +1,9 @@
+$ pre-commit run --all-files
+
+trim trailing whitespace.................................................Passed
+fix end of files.........................................................Passed
+check yaml...............................................................Passed
+check for added large files..............................................Passed
+prettier.................................................................Passed
+
+EXIT CODE: 0

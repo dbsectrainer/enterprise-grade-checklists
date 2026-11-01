@@ -1,29 +1,71 @@
 name: CI
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  build:
+  quality:
     runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "26"
+          cache: npm
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
       - name: Lint
-        run: npx eslint .
-      - name: Prettier Check
-        run: npx prettier --check .
-      - name: Run tests
-        run: echo "No tests yet"
-      - name: Upload Lint Report
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Validate HTML structure
+        run: npm run validate:html
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run end-to-end tests
+        run: npm run test:e2e
+
+      - name: Build production artifact
+        run: npm run build
+
+      - name: Verify production artifact
+        run: npm run verify:dist
+
+      - name: Upload Playwright report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: eslint-report
-          path: eslint-report.html
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload build manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-manifest
+          path: dist/build-manifest.json
+          if-no-files-found: ignore
+          retention-days: 7

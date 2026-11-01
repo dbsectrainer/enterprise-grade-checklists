@@ -1,0 +1,3 @@
+$ python3 YAML parse of .github/workflows/*.yml
+.github/workflows/ci.yml: OK (top-level keys: name, on, permissions, jobs)
+.github/workflows/pages.yml: OK (top-level keys: name, on, permissions, concurrency, jobs)

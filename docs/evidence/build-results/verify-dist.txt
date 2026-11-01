@@ -1,0 +1,19 @@
+$ npm run verify:dist
+
+
+> enterprise-grade-checklists@2.1.1 verify:dist
+> node scripts/verify-dist.mjs
+
+PASS /
+PASS /validator.html
+PASS /enterprise-frontend-checklist/index.html
+PASS /enterprise-backend-checklist/index.html
+PASS /enterprise-cloud-checklist/index.html
+PASS /enterprise-data-checklist/index.html
+PASS /enterprise-devops-checklist/index.html
+PASS /enterprise-mobile-checklist/index.html
+PASS /enterprise-security-checklist/index.html
+PASS /enterprise-aiml-checklist/index.html
+Verified 10 production pages from dist/ with no console, network, or content errors.
+
+EXIT CODE: 0

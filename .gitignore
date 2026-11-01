@@ -75,3 +75,16 @@ coverage/
 
 # Optional REPL history
 .node_repl_history
+
+# Test and build tooling output (repository root only)
+/playwright-report/
+/test-results/
+/blob-report/
+/coverage/
+/.npm-cache/
+/.playwright-browsers/
+
+# Verification evidence is part of the repository (including .log files)
+!docs/evidence/test-results/
+!docs/evidence/test-results/*.log
+.pre-commit-cache/

@@ -99,17 +99,17 @@ The solution follows a modular architecture with:
    - Real-time progress updates
    - Detailed requirement explanations
    - Mobile-responsive design
-   - Cross-browser compatibility
+   - Responsive layout and verified Chromium behavior
 
 ### Technical Stack
 
 - **Frontend**: HTML5, CSS3, Vanilla JavaScript (ES6+)
 - **State Management**: LocalStorage
 - **Architecture**: Event-driven, Component-based
-- **Validation**: Automated checklist validators
+- **Validation**: Browser-based repository validator for public GitHub repositories, plus per-checklist progress tracking
 - **Documentation**: Mermaid.js diagrams
-- **Build Tools**: None required (Simple deployment)
-- **Browser Support**: All modern browsers
+- **Build Tools**: Static Node build script for artifact assembly and link/invariant checks
+- **Browser Support**: Modern browsers (Chromium verified in this audit; Firefox/WebKit untested)
 
 ## Results and Benefits
 
