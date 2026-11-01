@@ -66,14 +66,22 @@ for (const [domain, { count, label }] of Object.entries(CHECKLISTS)) {
     await first.locator(".expand-btn").click();
     const geometry = await first.evaluate((item) => {
       const details = item.querySelector(".details");
+      const itemRect = item.getBoundingClientRect();
+      const detailsRect = details.getBoundingClientRect();
       return {
-        itemWidth: item.getBoundingClientRect().width,
-        detailsWidth: details.getBoundingClientRect().width,
-        detailsTop: details.getBoundingClientRect().top,
+        itemWidth: itemRect.width,
+        itemLeft: itemRect.left,
+        itemRight: itemRect.right,
+        detailsWidth: detailsRect.width,
+        detailsLeft: detailsRect.left,
+        detailsRight: detailsRect.right,
+        detailsTop: detailsRect.top,
         labelBottom: item.querySelector(".item-label").getBoundingClientRect().bottom,
       };
     });
     expect(geometry.detailsWidth).toBeGreaterThan(geometry.itemWidth * 0.9);
+    expect(geometry.detailsLeft).toBeGreaterThanOrEqual(geometry.itemLeft - 1);
+    expect(geometry.detailsRight).toBeLessThanOrEqual(geometry.itemRight + 1);
     expect(geometry.detailsTop).toBeGreaterThanOrEqual(geometry.labelBottom - 1);
 
     // Persistence and section progress.
@@ -127,9 +135,19 @@ test("frontend checklist is usable at a 390px mobile viewport", async ({ page })
 
   const first = page.locator(".checklist-item").first();
   await first.locator(".expand-btn").click();
-  const geometry = await first.evaluate((item) => ({
-    itemWidth: item.getBoundingClientRect().width,
-    detailsWidth: item.querySelector(".details").getBoundingClientRect().width,
-  }));
+  const geometry = await first.evaluate((item) => {
+    const itemRect = item.getBoundingClientRect();
+    const detailsRect = item.querySelector(".details").getBoundingClientRect();
+    return {
+      itemWidth: itemRect.width,
+      itemLeft: itemRect.left,
+      itemRight: itemRect.right,
+      detailsWidth: detailsRect.width,
+      detailsLeft: detailsRect.left,
+      detailsRight: detailsRect.right,
+    };
+  });
   expect(geometry.detailsWidth).toBeGreaterThan(geometry.itemWidth * 0.9);
+  expect(geometry.detailsLeft).toBeGreaterThanOrEqual(geometry.itemLeft - 1);
+  expect(geometry.detailsRight).toBeLessThanOrEqual(geometry.itemRight + 1);
 });

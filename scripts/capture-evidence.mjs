@@ -55,6 +55,15 @@ async function waitForServer() {
   throw new Error("Timed out waiting for the evidence server");
 }
 
+function isGitHubRequest(rawUrl) {
+  try {
+    const { hostname } = new URL(rawUrl);
+    return hostname === "api.github.com" || hostname === "raw.githubusercontent.com";
+  } catch {
+    return false;
+  }
+}
+
 function watchPage(page, label) {
   page.on("console", (message) => {
     if (message.type() === "error") consoleErrors.push(`${label}: ${message.text()}`);
@@ -128,10 +137,7 @@ try {
 
   const apiResponses = [];
   page.on("response", (response) => {
-    if (
-      response.url().includes("api.github.com") ||
-      response.url().includes("raw.githubusercontent.com")
-    ) {
+    if (isGitHubRequest(response.url())) {
       apiResponses.push(`${response.status()} ${response.url()}`);
     }
   });

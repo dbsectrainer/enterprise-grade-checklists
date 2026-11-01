@@ -260,6 +260,7 @@ h1 {
 /* Details styles */
 .details {
   display: none;
+  box-sizing: border-box;
   flex: 0 0 100%;
   margin-top: 8px;
   padding: 12px;

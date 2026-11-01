@@ -2,36 +2,36 @@ $ npm audit
 
 # npm audit report
 
-glob  
+glob
 Severity: moderate
 Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal - https://github.com/advisories/GHSA-3g3m-2fjr-6pw4
 Depends on vulnerable versions of minimatch
 No fix available
 node_modules/glob
-  html-validate  
+  html-validate
   Depends on vulnerable versions of glob
   node_modules/html-validate
 
-minimatch  
+minimatch
 Severity: moderate
 minimatch has potential denial of service via globparts amplification - https://github.com/advisories/GHSA-g3hv-75wg-m249
 No fix available
 node_modules/minimatch
-  @eslint/config-array  
+  @eslint/config-array
   Depends on vulnerable versions of minimatch
   node_modules/@eslint/config-array
-    eslint  
+    eslint
     Depends on vulnerable versions of @eslint-community/eslint-utils
     Depends on vulnerable versions of @eslint/config-array
     Depends on vulnerable versions of minimatch
     node_modules/eslint
-      @eslint-community/eslint-utils  
+      @eslint-community/eslint-utils
       Depends on vulnerable versions of eslint
       node_modules/@eslint-community/eslint-utils
-      eslint-config-prettier  
+      eslint-config-prettier
       Depends on vulnerable versions of eslint
       node_modules/eslint-config-prettier
-        eslint-plugin-prettier  
+        eslint-plugin-prettier
         Depends on vulnerable versions of eslint
         Depends on vulnerable versions of eslint-config-prettier
         node_modules/eslint-plugin-prettier

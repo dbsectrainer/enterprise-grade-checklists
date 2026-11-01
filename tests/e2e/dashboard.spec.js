@@ -79,6 +79,25 @@ test("theme toggle persists and exposes accessible state", async ({ page }) => {
 
   await page.reload();
   await expect(page.locator("body")).toHaveAttribute("data-theme", "dark");
+
+  // Print output must not inherit the dark-theme custom properties.
+  await page.emulateMedia({ media: "print" });
+  const printColors = await page.evaluate(() => {
+    const color = (selector) => getComputedStyle(document.querySelector(selector)).color;
+    return {
+      heading: color("h1"),
+      intro: color(".intro"),
+      timestamp: color(".update-time"),
+      badge: color(".priority-badge.medium"),
+    };
+  });
+  expect(printColors).toEqual({
+    heading: "rgb(0, 0, 0)",
+    intro: "rgb(0, 0, 0)",
+    timestamp: "rgb(0, 0, 0)",
+    badge: "rgb(0, 0, 0)",
+  });
+  await page.emulateMedia({ media: "screen" });
 });
 
 test("export modal supports keyboard dismissal and focus restoration", async ({ page }) => {

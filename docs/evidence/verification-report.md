@@ -163,6 +163,22 @@ Method:
 - Upgraded Playwright to 1.64.1 and ESLint to 10, and applied non-breaking audit fixes; high-severity advisories are
   now zero. Eight moderate dev-only advisories remain with no upstream fix.
 
+## 5.5 PR Review Follow-up (2026-11-01)
+
+The Copilot and CodeQL review comments were reviewed individually. All code-actionable findings were
+addressed:
+
+| Review finding                                                                                  | Status                   | Resolution                                                                                                                                                           |
+| ----------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CodeQL: incomplete URL substring sanitization in `scripts/capture-evidence.mjs` (2 high alerts) | **Fixed**                | Replaced `includes(...)` host checks with exact `URL.hostname` comparisons in the capture script and the validator request test.                                     |
+| Prettier pre-commit hook cannot install from the Prettier repository                            | **Fixed**                | Replaced the external hook with a local hook that runs the project's installed Prettier. `pre-commit run --all-files` passes.                                        |
+| Expanded details panel exceeds its row by 27px                                                  | **Fixed**                | Added `box-sizing: border-box` to `.details` across all eight checklist styles; E2E geometry now asserts both left and right edges stay inside the item.             |
+| Node minimum conflicts with `html-validate` 10.17's Node requirement                            | **Resolved**             | Runtime target and CI are Node 26.13 (`.nvmrc`, `engines`, workflows), which satisfies `html-validate`'s `>=24` range.                                               |
+| Dark-mode export-option hover is white-on-light-blue                                            | **Fixed**                | Added `color: var(--text-color)` to the base option and dark text for the dark-theme hover state. Axe now scans the opened/hovered modal in dark mode.               |
+| Print output inherits dark-theme colors                                                         | **Fixed**                | Print media now resets theme custom properties and overrides badge/progress text. A regression assertion checks printed heading, intro, timestamp, and badge colors. |
+| CodeQL actions permissions warning                                                              | **No PR action**         | The current PR workflow declares `permissions: contents: read`; the remaining alert is an older alert on `main` and will clear when this branch merges.              |
+| “Review required”                                                                               | **Needs human reviewer** | This is a branch-protection approval, not a code defect.                                                                                                             |
+
 ## 6. Verification Results
 
 All commands were run from the repository root.
@@ -178,6 +194,7 @@ All commands were run from the repository root.
 | Full test command       | `npm test`                           | **Pass 62/62** (9 unit + 53 E2E)                                     | [npm-test.txt](test-results/npm-test.txt)                                                                                        |
 | E2E tests               | `npx playwright test --workers=2`    | **Pass 53/53**                                                       | [e2e-tests.txt](test-results/e2e-tests.txt)                                                                                      |
 | Accessibility           | axe via Playwright (12 scenarios)    | **Pass, 0 violations**                                               | [accessibility.txt](test-results/accessibility.txt)                                                                              |
+| Pre-commit hooks        | `pre-commit run --all-files`         | **Pass**                                                             | [pre-commit.txt](test-results/pre-commit.txt)                                                                                    |
 | Dependency audit        | `npm audit`                          | 8 moderate, 0 high, 0 critical (dev-only, no upstream fix)           | [npm-audit.txt](test-results/npm-audit.txt)                                                                                      |
 | Dependency tree         | `npm ls --depth=0`                   | Recorded                                                             | [dependency-tree.txt](test-results/dependency-tree.txt)                                                                          |
 | Live validator          | Real GitHub API run from the browser | **Pass** — 5 passed / 5 failed / 19 warnings / 50% score; 4 requests | [live-validation.json](test-results/live-validation.json), [validator-live-network.log](test-results/validator-live-network.log) |
@@ -217,7 +234,7 @@ requests, and HTTP responses ≥400. Result: 10/10 pages pass.
 The build was also run from an index-only copy of the repository (simulating a clean checkout). This
 caught an ignore-rule bug: `test-results/` and `*.log` were hiding the verification evidence, so the
 report's local links failed in CI. The rules are now root-anchored, with explicit exceptions for
-`docs/evidence/test-results/` and its `.log` files. The clean-checkout build completes with 82 files.
+`docs/evidence/test-results/` and its `.log` files. The clean-checkout build completes successfully.
 
 ## 8. Screenshot Evidence
 

@@ -1,29 +1,29 @@
 $ npx playwright test tests/e2e/accessibility.spec.js --workers=2 --reporter=list
 
-[WebServer] (node:5633) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:11998) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
-[WebServer] (node:5683) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (node:12037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 [WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
 
 Running 12 tests using 2 workers
 
-(node:5685) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:12038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:5684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(node:12039) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
-  ✓   1 [chromium] › tests/e2e/accessibility.spec.js:29:1 › dashboard has no WCAG A/AA violations in light mode (469ms)
-  ✓   2 [chromium] › tests/e2e/accessibility.spec.js:34:1 › dashboard has no WCAG A/AA violations in dark mode (618ms)
-  ✓   4 [chromium] › tests/e2e/accessibility.spec.js:42:3 › backend checklist has no WCAG A/AA violations (965ms)
-  ✓   3 [chromium] › tests/e2e/accessibility.spec.js:42:3 › frontend checklist has no WCAG A/AA violations (1.4s)
-  ✓   5 [chromium] › tests/e2e/accessibility.spec.js:42:3 › cloud checklist has no WCAG A/AA violations (815ms)
-  ✓   6 [chromium] › tests/e2e/accessibility.spec.js:42:3 › data checklist has no WCAG A/AA violations (838ms)
-  ✓   7 [chromium] › tests/e2e/accessibility.spec.js:42:3 › devops checklist has no WCAG A/AA violations (832ms)
-  ✓   8 [chromium] › tests/e2e/accessibility.spec.js:42:3 › mobile checklist has no WCAG A/AA violations (832ms)
-  ✓   9 [chromium] › tests/e2e/accessibility.spec.js:42:3 › security checklist has no WCAG A/AA violations (1.1s)
-  ✓  10 [chromium] › tests/e2e/accessibility.spec.js:42:3 › aiml checklist has no WCAG A/AA violations (914ms)
-  ✓  11 [chromium] › tests/e2e/accessibility.spec.js:50:1 › validator form has no WCAG A/AA violations (386ms)
-  ✓  12 [chromium] › tests/e2e/accessibility.spec.js:55:1 › validator results and standards views have no WCAG A/AA violations (2.1s)
+  ✓   2 [chromium] › tests/e2e/accessibility.spec.js:29:1 › dashboard has no WCAG A/AA violations in light mode (453ms)
+  ✓   1 [chromium] › tests/e2e/accessibility.spec.js:34:1 › dashboard has no WCAG A/AA violations in dark mode (899ms)
+  ✓   4 [chromium] › tests/e2e/accessibility.spec.js:46:3 › backend checklist has no WCAG A/AA violations (932ms)
+  ✓   3 [chromium] › tests/e2e/accessibility.spec.js:46:3 › frontend checklist has no WCAG A/AA violations (1.4s)
+  ✓   5 [chromium] › tests/e2e/accessibility.spec.js:46:3 › cloud checklist has no WCAG A/AA violations (801ms)
+  ✓   6 [chromium] › tests/e2e/accessibility.spec.js:46:3 › data checklist has no WCAG A/AA violations (812ms)
+  ✓   7 [chromium] › tests/e2e/accessibility.spec.js:46:3 › devops checklist has no WCAG A/AA violations (811ms)
+  ✓   8 [chromium] › tests/e2e/accessibility.spec.js:46:3 › mobile checklist has no WCAG A/AA violations (814ms)
+  ✓  10 [chromium] › tests/e2e/accessibility.spec.js:46:3 › aiml checklist has no WCAG A/AA violations (893ms)
+  ✓   9 [chromium] › tests/e2e/accessibility.spec.js:46:3 › security checklist has no WCAG A/AA violations (1.1s)
+  ✓  11 [chromium] › tests/e2e/accessibility.spec.js:54:1 › validator form has no WCAG A/AA violations (375ms)
+  ✓  12 [chromium] › tests/e2e/accessibility.spec.js:59:1 › validator results and standards views have no WCAG A/AA violations (2.1s)
 
-  12 passed (8.0s)
+  12 passed (8.1s)
 
 EXIT CODE: 0

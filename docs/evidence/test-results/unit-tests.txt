@@ -4,15 +4,15 @@ $ npm run test:unit
 > enterprise-grade-checklists@2.1.1 test:unit
 > node --test tests/unit/markup.test.js tests/unit/validator-utils.test.js
 
-✔ every checklist uses accessible item markup (5.128834ms)
-✔ dashboard manifest matches the rendered checklist totals (0.380917ms)
-✔ all pages declare a favicon and a page description (0.929958ms)
-✔ validator form does not rely on an invalid HTML pattern (0.197833ms)
-✔ validator no longer fetches unused commit data (0.135375ms)
-✔ parseGitHubUrl accepts the documented URL forms (0.968ms)
-✔ parseGitHubUrl rejects non-GitHub and malformed input (0.142ms)
-✔ escapeHtml neutralizes HTML metacharacters (0.599125ms)
-✔ rateLimitMessage includes the reset time when available (13.32775ms)
+✔ every checklist uses accessible item markup (4.985959ms)
+✔ dashboard manifest matches the rendered checklist totals (0.3775ms)
+✔ all pages declare a favicon and a page description (0.791584ms)
+✔ validator form does not rely on an invalid HTML pattern (0.188375ms)
+✔ validator no longer fetches unused commit data (0.13175ms)
+✔ parseGitHubUrl accepts the documented URL forms (0.859709ms)
+✔ parseGitHubUrl rejects non-GitHub and malformed input (0.143667ms)
+✔ escapeHtml neutralizes HTML metacharacters (0.668209ms)
+✔ rateLimitMessage includes the reset time when available (13.103541ms)
 ℹ tests 9
 ℹ suites 0
 ℹ pass 9
@@ -20,6 +20,6 @@ $ npm run test:unit
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 134.779875
+ℹ duration_ms 127.777125
 
 EXIT CODE: 0

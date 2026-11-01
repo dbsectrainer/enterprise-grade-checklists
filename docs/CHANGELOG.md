@@ -49,6 +49,8 @@ tooling, and documentation.
   versions; the script now passes explicit test files.
 - Fixed `.gitignore` so `docs/evidence/test-results/` and evidence `.log` files are tracked;
   `npm run build` now succeeds from a clean checkout instead of failing on missing evidence links.
+- Addressed PR review findings: CodeQL hostname checks, a working local pre-commit Prettier hook,
+  details-panel border-box sizing, dark-mode export-option contrast, and print-safe dark-theme colors.
 - Reworked CI to run lint, formatting, HTML validation, unit tests, Playwright tests, build, and
   artifact verification. Pages now deploys the built `dist/` artifact.
 - Updated README, validator documentation, and package metadata; documented remaining legacy

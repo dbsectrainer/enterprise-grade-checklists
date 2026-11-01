@@ -8,7 +8,7 @@ digraph G {
         label="Core System";
         style=filled;
         color=lightblue;
-        
+
         Dashboard [label="Dashboard"];
         StateManager [label="State Manager"];
         EventSystem [label="Event System"];
@@ -19,7 +19,7 @@ digraph G {
         label="Validation System";
         style=filled;
         color=lightgreen;
-        
+
         Validator [label="Validator Engine"];
         Rules [label="Validation Rules"];
         Reporter [label="Report Generator"];
@@ -30,7 +30,7 @@ digraph G {
         label="Documentation";
         style=filled;
         color=lightyellow;
-        
+
         Guides [label="Best Practices"];
         Templates [label="Templates"];
         Examples [label="Code Examples"];
@@ -41,7 +41,7 @@ digraph G {
         label="Monitoring";
         style=filled;
         color=lightpink;
-        
+
         Monitor [label="Performance Monitor"];
         Metrics [label="Metrics Collector"];
         Alerts [label="Alert System"];
@@ -52,7 +52,7 @@ digraph G {
         label="Checklist Components";
         style=filled;
         color=lightgrey;
-        
+
         Frontend [label="Frontend\nValidator"];
         Backend [label="Backend\nValidator"];
         Cloud [label="Cloud\nValidator"];
@@ -68,7 +68,7 @@ digraph G {
         label="Governance";
         style=filled;
         color=lightcyan;
-        
+
         Compliance [label="Compliance\nMapper"];
         Ethics [label="Ethics\nFramework"];
         Auditor [label="Audit\nSystem"];
@@ -77,21 +77,21 @@ digraph G {
     /* Relationships */
     Dashboard -> StateManager [label="updates"];
     Dashboard -> EventSystem [label="emits events"];
-    
+
     StateManager -> {Frontend Backend Cloud Data DevOps Mobile Security AIML} [label="manages state"];
-    
+
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Validator [label="validates"];
     Validator -> Rules [label="uses"];
     Validator -> Reporter [label="generates"];
     Reporter -> Dashboard [label="displays"];
-    
+
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Monitor [label="monitors"];
     Monitor -> Metrics [label="collects"];
     Metrics -> Alerts [label="triggers"];
     Alerts -> Dashboard [label="notifies"];
-    
+
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> {Guides Templates Examples} [label="references"];
-    
+
     {Frontend Backend Cloud Data DevOps Mobile Security AIML} -> Compliance [label="checks"];
     Compliance -> Auditor [label="reports"];
     Ethics -> {AIML Security} [label="governs"];

@@ -142,6 +142,10 @@ h1 {
   color: #0b1220;
 }
 
+[data-theme="dark"] .export-option:hover {
+  color: #0b1220;
+}
+
 .control-btn.danger {
   background-color: var(--danger-color);
 }
@@ -469,6 +473,7 @@ body.modal-open {
 .export-option {
   padding: 1rem;
   background-color: var(--card-background);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -528,6 +533,16 @@ body.modal-open {
 }
 
 @media print {
+  [data-theme="dark"] {
+    --background-color: #ffffff;
+    --card-background: #ffffff;
+    --text-color: #000000;
+    --text-secondary: #000000;
+    --border-color: #999999;
+    --primary-color: #000000;
+    --secondary-color: #000000;
+  }
+
   .user-controls,
   .controls,
   .validator-cta,
@@ -564,6 +579,23 @@ body.modal-open {
 
   .card-footer {
     border-top: 1px solid #999999;
+  }
+
+  h1,
+  .card-header h2,
+  .summary-card h3 {
+    color: #000000;
+  }
+
+  .priority-badge {
+    background: transparent !important;
+    color: #000000 !important;
+    border: 1px solid #000000;
+  }
+
+  .progress-text {
+    background: transparent;
+    color: #000000;
   }
 }
 

@@ -36,6 +36,10 @@ test("dashboard has no WCAG A/AA violations in dark mode", async ({ page }) => {
   await page.click("#theme-toggle");
   await page.waitForTimeout(100);
   await expectNoViolations(page, "dashboard dark");
+
+  await page.click("#export-data");
+  await page.hover(".export-option");
+  await expectNoViolations(page, "dashboard dark export modal hover");
 });
 
 for (const domain of DOMAINS) {

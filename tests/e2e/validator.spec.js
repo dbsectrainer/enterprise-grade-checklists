@@ -198,7 +198,7 @@ test("validates a repository, renders summary and tabs, and caches the manifest 
 test("repository without package.json makes no manifest request", async ({ page }) => {
   const manifestRequests = [];
   page.on("request", (request) => {
-    if (request.url().includes("raw.githubusercontent.com")) manifestRequests.push(request.url());
+    if (request.url() === RAW_MANIFEST) manifestRequests.push(request.url());
   });
 
   await mockRepository(page, {
