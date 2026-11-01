@@ -1,0 +1,9 @@
+$ npm run build
+
+
+> enterprise-grade-checklists@2.1.1 build
+> node scripts/build.mjs
+
+Build complete: 81 files, 4531.6 KiB -> dist/
+
+EXIT CODE: 0

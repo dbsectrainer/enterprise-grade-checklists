@@ -7,7 +7,9 @@ The Enterprise Repository Validator is an automated tool that analyzes GitHub re
 ## Quick Start
 
 1. **Access the Validator**: Visit [validator.html](../validator.html) from the main dashboard
-2. **Enter Repository URL**: Input your GitHub repository URL (e.g., `https://github.com/facebook/react`)
+2. **Enter Repository URL**: Input a public GitHub repository URL. Both
+   `https://github.com/facebook/react` and `github.com/facebook/react` are accepted; `.git` suffixes
+   and repository pages with additional path segments are normalized to the repository root.
 3. **Select Domains**: Choose which domains to validate (default: all major domains selected)
 4. **Run Validation**: Click "Validate Repository" to start the analysis
 5. **Review Results**: View detailed results with passed checks, failures, warnings, and standards compliance
@@ -25,7 +27,7 @@ Validates:
 - Code quality standards (ESLint)
 - Testing frameworks
 
-**Standards Checked**: OWASP Top 10, WCAG 2.2, ISO 27001
+**Standards Checked**: OWASP Top 10, WCAG 2.2
 
 ### ⚙️ Backend
 
@@ -38,7 +40,7 @@ Validates:
 - Rate limiting implementation
 - Structured logging
 
-**Standards Checked**: OWASP Top 10, ISO 27001, SOC 2, PCI DSS
+**Standards Checked**: OWASP Top 10, ISO 27001
 
 ### ☁️ Cloud
 
@@ -49,7 +51,7 @@ Validates:
 - Kubernetes manifests
 - Cost monitoring configuration
 
-**Standards Checked**: CIS Benchmarks, NIST CSF, ISO 27001
+**Standards Checked**: CIS Benchmarks
 
 ### 📊 Data
 
@@ -73,7 +75,7 @@ Validates:
 - Deployment strategies
 - Container security
 
-**Standards Checked**: NIST CSF, ISO 27001, CIS Benchmarks
+**Standards Checked**: NIST CSF, ISO 27001
 
 ### 📱 Mobile
 
@@ -84,7 +86,7 @@ Validates:
 - Offline storage capabilities
 - Platform-specific security
 
-**Standards Checked**: OWASP Mobile Top 10
+**Standards Checked**: No standards tags are emitted for mobile checks yet.
 
 ### 🔒 Security
 
@@ -202,7 +204,7 @@ The validator performs the following automated checks:
 
 #### Repository Structure
 
-- ✅ Package management files (package.json, requirements.txt, etc.)
+- ✅ Root-level package.json presence (dependency checks are npm-only)
 - ✅ Configuration files (.gitignore, .env.example)
 - ✅ Documentation files (README.md, SECURITY.md)
 - ✅ CI/CD configuration files
@@ -343,9 +345,14 @@ The Standards tab shows compliance grouped by standard, making it easy to:
 
 1. **Public Repositories Only**: The validator can only analyze public GitHub repositories due to API authentication constraints
 2. **Static Analysis**: Checks are based on file presence and dependency detection, not runtime behavior
-3. **Dependency Checks**: Limited to package.json for Node.js projects
-4. **Surface-level Checks**: Cannot validate configuration details or implementation quality
-5. **No Code Analysis**: Does not perform deep code analysis or security scanning
+3. **Dependency Checks**: Limited to the root package.json and npm dependency names. Python, Go,
+   Rust, Java, and nested manifests are not parsed.
+4. **Root-level Heuristics**: The repository root and root manifests are inspected. Nested
+   `dashboard/`, `infra/`, `k8s/`, and monorepo package roots are not recursively scanned.
+5. **Surface-level Checks**: Cannot validate configuration details or implementation quality
+6. **No Code Analysis**: Does not perform deep code analysis or security scanning
+7. **Advisory Standards Tags**: Standard names are mapped to checks heuristically and are not a
+   certification or audit result.
 
 ### Future Enhancements
 
@@ -419,7 +426,7 @@ A: The validator is a screening tool, not a certification tool. It can help you 
 
 - Some checks require specific files or configurations
 - Review the detailed descriptions for each failed check
-- Ensure your repository has a package.json or equivalent
+- Dependency checks look for a root package.json; other checks use root-level file names
 
 ## Technical Details
 
@@ -429,7 +436,8 @@ The validator uses:
 
 - **GitHub REST API**: To fetch repository data
 - **Client-side Processing**: All analysis happens in the browser
-- **localStorage**: For caching and performance
+- **No result caching**: each validation starts fresh; the dashboard, not the validator,
+  uses localStorage for checklist progress
 - **Responsive Design**: Mobile-friendly interface
 
 ### API Usage
@@ -437,19 +445,24 @@ The validator uses:
 The validator makes the following API calls:
 
 ```javascript
-GET /repos/{owner}/{repo}                    // Repository metadata
-GET /repos/{owner}/{repo}/contents           // File listing
-GET /repos/{owner}/{repo}/languages          // Programming languages
-GET /repos/{owner}/{repo}/commits?per_page=10 // Recent commits
-GET {file.download_url}                      // File contents (package.json)
+GET /repos/{owner}/{repo}           // Repository metadata
+GET /repos/{owner}/{repo}/contents  // Root file listing
+GET /repos/{owner}/{repo}/languages // Programming languages
+GET {file.download_url}             // Root package.json (fetched once)
 ```
+
+The manifest is fetched once per validation; dependency checks reuse the parsed object instead of
+requesting it for every domain. Commit data is not requested because no check uses it.
 
 ### Rate Limits
 
 GitHub API has rate limits:
 
-- **Unauthenticated**: 60 requests/hour
-- **Authenticated**: 5,000 requests/hour (future enhancement)
+- **Unauthenticated**: 60 requests/hour (four requests per validation)
+- **Authenticated**: 5,000 requests/hour (not implemented)
+
+When the limit is exhausted, the validator shows an inline message that includes the reset time when
+GitHub provides it.
 
 ## Standards Mapping Reference
 
@@ -464,17 +477,32 @@ This file contains:
 
 ## Version History
 
-### v1.0.0 (Current)
+### v1.1.0 (Current, 2026-10-31)
+
+- Removed an invalid HTML `pattern` that prevented the form from submitting in current Chromium
+- Replaced blocking `alert()` validation with inline, focusable errors
+- Added scheme-less URL support and strict GitHub hostname validation
+- Added rate-limit, 404, and network error messages
+- Removed the unused commits request and duplicate package.json fetches
+- Removed unused `repositoryData` from JSON exports
+- Escaped all result text before rendering
+- Added ARIA tab semantics, keyboard tab navigation, and a print stylesheet
+- Added AI standards badges (EU AI Act, NIST AI RMF, ISO/IEC 42001) and the missing NIST 800-53 tag
+- Verified with unit, Playwright, and live GitHub API tests
+
+### v1.0.0
 
 - Initial release of Repository Validator
 - Support for 8 domains
-- 10 compliance standards
-- Export to JSON, CSV, PDF
-- Real-time validation results
+- Compliance standards mapping
+- Export to JSON, CSV, PDF (via print)
 - Standards compliance view
 
 ---
 
-**Last Updated**: November 2025
-**Version**: 1.0.0
+**Last Updated**: 2026-10-31
+**Version**: 1.1.0
 **License**: MIT
+
+For the complete audit and test evidence, see
+[verification-report.md](./evidence/verification-report.md).

@@ -2,7 +2,16 @@
 export default [
   {
     files: ["**/*.js"],
-    ignores: ["*.min.js", "chart.min.js", "node_modules/**", "dist/**", "build/**"],
+    ignores: [
+      "*.min.js",
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "playwright-report/**",
+      "test-results/**",
+      "coverage/**",
+      ".playwright-browsers/**",
+    ],
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: "module",

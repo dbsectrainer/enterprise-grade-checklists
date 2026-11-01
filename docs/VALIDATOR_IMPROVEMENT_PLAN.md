@@ -16,13 +16,13 @@
 
 The Enterprise Repository Validator ([validator.js](../validator.js)) provides valuable quick feedback on public GitHub repositories, but a real-world validation of a **Python / Streamlit DoD cybersecurity framework** exposed systematic blind spots:
 
-| Issue | Impact |
-|-------|--------|
-| Root-only GitHub API scan | Misses `dashboard/`, `infra/`, `k8s/`, and other nested project roots |
-| npm-only dependency resolution | False failures for Python (`requirements.txt`), Go, Rust, Java projects |
+| Issue                            | Impact                                                                             |
+| -------------------------------- | ---------------------------------------------------------------------------------- |
+| Root-only GitHub API scan        | Misses `dashboard/`, `infra/`, `k8s/`, and other nested project roots              |
+| npm-only dependency resolution   | False failures for Python (`requirements.txt`), Go, Rust, Java projects            |
 | JavaScript library name matching | Rate limiting, logging, auth, encryption checks fail for equivalent Python/Go libs |
-| Filename-only heuristics | Docker, Prometheus, tests, and OpenAPI in subdirectories are invisible |
-| No stack detection | Cannot adapt domain weights (e.g., skip `package.json` for Python-primary repos) |
+| Filename-only heuristics         | Docker, Prometheus, tests, and OpenAPI in subdirectories are invisible             |
+| No stack detection               | Cannot adapt domain weights (e.g., skip `package.json` for Python-primary repos)   |
 
 **Result:** A project with pytest, cryptography, Docker Compose, Prometheus, Grafana, Vault, CI/CD, and `.env.example` still scored **3 passed / 7 failed** on first scan.
 
@@ -55,7 +55,7 @@ The Enterprise Repository Validator ([validator.js](../validator.js)) provides v
 **Current behavior:**
 
 ```javascript
-fetch(`${apiBase}/contents`)  // root only
+fetch(`${apiBase}/contents`); // root only
 ```
 
 **Proposed behavior:**
@@ -73,14 +73,14 @@ fetch(`${apiBase}/contents`)  // root only
 
 Detect dominant ecosystem from:
 
-| Signal | Ecosystem |
-|--------|-----------|
-| `package.json` | JavaScript/TypeScript |
-| `requirements.txt`, `pyproject.toml`, `Pipfile` | Python |
-| `go.mod` | Go |
-| `Cargo.toml` | Rust |
-| `pom.xml`, `build.gradle` | Java/Kotlin |
-| GitHub `languages` API | Secondary signal |
+| Signal                                          | Ecosystem             |
+| ----------------------------------------------- | --------------------- |
+| `package.json`                                  | JavaScript/TypeScript |
+| `requirements.txt`, `pyproject.toml`, `Pipfile` | Python                |
+| `go.mod`                                        | Go                    |
+| `Cargo.toml`                                    | Rust                  |
+| `pom.xml`, `build.gradle`                       | Java/Kotlin           |
+| GitHub `languages` API                          | Secondary signal      |
 
 **Output:** `repoProfile: { primary: 'python', secondary: ['docker', 'hcl'], confidence: 0.92 }`
 
@@ -96,13 +96,13 @@ async checkDependencies(repoTree, packages) {
 
 **Python equivalents to add:**
 
-| Current npm check | Python equivalent |
-|-------------------|-------------------|
-| `express-rate-limit` | `slowapi`, `flask-limiter`, or config key `rate_limit` |
-| `winston`, `pino` | `structlog`, `loguru`, or stdlib `logging` usage |
-| `passport`, `jsonwebtoken` | `python-jose`, `passlib`, `authlib`, `PyJWT` |
-| `bcrypt`, `crypto-js` | `cryptography`, `bcrypt`, `pynacl` |
-| `joi`, `yup`, `zod` | `pydantic`, `marshmallow`, `cerberus` |
+| Current npm check          | Python equivalent                                      |
+| -------------------------- | ------------------------------------------------------ |
+| `express-rate-limit`       | `slowapi`, `flask-limiter`, or config key `rate_limit` |
+| `winston`, `pino`          | `structlog`, `loguru`, or stdlib `logging` usage       |
+| `passport`, `jsonwebtoken` | `python-jose`, `passlib`, `authlib`, `PyJWT`           |
+| `bcrypt`, `crypto-js`      | `cryptography`, `bcrypt`, `pynacl`                     |
+| `joi`, `yup`, `zod`        | `pydantic`, `marshmallow`, `cerberus`                  |
 
 **Acceptance criteria:**
 
@@ -117,12 +117,12 @@ async checkDependencies(repoTree, packages) {
 
 When `primary === 'python'` and no frontend `package.json`:
 
-| Check | Current | Proposed |
-|-------|---------|----------|
-| Package Management (frontend) | Fail | Skip or pass via `requirements.txt` / `pyproject.toml` |
-| Accessibility Testing | Fail | Warning: "Manual WCAG review recommended for Streamlit/UI framework" |
-| Testing Framework | Fail if no root test file | Pass if `pytest.ini`, `conftest.py`, or `**/test_*.py` found in tree |
-| ESLint | Warning | Skip; suggest `ruff` / `flake8` for Python |
+| Check                         | Current                   | Proposed                                                             |
+| ----------------------------- | ------------------------- | -------------------------------------------------------------------- |
+| Package Management (frontend) | Fail                      | Skip or pass via `requirements.txt` / `pyproject.toml`               |
+| Accessibility Testing         | Fail                      | Warning: "Manual WCAG review recommended for Streamlit/UI framework" |
+| Testing Framework             | Fail if no root test file | Pass if `pytest.ini`, `conftest.py`, or `**/test_*.py` found in tree |
+| ESLint                        | Warning                   | Skip; suggest `ruff` / `flake8` for Python                           |
 
 Display **"Adapted for Python"** badge on affected results.
 
@@ -130,13 +130,13 @@ Display **"Adapted for Python"** badge on affected results.
 
 Expand cloud/devops checks to search tree paths:
 
-| Check | Patterns to add |
-|-------|-----------------|
-| Docker | `**/Dockerfile`, `**/docker-compose.yml` |
-| Kubernetes | `**/k8s/**`, `**/*deployment*.yaml`, `**/helm/**` |
-| Prometheus/Grafana | `**/prometheus*.yml`, `**/grafana/**` |
-| Terraform | `**/*.tf`, `**/*.hcl` (exclude `.terraform/`) |
-| Vault | `**/vault/**`, `VAULT_*` in `.env.example` |
+| Check              | Patterns to add                                   |
+| ------------------ | ------------------------------------------------- |
+| Docker             | `**/Dockerfile`, `**/docker-compose.yml`          |
+| Kubernetes         | `**/k8s/**`, `**/*deployment*.yaml`, `**/helm/**` |
+| Prometheus/Grafana | `**/prometheus*.yml`, `**/grafana/**`             |
+| Terraform          | `**/*.tf`, `**/*.hcl` (exclude `.terraform/`)     |
+| Vault              | `**/vault/**`, `VAULT_*` in `.env.example`        |
 
 ### 2.3 CI/CD depth check
 
@@ -209,29 +209,29 @@ Action wrapper: `enterprise-checklist/validate@v1` for CI integration with SARIF
 
 ## Implementation Priority Matrix
 
-| Priority | Item | Effort | Impact |
-|----------|------|--------|--------|
-| P0 | Recursive tree walk | Medium | High |
-| P0 | Python `requirements.txt` dependency checks | Medium | High |
-| P0 | pytest / test file discovery in tree | Low | High |
-| P1 | Stack detection + applicability flags | Medium | High |
-| P1 | Nested Docker/K8s/Prometheus detection | Low | Medium |
-| P1 | CI workflow file validation | Low | Medium |
-| P2 | Go/Rust/Java manifest support | Medium | Medium |
-| P2 | Python lint tools (ruff/flake8) | Low | Low |
-| P3 | Private repo auth | High | Medium |
-| P3 | GitHub Action wrapper | Medium | Low |
+| Priority | Item                                        | Effort | Impact |
+| -------- | ------------------------------------------- | ------ | ------ |
+| P0       | Recursive tree walk                         | Medium | High   |
+| P0       | Python `requirements.txt` dependency checks | Medium | High   |
+| P0       | pytest / test file discovery in tree        | Low    | High   |
+| P1       | Stack detection + applicability flags       | Medium | High   |
+| P1       | Nested Docker/K8s/Prometheus detection      | Low    | Medium |
+| P1       | CI workflow file validation                 | Low    | Medium |
+| P2       | Go/Rust/Java manifest support               | Medium | Medium |
+| P2       | Python lint tools (ruff/flake8)             | Low    | Low    |
+| P3       | Private repo auth                           | High   | Medium |
+| P3       | GitHub Action wrapper                       | Medium | Low    |
 
 ---
 
 ## Success Metrics
 
-| Metric | Baseline | Target (post Phase 2) |
-|--------|----------|------------------------|
-| False positive rate on Python repos | ~57% (4/7 failures) | < 15% |
-| Infrastructure detection (nested Docker) | 0% | > 90% |
-| Dependency check accuracy (Python) | 0% | > 85% |
-| User-reported "not applicable" checks | Unknown | Track via GitHub issues |
+| Metric                                   | Baseline            | Target (post Phase 2)   |
+| ---------------------------------------- | ------------------- | ----------------------- |
+| False positive rate on Python repos      | ~57% (4/7 failures) | < 15%                   |
+| Infrastructure detection (nested Docker) | 0%                  | > 90%                   |
+| Dependency check accuracy (Python)       | 0%                  | > 85%                   |
+| User-reported "not applicable" checks    | Unknown             | Track via GitHub issues |
 
 **Regression test:** Re-scan `dbsectrainer/dod-cybersec-ops-framework` on `compliance-scan` branch:
 
@@ -242,26 +242,26 @@ Action wrapper: `enterprise-checklist/validate@v1` for CI integration with SARIF
 
 ## File Change Map
 
-| File | Changes |
-|------|---------|
-| `validator.js` | Tree walk, stack detection, multi-ecosystem deps, applicability engine |
-| `validator.html` | Stack badge, filter toggles, coverage stats |
-| `validator.css` | Styles for new UI elements |
-| `docs/VALIDATOR.md` | Document limitations, multi-stack support, API rate limits |
-| `docs/VALIDATOR_IMPROVEMENT_PLAN.md` | This document |
-| `tests/validator/` | New unit test directory |
-| `fixtures/` | Mock repo trees for testing |
+| File                                 | Changes                                                                |
+| ------------------------------------ | ---------------------------------------------------------------------- |
+| `validator.js`                       | Tree walk, stack detection, multi-ecosystem deps, applicability engine |
+| `validator.html`                     | Stack badge, filter toggles, coverage stats                            |
+| `validator.css`                      | Styles for new UI elements                                             |
+| `docs/VALIDATOR.md`                  | Document limitations, multi-stack support, API rate limits             |
+| `docs/VALIDATOR_IMPROVEMENT_PLAN.md` | This document                                                          |
+| `tests/validator/`                   | New unit test directory                                                |
+| `fixtures/`                          | Mock repo trees for testing                                            |
 
 ---
 
 ## Risks & Mitigations
 
-| Risk | Mitigation |
-|------|------------|
-| GitHub API rate limits on large repos | Cache tree; configurable depth/file limits; optional PAT for higher limits |
-| Breaking existing scores users track | Version validator (`validatorVersion` in exports); changelog breaking rules |
+| Risk                                     | Mitigation                                                                      |
+| ---------------------------------------- | ------------------------------------------------------------------------------- |
+| GitHub API rate limits on large repos    | Cache tree; configurable depth/file limits; optional PAT for higher limits      |
+| Breaking existing scores users track     | Version validator (`validatorVersion` in exports); changelog breaking rules     |
 | Maintenance burden of ecosystem mappings | External JSON config (`dependency-mappings.json`) editable without code changes |
-| Over-skipping checks reduces rigor | Default to strict mode; "enterprise strict" vs "stack-adapted" toggle |
+| Over-skipping checks reduces rigor       | Default to strict mode; "enterprise strict" vs "stack-adapted" toggle           |
 
 ---
 

@@ -30,11 +30,11 @@
    - "Each section is organized by category: Security, Accessibility, Performance, etc."
    - "Items are clearly marked as Required or Suggested"
    - "Expand an item to show detailed implementation guidance"
-   - "Notice the integrated code examples and best practices"
+   - "Notice the implementation questions, key considerations, and red flags"
 
 3. Show validation
 
-   - "Let's run the automated validator to check our progress"
+   - "Let's open the Repository Validator and check a public GitHub repository"
    - "Watch how it identifies areas needing attention"
    - "See the detailed feedback and recommendations"
 
@@ -42,7 +42,7 @@
    - "As we check items, watch the progress bar update in real-time"
    - "Click the info icon to see detailed requirements"
    - "All progress is automatically saved"
-   - "Notice the new performance metrics tracking"
+   - "Notice the last-updated timestamp for each checklist"
 
 ## State Management (1 minute)
 
@@ -100,7 +100,7 @@
 
 1. Show automated checks
 
-   - "Each checklist has its own validator"
+   - "The Repository Validator checks public repositories across all eight domains"
    - "Validators provide detailed reports"
    - "See how issues are identified and tracked"
 

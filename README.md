@@ -1,246 +1,349 @@
 # Enterprise Checklist Dashboard
 
-A comprehensive dashboard that combines and tracks progress across eight enterprise-grade checklists covering various domains of software development and operations.
+[![CI](https://github.com/dbsectrainer/enterprise-grade-checklists/actions/workflows/ci.yml/badge.svg)](https://github.com/dbsectrainer/enterprise-grade-checklists/actions/workflows/ci.yml)
+[![Deploy to GitHub Pages](https://github.com/dbsectrainer/enterprise-grade-checklists/actions/workflows/pages.yml/badge.svg)](https://github.com/dbsectrainer/enterprise-grade-checklists/actions/workflows/pages.yml)
 
-**Live Demo**: [https://dbsectrainer.github.io/enterprise-grade-checklists/](https://dbsectrainer.github.io/enterprise-grade-checklists/)
+A static, browser-only dashboard for tracking progress across eight enterprise-grade checklists,
+plus a repository validator that checks public GitHub repositories against the same domains.
+
+**Live demo:** [https://dbsectrainer.github.io/enterprise-grade-checklists/](https://dbsectrainer.github.io/enterprise-grade-checklists/)
+
+**Verification status (2026-10-31):** 9 unit tests and 53 Playwright end-to-end tests pass; the
+production build is manifest-backed and was smoke-tested from `dist/`; zero WCAG 2.2 A/AA violations
+were reported by axe on the dashboard (light and dark), all eight checklists, the validator form, and the validator results/standards views; the
+validator completed a live GitHub API run. Full evidence is in
+[docs/evidence/verification-report.md](docs/evidence/verification-report.md).
 
 ## Overview
 
-The Enterprise Checklist Dashboard provides a unified interface to manage and monitor progress across multiple specialized checklists:
+The repository contains 505 checklist items across eight domains:
 
-- Frontend Development
-- Backend Development
-- Cloud Infrastructure
-- Data Management
-- DevOps Practices
-- Mobile Development
-- Security Measures
-- AI/ML Integration
+- Frontend (118 items)
+- Backend (63)
+- Cloud (44)
+- Data (47)
+- DevOps (46)
+- Mobile (47)
+- Security (84)
+- AI/ML (56)
 
-## Features
+There is no server, database, account system, or build-time framework. The dashboard and checklist
+content are static HTML, state is stored in the browser, and the validator calls the public GitHub
+REST API directly from the page.
 
-### 🔍 Repository Validator (NEW!)
+## Screenshots
 
-**Automatically validate your GitHub repository against enterprise standards!**
+![Dashboard with all eight domains](docs/evidence/screenshots/homepage-desktop.png)
 
-Our new [Repository Validator](validator.html) provides:
+_The dashboard at 1440px: weighted overall progress, domain cards, priority filter, exports, dark/light
+theme, and the repository validator entry point._
 
-- **Automated Compliance Checking**: Scan any public GitHub repository for compliance with enterprise standards
-- **Multi-Domain Analysis**: Validates across all 8 domains (Frontend, Backend, Cloud, Data, DevOps, Mobile, Security, AI/ML)
-- **Standards Mapping**: Checks compliance with ISO 27001:2022, NIST CSF, SOC 2, GDPR, OWASP Top 10, WCAG 2.2, PCI DSS, HIPAA, EU AI Act, NIST AI RMF, ISO/IEC 42001, and more
-- **Real-time Results**: Get instant feedback on your repository's compliance status
-- **Export Capabilities**: Export validation results as JSON, CSV, or PDF
-- **Detailed Reports**: View passed checks, failed checks, warnings, and standards compliance
+![Checklist details expanded](docs/evidence/screenshots/checklist-details.png)
 
-**How to use:**
+_Checklist details now render at full item width. Clicking inside the panel no longer toggles the
+checkbox or closes the panel._
 
-1. Visit the [Repository Validator](validator.html) page
-2. Enter your GitHub repository URL (e.g., `https://github.com/username/repository`)
-3. Select domains to validate
-4. Click "Validate Repository" and get instant results!
+![Validator results](docs/evidence/screenshots/validator-results.png)
 
-### Dashboard Features
+_A live validator run against this repository. The result summary, failed/warning/passed ordering,
+standards tags, and export actions are all rendered from the actual GitHub API response._
 
-- **Unified Dashboard**: Central view of all checklists with progress tracking
-- **Automated Validation**: Built-in validators for each checklist domain
-- **Compliance Mapping**: Integrated compliance tracking for standards (HIPAA, SOC2, etc.)
-- **Performance Monitoring**: Real-time performance metrics and optimization guides
-- **Technical Demonstrations**: Practical examples and implementation guides
-- **Documentation & Guides**: Comprehensive guides and best practices
-- **Progress Persistence**: Automatic saving of progress using localStorage
-- **Responsive Design**: Mobile-friendly interface that works on all devices
-- **Real-time Updates**: Instant progress updates across all views
-- **Reset Capability**: Option to reset progress for fresh starts
-- **Independent State**: Separate state management for each checklist
-- **Navigation System**: Seamless movement between dashboard and checklists
+More screenshots, including mobile layouts and the standards tab, are indexed in
+[docs/evidence/screenshots/manifest.json](docs/evidence/screenshots/manifest.json).
 
-## Getting Started
+## Features (verified)
 
-You can either:
+### Dashboard
 
-- Visit the [live demo](https://dbsectrainer.github.io/enterprise-grade-checklists/) to start using the dashboard immediately, or
-- Set up locally:
-  1. Clone the repository
-  2. Open `index.html` in your web browser
-  3. Navigate through different checklists using the dashboard cards
-  4. Track your progress as you complete items in each checklist
-  5. Use the Return to Dashboard button to navigate back to the main view
+- Weighted overall progress across all 505 checklist items, with per-domain progress bars and
+  accessible `role="progressbar"` values.
+- Per-domain "Updated …" timestamps from `localStorage`, with "Not started" when untouched.
+- Search across domain cards and priority filtering (All, Critical, High, Medium), including a
+  no-results state.
+- Search and filter state persisted for the current browser tab with `sessionStorage`.
+- Light and dark themes, persisted across visits, with an accessible toggle state.
+- Export progress as JSON or CSV, including checked/total counts and an overall score.
+- Print / Save PDF through the browser print dialog and a dedicated print stylesheet.
+- Accessible export dialog with keyboard dismissal, focus restoration, and backdrop dismissal.
+- Reset-all confirmation and cross-tab synchronization: checking an item in one tab updates an open
+  dashboard in another tab.
 
-## Documentation
+### Checklist pages
 
-### Roadmap
+- 505 items with required/suggested grouping and expandable implementation details.
+- Semantically valid markup: every item is a `div.checklist-item` containing a single `label`,
+  a sibling details toggle, and a sibling details panel. No interactive content is nested in a
+  `label`.
+- Per-section progress badges (checked/total and percentage) that update immediately.
+- Checkbox state and last-updated timestamps persisted per checklist.
+- Full-width details panels; clicking text inside a panel does not toggle the checkbox.
+- Native button keyboard behavior (Enter/Space) and Escape to close open panels.
+- `aria-expanded`/`aria-controls` state on every details toggle.
+- Reset with confirmation, and mobile layouts at 390px without horizontal overflow.
 
-Our development roadmap is available in [docs/ROADMAP.md](docs/ROADMAP.md), outlining:
+### Repository Validator
 
-- Phased enhancement approach
-- New checklist development plans
-- Implementation timelines
-- Success metrics
+- Accepts `https://github.com/owner/repo`, `github.com/owner/repo`, `www.github.com`, `.git` suffix,
+  and repository URLs with additional path segments; validates the hostname rather than matching a
+  substring.
+- Eight domains: frontend, backend, cloud, data, DevOps, mobile, security, and AI/ML.
+- Standards tags for ISO 27001, NIST CSF, SOC 2, GDPR, OWASP Top 10, WCAG 2.2, PCI DSS, HIPAA,
+  CIS Benchmarks, NIST 800-53, EU AI Act, NIST AI RMF, and ISO/IEC 42001.
+- Inline form errors instead of blocking `alert()` dialogs.
+- Actionable errors for missing/private repositories, rate limits (including reset time), and
+  network failures.
+- Fetches the repository, root contents, languages, and root `package.json` once each; unused commit
+  data is no longer requested and duplicate manifest fetches are eliminated.
+- Result tabs with ARIA tab semantics and arrow-key navigation, a standards view, JSON/CSV export,
+  and print-to-PDF.
+- Escapes all interpolated result text before writing HTML.
 
-### Case Study
+## Technology Stack
 
-A comprehensive case study is available in [docs/CASE_STUDY.md](docs/CASE_STUDY.md), which covers:
+| Layer                 | Choice                                                                           |
+| --------------------- | -------------------------------------------------------------------------------- |
+| UI                    | Semantic HTML5, CSS custom properties, responsive CSS grid/flexbox               |
+| Behavior              | Vanilla JavaScript (ES2021+), no runtime framework                               |
+| Persistence           | `localStorage` for progress/theme, `sessionStorage` for tab-scoped filters       |
+| External API          | GitHub REST API and `raw.githubusercontent.com` (public data only)               |
+| Hosting               | Static files / GitHub Pages                                                      |
+| Linting               | ESLint 10, Prettier 3                                                            |
+| HTML validation       | html-validate 10                                                                 |
+| E2E and accessibility | Playwright 1.64, `@axe-core/playwright` (WCAG 2.2 A/AA tags)                     |
+| Unit tests            | Node.js built-in `node:test`                                                     |
+| Build                 | Node.js static assembly script with link/invariant checks and a SHA-256 manifest |
 
-- Problem statement and solution overview
-- Implementation details and technical architecture
-- Results and benefits
-- Key features deep dive
-- Lessons learned and future enhancements
+## Prerequisites
 
-### Architecture
+- Node.js **22.13 or newer** (`.nvmrc` pins 22.13.0; CI uses the latest Node 22).
+- npm (the repository includes `package-lock.json`).
+- A modern browser: current Chrome, Edge, Firefox, or Safari. Automated browser verification was
+  performed with Playwright Chromium.
+- Network access for the repository validator. Checklist tracking itself is fully offline after the
+  static files load.
 
-The project's architecture is documented through a series of visual diagrams in the `docs/diagrams` directory:
+## Installation and Development
 
-1. **System Architecture** (`architecture.png`)
+```bash
+git clone https://github.com/dbsectrainer/enterprise-grade-checklists.git
+cd enterprise-grade-checklists
+npm ci
+npm run serve
+```
 
-   - High-level system components
-   - Relationships between modules
-   - Core services and interactions
-   - UI component hierarchy
+Open [http://127.0.0.1:3000/](http://127.0.0.1:3000/). The dashboard links to the validator and to
+each checklist.
 
-2. **User Flow** (`user_flow.png`)
+The site is fully static. Opening `index.html` directly also works for the dashboard and checklists
+in most browsers, but a local server is recommended because `localStorage` behavior on `file://`
+varies by browser. Use the server for the validator so its script and fetch behavior match
+deployment.
 
-   - Complete user journey mapping
-   - Decision points and interactions
-   - Navigation patterns
-   - State transitions
+## Commands
 
-3. **Data Flow** (`data_flow.png`)
+| Command                 | Purpose                                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `npm run serve`         | Serve the repository on port 3000.                                                                                  |
+| `npm run lint`          | Run ESLint over the repository.                                                                                     |
+| `npm run format`        | Format HTML, CSS, JS/MJS, JSON, and Markdown with Prettier.                                                         |
+| `npm run format:check`  | Verify formatting without writing.                                                                                  |
+| `npm run validate:html` | Validate structural HTML rules (`close-order`, permitted content, duplicate IDs, label/control count, button type). |
+| `npm run test:unit`     | Run 9 Node unit tests for URL parsing, escaping, rate-limit messages, markup invariants, and validator regressions. |
+| `npm run test:e2e`      | Run 53 Playwright tests (install browsers first: `npx playwright install chromium`).                                |
+| `npm test`              | Run unit tests, then the Playwright suite.                                                                          |
+| `npm run build`         | Assemble the deployable site into `dist/` and write `dist/build-manifest.json`.                                     |
+| `npm run verify:dist`   | Serve `dist/` and smoke-test every page for HTTP, console, network, and content errors.                             |
+| `npm run capture`       | Re-capture the evidence screenshots and manifest from the running app. Requires network for the live validator run. |
 
-   - System data movement
-   - Layer interactions
-   - Event system
-   - Data persistence patterns
+### First-time Playwright setup
 
-4. **Component Relationships** (`component_relationships.png`)
-   - Component dependencies
-   - Layer organization
-   - Cross-cutting concerns
-   - Service interactions
+```bash
+npx playwright install chromium
+# On a fresh Linux CI runner:
+npx playwright install --with-deps chromium
+```
 
-See [docs/diagrams/README.md](docs/diagrams/README.md) for instructions on generating and updating these diagrams.
+If the default browser cache is not writable (some managed machines), install and run with a
+workspace-local path:
+
+```bash
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.playwright-browsers" npx playwright install chromium
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.playwright-browsers" npm run test:e2e
+```
+
+## Production Build
+
+```bash
+npm run build
+npm run verify:dist
+```
+
+`dist/` contains the browser assets, documentation, verification evidence, and the build manifest.
+It excludes tests, Playwright reports, browser caches, and legacy/unwired developer scripts. Every
+local link in the built HTML and Markdown is checked during the build, and the key content
+invariants (eight cards, accessible checklist markup) are enforced.
+
+To preview the artifact manually:
+
+```bash
+npx http-server dist -p 3001 -c-1
+```
+
+The GitHub Pages workflow also builds `dist/` and deploys that artifact, rather than deploying the
+repository root.
+
+## Environment Configuration
+
+No environment variables, API keys, or secrets are required or read by the application.
+
+The validator uses the unauthenticated GitHub REST API:
+
+- 60 requests per hour per public IP.
+- Public repositories only.
+- Four requests per validation: repository metadata, root contents, languages, and the root
+  `package.json` when present.
+- Rate-limit failures are shown inline with the reset time.
+
+No credentials are collected, stored, or transmitted by this project. Progress remains in the
+browser and is never uploaded.
+
+## Data and State
+
+| Key                                                    | Storage          | Purpose                                     |
+| ------------------------------------------------------ | ---------------- | ------------------------------------------- |
+| `frontendChecklistStates`, `backendChecklistStates`, … | `localStorage`   | Indexed checkbox state per checklist.       |
+| `frontendLastUpdated`, `backendLastUpdated`, …         | `localStorage`   | ISO timestamp of the last checklist change. |
+| `theme`                                                | `localStorage`   | `light` or `dark` preference.               |
+| `dashboardSearch`                                      | `sessionStorage` | Current tab's search term.                  |
+| `dashboardFilter`                                      | `sessionStorage` | Current tab's priority filter.              |
+
+Clearing site data resets progress. The dashboard's "Reset All" and each checklist's "Reset
+Checklist" only clear this project's keys after confirmation.
 
 ## Project Structure
 
 ```
 .
-├── index.html          # Main dashboard interface
-├── styles.css          # Dashboard styling
-├── script.js          # Dashboard functionality
-├── docs/              # Additional documentation
-│   ├── ROADMAP.md     # Development roadmap
-│   ├── CONTRIBUTING.md
+├── index.html                    # Dashboard
+├── script.js                     # Dashboard state, filters, exports, theme, dialog
+├── styles.css                    # Dashboard styles and print styles
+├── validator.html               # Repository validator UI
+├── validator.js                 # Validator UI, GitHub API integration, results
+├── validator-utils.js           # Testable URL parsing, escaping, rate-limit helpers
+├── validator.css                # Validator styles and print styles
+├── standards-mapping.json       # Reference mapping used by the documentation
+├── favicon.svg
+├── enterprise-frontend-checklist/
+│   ├── index.html               # 118 checklist items
+│   ├── script.js                # Shared behavior with frontend storage key
+│   ├── styles.css               # Shared checklist styling
+│   ├── frontend-validator.js    # Legacy, unwired developer script (see limitations)
+│   └── README.md
+├── enterprise-{backend,cloud,data,devops,mobile,security,aiml}-checklist/
+│   └── …                        # Same shape, domain-specific content
+├── tests/
+│   ├── unit/                    # Node unit tests
+│   └── e2e/                     # Playwright tests and accessibility checks
+├── scripts/
+│   ├── build.mjs                # Production assembly + manifest
+│   ├── verify-dist.mjs          # Production artifact smoke test
+│   └── capture-evidence.mjs     # Screenshot/evidence capture
+├── docs/
+│   ├── ROADMAP.md
+│   ├── CASE_STUDY.md
 │   ├── CHANGELOG.md
-│   └── diagrams/      # Architecture diagrams
-├── enterprise-frontend-checklist/    # Frontend development checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── enterprise-backend-checklist/     # Backend development checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── enterprise-cloud-checklist/       # Cloud infrastructure checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── enterprise-data-checklist/        # Data management checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── enterprise-devops-checklist/      # DevOps practices checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── enterprise-mobile-checklist/      # Mobile development checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-├── enterprise-security-checklist/    # Security measures checklist
-│   ├── index.html
-│   ├── styles.css
-│   └── script.js
-└── enterprise-aiml-checklist/        # AI/ML integration checklist
-    ├── index.html
-    ├── styles.css
-    └── script.js
+│   ├── CONTRIBUTING.md
+│   ├── VALIDATOR.md
+│   ├── VALIDATOR_IMPROVEMENT_PLAN.md
+│   ├── diagrams/
+│   └── evidence/
+│       ├── screenshots/
+│       ├── test-results/
+│       ├── build-results/
+│       └── verification-report.md
+├── .github/workflows/ci.yml
+├── .github/workflows/pages.yml
+├── playwright.config.js
+├── .htmlvalidate.json
+└── package.json
 ```
 
-## Technical Details
+## Architecture
 
-### Technologies Used
+- **Static-first:** every page is standalone HTML. There is no runtime server or build framework.
+- **Embedded content:** checklist items and details live in the domain HTML files; the scripts only
+  add behavior and progress. Updating checklist content means editing the corresponding
+  `index.html`.
+- **Independent state:** each checklist uses its own storage keys and can be opened directly.
+- **Cross-tab updates:** checklist changes write `localStorage`; the dashboard listens for `storage`
+  events and recalculates progress without a reload.
+- **Deterministic build:** `scripts/build.mjs` copies only browser assets, checks internal links and
+  content invariants, and emits SHA-256 hashes. No minification or network access is involved.
 
-#### Recommended Automated Security Tools
+Architecture diagrams are in [docs/diagrams](docs/diagrams/README.md).
 
-- **Dependency Scanning:** Use tools like Snyk, Dependabot, or npm audit to detect vulnerable dependencies in all codebases.
-- **Secrets Detection:** Integrate tools such as GitGuardian or truffleHog to scan for secrets in code and configuration files.
-- **Static Analysis (SAST):** Use ESLint security plugins, Bandit (Python), or SonarQube for static code analysis.
-- **Dynamic Analysis (DAST):** Employ OWASP ZAP or Burp Suite for runtime vulnerability scanning.
-- **Container Security:** Use tools like Docker Bench Security or Aqua Trivy to scan container images.
-- **CI/CD Integration:** Automate all security scans in CI/CD pipelines for early detection and remediation.
+## Validator Details and Limitations
 
-### Browser Support
+The validator is a **screening tool**, not a compliance certification system. Current limitations:
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+1. **Public repositories only.** No GitHub token or private-repository authentication is supported.
+2. **Root-level heuristics.** It inspects the repository root and root manifests. Nested
+   `dashboard/`, `infra/`, `k8s/`, or monorepo package roots are not recursively scanned. This can
+   produce false negatives for nested projects.
+3. **npm-only dependency detection.** `package.json` dependencies/devDependencies are checked for
+   known library names. Python (`requirements.txt`), Go (`go.mod`), Rust (`Cargo.toml`), Java, and
+   other ecosystems are not dependency-scanned.
+4. **Presence-based checks.** File names and dependency names indicate intent; they do not prove
+   that a control is configured correctly or active at runtime.
+5. **Filename heuristics.** Some checks match substrings (for example `security` or `test`) rather
+   than a normalized manifest.
+6. **Unauthenticated rate limits.** Large or repeated validations can hit the 60 requests/hour limit.
+7. **No PDF library.** "Export PDF" uses the browser print dialog with a print stylesheet; the
+   result depends on the browser's print destination.
+8. **No persistence of validation history.** Each validation starts fresh; results are exported
+   manually.
 
-### Key Features Implementation
+The proposed recursive tree walk, multi-ecosystem dependency resolver, stack detection, and fixture
+suite are documented in
+[docs/VALIDATOR_IMPROVEMENT_PLAN.md](docs/VALIDATOR_IMPROVEMENT_PLAN.md) and are **not implemented**
+in this revision.
 
-1. **Progress & Validation**
+## Known Limitations
 
-   - Individual progress bars for each checklist
-   - Automated validation scripts
-   - Compliance checking
-   - Performance monitoring
-   - Real-time updates using localStorage events
-   - Independent state management for each checklist
-   - Timestamp tracking for last updates
+- The eight `enterprise-*-checklist/*-validator.js` files are legacy developer prototypes. They are
+  not referenced by any page, use CommonJS while the package is ESM, and require packages that are
+  not installed. They are retained for reference and should not be presented as a working feature.
+  The browser validator (`validator.html`/`validator.js`) is the supported validation feature.
+- Dashboard search filters the eight domain cards, not the 505 individual checklist items.
+- Progress is browser-local. There is no account, cloud sync, or multi-device merge.
+- Automated browser tests run on Chromium. Firefox and WebKit are supported by the code but were not
+  executed in the recorded verification.
+- GitHub Actions workflows were updated and validated as YAML, but could not be executed on GitHub
+  from this environment. The equivalent commands were run locally.
 
-2. **Navigation System**
+## Documentation
 
-   - Return to Dashboard button on all checklists
-   - Consistent navigation experience
-   - Seamless integration between dashboard and checklists
-   - Mobile-friendly navigation controls
-
-3. **Search Functionality**
-
-   - Real-time filtering of checklist cards
-   - Searches through titles and descriptions
-   - Session storage for search term persistence
-
-4. **Responsive Design**
-   - Grid-based layout
-   - Flexible card sizing
-   - Mobile-first approach
-   - Breakpoints for different screen sizes
-
-### State Management
-
-Each checklist maintains its own independent state using dedicated localStorage keys:
-
-- Separate storage keys for each checklist's progress
-- Timestamp tracking for last updates
-- Event-driven updates for real-time dashboard synchronization
-- Automatic state recovery on page reload
+- [Verification report and evidence](docs/evidence/verification-report.md)
+- [Validator documentation](docs/VALIDATOR.md)
+- [Validator improvement plan](docs/VALIDATOR_IMPROVEMENT_PLAN.md)
+- [Changelog](docs/CHANGELOG.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Case study](docs/CASE_STUDY.md)
+- [Contributing](docs/CONTRIBUTING.md)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Please read [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md). Before opening a pull request, run:
 
-## Changelog
-
-See [CHANGELOG.md](docs/CHANGELOG.md) for a list of changes and version history.
+```bash
+npm run lint
+npm run format:check
+npm run validate:html
+npm test
+npm run build
+npm run verify:dist
+```
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Inspired by various enterprise development best practices
-- Built to support modern development workflows
-- Designed for scalability and maintainability
-- Enhanced with seamless navigation and state management
+MIT — see [LICENSE](LICENSE).

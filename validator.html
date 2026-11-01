@@ -8,10 +8,11 @@
       content="Automated validation for enterprise-grade repositories across Frontend, Backend, Cloud, Data, DevOps, Mobile, Security, and AI/ML domains"
     />
     <title>Enterprise Repository Validator - Validate Your Repo</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="validator.css" />
   </head>
   <body>
-    <div class="container">
+    <main class="container">
       <header>
         <h1>🔍 Enterprise Repository Validator</h1>
         <p class="subtitle">
@@ -30,19 +31,23 @@
           critical domains.
         </p>
 
-        <form id="validationForm">
+        <form id="validationForm" novalidate>
           <div class="form-group">
             <label for="repoUrl">GitHub Repository URL</label>
             <input
-              type="url"
+              type="text"
               id="repoUrl"
               name="repoUrl"
+              inputmode="url"
+              autocomplete="url"
+              spellcheck="false"
               placeholder="https://github.com/username/repository"
-              pattern="https://github\.com/[^/]+/[^/]+"
+              aria-describedby="repoUrlHint formError"
               required
             />
-            <small class="form-hint">
-              Example: https://github.com/facebook/react or github.com/microsoft/vscode
+            <small id="repoUrlHint" class="form-hint">
+              Public repositories only. Both https://github.com/owner/repo and github.com/owner/repo
+              are accepted. GitHub's unauthenticated API allows 60 requests per hour.
             </small>
           </div>
 
@@ -91,21 +96,30 @@
             </label>
           </div>
 
+          <p id="formError" class="form-error" role="alert" hidden></p>
+
           <button type="submit" id="validateBtn" class="btn-primary">
             <span class="btn-text">🚀 Validate Repository</span>
           </button>
         </form>
       </section>
 
-      <section id="loadingSection" class="loading-section" style="display: none">
-        <div class="loader"></div>
-        <p id="loadingText">Analyzing repository...</p>
-        <div class="progress-bar">
+      <section id="loadingSection" class="loading-section" style="display: none" aria-busy="true">
+        <div class="loader" aria-hidden="true"></div>
+        <p id="loadingText" role="status" aria-live="polite">Analyzing repository...</p>
+        <div
+          class="progress-bar"
+          role="progressbar"
+          aria-label="Validation progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
           <div class="progress-fill" id="progressFill"></div>
         </div>
       </section>
 
-      <section id="resultsSection" class="results-section" style="display: none">
+      <section id="resultsSection" class="results-section" style="display: none" aria-live="polite">
         <div class="results-header">
           <h2>Validation Results</h2>
           <div class="results-meta">
@@ -145,21 +159,66 @@
           </div>
         </div>
 
-        <div class="results-tabs">
-          <button class="tab-btn active" data-tab="all">All Results</button>
-          <button class="tab-btn" data-tab="passed">Passed</button>
-          <button class="tab-btn" data-tab="failed">Failed</button>
-          <button class="tab-btn" data-tab="warnings">Warnings</button>
-          <button class="tab-btn" data-tab="standards">Standards Compliance</button>
+        <div class="results-tabs" role="tablist" aria-label="Validation result filters">
+          <button
+            type="button"
+            class="tab-btn active"
+            data-tab="all"
+            role="tab"
+            aria-selected="true"
+            aria-controls="resultsContent"
+          >
+            All Results
+          </button>
+          <button
+            type="button"
+            class="tab-btn"
+            data-tab="passed"
+            role="tab"
+            aria-selected="false"
+            aria-controls="resultsContent"
+          >
+            Passed
+          </button>
+          <button
+            type="button"
+            class="tab-btn"
+            data-tab="failed"
+            role="tab"
+            aria-selected="false"
+            aria-controls="resultsContent"
+          >
+            Failed
+          </button>
+          <button
+            type="button"
+            class="tab-btn"
+            data-tab="warnings"
+            role="tab"
+            aria-selected="false"
+            aria-controls="resultsContent"
+          >
+            Warnings
+          </button>
+          <button
+            type="button"
+            class="tab-btn"
+            data-tab="standards"
+            role="tab"
+            aria-selected="false"
+            aria-controls="resultsContent"
+          >
+            Standards Compliance
+          </button>
         </div>
 
-        <div id="resultsContent" class="results-content"></div>
+        <div id="resultsContent" class="results-content" role="tabpanel" tabindex="0"></div>
 
         <div class="results-actions">
-          <button id="exportJsonBtn" class="btn-secondary">📥 Export JSON</button>
-          <button id="exportCsvBtn" class="btn-secondary">📥 Export CSV</button>
-          <button id="exportPdfBtn" class="btn-secondary">📥 Export PDF</button>
-          <button id="newValidationBtn" class="btn-primary">🔄 New Validation</button>
+          <button type="button" id="exportJsonBtn" class="btn-secondary">📥 Export JSON</button>
+          <button type="button" id="exportCsvBtn" class="btn-secondary">📥 Export CSV</button>
+          <button type="button" id="exportPdfBtn" class="btn-secondary">📥 Export PDF</button>
+          <button type="button" id="newValidationBtn" class="btn-primary">🔄 New Validation</button>
         </div>
       </section>
 
@@ -263,19 +322,27 @@
           <div class="standard-badge">HIPAA</div>
           <div class="standard-badge">CIS Benchmarks</div>
           <div class="standard-badge">NIST 800-53</div>
+          <div class="standard-badge">EU AI Act</div>
+          <div class="standard-badge">NIST AI RMF</div>
+          <div class="standard-badge">ISO/IEC 42001</div>
         </div>
       </section>
-    </div>
+    </main>
 
     <footer>
       <p>
         Enterprise Repository Validator | Open Source Project |
-        <a href="https://github.com/dbsectrainer/enterprise-grade-checklists" target="_blank">
+        <a
+          href="https://github.com/dbsectrainer/enterprise-grade-checklists"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           View on GitHub
         </a>
       </p>
     </footer>
 
+    <script src="validator-utils.js"></script>
     <script src="validator.js"></script>
   </body>
 </html>

@@ -2,6 +2,58 @@
 
 All notable changes to the Enterprise-Grade Checklists will be documented in this file.
 
+## [2.1.1] - 2026-10-31
+
+### Repository audit and remediation
+
+A verified audit of the static dashboard, all eight checklists, the repository validator, build
+tooling, and documentation.
+
+#### Validator
+
+- Fixed the invalid `pattern` attribute that blocked form submission in current Chromium. The form
+  now uses custom validation and accepts both `https://github.com/owner/repo` and
+  `github.com/owner/repo`.
+- Replaced blocking `alert()` errors with inline, focusable messages.
+- Added actionable messages for 404s, GitHub rate limits (including reset time), and network
+  failures.
+- Removed the unused commits request and the duplicate `package.json` fetches. A validation now
+  makes four requests and reuses one parsed manifest.
+- Removed internal repository data from JSON exports, escaped result text, and added ARIA tab
+  semantics plus arrow-key navigation.
+- Added AI standards badges, the missing NIST 800-53 tag, and a print stylesheet for PDF output.
+
+#### Checklists and dashboard
+
+- Migrated all 505 checklist items from invalid `<label>`-wrapped cards to valid
+  `div.checklist-item` markup with a single `label.item-label` per checkbox. This fixes the
+  behavior where clicking inside a details panel toggled the checkbox and closed the panel.
+- Fixed details panels being squeezed beside the label; they now span the full item width.
+- Added visible per-section progress badges, `aria-expanded`/`aria-controls`, native keyboard
+  behavior, and Escape-to-close.
+- Fixed the dashboard's stale progress colour after a reset, added weighted overall progress,
+  last-updated timestamps, cross-tab synchronization, no-results search state, and session-scoped
+  filter persistence.
+- Replaced the no-op dashboard PDF export with the browser print dialog and print CSS.
+- Added a real export modal with dialog semantics, focus restoration, Escape, and backdrop close.
+- Removed the unused 315 KB `chart.min.js` asset and added a favicon to every page.
+
+#### Tooling, tests, and documentation
+
+- Added 9 Node unit tests and 53 Playwright end-to-end tests, including WCAG 2.2 A/AA checks with
+  axe (zero violations on the tested pages).
+- Added a production build (`dist/`) with internal-link and content-invariant checks, a SHA-256
+  manifest, and an artifact smoke test.
+- Reworked CI to run lint, formatting, HTML validation, unit tests, Playwright tests, build, and
+  artifact verification. Pages now deploys the built `dist/` artifact.
+- Updated README, validator documentation, and package metadata; documented remaining legacy
+  scripts and validator limitations.
+- Fixed duplicated Prettier configuration, outdated repository metadata, and dependency/lockfile
+  drift.
+
+See [docs/evidence/verification-report.md](evidence/verification-report.md) for commands, results,
+and screenshots.
+
 ## [2.1.0] - 2026-09-22
 
 ### 2026 Technology Refresh

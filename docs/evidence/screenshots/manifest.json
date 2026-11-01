@@ -1,0 +1,68 @@
+{
+  "capturedAt": "2026-11-01T04:05:29.567Z",
+  "baseUrl": "http://127.0.0.1:4175",
+  "screenshots": [
+    {
+      "file": "homepage-desktop.png",
+      "description": "Dashboard with all eight domains, filters, exports, and validator CTA.",
+      "bytes": 271252,
+      "sha256": "2a273d8b51a6d244de2520ac3d8bd594511e39bb53970a539bc633aae5320854"
+    },
+    {
+      "file": "checklist-desktop.png",
+      "description": "Frontend checklist with checked items and visible per-section progress at desktop width.",
+      "bytes": 148644,
+      "sha256": "9a8fc672eb6ac6322b0e0bdcdcfc896218ee1944ec50dcaa47a5eb4e69e561fc"
+    },
+    {
+      "file": "checklist-details.png",
+      "description": "Expanded checklist details: full-width panel, readable content, and preserved checkbox state.",
+      "bytes": 180602,
+      "sha256": "09134bc6326a31ab491370189e5423ae61e6de85ef08500caf5b1ee0cd01a968"
+    },
+    {
+      "file": "dashboard-progress-desktop.png",
+      "description": "Dashboard after checking three frontend items: per-domain progress, weighted overall progress, and last-updated timestamp.",
+      "bytes": 273121,
+      "sha256": "4d1aab41e881b6ad3047ab66926ad734937b24b50de4a358812dd4f629bd9d9c"
+    },
+    {
+      "file": "validator-form.png",
+      "description": "Repository validator form with domain selection and standards note.",
+      "bytes": 295894,
+      "sha256": "f4dd98de4e12cd9d908bb6690300f34141186a0f2386a3fb58a5036d2b1011e0"
+    },
+    {
+      "file": "validator-results.png",
+      "description": "Live validator run against dbsectrainer/enterprise-grade-checklists with passed, failed, warning, score, and standards tabs.",
+      "bytes": 653431,
+      "sha256": "0ca2f12237f871b0c3713e067b6ef1891f558542f263a1662172651411a02d97"
+    },
+    {
+      "file": "validator-standards.png",
+      "description": "Standards compliance tab for the live validation run.",
+      "bytes": 110262,
+      "sha256": "578290c60559c985e41a082b1c1a223960a14d5ea15d54370f1afb916a72b669"
+    },
+    {
+      "file": "homepage-mobile.png",
+      "description": "Dashboard at 390px: single-column cards, controls, and navigation remain usable.",
+      "bytes": 235800,
+      "sha256": "52a22dfbf9818c9dd1bdbdbd07251ff1b5be3b77635d71e3e0eb2d8cda1b2493"
+    },
+    {
+      "file": "checklist-mobile.png",
+      "description": "Frontend checklist at 390px with static back link and stacked item layout.",
+      "bytes": 50128,
+      "sha256": "e2046a56e31f82d0a5049e12066f1a3be9bfd0dac2477aa70938deb76f90e764"
+    },
+    {
+      "file": "validator-mobile.png",
+      "description": "Repository validator form at 390px.",
+      "bytes": 67509,
+      "sha256": "82047263e44bdc4149c791e1504401c3b53aae19c81cce1e4a571873b2257269"
+    }
+  ],
+  "consoleErrors": [],
+  "networkErrors": []
+}

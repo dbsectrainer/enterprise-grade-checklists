@@ -7,6 +7,11 @@ node_modules/
 # Ignore build artifacts
 dist/
 build/
+playwright-report/
+test-results/
+coverage/
+.npm-cache/
+.playwright-browsers/
 
 # Ignore minified files
 *.min.js
