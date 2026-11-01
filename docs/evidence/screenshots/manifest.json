@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-11-01T04:05:29.567Z",
+  "capturedAt": "2026-11-01T04:18:14.001Z",
   "baseUrl": "http://127.0.0.1:4175",
   "screenshots": [
     {
@@ -23,8 +23,8 @@
     {
       "file": "dashboard-progress-desktop.png",
       "description": "Dashboard after checking three frontend items: per-domain progress, weighted overall progress, and last-updated timestamp.",
-      "bytes": 273121,
-      "sha256": "4d1aab41e881b6ad3047ab66926ad734937b24b50de4a358812dd4f629bd9d9c"
+      "bytes": 272910,
+      "sha256": "726dc5fbdf4246e482cff1e00b5defa1a750f0be9a53195fee7486fd6f89bbf0"
     },
     {
       "file": "validator-form.png",
@@ -35,14 +35,14 @@
     {
       "file": "validator-results.png",
       "description": "Live validator run against dbsectrainer/enterprise-grade-checklists with passed, failed, warning, score, and standards tabs.",
-      "bytes": 653431,
-      "sha256": "0ca2f12237f871b0c3713e067b6ef1891f558542f263a1662172651411a02d97"
+      "bytes": 656684,
+      "sha256": "9b171e3bd43bbe4f5cdc6d7a2d3aa66692cfc1d80b80973a99f98453facac879"
     },
     {
       "file": "validator-standards.png",
       "description": "Standards compliance tab for the live validation run.",
-      "bytes": 110262,
-      "sha256": "578290c60559c985e41a082b1c1a223960a14d5ea15d54370f1afb916a72b669"
+      "bytes": 110742,
+      "sha256": "145d42602f89a405d01d39d8e08400179ed978ee874223263d329f63ee28ef8f"
     },
     {
       "file": "homepage-mobile.png",
