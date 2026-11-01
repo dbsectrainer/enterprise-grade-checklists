@@ -1,0 +1,22 @@
+$ node --version
+v26.13.0
+$ npm --version
+11.20.0
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		27.0.1
+BuildVersion:		26A434
+$ uname -m
+arm64
+$ npx playwright --version
+Version 1.64.1
+$ npx eslint --version
+v10.14.0
+$ npx prettier --version
+3.9.8
+$ npx html-validate --version
+html-validate-10.17.0
+$ ls .playwright-browsers
+chromium-1248
+chromium_headless_shell-1248
+ffmpeg-1013

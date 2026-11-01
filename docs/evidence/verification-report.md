@@ -214,6 +214,11 @@ All commands were run from the repository root.
 checks HTTP 200, page content, favicon resolution, browser console errors, page errors, failed
 requests, and HTTP responses ≥400. Result: 10/10 pages pass.
 
+The build was also run from an index-only copy of the repository (simulating a clean checkout). This
+caught an ignore-rule bug: `test-results/` and `*.log` were hiding the verification evidence, so the
+report's local links failed in CI. The rules are now root-anchored, with explicit exceptions for
+`docs/evidence/test-results/` and its `.log` files. The clean-checkout build completes with 82 files.
+
 ## 8. Screenshot Evidence
 
 All screenshots were captured from the running application. The manifest records byte sizes and

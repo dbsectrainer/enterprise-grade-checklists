@@ -1,0 +1,10 @@
+$ npm run format:check
+
+
+> enterprise-grade-checklists@2.1.1 format:check
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+EXIT CODE: 0

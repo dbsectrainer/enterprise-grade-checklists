@@ -1,0 +1,15 @@
+{
+  "repository": "dbsectrainer/enterprise-grade-checklists",
+  "validatedAt": "11/1/2026, 12:04:25 AM",
+  "passed": 5,
+  "failed": 5,
+  "warnings": 19,
+  "score": "50%",
+  "requests": 4,
+  "responses": [
+    "200 https://api.github.com/repos/dbsectrainer/enterprise-grade-checklists",
+    "200 https://api.github.com/repos/dbsectrainer/enterprise-grade-checklists/languages",
+    "200 https://api.github.com/repos/dbsectrainer/enterprise-grade-checklists/contents",
+    "200 https://raw.githubusercontent.com/dbsectrainer/enterprise-grade-checklists/main/package.json"
+  ]
+}

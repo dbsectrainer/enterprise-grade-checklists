@@ -1,0 +1,16 @@
+$ npm ci
+
+
+added 155 packages, and audited 156 packages in 943ms
+
+42 packages are looking for funding
+  run `npm fund` for details
+
+8 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+EXIT CODE: 0

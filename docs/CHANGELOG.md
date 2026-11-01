@@ -47,6 +47,8 @@ tooling, and documentation.
 - Updated the supported runtime and CI target to Node 26 LTS (`>=26.13.0`, `.nvmrc` 26.13.0).
 - Fixed the unit-test invocation: `node --test tests/unit` is interpreted as a file by some Node
   versions; the script now passes explicit test files.
+- Fixed `.gitignore` so `docs/evidence/test-results/` and evidence `.log` files are tracked;
+  `npm run build` now succeeds from a clean checkout instead of failing on missing evidence links.
 - Reworked CI to run lint, formatting, HTML validation, unit tests, Playwright tests, build, and
   artifact verification. Pages now deploys the built `dist/` artifact.
 - Updated README, validator documentation, and package metadata; documented remaining legacy

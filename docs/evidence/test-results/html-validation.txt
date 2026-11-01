@@ -1,0 +1,8 @@
+$ npm run validate:html
+
+
+> enterprise-grade-checklists@2.1.1 validate:html
+> html-validate index.html validator.html "enterprise-*-checklist/index.html"
+
+
+EXIT CODE: 0

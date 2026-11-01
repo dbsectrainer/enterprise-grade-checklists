@@ -1,0 +1,99 @@
+$ npm test
+
+
+> enterprise-grade-checklists@2.1.1 test
+> npm run test:unit && npm run test:e2e
+
+
+> enterprise-grade-checklists@2.1.1 test:unit
+> node --test tests/unit/markup.test.js tests/unit/validator-utils.test.js
+
+✔ every checklist uses accessible item markup (5.007083ms)
+✔ dashboard manifest matches the rendered checklist totals (0.468125ms)
+✔ all pages declare a favicon and a page description (1.127708ms)
+✔ validator form does not rely on an invalid HTML pattern (0.243916ms)
+✔ validator no longer fetches unused commit data (0.150584ms)
+✔ parseGitHubUrl accepts the documented URL forms (0.92275ms)
+✔ parseGitHubUrl rejects non-GitHub and malformed input (0.145542ms)
+✔ escapeHtml neutralizes HTML metacharacters (0.562958ms)
+✔ rateLimitMessage includes the reset time when available (13.490083ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.69825
+
+> enterprise-grade-checklists@2.1.1 test:e2e
+> playwright test
+
+[WebServer] (node:8096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8141) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 53 tests using 2 workers
+
+(node:8146) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8145) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/e2e/accessibility.spec.js:29:1 › dashboard has no WCAG A/AA violations in light mode (493ms)
+  ✓   2 [chromium] › tests/e2e/accessibility.spec.js:34:1 › dashboard has no WCAG A/AA violations in dark mode (656ms)
+  ✓   4 [chromium] › tests/e2e/accessibility.spec.js:42:3 › backend checklist has no WCAG A/AA violations (984ms)
+  ✓   3 [chromium] › tests/e2e/accessibility.spec.js:42:3 › frontend checklist has no WCAG A/AA violations (1.4s)
+  ✓   5 [chromium] › tests/e2e/accessibility.spec.js:42:3 › cloud checklist has no WCAG A/AA violations (836ms)
+  ✓   6 [chromium] › tests/e2e/accessibility.spec.js:42:3 › data checklist has no WCAG A/AA violations (877ms)
+  ✓   7 [chromium] › tests/e2e/accessibility.spec.js:42:3 › devops checklist has no WCAG A/AA violations (845ms)
+  ✓   8 [chromium] › tests/e2e/accessibility.spec.js:42:3 › mobile checklist has no WCAG A/AA violations (857ms)
+  ✓   9 [chromium] › tests/e2e/accessibility.spec.js:42:3 › security checklist has no WCAG A/AA violations (1.2s)
+  ✓  10 [chromium] › tests/e2e/accessibility.spec.js:42:3 › aiml checklist has no WCAG A/AA violations (933ms)
+  ✓  11 [chromium] › tests/e2e/accessibility.spec.js:50:1 › validator form has no WCAG A/AA violations (405ms)
+  ✓  13 [chromium] › tests/e2e/checklists.spec.js:15:3 › frontend checklist renders accessible items and visible progress (1.0s)
+  ✓  12 [chromium] › tests/e2e/accessibility.spec.js:55:1 › validator results and standards views have no WCAG A/AA violations (2.2s)
+  ✓  14 [chromium] › tests/e2e/checklists.spec.js:15:3 › backend checklist renders accessible items and visible progress (840ms)
+  ✓  15 [chromium] › tests/e2e/checklists.spec.js:15:3 › cloud checklist renders accessible items and visible progress (762ms)
+  ✓  16 [chromium] › tests/e2e/checklists.spec.js:15:3 › data checklist renders accessible items and visible progress (762ms)
+  ✓  17 [chromium] › tests/e2e/checklists.spec.js:15:3 › devops checklist renders accessible items and visible progress (781ms)
+  ✓  18 [chromium] › tests/e2e/checklists.spec.js:15:3 › mobile checklist renders accessible items and visible progress (779ms)
+  ✓  20 [chromium] › tests/e2e/checklists.spec.js:15:3 › aiml checklist renders accessible items and visible progress (778ms)
+  ✓  19 [chromium] › tests/e2e/checklists.spec.js:15:3 › security checklist renders accessible items and visible progress (930ms)
+  ✓  21 [chromium] › tests/e2e/checklists.spec.js:115:1 › frontend checklist is usable at a 390px mobile viewport (258ms)
+  ✓  22 [chromium] › tests/e2e/dashboard.spec.js:16:1 › dashboard renders all eight domains and verified footer (151ms)
+  ✓  23 [chromium] › tests/e2e/dashboard.spec.js:27:1 › progress, weighted overall score, and last-updated render from storage (198ms)
+  ✓  24 [chromium] › tests/e2e/dashboard.spec.js:50:1 › search and priority filters update the visible cards (212ms)
+  ✓  25 [chromium] › tests/e2e/dashboard.spec.js:73:1 › theme toggle persists and exposes accessible state (233ms)
+  ✓  26 [chromium] › tests/e2e/dashboard.spec.js:84:1 › export modal supports keyboard dismissal and focus restoration (218ms)
+  ✓  28 [chromium] › tests/e2e/dashboard.spec.js:134:1 › print/save PDF invokes the browser print dialog (187ms)
+  ✓  27 [chromium] › tests/e2e/dashboard.spec.js:101:1 › JSON and CSV exports contain the verified progress data (303ms)
+  ✓  29 [chromium] › tests/e2e/dashboard.spec.js:147:1 › reset all clears progress after confirmation (255ms)
+  ✓  30 [chromium] › tests/e2e/dashboard.spec.js:172:1 › dashboard updates when another tab changes a checklist (326ms)
+  ✓  32 [chromium] › tests/e2e/responsive.spec.js:16:5 › / has no horizontal overflow at mobile width (120ms)
+  ✓  33 [chromium] › tests/e2e/responsive.spec.js:16:5 › /validator.html has no horizontal overflow at mobile width (90ms)
+  ✓  31 [chromium] › tests/e2e/dashboard.spec.js:185:1 › reset all in the dashboard clears an open checklist tab (400ms)
+  ✓  34 [chromium] › tests/e2e/responsive.spec.js:16:5 › /enterprise-frontend-checklist/index.html has no horizontal overflow at mobile width (142ms)
+  ✓  35 [chromium] › tests/e2e/responsive.spec.js:16:5 › /enterprise-security-checklist/index.html has no horizontal overflow at mobile width (125ms)
+  ✓  37 [chromium] › tests/e2e/responsive.spec.js:16:5 › /validator.html has no horizontal overflow at tablet width (99ms)
+  ✓  36 [chromium] › tests/e2e/responsive.spec.js:16:5 › / has no horizontal overflow at tablet width (125ms)
+  ✓  39 [chromium] › tests/e2e/responsive.spec.js:16:5 › /enterprise-security-checklist/index.html has no horizontal overflow at tablet width (122ms)
+  ✓  38 [chromium] › tests/e2e/responsive.spec.js:16:5 › /enterprise-frontend-checklist/index.html has no horizontal overflow at tablet width (147ms)
+  ✓  41 [chromium] › tests/e2e/responsive.spec.js:16:5 › /validator.html has no horizontal overflow at desktop width (104ms)
+  ✓  40 [chromium] › tests/e2e/responsive.spec.js:16:5 › / has no horizontal overflow at desktop width (144ms)
+  ✓  42 [chromium] › tests/e2e/responsive.spec.js:16:5 › /enterprise-frontend-checklist/index.html has no horizontal overflow at desktop width (160ms)
+  ✓  43 [chromium] › tests/e2e/responsive.spec.js:16:5 › /enterprise-security-checklist/index.html has no horizontal overflow at desktop width (162ms)
+  ✓  44 [chromium] › tests/e2e/responsive.spec.js:28:1 › dashboard stacks cards on mobile and keeps all actions reachable (147ms)
+  ✓  45 [chromium] › tests/e2e/responsive.spec.js:43:1 › validator actions remain usable on mobile (143ms)
+  ✓  47 [chromium] › tests/e2e/validator.spec.js:112:1 › invalid URL, empty domain selection, and empty input show inline errors (510ms)
+  ✓  46 [chromium] › tests/e2e/validator.spec.js:99:1 › validator form accepts both documented URL formats without a native pattern (1.5s)
+  ✓  48 [chromium] › tests/e2e/validator.spec.js:141:1 › validates a repository, renders summary and tabs, and caches the manifest fetch (1.2s)
+  ✓  50 [chromium] › tests/e2e/validator.spec.js:214:1 › GitHub rate limits produce an actionable inline error (342ms)
+  ✓  51 [chromium] › tests/e2e/validator.spec.js:238:1 › missing repositories produce a clear message (358ms)
+  ✓  49 [chromium] › tests/e2e/validator.spec.js:198:1 › repository without package.json makes no manifest request (1.1s)
+  ✓  52 [chromium] › tests/e2e/validator.spec.js:254:1 › JSON/CSV exports and print flow reflect the validated results (1.2s)
+  ✓  53 [chromium] › tests/e2e/validator.spec.js:296:1 › keyboard arrows move between result tabs (1.1s)
+
+  53 passed (16.7s)
+
+EXIT CODE: 0
