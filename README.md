@@ -115,7 +115,7 @@ More screenshots, including mobile layouts and the standards tab, are indexed in
 
 ## Prerequisites
 
-- Node.js **22.13 or newer** (`.nvmrc` pins 22.13.0; CI uses the latest Node 22).
+- Node.js **26.13 or newer** (Node 26 LTS; `.nvmrc` pins 26.13.0; CI uses the latest Node 26).
 - npm (the repository includes `package-lock.json`).
 - A modern browser: current Chrome, Edge, Firefox, or Safari. Automated browser verification was
   performed with Playwright Chromium.
@@ -155,6 +155,9 @@ deployment.
 | `npm run verify:dist`   | Serve `dist/` and smoke-test every page for HTTP, console, network, and content errors.                             |
 | `npm run capture`       | Re-capture the evidence screenshots and manifest from the running app. Requires network for the live validator run. |
 
+The test scripts are verified on Node 26.13.0 (the CI runtime). `test:unit` passes explicit test
+files rather than a directory so the invocation remains portable across Node versions.
+
 ### First-time Playwright setup
 
 ```bash
@@ -190,7 +193,7 @@ npx http-server dist -p 3001 -c-1
 ```
 
 The GitHub Pages workflow also builds `dist/` and deploys that artifact, rather than deploying the
-repository root.
+repository root. Both workflows use Node 26.
 
 ## Environment Configuration
 

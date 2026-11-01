@@ -43,7 +43,7 @@ At the final gate:
 | Item          | Value                                                                                       |
 | ------------- | ------------------------------------------------------------------------------------------- |
 | OS            | macOS 27.0.1 (build 26A434), Apple Silicon (`arm64`)                                        |
-| Node.js       | v26.13.0 (project requires `>=22.13.0`, `.nvmrc` pins 22.13.0)                              |
+| Node.js       | v26.13.0 (Node 26 LTS; project requires `>=26.13.0`, `.nvmrc` pins 26.13.0)                 |
 | npm           | 11.20.0                                                                                     |
 | Playwright    | 1.64.1                                                                                      |
 | Chromium      | Playwright Chromium 156.0.8078.4 (headless shell 1248)                                      |
@@ -174,6 +174,7 @@ All commands were run from the repository root.
 | Formatting              | `npm run format:check`               | **Pass**                                                             | [format-check.txt](test-results/format-check.txt)                                                                                |
 | HTML structure          | `npm run validate:html`              | **Pass** (exit 0)                                                    | [html-validation.txt](test-results/html-validation.txt)                                                                          |
 | Unit tests              | `npm run test:unit`                  | **Pass 9/9**                                                         | [unit-tests.txt](test-results/unit-tests.txt)                                                                                    |
+| Runtime target          | Node 26.13.0 (unit + E2E)            | **Pass 9/9 unit, 53/53 E2E**                                         | [unit-tests.txt](test-results/unit-tests.txt), [e2e-tests.txt](test-results/e2e-tests.txt)                                       |
 | Full test command       | `npm test`                           | **Pass 62/62** (9 unit + 53 E2E)                                     | [npm-test.txt](test-results/npm-test.txt)                                                                                        |
 | E2E tests               | `npx playwright test --workers=2`    | **Pass 53/53**                                                       | [e2e-tests.txt](test-results/e2e-tests.txt)                                                                                      |
 | Accessibility           | axe via Playwright (12 scenarios)    | **Pass, 0 violations**                                               | [accessibility.txt](test-results/accessibility.txt)                                                                              |
@@ -252,9 +253,12 @@ The CI workflow was rewritten to:
 
 The Pages workflow now installs dependencies, builds `dist/`, and deploys that artifact.
 
-**Not executed:** GitHub-hosted Actions. The workflows were reviewed and parsed locally with PyYAML, but this
-environment cannot dispatch a remote GitHub Actions run. The equivalent commands were executed
-locally and pass. This is a deployment-readiness caveat, not a local failure.
+**Not executed:** GitHub-hosted Actions. The workflows were reviewed and parsed locally with PyYAML,
+but this environment cannot dispatch a remote GitHub Actions run. The CI target is now Node 26
+(`>=26.13.0`), matching the verified local runtime. The unit script passes explicit test files
+rather than a directory, avoiding the Node-version-dependent directory handling that caused the
+earlier CI failure. Under Node 26.13.0, unit tests pass 9/9 and the full E2E suite passes 53/53.
+This is a deployment-readiness caveat about remote execution only.
 
 ## 10. Security Assessment
 
